@@ -39,6 +39,23 @@
                 <textarea name="body" id="summernote" cols="30" rows="10">{{old('body')}}</textarea>
             </div>
 
+            <div class="form-group mt-2">
+                <label>Meta Description</label>
+                <textarea class="form-control" name="meta_description" id="" cols="30" rows="5">{{old('meta_description')}}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Meta Keywords</label>
+                <textarea class="form-control" name="meta_keywords" id="" cols="30" rows="5">{{old('meta_keywords')}}</textarea>
+            </div>
+
+            <div class="radio radio-success">
+                <input type="radio" checked="checked" value="draft" name="status" id="yes">
+                <label for="yes">Draft</label>
+                <input type="radio"  value="published" name="status" id="no">
+                <label for="no">Publish</label>
+            </div>
+
             <div class="form-group mt-3">
                 <button class="btn btn-primary btn-sm">Add Post</button>
                 <a href="{{route('posts.index')}}" class="btn btn-secondary btn-sm">Cancel</a>
@@ -56,7 +73,7 @@
 
     <script>
         $('#summernote').summernote({
-            height: 200,
+            height: 400,
             onfocus: function(e) {
                 $('body').addClass('overlay-disabled');
             },

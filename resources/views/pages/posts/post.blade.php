@@ -26,6 +26,7 @@
                                 <th>Title</th>
                                 <th>Description</th>
                                 <th>Body</th>
+                                <th>Status</th>
                                 <th>View</th>
                                 <th>Delete</th>
                             </tr>
@@ -36,6 +37,7 @@
                                     <td>{{$post->title}}</td>
                                     <td>{{$post->description}}</td>
                                     <td>{!! $post->body !!}</td>
+                                    <td>{{ucfirst($post->status)}}</td>
                                     <td><a href="{{ route('posts.edit', $post->id) }}" class="mr-3">View</a></td>
                                     <td><a href="{{ route('post.delete', $post->id) }}" class="mr-3">Delete</a></td>
                                 </tr>
