@@ -1544,6 +1544,11 @@ body.sidebar-visible .page-sidebar .sidebar-header .sidebar-header-controls {
   clear: both;
   z-index: 10;
   position: relative;
+
+}
+
+.page-sidebar .sidebar-header >h4 {
+    font-weight: 500;
 }
 .page-sidebar .sidebar-header .sidebar-header-controls {
   display: inline-block;
@@ -14662,6 +14667,7 @@ Main components
   .page-sidebar .sidebar-header {
     height: 48px;
     line-height: 48px;
+    font-weight: 800;
   }
   .card .card-heading {
     padding-left: 15px;
