@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Post;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
@@ -16,7 +17,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::orderByDesc('id')->paginate(5);
-        return view('pages.posts.post')->with('posts',$posts);
+        return view('admin.pages.posts.post')->with('posts',$posts);
         return $posts;
     }
 
@@ -27,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('pages.posts.post_add');
+        return view('admin.pages.posts.post_add');
     }
 
     /**
@@ -84,7 +85,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('pages.posts.post_edit')->with('post',$post);
+        return view('admin.pages.posts.post_edit')->with('post',$post);
     }
 
     /**

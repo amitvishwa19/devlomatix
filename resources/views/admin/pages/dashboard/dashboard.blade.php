@@ -11,7 +11,9 @@
 
 
 @section('content')
-    <h2>This is Dashboard</h2>
+    <div class="wrapper card p-2">
+        Middle Content Area
+    </div>
 @endsection
 
 

@@ -1,8 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PermissionController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +32,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
 
     Route::get('/',[DashboardController::class,'index'])->name('admin.dashboard');
+
+    //Access Control
+    Route::resource('/user',UserController::class);
+    Route::resource('/permission',PermissionController::class);
+    Route::resource('/role',RoleController::class);
+
+
+
 
     Route::resource('/posts',PostController::class);
     Route::get('/posts/delete/{post}',[PostController::class,'delete'])->name('post.delete');
