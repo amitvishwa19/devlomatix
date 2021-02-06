@@ -42,7 +42,6 @@ class UserController extends Controller
             })
             ->addColumn('permissions',function($user){
                 $permissions = $user->permissions;
-                return $permissions
                 $rl ='';
                 if($permissions){
                     foreach($permissions as $permission){
