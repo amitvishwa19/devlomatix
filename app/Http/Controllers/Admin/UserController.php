@@ -30,7 +30,23 @@ class UserController extends Controller
                 $rl ='';
                 if($roles){
                     foreach($roles as $role){
-                       $rl = $rl. '<div class="badge badge-info mr-1" >'. $role->name .'</div>';
+                       $rl = $rl. '<div class="badge badge-success mr-1" >'. $role->name .'</div>';
+                    };
+                }
+                if($rl){
+                    return $rl;
+                }else{
+                    return '-';
+                }
+
+            })
+            ->addColumn('permissions',function($user){
+                $permissions = $user->permissions;
+                return $permissions
+                $rl ='';
+                if($permissions){
+                    foreach($permissions as $permission){
+                       $rl = $rl. '<div class="badge badge-success mr-1" >'. $permission->name .'</div>';
                     };
                 }
                 if($rl){
@@ -47,7 +63,14 @@ class UserController extends Controller
                         '</div>';
                 return $link;
             })
-            ->rawColumns(['name','action','roles'])
+            ->addColumn('status',function(User $user){
+                if($user->status == true){
+                    return '<div class="badge badge-success">Active</div>';
+                }else{
+                    return '<div class="badge badge-warning">InActive</div>';
+                }
+            })
+            ->rawColumns(['name','action','roles','permissions','status'])
             ->make(true);
 
 
@@ -103,12 +126,14 @@ class UserController extends Controller
         //dd($request->all());
 
         $validate = $request->validate([
-            'name' => 'required'
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'email' => 'email'
         ]);
 
 
-        $user->firstname = $request->firstname;
-        $user->lastname = $request->lastname;
+        $user->firstName = $request->firstName;
+        $user->lastName = $request->lastName;
         $user->email = $request->email;
         $user->update();
 

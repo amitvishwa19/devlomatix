@@ -5,6 +5,8 @@
         <a href="#" class="btn-link toggle-sidebar d-lg-none pg pg-menu" data-toggle="horizontal-menu">
         </a>
         <div class="">
+
+
           <!-- START NOTIFICATION LIST -->
           <ul class="d-lg-inline-block d-none notification-list no-margin b-grey b-l b-r no-style p-l-0 p-r-20">
             <li class="p-r-10 inline">
@@ -128,8 +130,10 @@
             </li>
 
           </ul>
-
           <!-- END NOTIFICATIONS LIST -->
+
+
+
           {{-- <a href="#" class="search-link d-lg-inline-block d-none" data-toggle="search"><i class="pg-search"></i>Type anywhere to <span class="bold">search</span></a> --}}
         </div>
         <div class="d-flex align-items-center">

@@ -22,7 +22,8 @@
                     <th style="" class="">Email</th>
                     <th style="" class="">User Type</th>
                     <th style="" class="">Roles</th>
-                    <th style="" class="">Created</th>
+                    <th style="" class="">Permissions</th>
+                    <th style="" class="">Status</th>
                     <th style="" class="">Actions</th>
                 </tr>
                 </thead>
@@ -62,7 +63,8 @@
             { data: 'email', name: 'email'},
             { data: 'type', name: 'type'},
             { data: 'roles', name: 'roles'},
-            { data: 'created_at', name: 'created_at' },
+            { data: 'permissions', name: 'permissions'},
+            { data: 'status', name: 'status'},
             { data: 'action', name: 'action' },
         ]
       });

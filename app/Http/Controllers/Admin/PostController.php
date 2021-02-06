@@ -5,15 +5,20 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Post;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Auth\Access\Gate;
 use App\Http\Controllers\Controller;
+
+
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function __construct(){
+
+
+
+    }
+
     public function index()
     {
         $posts = Post::orderByDesc('id')->paginate(5);

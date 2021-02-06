@@ -12,6 +12,9 @@ use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
+
+
+
     public function index(Request $request)
     {
 
