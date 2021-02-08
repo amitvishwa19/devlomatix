@@ -43,7 +43,8 @@ class CrudGenerate extends Command
         $this->controller($name);
         $this->view($name);
         $this->view_add($name);
-
+        $this->view_edit($name);
+        $this->migration($name);
 
 
 
@@ -137,6 +138,46 @@ class CrudGenerate extends Command
             mkdir($path, 0777, true);
 
         file_put_contents(base_path("/resources/views/admin/pages/{$folder}/{$folder}_add.blade.php"), $requestTemplate);
+    }
+
+    protected function view_edit($name){
+
+        $requestTemplate = str_replace(
+            [
+                '{{modelName}}',
+                '{{modelNamePluralLowerCase}}',
+                '{{modelNameSingularLowerCase}}'
+            ],
+            [
+                $name,
+                strtolower(str_plural($name)),
+                strtolower($name)
+            ],
+            $this->getStub('view_edit')
+        );
+
+        $folder = strtolower($name);
+        if(!file_exists($path = base_path("/resources/views/admin/pages/{$folder}")))
+            mkdir($path, 0777, true);
+
+        file_put_contents(base_path("/resources/views/admin/pages/{$folder}/{$folder}_edit.blade.php"), $requestTemplate);
+    }
+
+    //Migration Stub
+    protected function migration($name){
+
+        $requestTemplate = str_replace(
+            ['{{modelName}}'],
+            [strtolower(str_plural($name))],
+            $this->getStub('Migration')
+        );
+
+        $datePrefix = date('Y_m_d_His');
+        $name  = str_plural(strtolower($name));
+        $name  = str_plural($name);
+
+        file_put_contents(base_path("/database/migrations/{$datePrefix}_create_{$name}_table.php"), $requestTemplate);
+        $this->info('Migration created successfully');
     }
 
 }

@@ -1,5 +1,7 @@
 @extends('layouts.auth')
 
+@section('title','Login')
+
 @section('content')
 
 <div class="login-wrapper">
@@ -45,7 +47,7 @@
                 </div>
                 </div>
                 <div class="col-md-6 d-flex align-items-center justify-content-end">
-                <a href="#" class="text-info small">No Account? Register Here</a>
+                <a href="{{route('register')}}" class="text-info small">No Account? Register Here</a>
                 </div>
             </div>
 
