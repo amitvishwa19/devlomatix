@@ -1,92 +1,104 @@
-@extends('layouts.app')
+@extends('layouts.auth')
+
+@section('title','Register')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+<div class="login-wrapper">
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
+<div class="bg-pic">
 
-                            <div class="col-md-6">
-                                <input id="firstName" type="text" class="form-control @error('firstName') is-invalid @enderror" name="firstName" value="{{ old('firstName') }}" required autocomplete="firstName" autofocus>
+    <img src="{{asset('public/assets/img/demo/new-york-city-buildings-sunrise-morning-hd-wallpaper.jpg')}}">
 
-                                @error('firstName')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+</div>
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="lastName" type="text" class="form-control @error('lastName') is-invalid @enderror" name="lastName" value="{{ old('lastName') }}" required autocomplete="lastName" autofocus>
-
-                                @error('lastName')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+<div class="login-container bg-white">
+    <div class="p-l-50 m-l-20 p-r-50 m-r-20 p-t-50 m-t-10 sm-p-l-15 sm-p-r-15 sm-p-t-40">
+        <!-- <img src="{{asset('public/assets/img/logo.png')}}" alt="logo" data-src="assets/img/logo.png" data-src-retina="assets/img/logo_2x.png" width="78" height="22">  -->
+        <h4><b>{{ config('app.name', 'Laravel') }}</b></h4>
+        <p class="p-t-35"><b>Register for new account</b></p>
 
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+        <form id="form-login" class="p-t-15" role="form" method="POST" action="{{ route('register') }}">
+            @csrf
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+            <div class="form-group form-group-default">
+                <label>First Name</label>
+                <div class="controls">
+                    <input type="text" name="firstName" class="form-control" value="{{ old('firstName') }}" autocomplete="firstName" autofocus>
+                </div>
+                @error('firstName')
+                    <small>{{ $message }}</small>
+                @enderror
+            </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+            <div class="form-group form-group-default">
+                <label>Last Name</label>
+                <div class="controls">
+                    <input type="text" name="lastName" class="form-control" value="{{ old('lastName') }}" autocomplete="lastName" autofocus>
+                </div>
+                @error('lastName')
+                    <small>{{ $message }}</small>
+                @enderror
+            </div>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+            <div class="form-group form-group-default">
+                <label>Email</label>
+                <div class="controls">
+                    <input type="email" name="email" class="form-control" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                </div>
+                @error('email')
+                    <small>{{ $message }}</small>
+                @enderror
+            </div>
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+            <div class="form-group form-group-default">
+                <label>{{ __('Password') }}</label>
+                <div class="controls">
+                    <input type="password" class="form-control" name="password">
+                </div>
+                @error('password')
+                    <small>{{ $message }}</small>
+                @enderror
+            </div>
 
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+            <div class="form-group form-group-default">
+                <label>{{ __('Confirm Password') }}</label>
+                <div class="controls">
+                    <input type="password" class="form-control" name="password_confirmation">
                 </div>
             </div>
+
+            <div class="row">
+
+                <div class="col-md-10 align-items-center">
+                    <a href="{{route('login')}}" class="text-info small"><b>Already Have Account? Login Here</b></a>
+                </div>
+            </div>
+
+            <button class="btn btn-primary btn-cons m-t-10" type="submit">Sign Up</button>
+        </form>
+
+        <div class="pull-bottom sm-pull-bottom">
+          <div class="m-b-30 p-r-80 sm-m-t-20 sm-p-r-15 sm-p-b-20 clearfix">
+            <div class="col-sm-9 no-padding m-t-10">
+              <p>
+                <small>
+                    Create a {{ config('app.name', 'Laravel') }} account. If you have a facebook account, log into it for this
+                    process. Sign in with
+                    <a href="#" class="text-info">Facebook</a> or
+                    <a href="#"class="text-info">Google</a>
+                </small>
+              </p>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+
 </div>
 @endsection
+
+
+
