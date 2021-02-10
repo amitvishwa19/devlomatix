@@ -20,7 +20,7 @@ class {{modelName}}Controller extends Controller
 
 
         if ($request->ajax()) {
-            ${{modelNamePluralLowerCase}} = {{modelName}}::orderby('created_at','desc'))->latest('id');
+            ${{modelNamePluralLowerCase}} = {{modelName}}::orderby('created_at','desc')->latest('id');
 
             return Datatables::of(${{modelNamePluralLowerCase}})
             ->editColumn('created_at',function({{modelName}} ${{modelNameSingularLowerCase}}){

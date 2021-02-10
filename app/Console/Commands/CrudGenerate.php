@@ -150,7 +150,7 @@ class CrudGenerate extends Command
             ],
             [
                 $name,
-                strtolower(str_plural($name)),
+                strtolower(Str::plural($name)),
                 strtolower($name)
             ],
             $this->getStub('view_edit')
@@ -168,13 +168,13 @@ class CrudGenerate extends Command
 
         $requestTemplate = str_replace(
             ['{{modelName}}'],
-            [strtolower(str_plural($name))],
+            [strtolower(Str::plural($name))],
             $this->getStub('Migration')
         );
 
         $datePrefix = date('Y_m_d_His');
-        $name  = str_plural(strtolower($name));
-        $name  = str_plural($name);
+        $name  = Str::plural(strtolower($name));
+        $name  = Str::plural($name);
 
         file_put_contents(base_path("/database/migrations/{$datePrefix}_create_{$name}_table.php"), $requestTemplate);
         $this->info('Migration created successfully');

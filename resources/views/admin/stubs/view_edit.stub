@@ -15,7 +15,7 @@
             Edit {{modelName}}
         </h5>
 
-        <form role="form" method="post" action="{{route('{{modelNameSingularLowerCase}}.update')}}" enctype="multipart/form-data">
+        <form role="form" method="post" action="{{route('{{modelNameSingularLowerCase}}.update',${{modelNameSingularLowerCase}}->id)}}" enctype="multipart/form-data">
             @csrf
             {{method_field('PUT')}}
 

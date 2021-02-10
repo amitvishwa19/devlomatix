@@ -43,6 +43,21 @@
     </div>
     @endrole
 
+    @role('digilearn')
+    {{-- Digilearn Area --}}
+    <div class="card social-card share">
+        <div class="circle" data-toggle="tooltip" title="" data-container="body" data-original-title="Label">
+        </div>
+        <div class="card-header clearfix">
+            <h5>Digilearn</h5>
+        </div>
+        <div class="card-description">
+            <li><a href="{{route('classroom.index')}}">Classrooms</a></li>
+            {{-- <li><a href="">Create Post</a></li> --}}
+        </div>
+    </div>
+    @endrole
+
 
     {{-- Post Area --}}
     <div class="card social-card share">
