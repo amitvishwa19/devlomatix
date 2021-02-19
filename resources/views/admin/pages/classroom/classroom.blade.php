@@ -20,7 +20,10 @@
                 <tr>
                     <th style="" class=""><b>Name</b></th>
                     <th style="" class=""><b>Description</b></th>
-                    <th style="" class=""><b>Created</b></th>
+                    <th style="" class=""><b>Owner</b></th>
+                    <th style="" class=""><b>Chapters</b></th>
+                    <th style="" class=""><b>Order</b></th>
+                    <th style="" class=""><b>Status</b></th>
                     <th style="" class=""><b>Actions</b></th>
                 </tr>
                 </thead>
@@ -58,7 +61,10 @@
         columns:[
             { data: 'name', name: 'name'},
             { data: 'description', name: 'description'},
-            { data: 'created_at', name: 'created_at' },
+            { data: 'user', name: 'user'},
+            { data: 'chapters_show', name: 'chapters_show'},
+            { data: 'order', name: 'order'},
+            { data: 'status', name: 'status'},
             { data: 'action', name: 'action' },
         ]
       });

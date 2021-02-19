@@ -14,6 +14,23 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(10)->create();
+        $superAdmin = User::create(
+            [
+                'firstname' => 'Super',
+                'lastname' => 'Admin',
+                'username' => 'superadmin',
+                'email' => 'admin@admin.com',
+                'type' => 'user',
+                'password' => bcrypt('password'),
+            ]
+        );
+
+        $superAdmin->assignRole('super_admin');
+        $superAdmin->assignRole('post_section');
+        $superAdmin->assignRole('digilearn');
+
+
+        User::factory(7)->create();
+
     }
 }

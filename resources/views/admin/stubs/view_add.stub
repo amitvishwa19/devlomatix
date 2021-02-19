@@ -26,7 +26,7 @@
 
             <div class="form-group mt-3">
                 <button class="btn btn-primary btn-sm">Add {{modelName}}</button>
-                <a href="{{route('{{modelNameSingularLowerCase}}.index')}}" class="btn btn-secondary btn-sm">Cancel</a>
+                <a href="{{route('{{modelNameSingularLowerCase}}.index')}}" class="btn btn-info btn-sm">Cancel</a>
             </div>
 
         </form>
@@ -44,7 +44,7 @@
 @endsection
 
 
-@section('javascript')
+@section('scripts')
 
 
 @endsection

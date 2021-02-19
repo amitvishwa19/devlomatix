@@ -28,35 +28,23 @@
         </div>
     </div>
 
-    @role('posts_section')
+    @role('post_section')
     {{-- Post Area --}}
     <div class="card social-card share">
         <div class="circle" data-toggle="tooltip" title="" data-container="body" data-original-title="Label">
         </div>
         <div class="card-header clearfix">
-            <h5>Posts</h5>
+            <h5>CMS</h5>
         </div>
         <div class="card-description">
-            <li><a href="{{route('posts.index')}}">All Posts</a></li>
-            <li><a href="">Create Post</a></li>
+            <li><a href="{{route('posts.index')}}">Posts</a></li>
+            <li><a href="">Categories</a></li>
+            <li><a href="">Tags</a></li>
         </div>
     </div>
     @endrole
 
-    @role('digilearn')
-    {{-- Digilearn Area --}}
-    <div class="card social-card share">
-        <div class="circle" data-toggle="tooltip" title="" data-container="body" data-original-title="Label">
-        </div>
-        <div class="card-header clearfix">
-            <h5>Digilearn</h5>
-        </div>
-        <div class="card-description">
-            <li><a href="{{route('classroom.index')}}">Classrooms</a></li>
-            {{-- <li><a href="">Create Post</a></li> --}}
-        </div>
-    </div>
-    @endrole
+
 
 
     {{-- Post Area --}}
@@ -68,7 +56,7 @@
         </div>
         <div class="card-description">
             <li><a href="{{route('posts.index')}}">Error Logs</a></li>
-            <li><a href="{{route('posts.index')}}">Activity Logs</a></li>
+            <li><a href="">Activity Logs</a></li>
             <li><a href="{{route('posts.index')}}">Settings</a></li>
         </div>
     </div>

@@ -15,11 +15,12 @@ class CreateclassroomsTable extends Migration
     {
         Schema::create('classrooms', function (Blueprint $table) {
 
-            $table->increments('id');
+            $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('name');
-            $table->string('description');
+            $table->text('description')->nullable();
+            $table->text('overview')->nullable();
             $table->boolean('status')->default(0);
             $table->timestamps();
 

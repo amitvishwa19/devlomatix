@@ -24,8 +24,8 @@ class {{modelName}}Controller extends Controller
 
             return Datatables::of(${{modelNamePluralLowerCase}})
             ->editColumn('created_at',function({{modelName}} ${{modelNameSingularLowerCase}}){
-                    return ${{modelNameSingularLowerCase}}->created_at->diffForHumans();
-                })
+                return ${{modelNameSingularLowerCase}}->created_at->diffForHumans();
+            })
             ->addColumn('action',function($data){
                 $link = '<div class="d-flex">'.
                             '<a href="'.route('{{modelNameSingularLowerCase}}.edit',$data->id).'" class="mr-2"><small>Edit</small></a>'.

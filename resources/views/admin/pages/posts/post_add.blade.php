@@ -35,7 +35,8 @@
                 <input type="text" class="form-control" name="description" value="{{old('description')}}">
             </div>
 
-            <div class="summernote-wrapper">
+            <div class="form-group summernote-wrapper">
+                <label>Post Body</label>
                 <textarea name="body" id="summernote" cols="30" rows="10">{{old('body')}}</textarea>
             </div>
 

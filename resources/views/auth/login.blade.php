@@ -41,13 +41,21 @@
 
             <div class="row">
                 <div class="col-md-6 no-padding sm-p-l-10">
-                <div class="checkbox ">
-                    <input type="checkbox" name="remember" value="1" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                {{-- <div class="checkbox ">
+                    <input type="checkbox" name="remember" value="1" id="checkbox1" {{ old('remember') ? 'checked' : '' }}>
                     <label for="checkbox1">Keep Me Signed in</label>
+                </div> --}}
+
+                <div class="checkbox check-info">
+                    <input type="checkbox" name="remember" value="1" id="checkbox4" {{ old('remember') ? 'checked' : '' }}>
+                    <label for="checkbox4">Keep Me SignIn</label>
                 </div>
+
+
                 </div>
                 <div class="col-md-6 d-flex align-items-center justify-content-end">
-                <a href="{{route('register')}}" class="text-info small">No Account? Register Here</a>
+                    <a href="{{route('register')}}" class="text-info small">No Account? Register Here</a>
                 </div>
             </div>
 
