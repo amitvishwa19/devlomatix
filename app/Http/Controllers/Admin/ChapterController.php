@@ -21,7 +21,7 @@ class ChapterController extends Controller
 
 
         if ($request->ajax()) {
-            $chapters = Chapter::orderby('created_at','desc')->latest('id');
+            $chapters = Chapter::orderby('order','asc')->latest('id');
 
             return Datatables::of($chapters)
             ->editColumn('created_at',function(Chapter $chapter){
@@ -81,7 +81,7 @@ class ChapterController extends Controller
 
     public function create()
     {
-        $quizs = Quiz::where('status',true)->orderby('created_at','desc')->get();
+        $quizs = Quiz::where('status',true)->orderby('order','asc')->get();
         return view('admin.pages.chapter.chapter_add')->with('quizs',$quizs);
     }
 
@@ -124,7 +124,7 @@ class ChapterController extends Controller
     public function edit($id)
     {
         $chapter = Chapter::findOrFail($id);
-        $quizs = Quiz::where('status',true)->orderby('created_at','desc')->get();
+        $quizs = Quiz::where('status',true)->orderby('order','asc')->get();
         //return response()->json($chapter);
 
         return view('admin.pages.chapter.chapter_edit')->with('chapter',$chapter)->with('quizs',$quizs);

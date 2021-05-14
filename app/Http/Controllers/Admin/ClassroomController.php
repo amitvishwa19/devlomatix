@@ -21,7 +21,7 @@ class ClassroomController extends Controller
 
 
         if ($request->ajax()) {
-            $classrooms = Classroom::orderby('created_at','desc')->latest('id');
+            $classrooms = Classroom::orderby('order','asc')->latest('id');
 
             return Datatables::of($classrooms)
             ->editColumn('created_at',function(Classroom $classroom){
@@ -52,8 +52,8 @@ class ClassroomController extends Controller
             })
             ->addColumn('action',function($data){
                 $link = '<div class="d-flex">'.
-                            '<a href="'.route('classroom.edit',$data->id).'" class="mr-2"><small>Edit</small></a>'.
-                            '<a href="javascript:void(0);" id="'.$data->id.'" class="delete"><small>Delete</small></a>'.
+                            '<a href="'.route('classroom.edit',$data->id).'" class="mr-2"><small><b>Edit</b></small></a>'.
+                            '<a href="javascript:void(0);" id="'.$data->id.'" class="delete"><small><b>Delete</b></small></a>'.
                         '</div>';
                 return $link;
             })

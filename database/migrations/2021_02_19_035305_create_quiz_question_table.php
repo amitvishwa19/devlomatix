@@ -15,12 +15,11 @@ class CreateQuizQuestionTable extends Migration
     {
         Schema::create('quiz_question', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('quiz_id')->unsigned();
+            $table->unsignedBigInteger('quiz_id');
             $table->foreign('quiz_id')->references('id')->on('quizzes')->onDelete('cascade');
 
-            $table->bigInteger('question_id')->unsigned();
+            $table->unsignedBigInteger('question_id');
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

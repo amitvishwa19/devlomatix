@@ -20,7 +20,6 @@ class CreateChapterQuizTable extends Migration
 
             $table->bigInteger('quiz_id')->unsigned();
             $table->foreign('quiz_id')->references('id')->on('quizzes')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

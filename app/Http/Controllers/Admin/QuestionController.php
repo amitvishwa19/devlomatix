@@ -21,7 +21,7 @@ class QuestionController extends Controller
 
 
         if ($request->ajax()) {
-            $questions = Question::orderby('created_at','desc')->latest('id');
+            $questions = Question::orderby('order','asc')->latest('id');
 
             return Datatables::of($questions)
             ->editColumn('created_at',function(Question $question){

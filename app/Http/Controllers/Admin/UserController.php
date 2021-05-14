@@ -25,6 +25,9 @@ class UserController extends Controller
             ->addColumn('name',function($user){
                 return ucfirst($user->firstName) .','. ucfirst($user->lastName);
             })
+            ->addColumn('type',function($user){
+                return ucfirst($user->type) ;
+            })
             ->addColumn('roles',function($user){
                 $roles = $user->roles;
                 $rl ='';

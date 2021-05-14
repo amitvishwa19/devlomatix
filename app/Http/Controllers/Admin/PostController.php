@@ -19,11 +19,31 @@ class PostController extends Controller
 
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::orderByDesc('id')->paginate(5);
-        return view('admin.pages.posts.post')->with('posts',$posts);
-        return $posts;
+        //dd(Post::orderby('created_at','desc')->latest('id'));
+        if ($request->ajax()) {
+            $posts = Post::orderby('created_at','desc')->latest('id');
+
+            return Datatables::of($posts)
+            ->editColumn('created_at',function(Post $post){
+                return $post->created_at->diffForHumans();
+            })
+            // ->addColumn('action',function($data){
+            //     $link = '<div class="d-flex">'.
+            //                 '<a href="'.route('post.edit',$data->id).'" class="mr-2"><small>Edit</small></a>'.
+            //                 '<a href="javascript:void(0);" id="'.$data->id.'" class="delete"><small>Delete</small></a>'.
+            //             '</div>';
+            //     return $link;
+            // })
+            //->rawColumns(['action'])
+            ->make(true);
+
+
+        }
+
+
+        return view('admin.pages.posts.post');
     }
 
     /**

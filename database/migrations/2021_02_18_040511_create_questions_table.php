@@ -21,6 +21,7 @@ class CreatequestionsTable extends Migration
             $table->text('question');
             $table->integer('score');
             $table->enum('type', ['objective','descriptive'])->default('objective');
+            $table->integer('order')->default(0);
             $table->boolean('status')->default(0);
             $table->timestamps();
 

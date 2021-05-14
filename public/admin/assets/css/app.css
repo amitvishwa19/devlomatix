@@ -1,0 +1,22 @@
+.admin-sidebar-logo-title img {
+  margin-top: -10px;
+}
+.admin-sidebar-logo-title .title-text {
+  margin-top: 5px;
+  color: #8997bd;
+  font-size: 18px;
+}
+
+.swal2-cancel {
+  margin-right: 20px !important;
+}
+
+.swal2-actions .btn-danger:not(:disabled):not(.disabled):active {
+  margin-right: 20px !important;
+  outline: 0 !important;
+  border: none !important;
+}
+
+.swal2-actions .btn-danger:not(:disabled):not(.disabled):focus {
+  outline: 0 !important;
+}

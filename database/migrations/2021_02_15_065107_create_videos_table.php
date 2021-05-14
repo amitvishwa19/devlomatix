@@ -22,6 +22,7 @@ class CreatevideosTable extends Migration
             $table->string('feature_image')->nullable();
             $table->string('feature_video')->nullable();
             $table->tinyInteger('notice_published')->default(0);
+            $table->integer('order')->default(0);
             $table->boolean('status')->default(0);
             $table->timestamps();
 

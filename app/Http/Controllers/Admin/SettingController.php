@@ -19,25 +19,6 @@ class SettingController extends Controller
     {
 
 
-        if ($request->ajax()) {
-            $settings = Setting::orderby('created_at','desc')->latest('id');
-
-            return Datatables::of($settings)
-            ->editColumn('created_at',function(Setting $setting){
-                    return $setting->created_at->diffForHumans();
-                })
-            ->addColumn('action',function($data){
-                $link = '<div class="d-flex">'.
-                            '<a href="'.route('setting.edit',$data->id).'" class="mr-2"><small>Edit</small></a>'.
-                            '<a href="javascript:void(0);" id="'.$data->id.'" class="delete"><small>Delete</small></a>'.
-                        '</div>';
-                return $link;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
-
-
-        }
 
 
         return view('admin.pages.setting.setting');

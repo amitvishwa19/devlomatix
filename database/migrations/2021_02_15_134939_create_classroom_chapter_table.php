@@ -20,7 +20,6 @@ class CreateClassroomChapterTable extends Migration
 
             $table->bigInteger('chapter_id')->unsigned();
             $table->foreign('chapter_id')->references('id')->on('chapters')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

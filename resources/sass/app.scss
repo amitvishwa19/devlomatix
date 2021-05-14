@@ -1,50 +1,27 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+.admin-sidebar-logo-title{
 
-// Variables
-@import 'variables';
 
-// Bootstrap
-//@import '~bootstrap/scss/bootstrap';
-
-.dataTables_filter{
-    max-width: 50% !important;
-    float:right;
-    input{
-        border:1px solid grey;
-        border-radius:2px;
-        min-width:100px;
-        margin-left: 10px;
+    img{
+        margin-top: -10px;
     }
-};
 
-.dataTables_length{
-    max-width: 50% !important;
-    float: left;
-    select{
-        min-width:100px;
+    .title-text{
+        margin-top: 5px;;
+        color: #8997bd;
+        font-size: 18px;
     }
 }
 
-.paginate_button{
 
-    margin-right: 20px;
+// Sweet Aleret display css
+.swal2-cancel{
+    margin-right: 20px !important;
 }
-
-//Swal action buttion
-.swal2-actions {
-    .btn-danger {
-        color: #fff;
-        background-color: #6e141d;
-        border-color: #6e141d;
-        margin-right: 10px;
-    }
+.swal2-actions .btn-danger:not(:disabled):not(.disabled):active {
+    margin-right: 20px !important;
+    outline: 0 !important;
+    border: none !important;
 }
-
-ul{
-    list-style:none !important;
-    li{
-        list-style: none !important;
-
-    }
+.swal2-actions .btn-danger:not(:disabled):not(.disabled):focus {
+    outline: 0 !important;
 }

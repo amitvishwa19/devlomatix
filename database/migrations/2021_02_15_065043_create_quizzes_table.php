@@ -25,6 +25,7 @@ class CreatequizzesTable extends Migration
             $table->tinyInteger('result_published')->default(0);
             $table->date('start_date')->default(Carbon::now());
             $table->date('end_date')->default(Carbon::now());
+            $table->integer('order')->default(0);
             $table->boolean('status')->default(0);
             $table->timestamps();
 

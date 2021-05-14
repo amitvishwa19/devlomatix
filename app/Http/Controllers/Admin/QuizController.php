@@ -21,7 +21,7 @@ class QuizController extends Controller
 
 
         if ($request->ajax()) {
-            $quizzes = Quiz::orderby('created_at','desc')->latest('id');
+            $quizzes = Quiz::orderby('order','asc')->latest('id');
 
             return Datatables::of($quizzes)
             ->editColumn('created_at',function(Quiz $quiz){
@@ -71,7 +71,7 @@ class QuizController extends Controller
 
     public function create()
     {
-        $questions = Question::where('status',true)->orderby('created_at','desc')->get();
+        $questions = Question::where('status',true)->orderby('order','asc')->get();
         return view('admin.pages.quiz.quiz_add')->with('questions',$questions);
     }
 
@@ -101,17 +101,15 @@ class QuizController extends Controller
 
     }
 
-    public function show($id)
+    public function show(Quiz $quiz)
     {
-        $quiz = Quiz::findOrFail($id);
-
-        return response()->json($quiz);
+        return view('admin.pages.quiz.quiz_show')->with('quiz',$quiz);
     }
 
     public function edit($id)
     {
         $quiz = Quiz::findOrFail($id);
-        $questions = Question::where('status',true)->orderby('created_at','desc')->get();
+        $questions = Question::where('status',true)->orderby('order','asc')->get();
         //return response()->json($quiz);
 
         return view('admin.pages.quiz.quiz_edit')->with('quiz',$quiz)->with('questions',$questions);
