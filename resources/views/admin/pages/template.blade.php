@@ -51,6 +51,7 @@
     {{-- Datatable JS --}}
     <script src="{{asset('public/admin/plugins/datatables.net/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('public/admin/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('public/admin/assets/pages/jquery.datatable.init.js')}}"></script>
     {{-- Datatable JS --}}
 
 

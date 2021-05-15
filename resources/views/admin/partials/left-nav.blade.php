@@ -87,7 +87,7 @@
             </li>
 
             <li>
-                <a href="widgets.html">
+                <a href="{{route('admin.logs')}}">
                     <i data-feather="alert-triangle" class="align-self-center menu-icon"></i><span>Error Logs</span>
                 </a>
             </li>

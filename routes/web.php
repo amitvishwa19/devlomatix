@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\InquiryController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ErrorLogController;
 use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\ClassroomController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -58,6 +59,10 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
     Route::resource('/user',UserController::class);
     Route::resource('/permission',PermissionController::class);
     Route::resource('/role',RoleController::class);
+
+    //Error Logs
+    Route::get('/logs',[ErrorLogController::class,'index'])->name('admin.logs');
+
 
     //Activity Log
 

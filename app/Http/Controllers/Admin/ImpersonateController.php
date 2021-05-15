@@ -23,31 +23,37 @@ class ImpersonateController extends Controller
             ->editColumn('created_at',function(User $user){
                 return $user->created_at->diffForHumans();
             })
-            ->addColumn('name',function($user){
+            ->addColumn('name',function(User $user){
                 return ucfirst($user->firstName) .','. ucfirst($user->lastName);
             })
-            ->addColumn('roles',function($user){
+            ->addColumn('roles',function(User $user){
                 $roles = $user->roles;
                 $rl ='';
                 if($roles){
                     foreach($roles as $role){
-                       $rl = $rl. '<div class="badge badge-success mr-1" >'. $role->name .'</div>';
+                       $rl = $rl. '<div class="badge badge-soft-info mr-1" >'. $role->name .'</div>';
                     };
                 }
                 if($rl){
                     return $rl;
                 }else{
-                    return '-';
+                    return '<span class="badge badge-soft-secondary">No Roles</span>';
                 }
-
+            })
+            ->addColumn('status',function(User $user){
+                if($user->status == true){
+                    return '<span class="badge badge-soft-success">Active</span>';
+                }else{
+                    return '<span class="badge badge-soft-danger">InActive</span>';
+                }
             })
             ->addColumn('action',function($data){
                 $link = '<div class="d-flex">'.
-                            '<a href="'.route('impersonate.enter',$data->id).'" class="">Impersonate</a>'.
+                            '<a href="'.route('impersonate.enter',$data->id).'" class="badge badge-soft-primary">Impersonate</a>'.
                         '</div>';
                 return $link;
             })
-            ->rawColumns(['name','roles','action'])
+            ->rawColumns(['name','roles','action','status'])
             ->make(true);
 
 

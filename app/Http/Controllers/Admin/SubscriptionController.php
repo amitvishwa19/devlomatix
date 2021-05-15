@@ -92,13 +92,18 @@ class SubscriptionController extends Controller
 
     public function update(Request $request, $id)
     {
-
+        //return $request->all();
         $validate = $request->validate([
-            'name' => 'required'
+            'email' => 'required'
         ]);
 
         $subscription = Subscription::findOrFail($id);
-        $subscription->name = $request->name;
+        $subscription->email = $request->email;
+        if($request->status){
+            $subscription->status = 1;
+        }else{
+            $subscription->status = 0;
+        }
         $subscription->save();
 
         return redirect()->route('subscription.index')
