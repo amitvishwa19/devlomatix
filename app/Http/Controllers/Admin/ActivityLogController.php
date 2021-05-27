@@ -48,6 +48,7 @@ class ActivityLogController extends Controller
 
         }
 
+        //return view('admin.pages.log.activity');
         return view('admin.pages.log.activity');
     }
 
