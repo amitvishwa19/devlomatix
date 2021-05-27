@@ -58,7 +58,7 @@ class ErrorLogController extends Controller
         }
 
         //return view('admin.pages.log.logs');
-        return app('view')->make('admin.pages.log.logs',$data);
+        return app('view')->make('admin.pages.logs.logs',$data);
     }
 
     private function earlyReturn()
