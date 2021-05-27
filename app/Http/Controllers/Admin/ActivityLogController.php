@@ -19,9 +19,10 @@ class ActivityLogController extends Controller
      */
     public function index(Request $request)
     {
-        $act = activity()
-                ->causedBy(auth()->user())
-                ->log('Look mum, I logged something');
+        //abort(403);
+        // $act = activity()
+        //         ->causedBy(auth()->user())
+        //         ->log('Look mum, I logged something');
 
         //$activities = Activity::latest('id');
 
