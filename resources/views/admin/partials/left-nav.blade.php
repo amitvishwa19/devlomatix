@@ -2,7 +2,7 @@
 <div class="left-sidenav">
     <!-- LOGO -->
     <div class="brand">
-        <a href="index.html" class="logo">
+        <a href="{{route('admin.dashboard')}}" class="logo">
             <span class="admin-sidebar-logo-title">
                 <img src="{{asset('public/admin/assets/images/logo-sm.png')}}" alt="logo-small" class="logo-sm">
                 <span class="title-text">DevloMatix</span>
@@ -81,7 +81,7 @@
             <hr class="hr-dashed hr-menu">
 
             <li>
-                <a href="widgets.html">
+                <a href="{{route('activity.index')}}">
                     <i data-feather="activity" class="align-self-center menu-icon"></i><span>Activity Logs</span>
                 </a>
             </li>
@@ -104,9 +104,8 @@
             <a href="javascript: void(0);" class="float-right close-btn text-muted" data-dismiss="update-msg" aria-label="Close" aria-hidden="true">
                 <i class="mdi mdi-close"></i>
             </a>
-            <h5 class="mt-3">Mannat Themes</h5>
-            <p class="mb-3">We Design and Develop Clean and High Quality Web Applications</p>
-            <a href="javascript: void(0);" class="btn btn-outline-warning btn-sm">Upgrade your plan</a>
+            <p class="mb-3">We Design and Develop High Quality and Enterprise ready Web Applications</p>
+            <a href="javascript: void(0);" class="btn btn-outline-warning btn-sm"> &copy; 2021 Devlomatix Solutions</a>
         </div>
     </div>
 </div>

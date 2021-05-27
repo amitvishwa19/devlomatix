@@ -65,6 +65,7 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
 
 
     //Activity Log
+    Route::resource('/activity',ActivityLogController::class);
 
     Route::resource('/posts',PostController::class);
     Route::resource('/category',CategoryController::class);

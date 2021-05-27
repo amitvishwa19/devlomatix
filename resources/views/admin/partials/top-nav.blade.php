@@ -10,6 +10,7 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right dropdown-lg p-0">
+
                     <!-- Top Search Bar -->
                     <div class="app-search-topbar">
                         <form action="#" method="get">
@@ -76,7 +77,7 @@
                             <small class="float-right text-muted pl-2">1 hr ago</small>
                             <div class="media">
                                 <div class="avatar-md bg-soft-primary">
-                                    <img src="{{asset('public/admin/assets/images/users/user-3.jpeg')}}" alt="" class="thumb-sm rounded-circle">
+                                    <img src="{{asset('public/admin/assets/images/users/user-3.jpg')}}" alt="" class="thumb-sm rounded-circle">
                                 </div>
                                 <div class="media-body align-self-center ml-2 text-truncate">
                                     <h6 class="my-0 font-weight-normal text-dark">Your order is placed</h6>
@@ -108,7 +109,7 @@
             <li class="dropdown">
                 <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
                     aria-haspopup="false" aria-expanded="false">
-                    <span class="ml-1 nav-user-name hidden-sm">{{Auth::user()->firstName }},{{Auth::user()->lastName }}</span>
+                    <span class="ml-1 nav-user-name hidden-sm">@if(Auth::user())   {{Auth::user()->firstName }},{{Auth::user()->lastName }}       @endif</span>
                     <img src="{{asset('public/admin/assets/images/users/user-5.jpg')}}" alt="profile-user" class="rounded-circle thumb-xs" />
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">

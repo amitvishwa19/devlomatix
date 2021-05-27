@@ -5,14 +5,16 @@ namespace App\Models;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Lab404\Impersonate\Models\Impersonate;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Lab404\Impersonate\Models\Impersonate;
 
 class User extends Authenticatable
 {
-    use HasFactory;
     use Impersonate;
+    use LogsActivity;
 
     use HasFactory, Notifiable, HasRoles;
 
@@ -48,6 +50,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Classroom::class);
 
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+        ->logOnly(['name', 'text']);
+        // Chain fluent methods for configuration options
     }
 
 }
