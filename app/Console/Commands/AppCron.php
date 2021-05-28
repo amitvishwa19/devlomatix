@@ -39,7 +39,18 @@ class AppCron extends Command
     {
         $act = activity()
                 ->causedBy(auth()->user())
-                ->log('This command is run by App Console AppCorn for cron');
+                //->log('This command is run by App Console AppCorn for cron');
+                ->log('This command is run task schedular');
+
+
+        $schedule->call(function () {
+
+        });
+
+
+
+
         $this->info('app:cron command run successfully');
+
     }
 }
