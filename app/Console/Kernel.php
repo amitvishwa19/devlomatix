@@ -24,7 +24,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('app:cron')->everyTwoMinutes();
+        //$schedule->command('app:cron')->everyTwoMinutes();
+        $schedule->command('app:cron');
     }
 
     /**
