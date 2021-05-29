@@ -115,7 +115,11 @@ class ActivityLogController extends Controller
      */
     public function destroy($id)
     {
-        $activity = Activity::destroy($id);
+        $ids = explode(",", $id);
+
+
+
+        $activity = Activity::destroy($ids);
 
         if($activity){
             return redirect()->route('activity.index')

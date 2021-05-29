@@ -42,8 +42,8 @@
         </div><!--end row-->
 
         <div class=" mb-2">
-            <a href="javascript:void(0)" class="wp-title mr-2" id="select_all">Select All</a>
-            <a href="javascript:void(0)" class="wp-title mr-2" id="deselect_all">Deselect All</a>
+            {{-- <a href="javascript:void(0)" class="wp-title mr-2" id="select_all">Select All</a>
+            <a href="javascript:void(0)" class="wp-title mr-2" id="deselect_all">Deselect All</a> --}}
             <a href="javascript:void(0)" class="wp-title mr-2" id="delete_all">Delete All</a>
          </div>
 
@@ -150,6 +150,25 @@
             }
         });
 
+        $(document).on('click', '#bulk_delete', function(){
+            var checkboxes = document.getElementsByName('id');
+
+            if($("#bulk_delete").is(':checked')){
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i].type == 'checkbox') {
+                        checkboxes[i].checked = true
+                    }
+                }
+            } else {
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i].type == 'checkbox') {
+                        checkboxes[i].checked = false
+                    }
+                }
+            }
+
+        });
+
         $(document).on('click', '#deselect_all', function(){
             var checkboxes = document.getElementsByName('id');
             for (var i = 0; i < checkboxes.length; i++) {
@@ -176,10 +195,12 @@
                 }).then(result => {
                     if (result.value) {
                         $.ajax({
-                            url: "activity/deleteall/"+id,
+                            url: "activity/"+id,
                             type:"post",
                             data: {_method: 'delete', _token: "{{ csrf_token() }}"},
                             success: function(result){
+
+                                console.log(result);
                                 location.reload();
                                 toast({
                                     type: "success",
