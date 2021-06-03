@@ -4,22 +4,23 @@ namespace App\Console\Commands;
 
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Spatie\Activitylog\Models\Activity;
 
-class AppCron extends Command
+class DeleteActivityLogs extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'app:cron';
+    protected $signature = 'app:deleteactivitylog';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'This will serve as enty point if cron job on the server';
+    protected $description = 'This will delete activity log older than 10 minutes';
 
     /**
      * Create a new command instance.
@@ -38,13 +39,9 @@ class AppCron extends Command
      */
     public function handle()
     {
-        $act = activity()
-                ->causedBy(auth()->user())
-                //->log('This command is run by App Console AppCorn for cron');
-                ->log('This command is run by task schedular at ' . Carbon::now());
-
-
-        $this->info('app:cron command run successfully');
-
+        $activities = Activity::where('created_at','<',Carbon::now()->subMinutes(5))->delete();
+        activity()->causedBy(auth()->user())
+        ->log('All Activity log is deleted at ' . Carbon::now() . 'Schedule delete is set @ 13.00 PM Daily');
+        dd($activities);
     }
 }
