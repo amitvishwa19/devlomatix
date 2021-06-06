@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Admin\ChapterController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\InquiryController;
+use App\Http\Controllers\Admin\SandboxController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -72,6 +73,12 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
     Route::resource('/tag',TagController::class);
     Route::resource('/subscription',SubscriptionController::class);
     Route::resource('/contact',ContactController::class);
+
+
+    //Sandbox
+    Route::get('/mail',[SandboxController::class,'mail'])->name('sandbox.mail');
+    Route::get('/mail/simple',[SandboxController::class,'simpleMail'])->name('sandbox.mail.simple');
+    Route::get('/mail/dispatch',[SandboxController::class,'dispatchMail'])->name('sandbox.mail.dispatch');
 
     //Imporsonate
     if ('production' != config('app.env')) {

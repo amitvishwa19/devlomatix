@@ -81,6 +81,24 @@
             <hr class="hr-dashed hr-menu">
 
             <li>
+                <a href="javascript: void(0);"><i data-feather="codesandbox" class="align-self-center menu-icon"></i><span>Sandbox</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                <ul class="nav-second-level" aria-expanded="false">
+                    <li>
+                        <a href="{{route('sandbox.mail')}}">
+                            <i class="ti-control-record"></i>Mail</a>
+                    </li>
+
+                    {{-- <li>
+                        <a href="javascript: void(0);">
+                            <i class="ti-control-record"></i>Roles</a>
+                    </li> --}}
+
+
+                </ul>
+            </li>
+
+
+            <li>
                 <a href="{{route('activity.index')}}">
                     <i data-feather="activity" class="align-self-center menu-icon"></i><span>Activity Logs</span>
                 </a>
