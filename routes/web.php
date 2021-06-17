@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\ErrorLogController;
 use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\ClassroomController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\AutoDeployController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ActivityLogController;
 use App\Http\Controllers\Admin\ImpersonateController;
@@ -48,7 +49,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('/subscribe',SubscriptionController::class);
 
 // App Inquiry
-Route::get('/inquire', [App\Http\Controllers\Admin\InquiryController::class, 'index'])->name('inquire');
+Route::get('/inquire', [InquiryController::class, 'index'])->name('inquire');
+
+//Auto deploy of app
+Route::post('/deploy',[AutoDeployController::class,'deploy'])->name('app.auto.deploy');
 
 
 Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
