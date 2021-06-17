@@ -9,7 +9,7 @@ class AutoDeployController extends Controller
 {
     public function deploy(Request $request)
     {
-        activity()->log('Webhook from github ,will fire this event if new pus to github');
+        activity()->log('Webhook from github ,will fire this event if new push to github');
         //activity()->log('Github webhook request:- ' . $request);
         $githubPayload = $request->getContent();
         activity()->log('Github payload:- ' . $githubPayload );
@@ -19,8 +19,9 @@ class AutoDeployController extends Controller
         activity()->log('Github Hash:- ' . $githubHash );
 
 
-        $localToken = 'vishwa1981';//config('gitdeploy.secret_key');
+        $localToken = 'devlomatix';//config('gitdeploy.secret_key');
         $localHash = 'sha1=' . hash_hmac('sha1', $githubPayload, $localToken, false);
+        activity()->log('Local Hash:- ' . $localHash );
 
         if (hash_equals($githubHash, $localHash)) {
             activity()->log('local hash mached with github hash');
