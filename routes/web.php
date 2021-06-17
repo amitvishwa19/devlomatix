@@ -56,6 +56,10 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
     Route::get('/',[DashboardController::class,'index'])->name('admin.dashboard');
     Route::get('/settings',[SettingController::class,'index'])->name('admin.setting');
 
+
+    //Post
+    Route::resource('/post',PostController::class);
+
     //Access Control
     Route::resource('/user',UserController::class);
     Route::resource('/permission',PermissionController::class);
@@ -79,6 +83,7 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
     Route::get('/mail',[SandboxController::class,'mail'])->name('sandbox.mail');
     Route::get('/mail/simple',[SandboxController::class,'simpleMail'])->name('sandbox.mail.simple');
     Route::get('/mail/dispatch',[SandboxController::class,'dispatchMail'])->name('sandbox.mail.dispatch');
+    Route::post('/mail/dispatch/custom',[SandboxController::class,'dispatchMailCustom'])->name('sandbox.mail.dispatch.custom');
 
     //Imporsonate
     if ('production' != config('app.env')) {

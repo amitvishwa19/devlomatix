@@ -24,7 +24,7 @@
             </li>
 
             <li>
-                <a href="widgets.html">
+                <a href="{{route('post.index')}}">
                     <i data-feather="cast" class="align-self-center menu-icon"></i><span>Posts</span>
                 </a>
             </li>

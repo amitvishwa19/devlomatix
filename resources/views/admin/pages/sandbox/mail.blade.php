@@ -99,24 +99,11 @@
 
                                     </div>
                                     <div class="ml-4 mb-4">
-                                        <a href="{{route('sandbox.mail.dispatch')}}" class="btn btn-info waves-effect waves-light btn-sm"">Send mail</a>
+                                        <a href="{{route('sandbox.mail.dispatch')}}" class="btn btn-info waves-effect waves-light btn-sm">Send mail</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card shadow-none border mb-1">
-                                <div class="card-header" id="headingThree">
-                                <h5 class="my-0">
-                                    <button class="btn btn-link collapsed ml-4 shadow-none" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        What cryptocurrency can i use to buy Dastone?
-                                    </button>
-                                </h5>
-                                </div>
-                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample-faq">
-                                <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.
-                                </div>
-                                </div>
-                            </div>
+
                         </div><!--end accordion-->
                     </div><!--end card-body-->
                 </div><!--end card-->
@@ -132,26 +119,24 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
-                                <form>
+                                <form action="{{route('sandbox.mail.dispatch.custom')}}" method="POST">
+                                    @csrf
                                     <div class="form-group row">
-                                        <div class="col-lg-6  mo-b-15">
-                                            <input class="form-control" type="text" id="name" placeholder="Name">
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <input class="form-control" type="email" id="example-email-input3" placeholder="Email">
+                                        <div class="col-lg-12  mo-b-15">
+                                            <input class="form-control" type="email" id="name"name="to" placeholder="To">
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
                                         <div class="col-12">
-                                            <input class="form-control" type="text" id="subject2" placeholder="Subject">
+                                            <input class="form-control" type="text" name="subject" placeholder="Subject">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" placeholder="Your message"></textarea>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" placeholder="Your message" name='message'></textarea>
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary btn-block px-4">Send Email</button>
+                                    <button type="submit" class="btn btn-info waves-effect waves-light btn-sm">Send Email</button>
                                 </form>
                             </div><!--end col-->
                         </div><!--end row-->

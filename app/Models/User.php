@@ -41,6 +41,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Post');
+    }
+
     function teachers()
     {
         return $this->hasMany('User', 'group_message_id');

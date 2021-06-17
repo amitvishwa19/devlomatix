@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Post;
 use Illuminate\Support\Str;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Access\Gate;
 use App\Http\Controllers\Controller;
+use Yajra\Datatables\Datatables;
 
 
 
@@ -21,7 +23,7 @@ class PostController extends Controller
 
     public function index(Request $request)
     {
-        //dd(Post::orderby('created_at','desc')->latest('id'));
+        //dd(auth()->user()->posts()->with('author','categories')->latest('id'));
         if ($request->ajax()) {
             $posts = Post::orderby('created_at','desc')->latest('id');
 
@@ -29,14 +31,46 @@ class PostController extends Controller
             ->editColumn('created_at',function(Post $post){
                 return $post->created_at->diffForHumans();
             })
-            // ->addColumn('action',function($data){
-            //     $link = '<div class="d-flex">'.
-            //                 '<a href="'.route('post.edit',$data->id).'" class="mr-2"><small>Edit</small></a>'.
-            //                 '<a href="javascript:void(0);" id="'.$data->id.'" class="delete"><small>Delete</small></a>'.
-            //             '</div>';
-            //     return $link;
-            // })
-            //->rawColumns(['action'])
+            ->addColumn('postdetails',function($post){
+                return '<div class="media">
+                            <img src="'.$post->feature_image.'" height="30" class="me-3 align-self-center rounded mr-2" alt="...">
+                            <div class="media-body align-self-center">
+                                <h6 class="m-0">'. $post->title.'</h6>
+                                <small>'.$post->author->firstName .','. $post->author->lastName.'</small
+                            </div><!--end media body-->
+                        </div>';
+            })
+            ->addColumn('author',function($post){
+                return $post->author->firstName .','. $post->author->lastName;
+            })
+            ->addColumn('category',function($post){
+                $categories = $post->categories;
+                //return $categories;
+                $cat = '';
+
+                if($categories){
+                    foreach($categories as $category){
+                       $cat = $cat. '<div class="badge badge-info mr-1" >'. $category->name .'</div>';
+                    };
+                }
+
+                return $cat;
+            })
+            ->addColumn('status',function(Post $post){
+                if($post->status == 'published'){
+                    return '<a href="'.route('post.edit',$post->id).'" class="badge badge-soft-success"><small>Published</small></a>';
+                }else{
+                    return '<a href="'.route('post.edit',$post->id).'" class="badge badge-soft-danger"><small>Draft</small></a>';
+                }
+            })
+            ->addColumn('action',function($data){
+                $link = '<div class="d-flex">'.
+                            '<a href="'.route('post.edit',$data->id).'" class="badge badge-soft-primary mr-2"><small>Edit</small></a>'.
+                            '<a href="javascript:void(0);" id="'.$data->id.'" class="badge badge-soft-danger delete"><small>Delete</small></a>'.
+                        '</div>';
+                return $link;
+            })
+            ->rawColumns(['action','status','author'.'category','postdetails'])
             ->make(true);
 
 
@@ -152,11 +186,17 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        return 'Post will be deleted';
+        $post->delete();
+        return redirect() ->route('posts.index')
+        ->with([
+            'message'    =>'Post Deleted Successfully',
+            'alert-type' => 'success',
+        ]);
     }
 
     public function delete(Post $post)
     {
+        dd($post);
         $post->delete();
         return redirect() ->route('posts.index')
         ->with([

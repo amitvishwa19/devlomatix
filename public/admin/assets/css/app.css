@@ -20,3 +20,41 @@
 .swal2-actions .btn-danger:not(:disabled):not(.disabled):focus {
   outline: 0 !important;
 }
+
+.ql-toolbar.ql-snow {
+  border: 1px solid #e3ebf6 !important;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.ql-container.ql-snow {
+  border: 1px solid #e3ebf6 !important;
+  border-radius: 0.25rem;
+  margin-top: 2PX;
+  min-height: 450px;
+}
+
+.bootstrap-tagsinput {
+  border: 1px solid #e3ebf6 !important;
+  border-radius: 0.25rem;
+  width: 100%;
+  border-top: none;
+  box-shadow: none;
+}
+.bootstrap-tagsinput input {
+  height: 26px;
+}
+.bootstrap-tagsinput .tag.label.label-info {
+  background-color: #12a4ed;
+  border: 1px solid #e3ebf6;
+  color: #fff !important;
+  border-radius: 4px;
+  cursor: default;
+  float: left;
+  margin-right: 5px;
+  padding: 0 5px;
+}
+.bootstrap-tagsinput .tag [data-role=remove] {
+  margin-left: 2px;
+  cursor: pointer;
+}

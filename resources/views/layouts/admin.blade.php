@@ -20,9 +20,10 @@
         <link href="{{asset('public/admin/assets/css/metisMenu.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('public/admin/plugins/daterangepicker/daterangepicker.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('public/admin/plugins/sweet-alert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css">
+        @yield('style')
         <link href="{{asset('public/admin/assets/css/main.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('public/admin/assets/css/app.css')}}" rel="stylesheet" type="text/css" />
-        @yield('style')
+
 
     </head>
 
@@ -45,9 +46,9 @@
 
                 </div><!-- container -->
 
-                <footer class="footer text-center text-sm-left">
+                {{-- <footer class="footer text-center text-sm-left">
                     &copy; 2021 Devlomatix Solutions <span class="d-none d-sm-inline-block float-right">Devloped by <i class="mdi mdi-heart text-danger"></i> Devlomatix Solutions Pvt. Ltd</span>
-                </footer><!--end footer-->
+                </footer><!--end footer--> --}}
             </div>
             <!-- end page content -->
 
@@ -67,12 +68,13 @@
         <script src="{{asset('public/admin/assets/js/moment.js')}}"></script>
         <script src="{{asset('public/admin/plugins/daterangepicker/daterangepicker.js')}}"></script>
 
-
+        {{-- Custom js scripts from blade file --}}
+        @yield('scripts')
 
         <!-- App js -->
         <script src="{{asset('public/admin/assets/js/main.js')}}"></script>
         <script src="{{asset('public/admin/assets/js/app.js')}}"></script>
-        @yield('scripts')
+
 
         <script>
             @if(Session::has('message'))
