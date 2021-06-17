@@ -25,5 +25,7 @@ class AutoDeployController extends Controller
         if (hash_equals($githubHash, $localHash)) {
             activity()->log('local hash mached with github hash');
         }
+
+        return response()->json(['message'=>'Successfully delivered notification'],200);
     }
 }
