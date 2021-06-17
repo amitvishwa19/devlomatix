@@ -17,5 +17,13 @@ class AutoDeployController extends Controller
         activity()->log('Post data:- ' . $postdata );
         $githubHash = $request->header('X-Hub-Signature');
         activity()->log('Github Hash:- ' . $githubHash );
+
+
+        $localToken = 'vishwa1981';//config('gitdeploy.secret_key');
+        $localHash = 'sha1=' . hash_hmac('sha1', $githubPayload, $localToken, false);
+
+        if (hash_equals($githubHash, $localHash)) {
+            activity()->log('local hash mached with github hash');
+        }
     }
 }
