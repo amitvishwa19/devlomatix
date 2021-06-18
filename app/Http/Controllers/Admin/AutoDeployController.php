@@ -12,19 +12,19 @@ class AutoDeployController extends Controller
         activity()->log('Webhook from github ,will fire this event if new push to github');
         //activity()->log('Github webhook request:- ' . $request);
         $githubPayload = $request->getContent();
-        activity()->log('Github payload:- ' . $githubPayload );
+        //activity()->log('Github payload:- ' . $githubPayload );
         $postdata = json_decode($request->getContent(), TRUE);
-        activity()->log('Post data:- ' . $postdata );
+        //activity()->log('Post data:- ' . $postdata );
         $githubHash = $request->header('X-Hub-Signature');
-        activity()->log('Github Hash:- ' . $githubHash );
+        //activity()->log('Github Hash:- ' . $githubHash );
 
 
         $localToken = 'devlomatix';//config('gitdeploy.secret_key');
         $localHash = 'sha1=' . hash_hmac('sha1', $githubPayload, $localToken, false);
-        activity()->log('Local Hash:- ' . $localHash );
+        //activity()->log('Local Hash:- ' . $localHash );
 
         if (hash_equals($githubHash, $localHash)) {
-            activity()->log('local hash mached with github hash');
+            activity()->log('New Code update push to Github,auto update will run now');
         }
 
         return response()->json(['message'=>'Successfully delivered notification'],200);
