@@ -27,7 +27,7 @@
                             </ol>
                         </div><!--end col-->
                         <div class="col-auto align-self-center">
-                            <a href="#exampleModalDefault" class="btn btn-secondary btn-sm" data-toggle="modal" >Add Subscription</a>
+                            <a href="#exampleModalDefault" class="btn btn-info waves-effect waves-light btn-sm" data-toggle="modal" >Add Subscription</a>
                         </div><!--end col-->
                     </div><!--end row-->
                 </div><!--end page-title-box-->
