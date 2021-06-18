@@ -53,6 +53,12 @@
                 </a>
             </li>
 
+            <li>
+                <a href="{{route('mtemplate.index')}}">
+                    <i data-feather="send" class="align-self-center menu-icon"></i><span>mail Templates</span>
+                </a>
+            </li>
+
             <hr class="hr-dashed hr-menu">
 
             <li>

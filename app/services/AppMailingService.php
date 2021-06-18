@@ -25,15 +25,15 @@ class AppMailingService
         activity()->log('App mail service provider');
     }
 
-    public function sendMail($to,$subject,$body)
+    public function sendMail($to,$subject,$body,$view)
     {
         //activity()->log('App mailing service  sendMail finction ' . 'Subject :- ' . $subject  );
-        Mail::to($to)->send(new AppMail($subject,$body));
+        Mail::to($to)->send(new AppMail($subject,$body,$view));
     }
 
-    public function sendMailJob($to,$subject,$body)
+    public function sendMailJob($to,$subject,$body,$view)
     {
-        dispatch(new MailerJob($to,$subject,$body));
+        dispatch(new MailerJob($to,$subject,$body,$view));
     }
 
 

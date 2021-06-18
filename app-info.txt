@@ -1,0 +1,10 @@
+<----------App version (Git Tags) history------------>
+1.0.1
+
+1.0.2
+
+1.0.3
+
+2.0.1
+    1)Admin sidebar app virsion display.
+    2)App subscription auto mail response

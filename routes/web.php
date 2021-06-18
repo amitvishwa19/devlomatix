@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\AutoDeployController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ActivityLogController;
 use App\Http\Controllers\Admin\ImpersonateController;
+use App\Http\Controllers\Admin\MailTemplateController;
 use App\Http\Controllers\Admin\SubscriptionController;
 
 
@@ -38,7 +39,7 @@ use App\Http\Controllers\Admin\SubscriptionController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('client.welcome');
 });
 
 Auth::routes();
@@ -76,7 +77,11 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
     //Activity Log
     Route::resource('/activity',ActivityLogController::class);
 
-    Route::resource('/posts',PostController::class);
+    //Mail Templates
+    Route::resource('/mtemplate',MailTemplateController::class);
+
+    //crm
+    //Route::resource('/posts',PostController::class);
     Route::resource('/category',CategoryController::class);
     Route::resource('/tag',TagController::class);
     Route::resource('/subscription',SubscriptionController::class);

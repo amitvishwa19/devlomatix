@@ -14,11 +14,13 @@ class AppMail extends Mailable
 
     public $subject;
     public $body;
+    public $view;
 
-    public function __construct($subject,$body)
+    public function __construct($subject,$body,$view)
     {
         $this->subject = $subject;
         $this->body = $body;
+        $this->view = $view;
     }
 
     /**
@@ -30,6 +32,6 @@ class AppMail extends Mailable
     {
         return $this->from('info@devlomatix.com','Devlomatix Solutions')
             ->subject( $this->subject)
-            ->view('mails.testmail');
+            ->view($this->view);
     }
 }
