@@ -55,8 +55,61 @@
 
             <li>
                 <a href="{{route('mtemplate.index')}}">
-                    <i data-feather="send" class="align-self-center menu-icon"></i><span>mail Templates</span>
+                    <i data-feather="send" class="align-self-center menu-icon"></i><span>Mail Templates</span>
                 </a>
+            </li>
+
+            <li>
+                <a href="{{route('file.index')}}">
+                    <i data-feather="file" class="align-self-center menu-icon"></i><span>File Manager</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{{route('chat.index')}}">
+                    <i data-feather="message-square" class="align-self-center menu-icon"></i><span>Chat</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="javascript: void(0);" class=""><i data-feather="layout" class="align-self-center menu-icon"></i>Pages <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
+                <ul class="nav-second-level" aria-expanded="false">
+                    <li class="active"><a href="{{route('project.index')}}">Blog</a></li>
+                    <li><a href="apps-project-projects.html">E-comm</a></li>
+                    <li><a href="apps-project-board.html">E-learning</a></li>
+                </ul>
+            </li>
+
+            <hr class="hr-dashed hr-menu">
+
+            <li>
+                <a href="{{route('task.index')}}">
+                    <i data-feather="check-square" class="align-self-center menu-icon"></i><span>Tasks</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{{route('contact.index')}}">
+                    <i data-feather="user-check" class="align-self-center menu-icon"></i><span>Contacts</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{{route('client.index')}}">
+                    <i data-feather="users" class="align-self-center menu-icon"></i><span>Clients</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="javascript: void(0);" class=""><i data-feather="layers" class="align-self-center menu-icon"></i>Projects <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
+                <ul class="nav-second-level" aria-expanded="false">
+                    <li class="active"><a href="{{route('project.index')}}">Overview</a></li>
+                    <li><a href="apps-project-projects.html">Projects</a></li>
+                    <li><a href="apps-project-board.html">Board</a></li>
+                    <li><a href="apps-project-teams.html">Teams</a></li>
+                    <li><a href="apps-project-files.html">Files</a></li>
+                    <li><a href="apps-new-project.html">New Project</a></li>
+                </ul>
             </li>
 
             <hr class="hr-dashed hr-menu">
@@ -117,7 +170,7 @@
             </li>
 
             <li>
-                <a href="widgets.html">
+                <a href="{{route('setting.index')}}">
                     <i data-feather="settings" class="align-self-center menu-icon"></i><span>Settings</span>
                 </a>
             </li>

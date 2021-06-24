@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\SubscriptionRequest;
-use App\Http\Controllers\Controller;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
-use App\Models\Subscription;
+use App\Services\AppMailingService;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\SubscriptionRequest;
 
 class SubscriptionController extends Controller
 {
@@ -56,7 +57,7 @@ class SubscriptionController extends Controller
         return view('admin.pages.subscription.subscription_add');
     }
 
-    public function store(Request $request)
+    public function store(Request $request,AppMailingService $mail)
     {
         $validate = $request->validate([
             'email' => 'required'
@@ -65,6 +66,18 @@ class SubscriptionController extends Controller
         $subscription = New Subscription;
         $subscription->email = $request->email;
         $subscription->save();
+
+        //Sending confirmation mail
+        $to = $request->email;
+        $from = 'info@devlomatix.com';
+        $subject = 'Devlomatix Solutions Newsletter and Updates subscription';
+        $body = 'This is the mail body of test mail';
+        $data =["title" => "hello", "description" => "test test test"];
+        $view = 'mails.subscription';
+
+        $mail->sendMailJob($to,$subject,$body,$data,$view);
+
+
 
         return redirect()->route('subscribe.index')
         ->with([

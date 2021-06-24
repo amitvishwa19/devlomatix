@@ -19,21 +19,23 @@ class MailerJob implements ShouldQueue
     public $to;
     public $subject;
     public $body;
+    public $data;
     public $view;
 
 
 
-    public function __construct($to,$subject,$body,$view)
+    public function __construct($to,$subject,$body,$data,$view)
     {
         $this->to = $to;
         $this->subject = $subject;
         $this->body = $body;
         $this->view = $view;
+        $this->data = $data;
     }
 
 
     public function handle()
     {
-        Mail::to($this->to)->send(new AppMail($this->subject,$this->body,$this->view));
+        Mail::to($this->to)->send(new AppMail($this->subject,$this->body,$this->data,$this->view));
     }
 }

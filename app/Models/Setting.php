@@ -9,5 +9,7 @@ class Setting extends Model
 {
     use HasFactory;
 
-
+    protected $table = 'settings';
+    protected $fillable = ['type','key', 'value'];
+    protected $primaryKey = 'key';
 }

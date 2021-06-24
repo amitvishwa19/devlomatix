@@ -41,7 +41,6 @@ class DeleteActivityLogs extends Command
     {
         $activities = Activity::where('created_at','<',Carbon::now()->subMinutes(5))->delete();
         activity()->causedBy(auth()->user())
-        ->log('All Activity log is deleted at ' . Carbon::now() . 'Schedule delete is set @ 13.00 PM Daily');
-        dd($activities);
+        ->log('All Activity log is deleted at ' . Carbon::now() . 'Schedule delete is set @ 13.00 Hrs Daily');
     }
 }

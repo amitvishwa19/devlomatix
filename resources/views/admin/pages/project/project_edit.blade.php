@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
-@section('title','Setting')
+@section('title','Project')
 
-@section('setting','active')
+@section('project','active')
 
 @section('style')
 @endsection
@@ -12,22 +12,22 @@
 
     <div class="wrapper card p-2">
         <h5>
-            Edit Setting
+            Edit Project
         </h5>
 
-        <form role="form" method="post" action="{{route('setting.update',$setting->id)}}" enctype="multipart/form-data">
+        <form role="form" method="post" action="{{route('project.update',$project->id)}}" enctype="multipart/form-data">
             @csrf
             {{method_field('PUT')}}
 
             <div class="form-group">
-                <label>Setting name</label>
+                <label>Project name</label>
                 <input type="text" class="form-control" name="name"  value="{{old('name')}}">
                 <div class="error">{{$errors->first('name')}}</div>
             </div>
 
             <div class="form-group mt-3">
-                <button class="btn btn-primary btn-sm">Update Setting</button>
-                <a href="{{route('setting.index')}}" class="btn btn-info btn-sm">Cancel</a>
+                <button class="btn btn-primary btn-sm">Update Project</button>
+                <a href="{{route('project.index')}}" class="btn btn-info btn-sm">Cancel</a>
             </div>
 
         </form>
@@ -45,7 +45,7 @@
 @endsection
 
 
-@section('javascript')
+@section('scripts')
 
 
 @endsection

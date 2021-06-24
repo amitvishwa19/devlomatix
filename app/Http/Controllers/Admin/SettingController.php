@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\SettingRequest;
-use App\Http\Controllers\Controller;
+
+
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
-use App\Models\Setting;
+use App\Services\Setting\Settings;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\SettingRequest;
 
 class SettingController extends Controller
 {
@@ -15,36 +18,43 @@ class SettingController extends Controller
 
     }
 
-    public function index(Request $request)
+    public function index(Request $request,Settings $settings)
     {
 
+        //dd($settings->get('name'));
+        //dd($settings->all());
 
-
-
+        //return Setting::get();
         return view('admin.pages.setting.setting');
 
     }
 
     public function create()
     {
-        return view('admin.pages.setting.setting_add');
+        return view('admin.pages.setting.setting');
     }
 
-    public function store(Request $request)
+    public function store(Request $request,Settings $setting)
     {
-        $validate = $request->validate([
-            'name' => 'required'
-        ]);
+        //General setting
+        if($request->type == 'global'){
+            $setting->set('global',$request->name,$request->description);
 
-        $setting = New Setting;
-        $setting->name = $request->name;
-        $setting->save();
+        }
 
-        return redirect()->route('setting.index')
-        ->with([
-            'message'    =>'Setting Added Successfully',
-            'alert-type' => 'success',
-        ]);
+        // $validate = $request->validate([
+        //     'name' => 'required'
+        // ]);
+
+        // $setting = New Setting;
+        // $setting->name = $request->name;
+        // $setting->save();
+
+        // return redirect()->route('setting.index')
+        // ->with([
+        //     'message'    =>'Setting Saved Successfully',
+        //     'alert-type' => 'success',
+        // ]);
 
     }
 

@@ -1,98 +1,104 @@
 @extends('layouts.admin')
 
-@section('title','Setting')
+@section('title','Settings')
 
 @section('setting','active')
 
+
 @section('style')
+
 @endsection
+
 
 
 @section('content')
+    <div class="content-area">
 
-    <div class="wrapper card p-2">
-        <div class="">
-            <h4><b>Settings</b> <div class="float-right"><a href="{{route('setting.create')}}" class="btn btn-primary btn-sm">Add Setting</a></div></h4>
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="row">
+                        <div class="col">
+                            <h4 class="page-title">App Settings</h4>
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Devlomatix</a></li>
+                                <li class="breadcrumb-item active">Settings</li>
+                            </ol>
+                        </div><!--end col-->
+                    </div><!--end row-->
+                </div><!--end page-title-box-->
+            </div><!--end col-->
+        </div><!--end row-->
+
+        <div class="app-setting">
+            <div class="row setting-wrapper">
+                <div class="col-md-3 setting-options">
+                    <div class="card">
+                        <div class="card-header d-flex">
+                            <div class="user-avatar mr-4">
+                                <img src="http://localhost/devlomatix/public/admin/assets/images/users/user-5.jpg" alt="profile-user" class="rounded-circle thumb-xs">
+                            </div>
+                            <div class="setting-text">
+                                <h4 class="card-title">Settings</h4>
+                                <small>All App related settings</small>
+                            </div>
+                        </div><!--end card-header-->
+                        <div class="card-body">
+                            <ul class="mt-2">
+                                <li class="{{(!request()->type ) ? 'active' : 'null'}}">
+                                    <a href="{{route('setting.index')}}">
+                                        <i data-feather="activity" class="align-self-center menu-icon"></i>
+                                        <span>Global</span>
+                                    </a>
+                                </li>
+                                <li class="{{(request()->type =='reading') ? 'active' : 'null'}}">
+                                    <a href="{{route('setting.index',['type'=>'reading'])}}">
+                                        <i data-feather="book-open" class="align-self-center menu-icon"></i>
+                                        <span>Reading</span>
+                                    </a>
+                                </li>
+                                <li class="{{(request()->type =='writing') ? 'active' : 'null'}}">
+                                    <a href="{{route('setting.index',['type'=>'writing'])}}">
+                                        <i data-feather="pen-tool" class="align-self-center menu-icon"></i>
+                                        <span>Writing</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div><!--end card-body-->
+                    </div>
+                </div>
+                <div class="col-md-9 setting-details">
+                    @if(!request()->type)
+                        @include('admin.pages.setting.global')
+                    @endif
+
+                    @if(request()->type == 'reading')
+                        @include('admin.pages.setting.reading')
+                    @endif
+
+                    @if(request()->type == 'writing')
+                        @include('admin.pages.setting.writing')
+                    @endif
+                </div>
+            </div>
         </div>
-        <div data-label="Example" class="mt-2">
-            <table id="datatable" class="table table-color-primary">
-                <thead>
-                <tr>
-                    <th style="" class=""><b>Name</b></th>
-                    <th style="" class=""><b>Created</b></th>
-                    <th style="" class=""><b>Actions</b></th>
-                </tr>
-                </thead>
 
-                <tbody>
-                </tbody>
-
-            </table>
-        </div>
     </div>
-
 @endsection
 
-
-@section('modal')
-
-
-
-@endsection
 
 
 @section('scripts')
-  <script src="{{asset('public/assets/plugins/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 
-  <script>
-    $(function(){
-      'use strict'
+    <script>
 
-
-      //Datatable
-      $('#datatable').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: '{!! route('setting.index') !!}',
-        columns:[
-            { data: 'name', name: 'name'},
-            { data: 'created_at', name: 'created_at' },
-            { data: 'action', name: 'action' },
-        ]
-      });
+        $(function(){
+            'use strict'
 
 
-      //Action Delete function
-      $(document).on('click','.delete',function(){
-        var id =  $(this).attr('id');
-        swalWithBootstrapButtons({
-            title: "Delete Selected Setting?",
-            text: "You won't be able to revert this!",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Delete",
-            cancelButtonText: "Cancel",
-            reverseButtons: true
-        }).then(result => {
-            if (result.value) {
-              $.ajax({
-                  url: "setting/"+id,
-                  type:"post",
-                  data: {_method: 'delete', _token: "{{ csrf_token() }}"},
-                  success: function(result){
-                    location.reload();
-                    toast({
-                        type: "success",
-                        title: "Setting Deleted Successfully"
-                    });
-                  }
-              });
-            }
         });
-      });
 
-
-    });
-  </script>
+    </script>
 
 @endsection

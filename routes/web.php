@@ -1,16 +1,23 @@
 <?php
 
+
 use App\Models\User;
+use App\Facades\Test;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\Admin\ChatController;
+use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\QuizController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VideoController;
+use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\ChapterController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\InquiryController;
+use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\SandboxController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TeacherController;
@@ -39,6 +46,10 @@ use App\Http\Controllers\Admin\SubscriptionController;
 */
 
 Route::get('/', function () {
+
+
+    //return Test::testcase('Wola');
+
     return view('client.welcome');
 });
 
@@ -59,7 +70,7 @@ Route::post('/deploy',[AutoDeployController::class,'deploy'])->name('app.auto.de
 Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
 
     Route::get('/',[DashboardController::class,'index'])->name('admin.dashboard');
-    Route::get('/settings',[SettingController::class,'index'])->name('admin.setting');
+    Route::resource('/setting',SettingController::class);
 
 
     //Post
@@ -85,7 +96,8 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
     Route::resource('/category',CategoryController::class);
     Route::resource('/tag',TagController::class);
     Route::resource('/subscription',SubscriptionController::class);
-    Route::resource('/contact',ContactController::class);
+    Route::resource('/chat',ChatController::class);
+    Route::resource('/file',FileController::class);
 
 
     //Sandbox
@@ -100,6 +112,20 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
         Route::get('/impersonate/enter/{user_id}',[ ImpersonateController::class, 'impersonate'])->name('impersonate.enter');
         Route::get('/impersonate/leave',[ ImpersonateController::class, 'impersonate_leave'])->name('impersonate.leave');
     }
+
+     //Client
+     Route::resource('/contact',ContactController::class);
+
+    //Client
+    Route::resource('/client',ClientController::class);
+
+     //Projects
+     Route::resource('/project',ProjectController::class);
+
+
+     //Tasks
+     Route::resource('/task',TaskController::class);
+
 
 });
 
