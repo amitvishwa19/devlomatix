@@ -29,31 +29,35 @@
 
     <body class="dark-sidenav">
 
+        {{-- For vue js --}}
 
-        @include('admin.partials.left-nav')
+
+            @include('admin.partials.left-nav')
 
 
-        <div class="page-wrapper">
+            <div  id="app" class="page-wrapper">
 
-            @include('admin.partials.top-nav')
+                @include('admin.partials.top-nav')
 
-             <!-- Page Content-->
-            <div class="page-content">
-                <div class="container-fluid">
+                <!-- Page Content-->
+                <div class="page-content">
+                    <div class="container-fluid">
 
-                    {{-- @include('admin.partials.page-area') --}}
-                    @yield('content')
+                        {{-- @include('admin.partials.page-area') --}}
+                        @yield('content')
 
-                </div><!-- container -->
+                    </div><!-- container -->
 
-                {{-- <footer class="footer text-center text-sm-left">
-                    &copy; 2021 Devlomatix Solutions <span class="d-none d-sm-inline-block float-right">Devloped by <i class="mdi mdi-heart text-danger"></i> Devlomatix Solutions Pvt. Ltd</span>
-                </footer><!--end footer--> --}}
+                    {{-- <footer class="footer text-center text-sm-left">
+                        &copy; 2021 Devlomatix Solutions <span class="d-none d-sm-inline-block float-right">Devloped by <i class="mdi mdi-heart text-danger"></i> Devlomatix Solutions Pvt. Ltd</span>
+                    </footer><!--end footer--> --}}
+                </div>
+                <!-- end page content -->
+
             </div>
-            <!-- end page content -->
+            <!-- end page-wrapper -->
 
-        </div>
-        <!-- end page-wrapper -->
+
 
 
 
