@@ -4,95 +4,101 @@
 
 @section('contact','active')
 
+
 @section('style')
+    {{-- Datatable --}}
+    {{--<link href="{{asset('public/admin/plugins/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />--}}
+    {{-- Datatable --}}
 @endsection
+
 
 
 @section('content')
+    <div class="content-area">
 
-    <div class="wrapper card p-2">
-        <div class="">
-            <h4><b>Contacts</b> <div class="float-right"><a href="{{route('contact.create')}}" class="btn btn-primary btn-sm">Add Contact</a></div></h4>
-        </div>
-        <div data-label="Example" class="mt-2">
-            <table id="datatable" class="table table-color-primary">
-                <thead>
-                <tr>
-                    <th style="" class=""><b>Name</b></th>
-                    <th style="" class=""><b>Created</b></th>
-                    <th style="" class=""><b>Actions</b></th>
-                </tr>
-                </thead>
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="row">
+                        <div class="col">
+                            <h4 class="page-title">Contacts</h4>
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Devlomatix</a></li>
+                                <li class="breadcrumb-item active">Contacts</li>
+                            </ol>
+                        </div><!--end col-->
+                    </div><!--end row-->
+                </div><!--end page-title-box-->
+            </div><!--end col-->
+        </div><!--end row-->
 
-                <tbody>
-                </tbody>
-
-            </table>
-        </div>
     </div>
-
 @endsection
 
-
-@section('modal')
-
-
-
-@endsection
 
 
 @section('scripts')
-  <script src="{{asset('public/assets/plugins/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 
-  <script>
-    $(function(){
-      'use strict'
-
-
-      //Datatable
-      $('#datatable').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: '{!! route('contact.index') !!}',
-        columns:[
-            { data: 'name', name: 'name'},
-            { data: 'created_at', name: 'created_at' },
-            { data: 'action', name: 'action' },
-        ]
-      });
+    {{-- Datatable JS --}}
+    {{-- <script src="{{asset('public/admin/plugins/datatables.net/js/jquery.dataTables.min.js')}}"></script> --}}
+    {{-- <script src="{{asset('public/admin/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script> --}}
+    {{-- <script src="{{asset('public/admin/assets/pages/jquery.datatable.init.js')}}"></script> --}}
+    {{-- Datatable JS --}}
 
 
-      //Action Delete function
-      $(document).on('click','.delete',function(){
-        var id =  $(this).attr('id');
-        swalWithBootstrapButtons({
-            title: "Delete Selected Contact?",
-            text: "You won't be able to revert this!",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Delete",
-            cancelButtonText: "Cancel",
-            reverseButtons: true
-        }).then(result => {
-            if (result.value) {
-              $.ajax({
-                  url: "contact/"+id,
-                  type:"post",
-                  data: {_method: 'delete', _token: "{{ csrf_token() }}"},
-                  success: function(result){
-                    location.reload();
-                    toast({
-                        type: "success",
-                        title: "Contact Deleted Successfully"
-                    });
-                  }
-              });
-            }
+
+    <script>
+
+        $(function(){
+            'use strict'
+
+            //Datatable
+            // $('#datatable').DataTable({
+            //     processing: true,
+            //     serverSide: true,
+            //     ajax: '{!! route('post.index') !!}',
+            //     columns:[
+            //         { data: 'postdetails', name: 'postdetails'},
+            //         { data: 'category', name: 'category'},
+            //         { data: 'status', name: 'status'},
+            //         { data: 'created_at', name: 'created_at' },
+            //         { data: 'action', name: 'action' },
+            //     ]
+            // });
+
+
+            //Action Delete function
+            // $(document).on('click','.delete',function(){
+            //     var id =  $(this).attr('id');
+            //     swalWithBootstrapButtons({
+            //         title: "Delete Selected Post?",
+            //         text: "You won't be able to revert this!",
+            //         type: "warning",
+            //         showCancelButton: true,
+            //         confirmButtonText: "Delete",
+            //         cancelButtonText: "Cancel",
+            //         reverseButtons: true
+            //     }).then(result => {
+            //         if (result.value) {
+            //         $.ajax({
+            //             url: "post/"+id,
+            //             type:"post",
+            //             data: {_method: 'delete', _token: "{{ csrf_token() }}"},
+            //             success: function(result){
+            //                 location.reload();
+            //                 toast({
+            //                     type: "success",
+            //                     title: "Post Deleted Successfully"
+            //                 });
+            //             }
+            //         });
+            //         }
+            //     });
+            // });
+
         });
-      });
 
-
-    });
-  </script>
+    </script>
 
 @endsection

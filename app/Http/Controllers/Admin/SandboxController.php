@@ -27,12 +27,13 @@ class SandboxController extends Controller
         $from = 'info@devlomatix.com';
         $subject = 'Test mail send by AppMail mailer class,Simple mail without job';
         $body = 'This is the mail body of test mail';
+        $data =["title" => "hello", "description" => "test test test"];
         $view = 'mails.testmail';
 
         //Mail::to('jaysvishwa@gmail.com')->send(new TestMail);
         //$mail = Mail::to($to)->send(new AppMail($subject,$body));
 
-        $mail->sendMail($to,$subject,$body,$view);
+        $mail->sendMail($to,$subject,$body,$data,$view);
 
 
         return redirect() ->route('sandbox.mail')
@@ -47,9 +48,10 @@ class SandboxController extends Controller
         $from = 'info@devlomatix.com';
         $subject = 'Test mail send by AppMail mailer class,Simple mail with job';
         $body = 'This is the mail body of test mail';
+        $data =["title" => "hello", "description" => "test test test"];
         $view = 'mails.wola';
 
-        $mail->sendMailJob($to,$subject,$body,$view);
+        $mail->sendMailJob($to,$subject,$body,$data,$view);
 
 
         return redirect() ->route('sandbox.mail')
@@ -71,6 +73,9 @@ class SandboxController extends Controller
         $from = 'info@devlomatix.com';
         $subject = $request->subject;
         $body = $request->message;
+        $data = null;
+        $view = 'mails.wola';
+
 
         $mail->sendMailJob($to,$subject,$body);
 
