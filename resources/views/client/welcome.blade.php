@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <meta name="csrf-token" content="{{csrf_token()}}">
         <title>Laravel</title>
 
         <!-- Fonts -->
@@ -19,9 +19,25 @@
                 font-family: 'Nunito';
             }
         </style>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <script src="https://accounts.google.com/gsi/client" async defer /></script>
+
+
+        {{-- Google one tap signin/signup --}}
+        {{-- <script>
+            window.onload = function () {
+              google.accounts.id.initialize({
+                client_id: '371297210976-v98ectkq5qpqoqerjb296rjm0gdg84bl.apps.googleusercontent.com',
+                callback: handleOnetapResponse
+              });
+              google.accounts.id.prompt();
+            }
+        </script> --}}
+
+
     </head>
     <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
+        <div id="app" class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
@@ -40,5 +56,28 @@
                 Laravel Bootstrap
             </div>
         </div>
+
+        <script src="{{asset('public/client/js/app.js')}}"></script>
+        {{-- <script>
+            Echo.channel('devlomatix')
+                .listen('WebsocketTestEvent',(e)=>{
+                    console.log(e);
+                })
+
+
+        </script>
+        <script>
+            var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+          </script> --}}
     </body>
 </html>

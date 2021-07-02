@@ -25,6 +25,9 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "google-one-tap": "^1.0.1",
+        "laravel-echo": "^1.11.0",
+        "pusher-js": "^7.0.3",
         "sweetalert": "^2.1.2",
         "sweetalert2": "^7.32.2"
     }

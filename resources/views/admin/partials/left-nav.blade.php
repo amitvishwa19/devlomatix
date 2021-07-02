@@ -147,6 +147,11 @@
                             <i class="ti-control-record"></i>Mail</a>
                     </li>
 
+                    <li>
+                        <a href="{{route('server.index')}}">
+                            <i class="ti-control-record"></i>AWS</a>
+                    </li>
+
                     {{-- <li>
                         <a href="javascript: void(0);">
                             <i class="ti-control-record"></i>Roles</a>

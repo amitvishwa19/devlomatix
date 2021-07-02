@@ -13,7 +13,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VideoController;
-use App\Http\Controllers\Admin\ClientController;
+use App\Http\Controllers\Admin\ServerController;
 use App\Http\Controllers\Admin\ChapterController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\InquiryController;
@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\SandboxController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TeacherController;
+use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ErrorLogController;
 use App\Http\Controllers\Admin\QuestionController;
@@ -47,15 +48,15 @@ use App\Http\Controllers\Admin\SubscriptionController;
 
 Route::get('/', function () {
 
-
-    //return Test::testcase('Wola');
-
     return view('client.welcome');
 });
 
-Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/privacypolicy', [ClientController::class, 'privacy'])->name('privacy');
+Route::get('/termscondition', [ClientController::class, 'terms'])->name('terms');
 
 // App Subscription
 Route::resource('/subscribe',SubscriptionController::class);
@@ -66,6 +67,7 @@ Route::get('/inquire', [InquiryController::class, 'index'])->name('inquire');
 //Auto deploy of app
 Route::post('/deploy',[AutoDeployController::class,'deploy'])->name('app.auto.deploy');
 
+Auth::routes();
 
 Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
 
@@ -105,6 +107,9 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
     Route::get('/mail/simple',[SandboxController::class,'simpleMail'])->name('sandbox.mail.simple');
     Route::get('/mail/dispatch',[SandboxController::class,'dispatchMail'])->name('sandbox.mail.dispatch');
     Route::post('/mail/dispatch/custom',[SandboxController::class,'dispatchMailCustom'])->name('sandbox.mail.dispatch.custom');
+
+    //Sandbox-Aws server
+    Route::resource('/server',ServerController::class);
 
     //Imporsonate
     if ('production' != config('app.env')) {
