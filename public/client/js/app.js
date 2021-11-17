@@ -1922,78 +1922,9 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__.default({
 /*!***************************************!*\
   !*** ./resources/js/client/custom.js ***!
   \***************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var google_one_tap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! google-one-tap */ "./node_modules/google-one-tap/index.js");
-//Sweet Alert
-// import Swal from 'sweetalert2';
-// window.swal = Swal;
-// const toast = Swal.mixin({
-//     toast: true,
-//     position: 'top-end',
-//     showConfirmButton: false,
-//     timer: 3000
-// });
-// const swalWithBootstrapButtons = Swal.mixin({
-//     confirmButtonClass: 'btn btn-success',
-//     cancelButtonClass: 'btn btn-danger',
-//     buttonsStyling: false,
-// })
-// window.toast = toast;
-// window.swalWithBootstrapButtons = swalWithBootstrapButtons;
 
-var options = {
-  client_id: '371297210976-v98ectkq5qpqoqerjb296rjm0gdg84bl.apps.googleusercontent.com',
-  // required
-  auto_select: false,
-  // optional
-  cancel_on_tap_outside: false,
-  // optional
-  context: 'signin' // optional
-
-};
-(0,google_one_tap__WEBPACK_IMPORTED_MODULE_0__.default)(options, function (response) {
-  // Send response to server
-  console.log(response);
-});
-
-/***/ }),
-
-/***/ "./node_modules/google-one-tap/index.js":
-/*!**********************************************!*\
-  !*** ./node_modules/google-one-tap/index.js ***!
-  \**********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-function googleOneTap ({ client_id, auto_select = false, cancel_on_tap_outside = false, context = 'signin' }, callback) {
-	const contextValue = ['signin', 'signup', 'use'].includes(context) ? context : 'signin';
-	let googleScript = document.createElement('script');
-	googleScript.setAttribute('src', 'https://accounts.google.com/gsi/client');
-	document.head.appendChild(googleScript)
-	window.onload = function () {
-		if (client_id) {
-			window.google.accounts.id.initialize({
-				client_id: client_id,
-				callback: callback,
-				auto_select: auto_select,
-				cancel_on_tap_outside: cancel_on_tap_outside,
-				context: contextValue
-			});
-			window.google.accounts.id.prompt();
-		} else {
-			console.error('client_id is missing');
-		}
-	};
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (googleOneTap);
 
 /***/ }),
 

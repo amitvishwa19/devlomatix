@@ -4,15 +4,19 @@
 use App\Models\User;
 use App\Facades\Test;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\ChatController;
 use App\Http\Controllers\Admin\FileController;
+use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\QuizController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\RouteController;
 use App\Http\Controllers\Admin\VideoController;
+use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\ServerController;
 use App\Http\Controllers\Admin\ChapterController;
 use App\Http\Controllers\Admin\ContactController;
@@ -21,7 +25,6 @@ use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\SandboxController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TeacherController;
-use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ErrorLogController;
 use App\Http\Controllers\Admin\QuestionController;
@@ -53,10 +56,12 @@ Route::get('/', function () {
 
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', function(){
+    return view('client.welcome');
+})->name('home');
 
-Route::get('/privacypolicy', [ClientController::class, 'privacy'])->name('privacy');
-Route::get('/termscondition', [ClientController::class, 'terms'])->name('terms');
+Route::get('/privacypolicy', [HomeController::class, 'privacy'])->name('privacy');
+Route::get('/termscondition', [HomeController::class, 'terms'])->name('terms');
 
 // App Subscription
 Route::resource('/subscribe',SubscriptionController::class);
@@ -75,6 +80,17 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
     Route::resource('/setting',SettingController::class);
 
 
+    //App Menu Controller Routes
+    Route::resource('/menu',MenuController::class);
+    Route::get('/menu/{menu}/builder',[MenuController::class,'builder'])->name('menu.builder');
+    Route::post('/menu/{menu}/builder/order',[MenuController::class,'order_item'])->name('menu.builder.order.item');
+    Route::get('/menu/{menu}/builder/create',[MenuController::class,'addMenuItem_create'])->name('menu.item.create');
+    Route::post('/menu/{menu}/builder/create',[MenuController::class,'addMenuItem'])->name('menu.item.add');
+    Route::get('/menu/{menu}/builder/{item}/edit',[MenuController::class,'editMenuItem'])->name('menu.item.edit');
+    Route::put('/menu/{menu}/builder/{item}/edit',[MenuController::class,'updateMenuItem'])->name('menu.item.update');
+    Route::delete('/menu/{menu}/builder/{item}/delete',[MenuController::class,'deleteMenuItem'])->name('menu.item.delete');
+
+
     //Post
     Route::resource('/post',PostController::class);
 
@@ -85,6 +101,10 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
 
     //Error Logs
     Route::get('/logs',[ErrorLogController::class,'index'])->name('admin.logs');
+
+
+    //Routes Controller
+     Route::resource('/route',RouteController::class);
 
 
     //Activity Log

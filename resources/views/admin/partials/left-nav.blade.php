@@ -36,7 +36,7 @@
             </li>
 
             <li>
-                <a href="widgets.html">
+                <a href="{{route('menu.index')}}">
                     <i data-feather="menu" class="align-self-center menu-icon"></i><span>Menus</span>
                 </a>
             </li>
@@ -161,6 +161,11 @@
                 </ul>
             </li>
 
+            <li>
+                <a href="{{route('route.index')}}">
+                    <i data-feather="bookmark" class="align-self-center menu-icon"></i><span>Routes</span>
+                </a>
+            </li>
 
             <li>
                 <a href="{{route('activity.index')}}">
@@ -183,10 +188,6 @@
         </ul>
 
         <div class="update-msg text-center">
-            <a href="javascript: void(0);" class="float-right close-btn text-muted" data-dismiss="update-msg" aria-label="Close" aria-hidden="true">
-                <i class="mdi mdi-close"></i>
-            </a>
-            <p class="mb-3">We Design and Develop High Quality and Enterprise ready Web Applications</p>
             <a href="javascript: void(0);" class="btn btn-outline-warning btn-sm"> &copy; 2021 Devlomatix Solutions Version: {{config('app.version')}}</a>
         </div>
     </div>

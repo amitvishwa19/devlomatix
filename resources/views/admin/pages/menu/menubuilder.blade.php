@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
-@section('title','Dashboard')
+@section('title','Menu Builder')
 
-@section('subscription','active')
+@section('menubuilder','active')
 
 
 @section('style')
@@ -22,24 +22,32 @@
                 <div class="page-title-box">
                     <div class="row">
                         <div class="col">
-                            <h4 class="page-title">Subscriptions</h4>
+                            <h4 class="page-title">Menu Builder ( {{$menu->name}} )</h4>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Devlomatix</a></li>
-                                <li class="breadcrumb-item active">Subscriptions</li>
+                                <li class="breadcrumb-item"><a href="{{route('menu.index')}}">Menus</a></li>
+                                <li class="breadcrumb-item active">Menu Builder</li>
                             </ol>
                         </div><!--end col-->
                         <div class="col-auto align-self-center">
-                            <a href="#" class="btn btn-sm btn-outline-primary" id="Dash_Date">
-                                <span class="ay-name" id="Day_Name">Today:</span>&nbsp;
-                                <span class="" id="Select_date">Jan 11</span>
-                                <i data-feather="calendar" class="align-self-center icon-xs ml-1"></i>
-                            </a>
-
+                            <a href="{{route('menu.item.create',['menu' => $menu->id,'id'=>$menu->id])}}" class="btn btn-info waves-effect waves-light btn-sm">Add Menu Item</a>
                         </div><!--end col-->
                     </div><!--end row-->
                 </div><!--end page-title-box-->
             </div><!--end col-->
         </div><!--end row-->
+
+        <div class="alert alert-primary" role="alert" style="margin:0">
+            <b>How To Use:</b>
+            <p>
+               You can output a menu anywhere on your site by calling
+               <b>menu('name')</b>
+            </p>
+         </div>
+
+        <div>
+            {{menu($menu->name,'admin.partials.menus.admin_menu_builder')}}
+        </div>
 
     </div>
 @endsection
