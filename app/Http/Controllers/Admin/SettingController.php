@@ -7,7 +7,6 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
-//use App\Services\Setting\Settings;
 use App\Services\Setting\Settings;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SettingRequest;
