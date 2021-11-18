@@ -37,18 +37,20 @@ class Settings
 
     public function set($type,$key,$value)
     {
+        //dd($key);
         $flight = Setting::updateOrCreate(
-            ['key' => $key],
-            ['type' => $type, 'key' => $key,'value' => $value],
+            ['type' => $type,'key' => $key],
+            ['value' => $value],
         );
     }
 
     protected function loadSettings()
     {
-        $settings = Cache::remember('settings', 24*60, function() {
-            return \App\Models\Setting::all()->toArray();
-        });
+        // $settings = Cache::remember('settings', 24*60, function() {
+        //     return \App\Models\Setting::all()->toArray();
+        // });
 
+        $settings = Setting::all()->toArray();
         $this->settings = array_pluck($settings, 'value', 'key');
     }
 

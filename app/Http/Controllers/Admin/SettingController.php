@@ -36,10 +36,10 @@ class SettingController extends Controller
     {
 
         //dd($settings->get('name'));
-        dd($settings->all());
+        //dd($settings->all());
 
         //return Setting::get();
-        return view('admin.pages.setting.setting');
+        return view('admin.pages.setting.setting',compact("settings"));
 
     }
 
@@ -48,29 +48,22 @@ class SettingController extends Controller
     //     return view('admin.pages.setting.setting');
     // }
 
-    // public function store(Request $request,Settings $setting)
-    // {
-    //     //General setting
-    //     if($request->type == 'global'){
-    //         $setting->set('global',$request->name,$request->description);
+    public function store(Request $request,Settings $setting)
+    {
+        //General setting
+        if($request->type == 'global'){
+            $setting->set('global','app_name',$request->name);
+            $setting->set('global','app_description',$request->description);
+        }
 
-    //     }
 
-    //     // $validate = $request->validate([
-    //     //     'name' => 'required'
-    //     // ]);
+        return redirect()->route('setting.index')
+        ->with([
+            'message'    =>'Setting Saved Successfully',
+            'alert-type' => 'success',
+        ]);
 
-    //     // $setting = New Setting;
-    //     // $setting->name = $request->name;
-    //     // $setting->save();
-
-    //     // return redirect()->route('setting.index')
-    //     // ->with([
-    //     //     'message'    =>'Setting Saved Successfully',
-    //     //     'alert-type' => 'success',
-    //     // ]);
-
-    // }
+    }
 
     // public function show($id)
     // {
