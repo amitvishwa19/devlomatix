@@ -11,29 +11,38 @@ use Yajra\Datatables\Datatables;
 use App\Services\Setting\Settings;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SettingRequest;
+use Illuminate\Support\Facades\Cache;
 
 class SettingController extends Controller
 {
+    //protected $settings = [];
+
+
     public function __construct(){
 
-
+        // $settings = Cache::remember('settings', 24*60, function() {
+        //     return \App\Models\Setting::all()->toArray();
+        // });
+        // $this->settings = array_pluck($settings, 'value', 'key');
     }
-    public function index(Request $request,Settings $settings)
-    {
-        return view('admin.pages.setting.setting');
-
-
-    }
-    // public function index(Request $request,Settings $settings)
+    // public function index(Request $request)
     // {
 
-    //     //dd($settings->get('name'));
-    //     //dd($settings->all());
+    //     //dd($this->settings["app_name"]);
+    //     return view('admin.pages.setting.setting')->with("settings",$this->settings);
 
-    //     //return Setting::get();
-    //     return view('admin.pages.setting.setting');
 
     // }
+    public function index(Request $request,Settings $settings)
+    {
+
+        //dd($settings->get('name'));
+        dd($settings->all());
+
+        //return Setting::get();
+        return view('admin.pages.setting.setting');
+
+    }
 
     // public function create()
     // {
