@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RouteController;
 use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Admin\ClientController;
+use App\Http\Controllers\Admin\PolicyController;
 use App\Http\Controllers\Admin\ServerController;
 use App\Http\Controllers\Admin\ChapterController;
 use App\Http\Controllers\Admin\ContactController;
@@ -60,7 +61,16 @@ Route::get('/home', function(){
     return view('client.welcome');
 })->name('home');
 
-Route::get('/privacypolicy', [HomeController::class, 'privacy'])->name('privacy');
+
+//Devlomatix Solutions & Devlomatix Games policy
+Route::get('/games/privacy', [PolicyController::class, 'DevlomatixGamesPrivacy'])->name('games.privacy');
+Route::get('/games/terms', [PolicyController::class, 'DevlomatixGamesTerms'])->name('games.terms');
+
+
+Route::get('/privacy', [PolicyController::class, 'DevlomatixSolutionsPrivacy'])->name('privacy');
+Route::get('/terms', [PolicyController::class, 'DevlomatixSolutionsTerms'])->name('terms');
+
+
 Route::get('/termscondition', [HomeController::class, 'terms'])->name('terms');
 
 // App Subscription
