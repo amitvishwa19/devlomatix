@@ -11,9 +11,11 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
+
+
     public function index(Request $request)
     {
-
+        $users = User::orderby('created_at','desc')->latest('id');
 
         if ($request->ajax()) {
             $users = User::orderby('created_at','desc')->latest('id');
@@ -22,61 +24,67 @@ class UserController extends Controller
             ->editColumn('created_at',function(User $user){
                 return $user->created_at->diffForHumans();
             })
-            ->addColumn('name',function($user){
-                return ucfirst($user->firstName) .','. ucfirst($user->lastName);
-            })
-            ->addColumn('type',function($user){
-                return ucfirst($user->type) ;
-            })
-            ->addColumn('roles',function($user){
-                $roles = $user->roles;
-                $rl ='';
-                if($roles){
-                    foreach($roles as $role){
-                       $rl = $rl. '<div class="badge badge-success mr-1" >'. $role->name .'</div>';
-                    };
-                }
-                if($rl){
-                    return $rl;
-                }else{
-                    return '-';
-                }
+            ->editColumn('username',function(User $user){
+                //return $user->userName;
 
-            })
-            ->addColumn('permissions',function($user){
-                $permissions = $user->permissions;
-                $rl ='';
-                if($permissions){
-                    foreach($permissions as $permission){
-                       $rl = $rl. '<div class="badge badge-success mr-1" >'. $permission->name .'</div>';
-                    };
-                }
-                if($rl){
-                    return $rl;
+                if($user->userName == null){
+                    return '<span  class="badge badge-soft-danger delete"><small>Not Set</small></span>';
                 }else{
-                    return '-';
+                    //return $user->userName;
+                    return '<span class="badge badge-soft-primary mr-2"><small>'.$user->userName.'</small></span>';
                 }
-
             })
-            ->addColumn('action',function($data){
-                $link = '<div class="d-flex">'.
-                            '<a href="'.route('user.edit',$data->id).'" class="mr-2"><small>Edit</small></a>'.
-                            '<a href="javascript:void(0);" id="'.$data->id.'" class="delete"><small>Delete</small></a>'.
-                        '</div>';
-                return $link;
+            ->addColumn('name',function(User $user){
+                // return $user->firstName. ", " .$user->lastName;
+
+                return '<div class="media-body align-self-center">
+                            <h6 class="m-0"><b>'. $user->firstName. ", " .$user->lastName.'</b></h6>
+                            <small>'.$user->email.'</small
+                        </div>';
+            })
+            ->addColumn('type',function(User $user){
+                return '<span class="badge badge-soft-primary mr-2"><small>'.$user->type.'</small></span>';
             })
             ->addColumn('status',function(User $user){
                 if($user->status == true){
-                    return '<div class="badge badge-success">Active</div>';
+                    return '<span class="badge badge-soft-success"><small>Active</small></span>';
                 }else{
-                    return '<div class="badge badge-warning">InActive</div>';
+                    return '<span class="badge badge-soft-dark"><small>InActive</small></span>';
                 }
             })
-            ->rawColumns(['name','action','roles','permissions','status'])
+            ->addColumn('role',function($user){
+                $roles = $user->roles;
+                $perm = '';
+                if($roles){
+                    foreach($roles as $role){
+                        $perm = $perm. '<div class="badge badge-soft-info mr-1" >'. $role->name .'</div>';
+                    };
+                }
+
+                return $perm;//$permission;
+            })
+
+
+            // ->addColumn('status',function(User $user){
+            //     if($user->status == true){
+            //         return '<a href="'.route('subscribe.edit',$subscription->id).'" class="badge badge-soft-success"><small>Active</small></a>';
+            //     }else{
+            //         return '<a href="'.route('subscribe.edit',$subscription->id).'" class="badge badge-soft-dark"><small>InActive</small></a>';
+            //     }
+            // })
+            ->addColumn('action',function($data){
+                $link = '<div class="d-flex">'.
+                            '<a href="'.route('user.edit',$data->id).'" class="badge badge-soft-primary mr-2"><small>Edit</small></a>'.
+                            '<a href="javascript:void(0);" id="'.$data->id.'" class="badge badge-soft-danger delete"><small>Delete</small></a>'.
+                        '</div>';
+                return $link;
+            })
+            ->rawColumns(['action','status','name','username','type','role'])
             ->make(true);
 
 
         }
+
 
 
         return view('admin.pages.user.user');
@@ -85,18 +93,31 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('admin.pages.user.user_add');
+        $roles = Role::get();
+        return view('admin.pages.user.user_add')->with('roles',$roles);
     }
 
     public function store(Request $request)
     {
+        //dd($request->all());
         $validate = $request->validate([
-            'name' => 'required'
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'email' => 'required',
+            'password' => 'password',
         ]);
 
         $user = New User;
-        $user->name = $request->name;
+        $user->firstName = $request->firstname;
+        $user->lastName = $request->lastname;
+        $user->userName = $request->username;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->status = $request->status;
         $user->save();
+
+        $user->syncRoles($request->roles);
+
 
         return redirect()->route('user.index')
         ->with([
@@ -137,6 +158,7 @@ class UserController extends Controller
         $user->firstName = $request->firstName;
         $user->lastName = $request->lastName;
         $user->email = $request->email;
+        $user->status = $request->status;
         $user->update();
 
         $user->syncRoles($request->roles);

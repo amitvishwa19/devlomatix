@@ -110,7 +110,21 @@
                 <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
                     aria-haspopup="false" aria-expanded="false">
                     <span class="ml-1 nav-user-name hidden-sm">@if(Auth::user())   {{Auth::user()->firstName }},{{Auth::user()->lastName }}       @endif</span>
-                    <img src="{{asset('public/admin/assets/images/users/user-5.jpg')}}" alt="profile-user" class="rounded-circle thumb-xs" />
+
+
+
+                    @if(!Auth::user()->avatar_url)
+                        <div class="avatar-box thumb-md align-self-center me-2">
+                            <span class="avatar-title bg-soft-pink rounded-circle">{{substr(Auth::user()->firstName, 0, 1) . substr(Auth::user()->lastName, 0, 1)}}</span>
+                        </div>
+                    @else
+                        <img src="{{asset('public/admin/assets/images/users/user-5.jpg')}}" alt="profile-user" class="rounded-circle thumb-md" />
+                    @endif
+
+
+
+
+
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="#"><i data-feather="user" class="align-self-center icon-xs icon-dual mr-1"></i> Profile</a>

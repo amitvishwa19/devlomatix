@@ -11,6 +11,26 @@
 
 
 @section('content')
+
+    <!-- Page-Title -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-title-box">
+                <div class="row">
+                    <div class="col">
+                        <h4 class="page-title">Users</h4>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Devlomatix</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('user.index')}}">Users</a></li>
+                            <li class="breadcrumb-item active">Edit</li>
+                        </ol>
+                    </div><!--end col-->
+
+                </div><!--end row-->
+            </div><!--end page-title-box-->
+        </div><!--end col-->
+    </div><!--end row-->
+
     <div class="wrapper card p-2">
         <h5>
             Edit User
@@ -63,13 +83,13 @@
             </div>
 
 
-            <div class="checkbox check-success  ">
+            <div class="checkbox check-success  mt-2">
                 <input type="checkbox" checked="checked" value="1" id="checkbox2">
                 <label for="checkbox2">Notify User</label>
             </div>
 
             <div class="form-group mt-3">
-                <button class="btn btn-primary btn-sm">Update User</button>
+                <button class="btn btn-info waves-effect waves-light btn-sm">Update User</button>
                 <a href="{{route('user.index')}}" class="btn btn-secondary btn-sm">Cancel</a>
             </div>
 

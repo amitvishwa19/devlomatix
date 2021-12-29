@@ -11,6 +11,26 @@
 
 
 @section('content')
+
+    <!-- Page-Title -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-title-box">
+                <div class="row">
+                    <div class="col">
+                        <h4 class="page-title">Roles</h4>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Devlomatix</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('role.index')}}">Roles</a></li>
+                            <li class="breadcrumb-item active">Edit</li>
+                        </ol>
+                    </div><!--end col-->
+                </div><!--end row-->
+            </div><!--end page-title-box-->
+        </div><!--end col-->
+    </div><!--end row-->
+
+
     <div class="wrapper card p-2">
         <h5>
             Edit Role
@@ -51,7 +71,7 @@
 
 
             <div class="form-group mt-3">
-                <button class="btn btn-primary btn-sm">Update Role</button>
+                <button class="btn btn-info waves-effect waves-light btn-sm">Update Role</button>
                 <a href="{{route('role.index')}}" class="btn btn-info btn-sm">Cancel</a>
             </div>
 

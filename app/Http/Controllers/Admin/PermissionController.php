@@ -24,8 +24,8 @@ class PermissionController extends Controller
                 })
             ->addColumn('action',function($data){
                 $link = '<div class="d-flex">'.
-                            '<a href="'.route('permission.edit',$data->id).'" class="mr-2"><small>Edit</small></a>'.
-                            '<a href="javascript:void(0);" id="'.$data->id.'" class="delete"><small>Delete</small></a>'.
+                            '<a href="'.route('permission.edit',$data->id).'" class="badge badge-soft-primary mr-2"><small>Edit</small></a>'.
+                            '<a href="javascript:void(0);" id="'.$data->id.'" class="badge badge-soft-danger delete"><small>Delete</small></a>'.
                         '</div>';
                 return $link;
             })

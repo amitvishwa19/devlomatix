@@ -1,102 +1,185 @@
 @extends('layouts.admin')
 
-@section('title','Role')
+@section('title','Roles')
 
 @section('role','active')
 
+
 @section('style')
+    {{-- Datatable --}}
+    <link href="{{asset('public/admin/plugins/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
+    {{-- Datatable --}}
 @endsection
+
 
 
 @section('content')
+    <div class="content-area">
 
-    <div class="wrapper card p-2">
-        <div class="">
-            <h4><b>Roles</b> <div class="float-right"><a href="{{route('role.create')}}" class="btn btn-primary btn-sm">Add Role</a></div></h4>
-        </div>
-        <div data-label="Example" class="mt-2">
-            <table id="datatable" class="table table-color-primary">
-                <thead>
-                <tr style="">
-                    <th style="" class=""><b>Name</b></th>
-                    <th style="" class=""><b>Description</b></th>
-                    <th style="" class=""><b>Permissions</b></th>
-                    <th style="" class=""><b>Created</b></th>
-                    <th style="" class=""><b>Actions</b></th>
-                </tr>
-                </thead>
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="row">
+                        <div class="col">
+                            <h4 class="page-title">Roles</h4>
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Devlomatix</a></li>
+                                <li class="breadcrumb-item active">Roles</li>
+                            </ol>
+                        </div><!--end col-->
+                        <div class="col-auto align-self-center">
+                            <a href="#exampleModalDefault" class="btn btn-info waves-effect waves-light btn-sm" data-toggle="modal" >Add Role</a>
+                        </div><!--end col-->
+                    </div><!--end row-->
+                </div><!--end page-title-box-->
+            </div><!--end col-->
+        </div><!--end row-->
 
-                <tbody>
-                </tbody>
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <div class="card">
+                    <div class="card-body table-responsive">
+                        <div class="">
+                            <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Permissions</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
 
-            </table>
-        </div>
+
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--end row-->
+
+
+        <div class="modal fade" id="exampleModalDefault" tabindex="-1" role="dialog" aria-labelledby="exampleModalDefaultLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title m-0" id="exampleModalDefaultLabel">Add Role</h6>
+                        <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="la la-times"></i></span>
+                        </button>
+                    </div><!--end modal-header-->
+
+                    <form action="{{route('role.store')}}" method="POST">
+                        @csrf
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Role Name</label>
+                                <input type="text" class="form-control" name="name" aria-describedby="emailHelp" >
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Role Description</label>
+                                <textarea class="form-control" placeholder="" name="description" id="floatingTextarea2" style="height: 100px"></textarea>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Permissions</label>
+                                <div class="row pl-2 pr-2">
+                                    @foreach($permissions as $permission)
+                                    <div class="col-4">
+                                        <input type="checkbox" name="permissions[]" value="{{$permission->id}}">
+                                        <label for="checkbox" class="mg-l-5">{{$permission->name}}</label>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+
+
+                        </div><!--end modal-body-->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-info waves-effect waves-light btn-sm">Add Role</button>
+                        </div><!--end modal-footer-->
+                    </form>
+                </div><!--end modal-content-->
+            </div><!--end modal-dialog-->
+        </div><!--end modal-->
+
+
     </div>
 
-@endsection
-
-
-@section('modal')
-
 
 
 @endsection
+
 
 
 @section('scripts')
-    <script src="{{asset('public/assets/plugins/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+
+    {{-- Datatable JS --}}
+    <script src="{{asset('public/admin/plugins/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('public/admin/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    {{-- Datatable JS --}}
+
+
 
     <script>
+
         $(function(){
-        'use strict'
+            'use strict'
+
+            //Datatable
+            $('#datatable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{!! route('role.index') !!}',
+                columns:[
+                    { data: 'name', name: 'name'},
+                    { data: 'description', name: 'description'},
+                    { data: 'permission', name: 'permission'},
+                    { data: 'action', name: 'action' },
+                ]
+            });
 
 
-        //Datatable
-        $('#datatable').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: '{!! route('role.index') !!}',
-            columns:[
-                { data: 'name', name: 'name'},
-                { data: 'description', name: 'description'},
-                { data: 'permission', name: 'permission'},
-                { data: 'created_at', name: 'created_at' },
-                { data: 'action', name: 'action' },
-            ]
-        });
-
-
-        //Action Delete function
-        $(document).on('click','.delete',function(){
-            var id =  $(this).attr('id');
-            swalWithBootstrapButtons({
-                title: "Delete Selected Role?",
-                text: "You won't be able to revert this!",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Delete",
-                cancelButtonText: "Cancel",
-                reverseButtons: true
-            }).then(result => {
-                if (result.value) {
-                $.ajax({
-                    url: "role/"+id,
-                    type:"post",
-                    data: {_method: 'delete', _token: "{{ csrf_token() }}"},
-                    success: function(result){
-                        location.reload();
-                        toast({
-                            type: "success",
-                            title: "Role Deleted Successfully"
-                        });
+            //Action Delete function
+            $(document).on('click','.delete',function(){
+                var id =  $(this).attr('id');
+                swalWithBootstrapButtons({
+                    title: "Delete Selected Role?",
+                    text: "You won't be able to revert this!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Delete",
+                    cancelButtonText: "Cancel",
+                    reverseButtons: true
+                }).then(result => {
+                    if (result.value) {
+                    $.ajax({
+                        url: "role/"+id,
+                        type:"post",
+                        data: {_method: 'delete', _token: "{{ csrf_token() }}"},
+                        success: function(result){
+                            location.reload();
+                            toast({
+                                type: "success",
+                                title: "Role Deleted Successfully"
+                            });
+                        }
+                    });
                     }
                 });
-                }
             });
-        });
-
 
         });
+
     </script>
 
 @endsection

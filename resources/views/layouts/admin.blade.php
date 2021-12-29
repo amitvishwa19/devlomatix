@@ -38,10 +38,13 @@
 
             <div  id="app" class="page-wrapper">
 
-                @include('admin.partials.top-nav')
+
 
                 <!-- Page Content-->
                 <div class="page-content">
+
+                    @include('admin.partials.top-nav')
+
                     <div class="container-fluid">
 
                         {{-- @include('admin.partials.page-area') --}}
@@ -49,9 +52,9 @@
 
                     </div><!-- container -->
 
-                    {{-- <footer class="footer text-center text-sm-left">
+                    <footer class="footer text-center text-sm-left">
                         &copy; 2021 Devlomatix Solutions <span class="d-none d-sm-inline-block float-right">Devloped by <i class="mdi mdi-heart text-danger"></i> Devlomatix Solutions Pvt. Ltd</span>
-                    </footer><!--end footer--> --}}
+                    </footer><!--end footer-->
                 </div>
                 <!-- end page content -->
 

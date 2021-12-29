@@ -63,11 +63,7 @@
   cursor: pointer;
 }
 
-.app-setting .setting-wrapper {
-  min-height: 100vh;
-}
 .app-setting .setting-options .card-body {
-  min-height: 100vh;
   padding: 0 !important;
 }
 .app-setting .setting-options ul {
@@ -97,6 +93,15 @@
   color: #071A50;
   font-weight: 600;
 }
-.app-setting .setting-details .card-body {
-  min-height: 100vh;
+.modal-content .modal-header {
+  background-color: #1c2d41;
+}
+
+.modal-content .modal-header .modal-title {
+  color: #fff;
+  align-self: center;
+  font-weight: 500;
+  margin-top: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
 }

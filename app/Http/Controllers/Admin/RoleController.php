@@ -31,7 +31,7 @@ class RoleController extends Controller
                 $perm = '';
                 if($permissions){
                     foreach($permissions as $permission){
-                        $perm = $perm. '<div class="badge badge-success mr-1" >'. $permission->name .'</div>';
+                        $perm = $perm. '<div class="badge badge-soft-info mr-1" >'. $permission->name .'</div>';
                     };
                 }
 
@@ -39,8 +39,8 @@ class RoleController extends Controller
             })
             ->addColumn('action',function($data){
                 $link = '<div class="d-flex">'.
-                            '<a href="'.route('role.edit',$data->id).'" class="mr-2"><small>Edit</small></a>'.
-                            '<a href="javascript:void(0);" id="'.$data->id.'" class="delete"><small>Delete</small></a>'.
+                            '<a href="'.route('role.edit',$data->id).'" class="badge badge-soft-primary mr-2"><small>Edit</small></a>'.
+                            '<a href="javascript:void(0);" id="'.$data->id.'" class="badge badge-soft-danger delete"><small>Delete</small></a>'.
                         '</div>';
                 return $link;
             })
@@ -49,9 +49,9 @@ class RoleController extends Controller
 
 
         }
+        $permissions = Permission::get();
 
-
-        return view('admin.pages.role.role');
+        return view('admin.pages.role.role')->with('permissions',$permissions);
 
     }
 

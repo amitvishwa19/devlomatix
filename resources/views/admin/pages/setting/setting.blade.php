@@ -36,9 +36,7 @@
                 <div class="col-md-3 setting-options">
                     <div class="card">
                         <div class="card-header d-flex">
-                            <div class="user-avatar mr-4">
-                                <img src="http://localhost/devlomatix/public/admin/assets/images/users/user-5.jpg" alt="profile-user" class="rounded-circle thumb-xs">
-                            </div>
+
                             <div class="setting-text">
                                 <h4 class="card-title">Settings</h4>
                                 <small>All App related settings</small>
