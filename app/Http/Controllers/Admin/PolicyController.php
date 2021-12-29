@@ -22,7 +22,10 @@ class PolicyController extends Controller
 
 
     public function DevlomatixGamesPrivacy(){
-        return "Devlomatix Games Privacy Policy";
+        //return "Devlomatix Games Privacy Policy";
+
+        return view("client.policyterms.gameprivacypolicy");
+
     }
 
     public function DevlomatixGamesTerms(){
