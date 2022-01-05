@@ -1,47 +1,69 @@
-@extends('layouts.app')
+@extends('auth.layout')
+
+@section('title','Forgot Password')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+    <div class="login-page">
+        <div class="row">
+            <div class="col-9 left-area">
+                <img src="https://miro.medium.com/max/2625/1*qAX1633WKgkCBjW-7BICCA.jpeg" alt="">
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+            </div>
 
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
+            <div class="col-3 right-area">
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                <div class="login-content">
+                    <div class="brand-logo">
+                        <a href="{{route('home')}}">
+                            <img src="{{asset('public/admin/assets/1598601943DZ-Logo Orange-black.png')}}" alt="" style="width: 150px;">
+                         </a>
+                    </div>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                    <div class="login-form">
+                        <form method="POST" action="{{ route('password.email') }}" class="mg-b-20">
+                            @csrf
+                            <h5 class="info-title">Reset Password Link</h5>
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            @if(Session::has('inactive'))
+                              <!-- <p class="alert alert-info">{{ Session::get('message') }}</p> -->
+                              <div class="alert alert-info" role="alert">
+                                Your account is not activated ! Please activate your account. <a href="">Click here</a> to resend activation link
+                              </div>
+                            @endif
+
+                            @if(Session::has('message'))
+                              <!-- <p class="alert alert-info">{{ Session::get('message') }}</p> -->
+                              <div class="alert alert-info" role="alert">
+                                {{ Session::get('message') }}
+                              </div>
+                            @endif
+
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                               <input type="text" class="form-control" name="email" placeholder="yourname@yourdomain.com" required="" autofocus value="{{ old('email') }}"/>
+                               @if ($errors->has('email'))
+                               <span class="help-block">
+                                  <strong>{{ $errors->first('email') }}</strong>
+                               </span>
+                               @endif
                             </div>
-                        </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
+
+
+
+
+                            <div>
+                               <button class="btn btn-primary btn-login submit btn-sm pull-left form-control" style="margin-top: 5px;">{{ __('Send Password Reset Link') }}</button>
                             </div>
-                        </div>
-                    </form>
+
+                        </form>
+
+
+                        <p class="info" style="text-align: center;margin-top:20px">A password reset link will be send to your registered email.</p>
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

@@ -1,86 +1,95 @@
-@extends('layouts.auth')
+@extends('auth.layout')
 
 @section('title','Login')
 
 @section('content')
+    <div class="login-page">
+        <div class="row">
+            <div class="xs-hidden col-9 left-area">
+                <img src="https://miro.medium.com/max/2625/1*qAX1633WKgkCBjW-7BICCA.jpeg" alt="">
 
-<div class="login-wrapper">
-
-<div class="bg-pic">
-
-    <img src="{{asset('public/assets/img/demo/new-york-city-buildings-sunrise-morning-hd-wallpaper.jpg')}}">
-
-</div>
-
-<div class="login-container bg-white">
-    <div class="p-l-50 m-l-20 p-r-50 m-r-20 p-t-50 m-t-30 sm-p-l-15 sm-p-r-15 sm-p-t-40">
-        {{-- <img src="assets/img/logo.png" alt="logo" data-src="assets/img/logo.png" data-src-retina="assets/img/logo_2x.png" width="78" height="22"> --}}
-        <h4><b>{{ config('app.name', 'Laravel') }}</b></h4>
-        <p class="p-t-35">Sign into your account</p>
-
-
-
-        <form id="form-login" class="p-t-15" role="form" method="POST" action="{{ route('login') }}">
-            @csrf
-            <div class="form-group form-group-default">
-                <label>Email</label>
-                <div class="controls">
-                    <input type="text" name="email" class="form-control" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                </div>
-                @error('email')
-                    <small>{{ $message }}</small>
-                @enderror
             </div>
 
-            <div class="form-group form-group-default">
-                <label>Password</label>
-                <div class="controls">
-                <input type="password" class="form-control" name="password">
+            <div class="col-3 right-area">
+
+                <div class="login-content">
+                    <div class="brand-logo">
+                        <a href="{{route('home')}}">
+                            <img src="{{asset('public/admin/assets/1598601943DZ-Logo Orange-black.png')}}" alt="" style="width: 150px;">
+                         </a>
+                    </div>
+
+                    <div class="login-form">
+                        <form method="POST" action="{{ route('login') }}" class="mg-b-20">
+                            @csrf
+                            <h5 class="info-title">Sign in to your account</h5>
+
+                            @if(Session::has('inactive'))
+                              <!-- <p class="alert alert-info">{{ Session::get('message') }}</p> -->
+                              <div class="alert alert-info" role="alert">
+                                Your account is not activated ! Please check your email for activation link. <a href="">Click here</a> to resend activation link
+                              </div>
+                            @endif
+
+                            @if(Session::has('message'))
+                              <!-- <p class="alert alert-info">{{ Session::get('message') }}</p> -->
+                              <div class="alert alert-info" role="alert">
+                                {{ Session::get('message') }}
+                              </div>
+                            @endif
+
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                               <input type="text" class="form-control" name="email" placeholder="yourname@yourdomain.com" required="" autofocus value="{{ old('email') }}"/>
+                               @if ($errors->has('email'))
+                               <span class="help-block">
+                                  <strong>{{ $errors->first('email') }}</strong>
+                               </span>
+                               @endif
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                               <input type="password" class="form-control" name="password" placeholder="Enter your password" required="" />
+                               @if ($errors->has('password'))
+                               <span class="help-block">
+                                  <strong>{{ $errors->first('password') }}</strong>
+                               </span>
+                               @endif
+                            </div>
+
+                            <div class="form-group">
+                               <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} class="filled-in chk-col-pink">
+                               <label for="rememberme">Remember Me</label>
+
+                               @if (Route::has('password.request'))
+                                  <a class="pull-right" href="{{ route('password.request') }}">
+                                      {{ __('Forgot Password?') }}
+                                  </a>
+                               @endif
+
+                            </div>
+
+                            <div>
+                               <button class="btn btn-primary btn-login submit btn-sm pull-left form-control" style="margin-top: 5px;">Sign In</button>
+                            </div>
+
+                        </form>
+
+                        <div class="clearfix"></div>
+                        <div class="separator">
+                            <p class="change_link">New to site?
+                                <a href="{{ route('register') }}" class="to_register"> Create Account </a>
+                            </p>
+                            <div class="clearfix"></div>
+                            <br />
+
+                        </div>
+                        <p class="info">Your data will not be used outside of digizigs. By signing up you agree that your statistics may be used anonymously inside www.devlomatix.com.</p>
+
+                    </div>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-md-6 no-padding sm-p-l-10">
-
-                {{-- <div class="checkbox ">
-                    <input type="checkbox" name="remember" value="1" id="checkbox1" {{ old('remember') ? 'checked' : '' }}>
-                    <label for="checkbox1">Keep Me Signed in</label>
-                </div> --}}
-
-                <div class="checkbox check-info">
-                    <input type="checkbox" name="remember" value="1" id="checkbox4" {{ old('remember') ? 'checked' : '' }}>
-                    <label for="checkbox4">Keep Me SignIn</label>
-                </div>
-
-
-                </div>
-                <div class="col-md-6 d-flex align-items-center justify-content-end">
-                    <a href="{{route('register')}}" class="text-info small">No Account? Register Here</a>
-                </div>
-            </div>
-
-            <button class="btn btn-primary btn-cons m-t-10" type="submit">Sign in</button>
-        </form>
-
-        <div class="pull-bottom sm-pull-bottom">
-          <div class="m-b-30 p-r-80 sm-m-t-20 sm-p-r-15 sm-p-b-20 clearfix">
-            <div class="col-sm-9 no-padding m-t-10">
-              <p>
-                <small>
-                    Create a {{ config('app.name', 'Laravel') }} account. If you have a facebook account, log into it for this
-                    process. Sign in with
-                    <a href="#" class="text-info">Facebook</a> or
-                    <a href="#"class="text-info">Google</a>
-                </small>
-              </p>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-
-</div>
 @endsection
-
-
-

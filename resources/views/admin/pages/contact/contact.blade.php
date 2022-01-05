@@ -33,6 +33,39 @@
             </div><!--end col-->
         </div><!--end row-->
 
+        <div class="row">
+            @foreach($contacts as $contact)
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="media">
+                                    <div class="avatar-box thumb-lg align-self-center me-2">
+                                        <span class="avatar-title bg-soft-pink rounded-circle">{{substr($contact->name, 0, 2)}}</span>
+                                    </div>
+                                    <div class="media-body ml-3 align-self-center">
+                                        <h5 class="mt-0 mb-1">{{$contact->name}}</h5>
+                                        <p class="mb-0 text-muted">{{$contact->email}}</p>
+                                    </div>
+                                </div><!--end media-->
+                            </div><!--end col-->
+                            <div class="col-auto align-self-center">
+                                <ul class="list-inline mb-0">
+                                    <li class="list-inline-item">
+                                        <a href="#" class="mr-1 contact-icon"><i class="fas fa-phone"></i></a>
+                                        <a href="#" class="contact-icon"><i class="far fa-envelope"></i></a>
+                                    </li>
+                                </ul>
+                            </div><!--end col-->
+                        </div><!--end row-->
+                    </div><!--end card-body-->
+                </div><!--end card-->
+            </div><!--end col-->
+            @endforeach
+
+        </div><!--end row-->
+
     </div>
 @endsection
 

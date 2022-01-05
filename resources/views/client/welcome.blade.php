@@ -32,6 +32,12 @@
               });
               google.accounts.id.prompt();
             }
+
+            handleOnetapResponse = (response) => {
+
+                /* Pass response.credential to your server for verification */
+                /* Also raise any events that you wish here */
+            }
         </script> --}}
 
 
@@ -41,7 +47,7 @@
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
+                        <a href="{{ url('/') }}" class="text-sm text-gray-700 underline">Home</a>
                     @else
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
 
@@ -52,10 +58,7 @@
                 </div>
             @endif
 
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                Laravel Bootstrap
-                <example-component></example-component>
-            </div>
+
         </div>
 
         <script src="{{asset('public/client/js/app.js')}}"></script>

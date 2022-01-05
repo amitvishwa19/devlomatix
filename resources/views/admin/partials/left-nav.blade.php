@@ -71,14 +71,14 @@
                 </a>
             </li>
 
-            <li>
+            {{-- <li>
                 <a href="javascript: void(0);" class=""><i data-feather="layout" class="align-self-center menu-icon"></i>Pages <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
                     <li class="active"><a href="{{route('project.index')}}">Blog</a></li>
                     <li><a href="apps-project-projects.html">E-comm</a></li>
                     <li><a href="apps-project-board.html">E-learning</a></li>
                 </ul>
-            </li>
+            </li> --}}
 
             <hr class="hr-dashed hr-menu">
 
@@ -101,16 +101,13 @@
             </li>
 
             <li>
-                <a href="javascript: void(0);" class=""><i data-feather="layers" class="align-self-center menu-icon"></i>Projects <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
-                <ul class="nav-second-level" aria-expanded="false">
-                    <li class="active"><a href="{{route('project.index')}}">Overview</a></li>
-                    <li><a href="apps-project-projects.html">Projects</a></li>
-                    <li><a href="apps-project-board.html">Board</a></li>
-                    <li><a href="apps-project-teams.html">Teams</a></li>
-                    <li><a href="apps-project-files.html">Files</a></li>
-                    <li><a href="apps-new-project.html">New Project</a></li>
-                </ul>
+                <a href="{{route('project.index')}}">
+                    <i data-feather="layers" class="align-self-center menu-icon"></i><span>Projects</span>
+                </a>
             </li>
+
+
+
 
             <hr class="hr-dashed hr-menu">
 

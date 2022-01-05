@@ -9,5 +9,9 @@ class Project extends Model
 {
     use HasFactory;
 
-
+    public function client()
+    {
+        //return $this->belongsTo('App\Models\Tag');
+        return $this->belongsTo('App\Models\client','client_id');
+    }
 }

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\ContactRequest;
-use App\Http\Controllers\Controller;
+use App\Models\Client;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
-use App\Models\Contact;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ContactRequest;
 
 class ContactController extends Controller
 {
@@ -39,8 +40,9 @@ class ContactController extends Controller
 
         }
 
+        $contacts = Client::orderby('created_at','desc')->get();
 
-        return view('admin.pages.contact.contact');
+        return view('admin.pages.contact.contact')->with('contacts',$contacts);
 
     }
 

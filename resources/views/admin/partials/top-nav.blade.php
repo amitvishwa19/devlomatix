@@ -114,7 +114,7 @@
 
 
                     @if(!Auth::user()->avatar_url)
-                        <div class="avatar-box thumb-md align-self-center me-2">
+                        <div class="avatar-box thumb-sm align-self-center me-2">
                             <span class="avatar-title bg-soft-pink rounded-circle">{{substr(Auth::user()->firstName, 0, 1) . substr(Auth::user()->lastName, 0, 1)}}</span>
                         </div>
                     @else

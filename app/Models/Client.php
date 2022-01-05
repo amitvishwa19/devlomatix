@@ -9,5 +9,8 @@ class Client extends Model
 {
     use HasFactory;
 
-
+    public function projects()
+    {
+        return $this->hasMany('App\Models\Project');
+    }
 }

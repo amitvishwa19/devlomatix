@@ -1,104 +1,88 @@
-@extends('layouts.auth')
+@extends('auth.layout')
 
 @section('title','Register')
 
 @section('content')
+    <div class="login-page">
+        <div class="row">
+            <div class="col-9 left-area">
+                <img src="https://miro.medium.com/max/2625/1*qAX1633WKgkCBjW-7BICCA.jpeg" alt="">
 
-<div class="login-wrapper">
+            </div>
 
-<div class="bg-pic">
+            <div class="col-3 right-area">
 
-    <img src="{{asset('public/assets/img/demo/new-york-city-buildings-sunrise-morning-hd-wallpaper.jpg')}}">
+                <div class="login-content">
+                    <div class="brand-logo">
+                        <a href="{{route('home')}}">
+                            <img src="{{asset('public/admin/assets/1598601943DZ-Logo Orange-black.png')}}" alt="" style="width: 150px;">
+                         </a>
+                    </div>
 
-</div>
+                    <div class="login-form">
+                        <form method="POST" action="{{ route('register') }}" class="mg-b-20">
+                            @csrf
+                            <h5 class="info-title">Sign Up for New account</h5>
 
-<div class="login-container bg-white">
-    <div class="p-l-50 m-l-20 p-r-50 m-r-20 p-t-50 m-t-10 sm-p-l-15 sm-p-r-15 sm-p-t-40">
-        <!-- <img src="{{asset('public/assets/img/logo.png')}}" alt="logo" data-src="assets/img/logo.png" data-src-retina="assets/img/logo_2x.png" width="78" height="22">  -->
-        <h4><b>{{ config('app.name', 'Laravel') }}</b></h4>
-        <p class="p-t-35"><b>Register for new account</b></p>
+                            @if(Session::has('inactive'))
+                              <!-- <p class="alert alert-info">{{ Session::get('message') }}</p> -->
+                              <div class="alert alert-info" role="alert">
+                                Your account is not activated ! Please activate your account. <a href="">Click here</a> to resend activation link
+                              </div>
+                            @endif
+
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                               <input type="text" class="form-control" name="email" placeholder="yourname@yourdomain.com" required="" autofocus value="{{ old('email') }}"/>
+                               @if ($errors->has('email'))
+                               <span class="help-block">
+                                  <strong>{{ $errors->first('email') }}</strong>
+                               </span>
+                               @endif
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                               <input type="password" class="form-control" name="password" placeholder="Enter your password" required="" />
+                               @if ($errors->has('password'))
+                               <span class="help-block">
+                                  <strong>{{ $errors->first('password') }}</strong>
+                               </span>
+                               @endif
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Confirm Password</label>
+                               <input type="password" class="form-control" name="password_confirmation" placeholder="Enter your password" required="" />
+                               @if ($errors->has('password_confirmation'))
+                               <span class="help-block">
+                                  <strong>{{ $errors->first('password_confirmation') }}</strong>
+                               </span>
+                               @endif
+                            </div>
 
 
 
-        <form id="form-login" class="p-t-15" role="form" method="POST" action="{{ route('register') }}">
-            @csrf
+                            <div>
+                               <button class="btn btn-primary btn-login submit btn-sm pull-left form-control" style="margin-top: 5px;">Sign Up</button>
+                            </div>
 
-            <div class="form-group form-group-default">
-                <label>First Name</label>
-                <div class="controls">
-                    <input type="text" name="firstName" class="form-control" value="{{ old('firstName') }}" autocomplete="firstName" autofocus>
+                        </form>
+
+                        <div class="clearfix"></div>
+                        <div class="separator">
+                            <p class="change_link">Already have Account?
+                                <a href="{{ route('login') }}" class="to_register"> Login here </a>
+                            </p>
+                            <div class="clearfix"></div>
+                            <br />
+
+                        </div>
+                        <p class="info">Your data will not be used outside of devlomatix. By signing up you agree that your statistics may be used anonymously inside www.devlomatix.com.</p>
+
+                    </div>
                 </div>
-                @error('firstName')
-                    <small>{{ $message }}</small>
-                @enderror
             </div>
-
-            <div class="form-group form-group-default">
-                <label>Last Name</label>
-                <div class="controls">
-                    <input type="text" name="lastName" class="form-control" value="{{ old('lastName') }}" autocomplete="lastName" autofocus>
-                </div>
-                @error('lastName')
-                    <small>{{ $message }}</small>
-                @enderror
-            </div>
-
-            <div class="form-group form-group-default">
-                <label>Email</label>
-                <div class="controls">
-                    <input type="email" name="email" class="form-control" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                </div>
-                @error('email')
-                    <small>{{ $message }}</small>
-                @enderror
-            </div>
-
-            <div class="form-group form-group-default">
-                <label>{{ __('Password') }}</label>
-                <div class="controls">
-                    <input type="password" class="form-control" name="password">
-                </div>
-                @error('password')
-                    <small>{{ $message }}</small>
-                @enderror
-            </div>
-
-            <div class="form-group form-group-default">
-                <label>{{ __('Confirm Password') }}</label>
-                <div class="controls">
-                    <input type="password" class="form-control" name="password_confirmation">
-                </div>
-            </div>
-
-            <div class="row">
-
-                <div class="col-md-10 align-items-center">
-                    <a href="{{route('login')}}" class="text-info small"><b>Already Have Account? Login Here</b></a>
-                </div>
-            </div>
-
-            <button class="btn btn-primary btn-cons m-t-10" type="submit">Sign Up</button>
-        </form>
-
-        <div class="pull-bottom sm-pull-bottom">
-          <div class="m-b-30 p-r-80 sm-m-t-20 sm-p-r-15 sm-p-b-20 clearfix">
-            <div class="col-sm-9 no-padding m-t-10">
-              <p>
-                <small>
-                    Create a {{ config('app.name', 'Laravel') }} account. If you have a facebook account, log into it for this
-                    process. Sign in with
-                    <a href="#" class="text-info">Facebook</a> or
-                    <a href="#"class="text-info">Google</a>
-                </small>
-              </p>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-
-</div>
 @endsection
-
-
-

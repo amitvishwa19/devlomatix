@@ -17,7 +17,7 @@ class Post extends Model
     public function author()
     {
         //return $this->belongsTo('App\Models\Tag');
-        return $this->belongsTo('App\\Models\User','user_id');
+        return $this->belongsTo('App\Models\User','user_id');
     }
 
     public function tags()
