@@ -68,7 +68,9 @@
                     </div>
                 </div><!--end card-header-->
 
-                <div class="card-body">
+                @if($task->milestones->count() > 0)
+                {{-- <div class="card-body">
+                    <label for="pro-start-date"><b>Task Milestones</b></label>
                     <div class="row">
                         <div class="col-lg-12">
                             <ul class="list-unstyled faq-qa">
@@ -83,11 +85,48 @@
                                         </p>
                                     </li>
                                 @endforeach
-
                             </ul>
                         </div>
                     </div> <!--end row-->
-                </div><!--end card-body-->
+                </div><!--end card-body--> --}}
+                <div class="card-body">
+                    <div class="slimscroll activity-scroll">
+                        <div class="activity">
+                        @foreach($task->milestones as $items)
+
+                            <div class="activity-info">
+                                <div class="icon-info-activity">
+                                    <i class="las la-check-circle bg-soft-primary"></i>
+                                </div>
+                                <div class="activity-info-text">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h6 class="m-0 w-75">{{$items->title}}</h6>
+                                        <span class="text-muted d-block">{{$items->created_at->diffForHumans()}}</span>
+                                    </div>
+                                    <p class="text-muted mt-3">{{$items->description}}</p>
+                                </div>
+                            </div>
+                        @endforeach
+
+                            <div class="activity-info">
+                                <div class="icon-info-activity">
+                                    <i class="las la-check-circle bg-soft-primary"></i>
+                                </div>
+                                <div class="activity-info-text">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h6 class="m-0 w-75">Task finished</h6>
+                                        <span class="text-muted d-block">10 Min ago</span>
+                                    </div>
+                                    <p class="text-muted mt-3">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.
+                                        <a href="#" class="text-info">[more info]</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div><!--end activity-->
+                    </div><!--end activity-scroll-->
+                </div>
+                @endif
+
             </div><!--end card-->
         </div><!--end col-->
     </div>

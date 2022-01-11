@@ -155,25 +155,18 @@ class TaskController extends Controller
         if($request->task_item_title){
 
             for($i=0; $i < count($request->task_item_title); $i++){
-                $taskItem = new Milestone;
-                $taskItem->title = $request->task_item_title[$i];
-                $taskItem->description = $request->task_item_description[$i];
-                $taskItem->status = $request->task_item_status[$i];
-                $taskItem->save();
-                array_push($milestones,$taskItem->id);
+                if($request->task_item_title[$i] != null){
+                    $taskItem = new Milestone;
+                    $taskItem->title = $request->task_item_title[$i];
+                    $taskItem->description = $request->task_item_description[$i];
+                    $taskItem->status = $request->task_item_status[$i];
+                    $taskItem->save();
+                    array_push($milestones,$taskItem->id);
+                }
             }
         }
-        //$milestones = array_add($milestones,2,3);
-        //$milestones = array_push($milestones,2);
-        //dd($milestones);
-        //$myArr = [];
 
-        //array_push($milestones, 5, 8);
-        $task->milestones()->sync($milestones);
-        //dd($milestones);
-
-
-        //$taskItem = new TaskMilestones;
+        //$task->milestones()->sync($milestones);
 
         return redirect()->route('task.index')
         ->with([
