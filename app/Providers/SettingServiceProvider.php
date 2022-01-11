@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Services\TestService;
+use App\Services\Settings;
 use Illuminate\Support\ServiceProvider;
 
-class TestServiceProvider extends ServiceProvider
+class SettingServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -14,13 +14,12 @@ class TestServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        //dd('setting service provider');
+        $this->app->singleton(Settings::class,function(){
 
-        //dd('testserviceprovider loaded');
+            return new Settings();
 
-        // $this->app->bind('test', function($app){
-
-        //     return TestService::class;
-        // });
+        });
     }
 
     /**

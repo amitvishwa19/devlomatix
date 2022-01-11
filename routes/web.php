@@ -50,7 +50,22 @@ use App\Http\Controllers\Admin\SubscriptionController;
 |
 */
 
+Route::get('/setting', function(\App\Services\Settings $setting){
+    //dump($setting->all());
+    //dd(app());
+    //dd(app(\App\Services\Settings::class),app(\App\Services\Settings::class));
+    //return $setting->all();
+    //return Facades\App\Services\Settings::all();
+    //return \App\Facades\SettingFacade::all();
+    //return Setting::all();
+    //return Setting::get('app_name');
+    return Setting::set('test','key','value2');
+});
 
+Route::get('/payment', function(\App\Services\PaymentAPI $payment){
+    dump($payment->pay());
+    dd(app());
+});
 
 
 Route::prefix('/')->group(base_path('routes/client.php'));

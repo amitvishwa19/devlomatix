@@ -6,10 +6,10 @@ use App\Http\Controllers\Client\ClientController;
 
 
 Route::get('/', [ClientController::class, 'home'])->name('app.home');
+Route::get('/home', [ClientController::class, 'home'])->name('home');
 Route::get('/contact', [ClientController::class, 'contact'])->name('app.contact');
 Route::get('/about', [ClientController::class, 'about'])->name('app.about');
 Route::get('/blogs', [ClientController::class, 'blogs'])->name('app.blogs');
-Route::post('/subscribe', [ClientController::class, 'subscribe'])->name('app.subscribe');
 Route::get('/cookie_consent', [ClientController::class, 'cookie_consent'])->name('app.cookie.consent');
 
 
@@ -30,7 +30,7 @@ Route::get('/terms', [PolicyController::class, 'DevlomatixSolutionsTerms'])->nam
 Route::get('/termscondition', [HomeController::class, 'terms'])->name('terms');
 
 // App Subscription
-//oute::resource('/subscribe',SubscriptionController::class);
+Route::resource('/subscribe',SubscriptionController::class);
 
 // App Inquiry
 Route::get('/inquire', [InquiryController::class, 'index'])->name('inquire');

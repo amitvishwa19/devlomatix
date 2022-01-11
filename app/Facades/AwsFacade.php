@@ -6,7 +6,7 @@ use Aws\AwsClientInterface;
 use Illuminate\Support\Facades\Facade;
 
 
-class AwsFacade extends Facade
+class SettingFacade extends Facade
 {
 
     /**

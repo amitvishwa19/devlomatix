@@ -189,7 +189,9 @@ return [
         App\Providers\RouteServiceProvider::class,
         Lab404\Impersonate\ImpersonateServiceProvider::class,
         App\Providers\AppMailServiceProvider::class,
-        //App\Providers\SettingServiceProvider::class,
+        App\Providers\PaymentServiceProvider::class,
+        App\Providers\TestServiceProvider::class,
+        App\Providers\SettingServiceProvider::class,
 
     ],
 
@@ -242,7 +244,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        //'Setting' => App\Services\Setting\SettingFacade::class,
+        'Setting' => App\Facades\SettingFacade::class
 
     ],
 

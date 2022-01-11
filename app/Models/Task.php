@@ -10,4 +10,8 @@ class Task extends Model
     use HasFactory;
 
 
+    public function milestones()
+    {
+        return $this->belongsToMany('App\Models\Milestone','task_milestone');
+    }
 }
