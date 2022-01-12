@@ -62,6 +62,12 @@ Route::get('/setting', function(\App\Services\Settings $setting){
     return Setting::set('test','key','value2');
 });
 
+Route::get('/games/privacy', function(){
+
+
+
+});
+
 Route::get('/payment', function(\App\Services\PaymentAPI $payment){
     dump($payment->pay());
     dd(app());
