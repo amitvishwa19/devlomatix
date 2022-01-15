@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Models\Subscription;
 use Illuminate\Http\Request;
+use App\Services\AppMailingService;
 use App\Http\Controllers\Controller;
 
 class ClientController extends Controller
