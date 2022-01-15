@@ -29,14 +29,14 @@ class SubscriptionController extends Controller
             })
             ->addColumn('status',function(Subscription $subscription){
                 if($subscription->status == true){
-                    return '<a href="'.route('subscribe.edit',$subscription->id).'" class="badge badge-soft-success"><small>Active</small></a>';
+                    return '<a href="'.route('subscription.edit',$subscription->id).'" class="badge badge-soft-success"><small>Active</small></a>';
                 }else{
-                    return '<a href="'.route('subscribe.edit',$subscription->id).'" class="badge badge-soft-dark"><small>InActive</small></a>';
+                    return '<a href="'.route('subscription.edit',$subscription->id).'" class="badge badge-soft-dark"><small>InActive</small></a>';
                 }
             })
             ->addColumn('action',function($data){
                 $link = '<div class="d-flex">'.
-                            '<a href="'.route('subscribe.edit',$data->id).'" class="badge badge-soft-primary mr-2"><small>Edit</small></a>'.
+                            '<a href="'.route('subscription.edit',$data->id).'" class="badge badge-soft-primary mr-2"><small>Edit</small></a>'.
                             '<a href="javascript:void(0);" id="'.$data->id.'" class="badge badge-soft-danger delete"><small>Delete</small></a>'.
                         '</div>';
                 return $link;
@@ -79,7 +79,7 @@ class SubscriptionController extends Controller
 
 
 
-        return redirect()->route('subscribe.index')
+        return redirect()->route('subscription.index')
         ->with([
             'message'    =>'Subscription Added Successfully',
             'alert-type' => 'success',

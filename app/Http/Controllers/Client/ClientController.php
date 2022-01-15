@@ -39,7 +39,7 @@ class ClientController extends Controller
         return view('client.pages.contact');
     }
 
-    public function subscribe(Request $request)
+    public function subscribe(Request $request,AppMailingService $mail)
     {
         $subscription = New Subscription;
         $subscription->email = $request->email;

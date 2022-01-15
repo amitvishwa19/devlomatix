@@ -57,16 +57,11 @@ Route::get('/setting', function(\App\Services\Settings $setting){
     //return $setting->all();
     //return Facades\App\Services\Settings::all();
     //return \App\Facades\SettingFacade::all();
-    //return Setting::all();
-    //return Setting::get('app_name');
+    return Setting::all();
+    return Setting::get('app_name');
     return Setting::set('test','key','value2');
 });
 
-Route::get('/games/privacy', function(){
-
-
-
-});
 
 Route::get('/payment', function(\App\Services\PaymentAPI $payment){
     dump($payment->pay());

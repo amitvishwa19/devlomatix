@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\SubscriptionController;
 
 
 Route::get('/', [ClientController::class, 'home'])->name('app.home');
-Route::get('/home', [ClientController::class, 'home'])->name('home');
+//Route::get('/home', [ClientController::class, 'home'])->name('home');
 Route::get('/contact', [ClientController::class, 'contact'])->name('app.contact');
 Route::get('/about', [ClientController::class, 'about'])->name('app.about');
 Route::get('/blogs', [ClientController::class, 'blogs'])->name('app.blogs');
@@ -32,7 +32,7 @@ Route::get('/terms', [PolicyController::class, 'DevlomatixSolutionsTerms'])->nam
 Route::get('/termscondition', [HomeController::class, 'terms'])->name('terms');
 
 // App Subscription
-Route::resource('/subscribe',SubscriptionController::class);
+Route::post('/subscribe',[ClientController::class,'subscribe'])->name('app.subscribe');
 
 // App Inquiry
 Route::get('/inquire', [InquiryController::class, 'index'])->name('inquire');

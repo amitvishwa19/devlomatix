@@ -30,7 +30,7 @@
             </li>
 
             <li>
-                <a href="widgets.html">
+                <a href="{{route('category.index')}}">
                     <i data-feather="list" class="align-self-center menu-icon"></i><span>Categories</span>
                 </a>
             </li>
@@ -42,7 +42,7 @@
             </li>
 
             <li>
-                <a href="{{route('subscribe.index')}}">
+                <a href="{{route('subscription.index')}}">
                     <i data-feather="thumbs-up" class="align-self-center menu-icon"></i><span>Subscriptions</span>
                 </a>
             </li>

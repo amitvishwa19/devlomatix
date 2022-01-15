@@ -72,7 +72,7 @@
                         </button>
                     </div><!--end modal-header-->
 
-                    <form action="{{route('subscribe.store')}}" method="POST">
+                    <form action="{{route('subscription.store')}}" method="POST">
                         @csrf
                         <div class="modal-body">
 
@@ -113,7 +113,7 @@
             $('#datatable').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{!! route('subscribe.index') !!}',
+                ajax: '{!! route('subscription.index') !!}',
                 columns:[
                     { data: 'email', name: 'email'},
                     { data: 'status', name: 'status'},
@@ -137,7 +137,7 @@
                 }).then(result => {
                     if (result.value) {
                     $.ajax({
-                        url: "subscribe/"+id,
+                        url: "subscription/"+id,
                         type:"post",
                         data: {_method: 'delete', _token: "{{ csrf_token() }}"},
                         success: function(result){

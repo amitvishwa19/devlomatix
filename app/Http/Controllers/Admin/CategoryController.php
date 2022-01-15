@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\CategoryRequest;
-use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
-use App\Models\Category;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
+use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -40,7 +41,9 @@ class CategoryController extends Controller
         }
 
 
-        return view('admin.pages.category.category');
+        $categories = Category::with('childs')->where('parent_id',null)->get();
+        return view('admin.pages.category.category',compact('categories'));
+
 
     }
 
@@ -52,16 +55,25 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'name' => 'required'
+            'category' => 'required|unique:categories,name'
         ]);
 
-        $category = New Category;
-        $category->name = $request->name;
-        $category->save();
 
-        return redirect()->route('category.index')
+        $category = new Category;
+        $category->name = $request->category;
+        $category->slug = str_slug($request->category);
+        if($request->parent == null){
+            $category->parent_id = null;
+        }else{
+            $category->parent_id = $request->parent;
+        }
+
+        $category->save();
+        Cache::forget('categories');
+
+        return redirect() ->route('category.index')
         ->with([
-            'message'    =>'Category Added Successfully',
+            'message'    =>'Category Created Successfully',
             'alert-type' => 'success',
         ]);
 
