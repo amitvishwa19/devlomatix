@@ -38,7 +38,7 @@ class SubscriptionListner
 
         //return \AppMail::SendMail($to,$subject,$body,$data,$view);
 
-        return appmail($to,$subject,$body,$data,$view,true);
+        return appmail($to,$subject,$body,$data,$view,false);
 
 
     }
