@@ -59,7 +59,7 @@ Route::get('/mail', function(){
     $data = 'test data';
     $view = 'mails.subscription';
 
-
+    return appmail($to,$subject,$body,$data,$view,true);
     return AppMail::SendMail($to,$subject,$body,$data,$view);
 });
 
@@ -76,7 +76,12 @@ Route::get('/setting', function(){
 
 });
 
-Route::get('test',[ClientController::class,'test']);
+Route::get('test',function(){
+    return appmail();
+    return setting('app_name');
+    return setting('app_name','Devlomatix_new');
+    return 'test';
+});
 
 
 

@@ -30,15 +30,15 @@ class SubscriptionListner
         activity()->log($event->email);
 
         $to = $event->email;
-        $subject = 'Newsletter Subscription for '. \AppSetting::get('app_name');
+        $subject = 'Newsletter Subscription for '. setting('app_name');
         $body = 'test body';
         $data = $event->email;
         $view = 'mails.subscription';
 
 
-    //return \AppMail::SendMail($to,$subject,$body,$data,$view);
+        //return \AppMail::SendMail($to,$subject,$body,$data,$view);
 
-    return \AppMail::sendMailJob($to,$subject,$body,$data,$view);
+        return appmail($to,$subject,$body,$data,$view,true);
 
 
     }
