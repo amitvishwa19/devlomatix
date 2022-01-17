@@ -3,11 +3,11 @@ This is mail view in resource folder.
 
 Body variable $body
 
-<br><br>
+{{-- <br><br>
 
 {{$body}}
 
 <br>
-<br>
+<br> --}}
 
-Data : {{$data['title']}}
+{{-- Data : {{$data['title']}} --}}

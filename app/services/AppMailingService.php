@@ -23,9 +23,19 @@ class AppMailingService
 
     public function test(){
         activity()->log('App mail service provider');
+
+        $to = 'jaysvishwa@gmail.com';
+        $subject = 'Test Mail Subject';
+        $body = 'test body';
+        $data = 'test data';
+        $view = 'mails.testmail';
+        Mail::to($to)->send(new AppMail($subject,$body,$data,$view));
+
+
+        return 'AppMail';
     }
 
-    public function sendMail($to,$subject,$body,$data,$view)
+    public function SendMail($to,$subject,$body,$data,$view)
     {
         //activity()->log('App mailing service  sendMail finction ' . 'Subject :- ' . $subject  );
         Mail::to($to)->send(new AppMail($subject,$body,$data,$view));

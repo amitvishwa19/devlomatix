@@ -1,9 +1,9 @@
 <?php
 
 
-use App\Models\User;
-use App\Facades\Test;
-use Illuminate\Support\Facades\Route;
+//use App\Models\User;
+//use App\Facades\Test;
+//use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\ChatController;
@@ -16,7 +16,6 @@ use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RouteController;
 use App\Http\Controllers\Admin\VideoController;
-use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\PolicyController;
 use App\Http\Controllers\Admin\ServerController;
 use App\Http\Controllers\Admin\ChapterController;
@@ -38,6 +37,8 @@ use App\Http\Controllers\Admin\ImpersonateController;
 use App\Http\Controllers\Admin\MailTemplateController;
 use App\Http\Controllers\Admin\SubscriptionController;
 
+use App\Http\Controllers\Client\ClientController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -50,17 +51,33 @@ use App\Http\Controllers\Admin\SubscriptionController;
 |
 */
 
-Route::get('/setting', function(\App\Services\Settings $setting){
+Route::get('/mail', function(){
+
+    $to = 'jaysvishwa@gmail.com';
+    $subject = 'Test Mail Subject';
+    $body = 'test body';
+    $data = 'test data';
+    $view = 'mails.subscription';
+
+
+    return AppMail::SendMail($to,$subject,$body,$data,$view);
+});
+
+Route::get('/setting', function(){
     //dump($setting->all());
-    //dd(app());
+    dd(app());
     //dd(app(\App\Services\Settings::class),app(\App\Services\Settings::class));
     //return $setting->all();
     //return Facades\App\Services\Settings::all();
     //return \App\Facades\SettingFacade::all();
-    return Setting::all();
-    return Setting::get('app_name');
-    return Setting::set('test','key','value2');
+    //return AppSetting::all();
+    return AppSetting::get('app_description');
+    //return AppSetting::set('app_name','devlomatix6');
+
 });
+
+Route::get('test',[ClientController::class,'test']);
+
 
 
 Route::get('/payment', function(\App\Services\PaymentAPI $payment){

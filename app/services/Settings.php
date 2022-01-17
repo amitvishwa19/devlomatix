@@ -17,14 +17,16 @@ class Settings{
 
     }
 
-    public function set($type,$key,$value)
+    public function set($key,$value)
     {
+        //return 'asdasdasd';
         //dd($key);
         Setting::updateOrCreate(
-            ['type' => $type,'key' => $key],
+            ['key' => $key],
             ['value' => $value],
         );
 
+        //dd($this->get($key));
         return 'inserted';
     }
 

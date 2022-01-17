@@ -6,7 +6,7 @@ use App\Services\AppMailingService;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Support\DeferrableProvider;
 
-class AppMailServiceProvider extends ServiceProvider implements DeferrableProvider
+class AppMailServiceProvider extends ServiceProvider// implements DeferrableProvider
 {
 
     //protected $defer = true;

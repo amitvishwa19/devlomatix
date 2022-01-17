@@ -3,13 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 
-
-use App\Models\Setting;
 use Illuminate\Http\Request;
-use Yajra\Datatables\Datatables;
-use App\Services\Setting\Settings;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SettingRequest;
 use Illuminate\Support\Facades\Cache;
 
 class SettingController extends Controller
@@ -19,27 +14,18 @@ class SettingController extends Controller
 
     public function __construct(){
 
-        // $settings = Cache::remember('settings', 24*60, function() {
-        //     return \App\Models\Setting::all()->toArray();
-        // });
-        // $this->settings = array_pluck($settings, 'value', 'key');
     }
-    // public function index(Request $request)
-    // {
 
-    //     //dd($this->settings["app_name"]);
-    //     return view('admin.pages.setting.setting')->with("settings",$this->settings);
-
-
-    // }
-    public function index(Request $request,Settings $settings)
+    public function index(Request $request)
     {
+        \AppSetting::get('app_name');
 
         //dd($settings->get('name'));
         //dd($settings->all());
 
         //return Setting::get();
-        return view('admin.pages.setting.setting',compact("settings"));
+        //Setting::set('app_name','devlomatix2');
+        return view('admin.pages.setting.setting');
 
     }
 
@@ -48,12 +34,31 @@ class SettingController extends Controller
     //     return view('admin.pages.setting.setting');
     // }
 
-    public function store(Request $request,Settings $setting)
+    public function store(Request $request)
     {
+        //Setting::set('app_name','devlomatix2');
+
+        // if($request->app_name){
+        //     //dd('app name is there');
+        //     Setting::set('app_name',$request->app_name);
+        // }else{
+        //     dd('app name is not there');
+        // }
+        //dd($request->app_name);
+        //dd($request->all());
         //General setting
-        if($request->type == 'global'){
-            $setting->set('global','app_name',$request->name);
-            $setting->set('global','app_description',$request->description);
+        // if($request->type == 'global'){
+        //     //$setting->set('global','app_name',$request->name);
+        //     //$setting->set('global','app_description',$request->description);
+
+        //     Setting::set('app_name',$request->name);
+        //     Setting::set('app_description',$request->description);
+        // }
+        if($request->app_name){
+            \AppSetting::set('app_name',$request->app_name);
+        }
+        if($request->app_description){
+            \AppSetting::set('app_description',$request->app_description);
         }
 
 

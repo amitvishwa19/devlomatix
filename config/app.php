@@ -244,7 +244,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Setting' => App\Facades\SettingFacade::class
+        'AppSetting' => App\Facades\SettingFacade::class,
+        'AppMail' => App\Facades\AppMailFacade::class
 
     ],
 

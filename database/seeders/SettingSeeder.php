@@ -15,11 +15,9 @@ class SettingSeeder extends Seeder
     public function run()
     {
         Setting::create([
-            'type' => 'global',
             'key' => 'app_name',
         ]);
         Setting::create([
-            'type' => 'global',
             'key' => 'app_description',
         ]);
     }
