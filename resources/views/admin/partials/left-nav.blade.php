@@ -53,7 +53,7 @@
             </li>
 
             <li>
-                <a href="{{route('inquire')}}">
+                <a href="{{route('inquiry.index')}}">
                     <i data-feather="zap" class="align-self-center menu-icon"></i><span>Inquiries</span>
                 </a>
             </li>

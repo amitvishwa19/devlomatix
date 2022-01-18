@@ -35,7 +35,7 @@ Route::get('/termscondition', [HomeController::class, 'terms'])->name('terms');
 Route::post('/subscribe',[ClientController::class,'subscribe'])->name('app.subscribe');
 
 // App Inquiry
-Route::get('/inquire', [InquiryController::class, 'index'])->name('inquire');
+Route::post('/inquire', [ClientController::class, 'inquiry'])->name('app.inquire');
 
 //Auto deploy of app
 Route::post('/deploy',[AutoDeployController::class,'deploy'])->name('app.auto.deploy');

@@ -20,11 +20,12 @@
                   <h2>Write Us a Message<span class="dot">.</span></h2>
               </div>
               <div class="default-form">
-                  <form method="post" action="" id="contact-form">
+                  <form method="post" action="{{route('app.inquire')}}" id="contact-form">
+                    @csrf
                       <div class="row clearfix">
                           <div class="form-group col-lg-6 col-md-6 col-sm-12">
                               <div class="field-inner">
-                                  <input type="text" name="username" value="" placeholder="Your Name" required="">
+                                  <input type="text" name="name" value="" placeholder="Your Name" required="">
                               </div>
                           </div>
                           <div class="form-group col-lg-6 col-md-6 col-sm-12">

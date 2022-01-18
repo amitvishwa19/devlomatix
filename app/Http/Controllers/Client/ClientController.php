@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Models\Inquiry;
+use App\Events\InquiryEvent;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
 use App\Events\SubscriptionEvent;
@@ -41,7 +43,7 @@ class ClientController extends Controller
         return view('client.pages.contact');
     }
 
-    public function subscribe(Request $request,AppMailingService $mail)
+    public function subscribe(Request $request)
     {
         $subscription = New Subscription;
         $subscription->email = $request->email;
@@ -54,13 +56,27 @@ class ClientController extends Controller
         event(new SubscriptionEvent($request->email));
         //activity()->log('Look mum, I logged something');
 
-        //return redirect() ->route('app.home')->withCookie(cookie('subscription','subscription',10));
-        return redirect() ->route('app.home');
+        return redirect() ->route('app.home')->withCookie(cookie('subscription','subscription',10));
+
     }
 
     public function unSubscribe(Request $request,AppMailingService $mail){
 
 
+    }
+
+    public function inquiry(Request $request)
+    {
+        $inquiry = new Inquiry;
+        $inquiry->name = $request->name;
+        $inquiry->email = $request->email;
+        $inquiry->phone = $request->phone;
+        $inquiry->subject = $request->subject;
+        $inquiry->message = $request->message;
+        $inquiry->save();
+
+        event(new InquiryEvent($request));
+        return redirect() ->route('app.home');
     }
 
     public function cookie_consent()

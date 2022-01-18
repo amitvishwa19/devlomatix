@@ -77,10 +77,11 @@ Route::get('/setting', function(){
 });
 
 Route::get('test',function(){
-    return appmail();
-    return setting('app_name');
-    return setting('app_name','Devlomatix_new');
-    return 'test';
+    // return appmail();
+    // return setting('app_name');
+    // return setting('app_name','Devlomatix_new');
+    // return 'test';
+    return view('mails.wola');
 });
 
 Route::get('/payment', function(\App\Services\PaymentAPI $payment){
@@ -138,6 +139,7 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
     Route::resource('/category',CategoryController::class);
     Route::resource('/tag',TagController::class);
     Route::resource('/subscription',SubscriptionController::class);
+    Route::resource('/inquiry',InquiryController::class);
     Route::resource('/chat',ChatController::class);
     Route::resource('/file',FileController::class);
 

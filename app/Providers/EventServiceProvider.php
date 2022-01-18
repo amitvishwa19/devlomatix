@@ -21,6 +21,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\SubscriptionEvent' => [
             'App\Listeners\SubscriptionListner',
         ],
+        'App\Events\InquiryEvent' => [
+            'App\Listeners\InquiryListner',
+        ],
     ];
 
     /**
