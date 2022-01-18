@@ -83,8 +83,6 @@ Route::get('test',function(){
     return 'test';
 });
 
-
-
 Route::get('/payment', function(\App\Services\PaymentAPI $payment){
     dump($payment->pay());
     dd(app());

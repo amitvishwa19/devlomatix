@@ -23,23 +23,28 @@
                 </a>
             </li>
 
-            <li>
-                <a href="{{route('post.index')}}">
-                    <i data-feather="cast" class="align-self-center menu-icon"></i><span>Posts</span>
-                </a>
-            </li>
+            <hr class="hr-dashed hr-menu">
 
             <li>
-                <a href="{{route('category.index')}}">
-                    <i data-feather="list" class="align-self-center menu-icon"></i><span>Categories</span>
-                </a>
+                <a href="javascript: void(0);"><i data-feather="cast" class="align-self-center menu-icon"></i><span>CMS</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                <ul class="nav-second-level" aria-expanded="false">
+                    <li>
+                        <a href="{{route('post.index')}}"><i class="ti-control-record"></i>Posts</a>
+                    </li>
+
+                    <li>
+                        <a href="{{route('category.index')}}"><i class="ti-control-record"></i>Categories</a>
+                    </li>
+
+                    <li>
+                        <a href="{{route('menu.index')}}"><i class="ti-control-record"></i>Menus</a>
+                    </li>
+
+                </ul>
             </li>
 
-            <li>
-                <a href="{{route('menu.index')}}">
-                    <i data-feather="menu" class="align-self-center menu-icon"></i><span>Menus</span>
-                </a>
-            </li>
+            <hr class="hr-dashed hr-menu">
+
 
             <li>
                 <a href="{{route('subscription.index')}}">

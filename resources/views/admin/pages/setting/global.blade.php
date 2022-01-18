@@ -16,14 +16,7 @@
                 <input type="text" class="form-control" name="app_description" value="{{setting('app_description')}}">
             </div>
 
-            <div class="form-group">
 
-                <div class="checkbox checkbox-primary">
-                    <input id="checkbox2" type="checkbox" checked="" name="job_mail">
-                    <label for="checkbox2">Primary</label>
-                </div>
-
-            </div>
 
             <button type="submit" class="btn btn-info waves-effect waves-light btn-sm">Save</button>
         </form>
