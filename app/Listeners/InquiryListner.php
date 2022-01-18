@@ -30,7 +30,7 @@ class InquiryListner
         $subject = 'Inquiry for Devlomatix :: ' . $event->subject;
         $body = 'test body';
         $data = array(
-                    'name' =>'vishwa',
+                    'name' => $event->email,
                     'message' => $event->message
                 );
         $view = 'mails.inquiry';
