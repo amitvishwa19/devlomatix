@@ -36,6 +36,7 @@ class SettingController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->job_mail);
         //Setting::set('app_name','devlomatix2');
 
         // if($request->app_name){
@@ -55,11 +56,15 @@ class SettingController extends Controller
         //     Setting::set('app_description',$request->description);
         // }
         if($request->app_name){
-            \AppSetting::set('app_name',$request->app_name);
+            setting('app_name',$request->app_name);
         }
         if($request->app_description){
-            \AppSetting::set('app_description',$request->app_description);
+            setting('app_description',$request->app_description);
         }
+
+        //if($request->job_mail){
+            setting('job_mail',$request->job_mail);
+        //}
 
 
         return redirect()->route('setting.index')

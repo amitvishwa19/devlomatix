@@ -53,14 +53,14 @@ use App\Http\Controllers\Client\ClientController;
 
 Route::get('/mail', function(){
 
-    $to = 'jaysvishwa@gmail.com';
-    $subject = 'Test Mail Subject';
+    $to = 'amitvishwa19@gmail.com';
+    $subject = 'Test Mail Subject with job mail';
     $body = 'test body';
     $data = 'test data';
     $view = 'mails.subscription';
 
     return appmail($to,$subject,$body,$data,$view,true);
-    return AppMail::SendMail($to,$subject,$body,$data,$view);
+
 });
 
 Route::get('/setting', function(){
