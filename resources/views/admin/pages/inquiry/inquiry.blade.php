@@ -41,8 +41,9 @@
                             <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Actions</th>
+                                        {{-- <th>Name</th> --}}
+                                        <th>Inquiry</th>
+                                        {{-- <th>Actions</th> --}}
                                     </tr>
                                 </thead>
 
@@ -57,6 +58,38 @@
             </div>
         </div><!--end row-->
 
+        <div class="modal fade" id="exampleModalDefault" tabindex="-1" role="dialog" aria-labelledby="exampleModalDefaultLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title m-0" id="exampleModalDefaultLabel">Add Role</h6>
+                        <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="la la-times"></i></span>
+                        </button>
+                    </div><!--end modal-header-->
+
+                    <form action="{{route('role.store')}}" method="POST">
+                        @csrf
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Role Name</label>
+                                <input type="text" class="form-control" name="name" aria-describedby="emailHelp" >
+                            </div>
+
+
+
+
+
+                        </div><!--end modal-body-->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-info waves-effect waves-light btn-sm">Add Role</button>
+                        </div><!--end modal-footer-->
+                    </form>
+                </div><!--end modal-content-->
+            </div><!--end modal-dialog-->
+        </div><!--end modal-->
 
     </div>
 @endsection
@@ -84,40 +117,41 @@
                 serverSide: true,
                 ajax: '{!! route('inquiry.index') !!}',
                 columns:[
-                    { data: 'name', name: 'name'},
-                    { data: 'action', name: 'action' },
+                    // { data: 'name', name: 'name'},
+                    { data: 'inquiry', name: 'inquiry'},
+                    // { data: 'action', name: 'action' },
                 ]
             });
 
 
             //Action Delete function
-            // $(document).on('click','.delete',function(){
-            //     var id =  $(this).attr('id');
-            //     swalWithBootstrapButtons({
-            //         title: "Delete Selected Post?",
-            //         text: "You won't be able to revert this!",
-            //         type: "warning",
-            //         showCancelButton: true,
-            //         confirmButtonText: "Delete",
-            //         cancelButtonText: "Cancel",
-            //         reverseButtons: true
-            //     }).then(result => {
-            //         if (result.value) {
-            //         $.ajax({
-            //             url: "post/"+id,
-            //             type:"post",
-            //             data: {_method: 'delete', _token: "{{ csrf_token() }}"},
-            //             success: function(result){
-            //                 location.reload();
-            //                 toast({
-            //                     type: "success",
-            //                     title: "Post Deleted Successfully"
-            //                 });
-            //             }
-            //         });
-            //         }
-            //     });
-            // });
+            $(document).on('click','.delete',function(){
+                var id =  $(this).attr('id');
+                swalWithBootstrapButtons({
+                    title: "Delete Selected Inquiry?",
+                    text: "You won't be able to revert this!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Delete",
+                    cancelButtonText: "Cancel",
+                    reverseButtons: true
+                }).then(result => {
+                    if (result.value) {
+                    $.ajax({
+                        url: "inquiry/"+id,
+                        type:"post",
+                        data: {_method: 'delete', _token: "{{ csrf_token() }}"},
+                        success: function(result){
+                            location.reload();
+                            toast({
+                                type: "success",
+                                title: "Inquiry Deleted Successfully"
+                            });
+                        }
+                    });
+                    }
+                });
+            });
 
         });
 

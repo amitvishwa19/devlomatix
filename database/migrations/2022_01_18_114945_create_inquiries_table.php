@@ -22,6 +22,8 @@ class CreateinquiriesTable extends Migration
             $table->text('subject')->nullable();
             $table->text('message')->nullable();
             $table->enum('status', ['open','close'])->default('open');
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->text('response')->nullable()->nullable();
             $table->timestamps();
 
         });
