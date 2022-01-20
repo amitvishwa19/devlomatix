@@ -26,14 +26,7 @@
                                 <li class="breadcrumb-item active">Subscriptions</li>
                             </ol>
                         </div><!--end col-->
-                        <div class="col-auto align-self-center">
-                            <a href="#" class="btn btn-sm btn-outline-primary" id="Dash_Date">
-                                <span class="ay-name" id="Day_Name">Today:</span>&nbsp;
-                                <span class="" id="Select_date">Jan 11</span>
-                                <i data-feather="calendar" class="align-self-center icon-xs ml-1"></i>
-                            </a>
 
-                        </div><!--end col-->
                     </div><!--end row-->
                 </div><!--end page-title-box-->
             </div><!--end col-->
@@ -41,10 +34,10 @@
 
 
 
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('subscribe.update',$subscription->id)}}" method="POST">
+                    <form action="{{route('subscription.update',$subscription->id)}}" method="POST">
                         @csrf
                         {{method_field('PUT')}}
                         <div class="form-group">
@@ -59,7 +52,7 @@
                                 <label class="custom-control-label" for="customSwitchSecondary">Status</label>
                             </div>
                         </div>
-                        <a href="{{route('subscribe.index')}}" class="btn btn-danger btn-sm">Cancel</a>
+                        <a href="{{route('subscription.index')}}" class="btn btn-danger btn-sm">Cancel</a>
                         <button type="submit" class="btn btn-primary btn-sm">Update Subscription</button>
 
                     </form>

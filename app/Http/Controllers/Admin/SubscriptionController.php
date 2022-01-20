@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
+use App\Events\SubscriptionEvent;
 use App\Services\AppMailingService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SubscriptionRequest;
@@ -68,16 +69,16 @@ class SubscriptionController extends Controller
         $subscription->save();
 
         //Sending confirmation mail
-        $to = $request->email;
-        $from = 'info@devlomatix.com';
-        $subject = 'Devlomatix Solutions Newsletter and Updates subscription';
-        $body = 'This is the mail body of test mail';
-        $data =["title" => "hello", "description" => "test test test"];
-        $view = 'mails.subscription';
+        // $to = $request->email;
+        // $from = 'info@devlomatix.com';
+        // $subject = 'Devlomatix Solutions Newsletter and Updates subscription';
+        // $body = 'This is the mail body of test mail';
+        // $data =["title" => "hello", "description" => "test test test"];
+        // $view = 'mails.subscription';
 
-        $mail->sendMailJob($to,$subject,$body,$data,$view);
+        // $mail->sendMailJob($to,$subject,$body,$data,$view);
 
-
+        event(new SubscriptionEvent($request->email));
 
         return redirect()->route('subscription.index')
         ->with([
