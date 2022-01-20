@@ -12,7 +12,6 @@
 
     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
         <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; color: #3f5db3; font-size: 14px; vertical-align: top; margin: 0; padding: 10px 10px;" valign="top">
-            {{@if($data['tete']) adadadasasdads @endif}}
 
             Thanks for showing intrest in our services, we have received you inquiry,Our team will connect with you soon to get the detail requirments.
         </td>

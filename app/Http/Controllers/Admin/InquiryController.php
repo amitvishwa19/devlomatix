@@ -158,7 +158,7 @@ class InquiryController extends Controller
 
         return redirect()->route('inquiry.index')
         ->with([
-            'message'    =>'Inquiry Updated Successfully',
+            'message'    =>'Response sent successfully',
             'alert-type' => 'success',
         ]);
 
