@@ -5,12 +5,11 @@
 @section('content')
     <div class="login-page">
         <div class="row">
-            <div class="col-9 left-area">
+            <div class="col-9 d-none d-sm-block d-sm-none left-area">
                 <img src="https://miro.medium.com/max/2625/1*qAX1633WKgkCBjW-7BICCA.jpeg" alt="">
-
             </div>
 
-            <div class="col-3 right-area">
+            <div class="col-lg-3 col-sm-12  right-area">
 
                 <div class="login-content">
                     <div class="brand-logo">
@@ -31,23 +30,32 @@
                               </div>
                             @endif
 
-                            <div class="form-group">
-                                <label for="email">Username</label>
+                            {{-- <div class="form-group">
+                                <label for="username">Username</label>
                                <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus value="{{ old('username') }}"/>
-                               @if ($errors->has('email'))
+                               @if ($errors->has('username'))
                                <span class="help-block">
                                   <strong>{{ $errors->first('username') }}</strong>
                                </span>
                                @endif
-                            </div>
+                            </div> --}}
 
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control"  name="username" placeholder="Username" value="{{ old('username') }}" autofocus>
+                                @if ($errors->has('username'))
+                                <span class="help-block">
+                                    <small><strong>{{ $errors->first('username') }}</strong></small>
+                                </span>
+                                @endif
+                            </div>
 
                             <div class="form-group">
                                 <label for="email">Email Address</label>
-                               <input type="text" class="form-control" name="email" placeholder="yourname@yourdomain.com" required="" autofocus value="{{ old('email') }}"/>
+                               <input type="email" class="form-control" name="email" placeholder="yourname@yourdomain.com" required="" autofocus value="{{ old('email') }}"/>
                                @if ($errors->has('email'))
                                <span class="help-block">
-                                  <strong>{{ $errors->first('email') }}</strong>
+                                  <small><strong>{{ $errors->first('email') }}</strong></small>
                                </span>
                                @endif
                             </div>
@@ -57,7 +65,7 @@
                                <input type="password" class="form-control" name="password" placeholder="Enter your password" required="" />
                                @if ($errors->has('password'))
                                <span class="help-block">
-                                  <strong>{{ $errors->first('password') }}</strong>
+                                  <small><strong>{{ $errors->first('password') }}</strong></small>
                                </span>
                                @endif
                             </div>
