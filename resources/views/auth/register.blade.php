@@ -14,7 +14,7 @@
 
                 <div class="login-content">
                     <div class="brand-logo">
-                        <a href="{{route('home')}}">
+                        <a href="{{route('app.home')}}">
                             <img src="{{asset('public/admin/assets/1598601943DZ-Logo Orange-black.png')}}" alt="" style="width: 150px;">
                          </a>
                     </div>
@@ -30,6 +30,17 @@
                                 Your account is not activated ! Please activate your account. <a href="">Click here</a> to resend activation link
                               </div>
                             @endif
+
+                            <div class="form-group">
+                                <label for="email">Username</label>
+                               <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus value="{{ old('username') }}"/>
+                               @if ($errors->has('email'))
+                               <span class="help-block">
+                                  <strong>{{ $errors->first('username') }}</strong>
+                               </span>
+                               @endif
+                            </div>
+
 
                             <div class="form-group">
                                 <label for="email">Email Address</label>
@@ -51,7 +62,7 @@
                                @endif
                             </div>
 
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="password">Confirm Password</label>
                                <input type="password" class="form-control" name="password_confirmation" placeholder="Enter your password" required="" />
                                @if ($errors->has('password_confirmation'))
@@ -59,7 +70,7 @@
                                   <strong>{{ $errors->first('password_confirmation') }}</strong>
                                </span>
                                @endif
-                            </div>
+                            </div> --}}
 
 
 
