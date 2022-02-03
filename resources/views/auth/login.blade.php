@@ -38,9 +38,10 @@
                               </div>
                             @endif
 
+                            
                             <div class="form-group">
-                                <label for="email">Email Address</label>
-                               <input type="text" class="form-control" name="email" placeholder="yourname@yourdomain.com" required="" autofocus value="{{ old('email') }}"/>
+                                <label for="email">Email Address or Username</label>
+                               <input type="text" class="form-control" name="email" placeholder="Email or Username" required="" autofocus value="{{ old('email') }}"/>
                                @if ($errors->has('email'))
                                <span class="help-block">
                                   <strong>{{ $errors->first('email') }}</strong>
@@ -85,8 +86,11 @@
                             <br />
 
                         </div>
-                        <p class="info">Your data will not be used outside of digizigs. By signing up you agree that your statistics may be used anonymously inside www.devlomatix.com.</p>
 
+                        @if(setting('app_name'))
+                        <p class="info">Your data will not be used outside of {{setting('app_name')}}. By signing up you agree that your statistics may be used anonymously inside www.{{strtolower(setting('app_name'))}}.com.</p>
+                        @endif
+                        
                     </div>
                 </div>
             </div>

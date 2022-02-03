@@ -13,7 +13,7 @@
     <!-- Favicon -->
     {{-- <link rel="icon" href="{{setting('app.fevicon')}}" type="image/ico" /> --}}
 
-    <title> | @yield('title')</title>
+    <title> {{setting('app_name')}} | @yield('title')</title>
 
     <!-- vendor css -->
     <link href="{{asset('public/admin/lib/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet">

@@ -97,7 +97,10 @@
                             <br />
 
                         </div>
-                        <p class="info">Your data will not be used outside of devlomatix. By signing up you agree that your statistics may be used anonymously inside www.devlomatix.com.</p>
+                        
+                        @if(setting('app_name'))
+                        <p class="info">Your data will not be used outside of {{setting('app_name')}}. By signing up you agree that your statistics may be used anonymously inside www.{{strtolower(setting('app_name'))}}.com.</p>
+                        @endif
 
                     </div>
                 </div>

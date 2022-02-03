@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\PolicyController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Admin\SubscriptionController;
-
+use Spatie\Honeypot\ProtectAgainstSpam;
 
 
 
@@ -32,10 +32,10 @@ Route::get('/terms', [PolicyController::class, 'DevlomatixSolutionsTerms'])->nam
 Route::get('/termscondition', [HomeController::class, 'terms'])->name('terms');
 
 // App Subscription
-Route::post('/subscribe',[ClientController::class,'subscribe'])->name('app.subscribe');
+Route::post('/subscribe',[ClientController::class,'subscribe'])->middleware(ProtectAgainstSpam::class)->name('app.subscribe');
 
 // App Inquiry
-Route::post('/inquire', [ClientController::class, 'inquiry'])->name('app.inquire');
+Route::post('/inquire', [ClientController::class, 'inquiry'])->middleware(ProtectAgainstSpam::class)->name('app.inquire');
 
 //Auto deploy of app
 Route::post('/deploy',[AutoDeployController::class,'deploy'])->name('app.auto.deploy');
