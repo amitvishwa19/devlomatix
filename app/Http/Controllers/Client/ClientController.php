@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Events\SubscriptionEvent;
 use App\Services\AppMailingService;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
+
 
 class ClientController extends Controller
 {
@@ -67,6 +69,11 @@ class ClientController extends Controller
 
     public function inquiry(Request $request)
     {
+
+        $validate = $request->validate([
+            'g-recaptcha-response' => 'required|captcha'
+        ]);
+
         $inquiry = new Inquiry;
         $inquiry->name = $request->name;
         $inquiry->email = $request->email;
