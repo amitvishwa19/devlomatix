@@ -67,7 +67,7 @@
                            @if(!Request::cookie('subscription'))
                             <div class="newsletter-form">
                                 <form method="post" action="{{route('app.subscribe')}}">
-                                    {{-- @csrf --}}
+                                    @csrf
                                     @honeypot
                                     <div class="form-group clearfix">
                                         <input type="email" name="email" value="" placeholder="Email Address" required="">
