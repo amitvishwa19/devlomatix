@@ -30,6 +30,13 @@
                               </div>
                             @endif
 
+                            @if(Session::has('register_success'))
+                              <!-- <p class="alert alert-info">{{ Session::get('message') }}</p> -->
+                              <div class="alert alert-info" role="alert">
+                                Account created successfully, please check your mail for activation linke to activate your account.
+                              </div>
+                            @endif
+
                             {{-- <div class="form-group">
                                 <label for="username">Username</label>
                                <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus value="{{ old('username') }}"/>
@@ -81,7 +88,7 @@
                             </div> --}}
 
 
-
+                            @captcha
                             <div>
                                <button class="btn btn-primary btn-login submit btn-sm pull-left form-control" style="margin-top: 5px;">Sign Up</button>
                             </div>
@@ -97,7 +104,7 @@
                             <br />
 
                         </div>
-                        
+
                         @if(setting('app_name'))
                         <p class="info">Your data will not be used outside of {{setting('app_name')}}. By signing up you agree that your statistics may be used anonymously inside www.{{strtolower(setting('app_name'))}}.com.</p>
                         @endif

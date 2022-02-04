@@ -8,25 +8,28 @@ use Illuminate\Queue\InteractsWithQueue;
 
 class RegisterListner
 {
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
+
     public function __construct()
     {
         //
     }
 
-    /**
-     * Handle the event.
-     *
-     * @param  RegisterEvent  $event
-     * @return void
-     */
+
     public function handle(RegisterEvent $event)
     {
         activity()->log('New user registered');
 
+        $to = $event->email;
+        $subject = 'Welcome to '. setting('app_name') . ' please activate your account';
+        $body = 'test body';
+        $data = $data = array(
+            'username' => $event->username,
+            'email' => $event->email,
+            'verification_code' => $event->verification_code
+        );
+        $view = 'mails.register';
+
+
+        return appmail($to,$subject,$body,$data,$view,false);
     }
 }

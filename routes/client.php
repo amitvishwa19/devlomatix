@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Admin\PolicyController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Admin\SubscriptionController;
 
@@ -14,6 +16,7 @@ Route::get('/about', [ClientController::class, 'about'])->name('app.about');
 Route::get('/blogs', [ClientController::class, 'blogs'])->name('app.blogs');
 Route::get('/cookie_consent', [ClientController::class, 'cookie_consent'])->name('app.cookie.consent');
 
+Route::get('/auth/verify',[RegisterController::class,'verifyUser'])->name('app.auth.verify');
 
 // Route::get('/home', function(){
 //     return view('client.welcome');

@@ -31,6 +31,28 @@
                               </div>
                             @endif
 
+                            @if(Session::has('register_success'))
+                              <!-- <p class="alert alert-info">{{ Session::get('message') }}</p> -->
+                              <div class="alert alert-info" role="alert">
+                                Account created successfully, please check your mail to activate your account.
+                              </div>
+                            @endif
+
+                            @if(Session::has('verified'))
+                              <!-- <p class="alert alert-info">{{ Session::get('message') }}</p> -->
+                              <div class="alert alert-info" role="alert">
+                                Your account is verified successfully, please login to continue
+                              </div>
+                            @endif
+
+                            @if(Session::has('invalid_token'))
+                                <!-- <p class="alert alert-info">{{ Session::get('message') }}</p> -->
+                                <div class="alert alert-info" role="alert">
+                                    Invalid activation link
+                                </div>
+                            @endif
+
+
                             @if(Session::has('message'))
                               <!-- <p class="alert alert-info">{{ Session::get('message') }}</p> -->
                               <div class="alert alert-info" role="alert">
@@ -38,7 +60,7 @@
                               </div>
                             @endif
 
-                            
+
                             <div class="form-group">
                                 <label for="email">Email Address or Username</label>
                                <input type="text" class="form-control" name="email" placeholder="Email or Username" required="" autofocus value="{{ old('email') }}"/>
@@ -70,7 +92,7 @@
                                @endif
 
                             </div>
-
+                            @captcha
                             <div>
                                <button class="btn btn-primary btn-login submit btn-sm pull-left form-control" style="margin-top: 5px;">Sign In</button>
                             </div>
@@ -90,7 +112,7 @@
                         @if(setting('app_name'))
                         <p class="info">Your data will not be used outside of {{setting('app_name')}}. By signing up you agree that your statistics may be used anonymously inside www.{{strtolower(setting('app_name'))}}.com.</p>
                         @endif
-                        
+
                     </div>
                 </div>
             </div>

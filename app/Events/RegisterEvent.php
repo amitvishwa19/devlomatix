@@ -14,21 +14,18 @@ class RegisterEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    /**
-     * Create a new event instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public $username;
+    public $email;
+    public $verification_code;
+
+    public function __construct($user)
     {
-        //
+        $this->username = $user->username;
+        $this->email = $user->email;
+        $this->verification_code = $user->verification_code;
     }
 
-    /**
-     * Get the channels the event should broadcast on.
-     *
-     * @return \Illuminate\Broadcasting\Channel|array
-     */
+
     public function broadcastOn()
     {
         return new PrivateChannel('channel-name');

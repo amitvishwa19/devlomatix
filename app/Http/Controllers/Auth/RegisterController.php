@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -63,17 +64,58 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
-    {
+    // protected function create(array $data)
+    // {
 
-        $user =  User::create([
-            'username' => $data['username'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+    //     $user =  User::create([
+    //         'username' => $data['username'],
+    //         'email' => $data['email'],
+    //         'password' => Hash::make($data['password']),
+    //         'verification_code' => sha1(time()),
+    //     ]);
 
-        event(new RegisterEvent($user));
+    //     if($user != null){
+    //         event(new RegisterEvent($user));
+    //         return redirect()->back()->with(session()->flash('register_success','Account created successfully,please check your mail for activation code'));
+    //     }
 
-        return $user;
+
+    //     return redirect()->back()->with(session()->flash('alert','account not created, please try again'));
+    // }
+
+    public function register(Request $request){
+
+        $user = new User();
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->verification_code = sha1(time());
+        $user->save();
+
+
+        if($user != null){
+            event(new RegisterEvent($user));
+            return redirect()->back()->with(session()->flash('register_success','Account created successfully,please check your mail for activation code'));
+        }
+        return redirect()->back()->with(session()->flash('register_alert','account not created, please try again'));
     }
+
+    public function verifyUser(Request $request){
+
+        //dd($request->code);
+        $verification_code = $request->code;
+        $user = User::where(['verification_code' => $verification_code])->first();
+
+        if($user != null){
+            $user->status = 1;
+            $user->verification_code = null;
+            $user->save();
+            return redirect()->route('login')->with(session()->flash('verified','Your account is verified successfully, please login to continue'));
+        }else{
+            return redirect()->route('login')->with(session()->flash('invalid_token','Invalid verification code'));
+        }
+
+
+    }
+
 }

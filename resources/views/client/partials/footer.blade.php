@@ -68,11 +68,11 @@
                             <div class="newsletter-form">
                                 <form method="post" action="{{route('app.subscribe')}}">
                                     @csrf
-                                    @honeypot
                                     <div class="form-group clearfix">
                                         <input type="email" name="email" value="" placeholder="Email Address" required="">
+                                        @captcha
                                         <button type="submit" class="theme-btn">
-                                        <span class="fa fa-envelope"></span>
+                                            <span class="fa fa-envelope"></span>
                                         </button>
                                     </div>
                                 </form>

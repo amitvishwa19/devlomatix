@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -38,7 +39,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    
+
     // protected function authenticated(Request $request, $user)
     // {
     //     //dd($user);
@@ -48,5 +49,13 @@ class LoginController extends Controller
     //     //     return redirect()->route('brands.dashboard') ;
     //     // }
     // }
+
+    public function credentials(Request $request)
+    {
+
+        //return $request->only($this->username(), 'password', 'status' => 1);
+        //return array_merge($request->only($this->username(), 'password',['status' => 1]));
+        return ['email'=>$request->{$this->username()},'password'=>$request->password,'status'=>'1'];
+    }
 
 }
