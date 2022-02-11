@@ -32,8 +32,13 @@
                                 <li class="breadcrumb-item active">Posts</li>
                             </ol>
                         </div><!--end col-->
+
+                <form method="post" action="{{route('post.update', $post->id)}}" enctype="multipart/form-data">
+                @csrf
+                {{method_field('PUT')}}
+
                         <div class="col-auto align-self-center">
-                            <button class="btn btn-info waves-effect waves-light btn-sm">Publish Post</button>
+                            <button class="btn btn-info waves-effect waves-light btn-sm">Update Post</button>
                         </div><!--end col-->
                     </div><!--end row-->
                 </div><!--end page-title-box-->
@@ -45,21 +50,21 @@
                 <div class="card">
 
                     <div class="card-body">
-                        <form>
+                       
                             <div class="form-group">
                                 <label for="exampleInputEmail1"><b>Post Title</b></label>
-                                <input type="text" class="form-control" aria-describedby="emailHelp" name="title">
+                                <input type="text" class="form-control" aria-describedby="emailHelp" name="title" value="{{ old('body') }}{{$post->title}}">
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputPassword1"><b>Post Description</b></label>
-                                <input type="text" class="form-control" name="description">
+                                <input type="text" class="form-control" name="description" value="{{ old('description') }}{{$post->description}}">
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputPassword1"><b>Post Content</b></label>
                                 <div id="content" class="ht-200"></div>
-                                <input type="text" name="body" style="display: none" id="bodyinput" value="{{ old('body') }}">
+                                <input type="text" name="body" style="display: none" id="bodyinput" value="{{ old('body') }}{{$post->body}}">
                             </div>
 
 
@@ -67,7 +72,7 @@
 
 
 
-                        </form>
+                        
                     </div><!--end card-body-->
                 </div><!--end card-->
             </div>
@@ -84,11 +89,11 @@
                     </div><!--end card-header-->
                     <div class="card-body">
                         <div class="radio radio-info form-check-inline">
-                            <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked="">
+                            <input type="radio" id="inlineRadio1" value="published" name="status" checked="">
                             <label for="inlineRadio1"> Published </label>
                         </div>
                         <div class="radio form-check-inline">
-                            <input type="radio" id="inlineRadio2" value="option2" name="radioInline">
+                            <input type="radio" id="inlineRadio2" value="draft" name="status">
                             <label for="inlineRadio2"> Draft </label>
                         </div>
                     </div><!--end card-body-->
@@ -142,7 +147,7 @@
                 </div>
 
 
-
+            </form>
 
             </div>
 
@@ -198,9 +203,9 @@
             });
             editor.on('text-change', function() {
             $('#bodyinput').val(editor.root.innerHTML);
-            //var text = editor.getText();
+                var text = editor.getText();
             });
-
+            editor.root.innerHTML = $('#bodyinput').val();
 
             $('.select2').select2();
 

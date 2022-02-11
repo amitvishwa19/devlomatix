@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Tag;
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Access\Gate;
-use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
+use App\Http\Controllers\Controller;
 
 
 
@@ -40,6 +42,47 @@ class PostController extends Controller
                             </div><!--end media body-->
                         </div>';
             })
+
+            ->addColumn('postmeta',function($post){
+                if($post->feature_image){
+                    return '<div class="d-flex justify-content-between">
+                                <div class="meta-box">
+                                    <div class="media">
+                                        <img src="'.$post->feature_image.'" alt="" class="thumb-sm rounded-circle mr-2">                                       
+                                        <div class="media-body align-self-center text-truncate">
+                                            <h6 class="m-0 text-dark">'. $post->title.'</h6>
+                                            <ul class="p-0 list-inline mb-0">
+                                                <li class="list-inline-item text-muted">'.$post->created_at->diffForHumans().'</li>
+                                                <li class="list-inline-item">by <a href="#" class="text-muted">'.$post->author->firstName .','. $post->author->lastName.'</a></li>
+                                            </ul>
+                                        </div><!--end media-body-->
+                                    </div>                                            
+                                </div><!--end meta-box-->
+                                <div class="align-self-center">
+                                    <div class="badge badge-soft-info"> '.ucfirst($post->status).' </div>
+                                </div>
+                            </div>';
+                }else{
+                    return '<div class="d-flex justify-content-between">
+                                <div class="meta-box">
+                                    <div class="media">                                                                           
+                                        <div class="media-body align-self-center text-truncate">
+                                            <h6 class="m-0 text-dark">'. $post->title.'</h6>
+                                            <ul class="p-0 list-inline mb-0">
+                                                <li class="list-inline-item text-muted">'.$post->created_at->diffForHumans().'</li>
+                                                <li class="list-inline-item">by <a href="#" class="text-muted">'.$post->author->firstName .','. $post->author->lastName.'</a></li>
+                                            </ul>
+                                        </div><!--end media-body-->
+                                    </div>                                            
+                                </div><!--end meta-box-->
+                                <div class="align-self-center">
+                                    <div class="badge badge-soft-info"> '.ucfirst($post->status).' </div>
+                                </div>
+                            </div>';
+                }
+            })
+
+
             ->addColumn('author',function($post){
                 return $post->author->firstName .','. $post->author->lastName;
             })
@@ -65,12 +108,12 @@ class PostController extends Controller
             })
             ->addColumn('action',function($data){
                 $link = '<div class="d-flex">'.
-                            '<a href="'.route('post.edit',$data->id).'" class="badge badge-soft-primary mr-2"><small>Edit</small></a>'.
-                            '<a href="javascript:void(0);" id="'.$data->id.'" class="badge badge-soft-danger delete"><small>Delete</small></a>'.
+                            '<a href="'.route('post.edit',$data->id).'" class="badge badge-info mr-2"><small>Edit</small></a>'.
+                            '<a href="javascript:void(0);" id="'.$data->id.'" class="badge badge-secondary delete"><small>Delete</small></a>'.
                         '</div>';
                 return $link;
             })
-            ->rawColumns(['action','status','author'.'category','postdetails'])
+            ->rawColumns(['action','status','author','category','postdetails','postmeta'])
             ->make(true);
 
 
@@ -87,7 +130,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.posts.post_add');
+        $categories = Category::where('parent_id','<>', 0 )->orderby('created_at','desc')->get();
+        return view('admin.pages.posts.post_add')->with('categories',$categories);
     }
 
     /**
@@ -99,7 +143,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
 
-        dd($request->all());
+       //dd($request->all());
 
         $validate = $request->validate([
             'title' => 'required',
@@ -109,15 +153,42 @@ class PostController extends Controller
         $post = new Post;
         $post->user_id = auth()->user()->id;
         $post->title = $request->title;
+        $post->slug = Str::slug($request->title,'-');
         $post->description = $request->description;
         $post->body = $request->body;
-        $post->meta_description = $request->meta_description;
-        $post->meta_keywords = $request->meta_keywords;
-        $post->meta_keywords = $request->meta_keywords;
         $post->status = $request->status;
+        if($file = $request->file('feature_image')){ $post->feature_image = uploadImage($request->file('feature_image'));}
         $post->save();
 
-        return redirect() ->route('posts.index')
+
+        //Categoty Saving
+        if(!$request->categories){
+            $post->categories()->sync([$this->defaultCategory()]);
+        }else{
+            $post->categories()->sync($request->categories);
+        }
+
+        
+
+        //Saving Tags
+        // $tagIds = [];
+        // if($request->tags){
+
+        //     $tags = $request->tags;
+        //     foreach($tags as $tag){
+
+        //         $ntag = Tag::firstOrCreate(['name'=>$tag]);
+        //         if($tag)
+        //         {
+        //             $tagIds[] = $ntag->id;
+        //         }
+        //     }
+        // }
+        // $post->tags()->sync($tagIds);
+
+
+
+        return redirect() ->route('post.index')
         ->with([
             'message'    =>'Post Added Successfully',
             'alert-type' => 'success',
@@ -160,17 +231,14 @@ class PostController extends Controller
             'title' => 'required',
         ]);
 
-        $post->user_id = auth()->user()->id;
         $post->title = $request->title;
         $post->slug = Str::slug($request->title,'-');
         $post->description = $request->description;
-        $post->body = $request->body;
-        $post->meta_description = $request->meta_description;
-        $post->meta_keywords = $request->meta_keywords;
         $post->status = $request->status;
+        $post->body = $request->body;
         $post->update();
 
-        return redirect() ->route('posts.index')
+        return redirect() ->route('post.index')
         ->with([
             'message'    =>'Post Updated Successfully',
             'alert-type' => 'success',
@@ -184,24 +252,30 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        $post->delete();
-        return redirect() ->route('posts.index')
-        ->with([
-            'message'    =>'Post Deleted Successfully',
-            'alert-type' => 'success',
-        ]);
+        $post = Post::destroy($id);
+        if($post){
+            return redirect()->route('post.index')
+            ->with([
+                'message'    =>'Post Deleted Successfully',
+                'alert-type' => 'success',
+            ]);
+        }
     }
 
-    public function delete(Post $post)
+   
+
+    public function defaultCategory()
     {
-        dd($post);
-        $post->delete();
-        return redirect() ->route('posts.index')
-        ->with([
-            'message'    =>'Post Deleted Successfully',
-            'alert-type' => 'success',
-        ]);
+        $category = Category::where('slug','uncategorized')->first();
+        if(!$category){
+            $category = new Category;
+            $category->name = 'Uncategorized';
+            $category->slug = 'uncategorized';
+            $category->save();
+
+        }
+        return $category->id;
     }
 }

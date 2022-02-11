@@ -49,11 +49,10 @@
                             <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                     <tr>
-                                        <th>Post</th>
-                                        <th>Categories</th>
-                                        <th>Status</th>
-                                        <th>Created</th>
-                                        <th>Actions</th>
+                                        
+                                        <th style="width:40%">Post</th>
+                                        <th style="width:20%">Categories</th>
+                                        <th style="width:10%">Actions</th>
 
                                     </tr>
                                 </thead>
@@ -488,16 +487,13 @@
                 serverSide: true,
                 ajax: '{!! route('post.index') !!}',
                 columns:[
-                    { data: 'postdetails', name: 'postdetails'},
+                    { data: 'postmeta', name: 'postmeta'},
                     { data: 'category', name: 'category'},
-                    { data: 'status', name: 'status'},
-                    { data: 'created_at', name: 'created_at' },
                     { data: 'action', name: 'action' },
                 ]
             });
 
 
-            //Action Delete function
             $(document).on('click','.delete',function(){
                 var id =  $(this).attr('id');
                 swalWithBootstrapButtons({

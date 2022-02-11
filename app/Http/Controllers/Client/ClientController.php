@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Models\Post;
 use App\Models\Inquiry;
 use App\Events\InquiryEvent;
 use App\Models\Subscription;
@@ -92,10 +93,10 @@ class ClientController extends Controller
     }
 
     public function test(){
-        $settings = \AppSetting::all();
-        $settings = \AppSetting::set('app_name','devlomatix10');
-        $settings = \AppSetting::get('app_description');
-        return $settings;
+        // $settings = \AppSetting::all();
+        // $settings = \AppSetting::set('app_name','devlomatix10');
+        // $settings = \AppSetting::get('app_description');
+        // return $settings;
         //return AppSetting::all();
         //return 'test from clientcontroller';
 

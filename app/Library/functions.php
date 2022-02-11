@@ -77,6 +77,22 @@ if(! function_exists('uploadImage')){
     }
 }
 
+if(! function_exists('upload')){
+    function upload($file){
+
+        if($file){
+            return 'setting upload with file';
+
+        }else{
+            return 'setting upload no file';
+
+        }
+        
+    }
+}
+
+
+
 if(! function_exists('url_link')){
     function url_link($path = null){
         if(!$path){ return 'Please provide a valid path';}

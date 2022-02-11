@@ -30,6 +30,6 @@ class RegisterListner
         $view = 'mails.register';
 
 
-        return appmail($to,$subject,$body,$data,$view,false);
+        return appmail($to,$subject,$body,$data,$view,true);
     }
 }

@@ -62,8 +62,8 @@
 
 
                             <div class="form-group">
-                                <label for="email">Email Address or Username</label>
-                               <input type="text" class="form-control" name="email" placeholder="Email or Username" required="" autofocus value="{{ old('email') }}"/>
+                                <label for="email">Email Address</label>
+                               <input type="text" class="form-control" name="email" placeholder="Email" required="" autofocus value="{{ old('email') }}"/>
                                @if ($errors->has('email'))
                                <span class="help-block">
                                   <strong>{{ $errors->first('email') }}</strong>

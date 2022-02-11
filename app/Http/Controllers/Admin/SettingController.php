@@ -55,12 +55,25 @@ class SettingController extends Controller
         //     Setting::set('app_name',$request->name);
         //     Setting::set('app_description',$request->description);
         // }
-
+        
         setting('app_name',$request->app_name);
         setting('app_description',$request->app_description);
 
+        if($request->file('app_icon')){
+            $auth_image_url = uploadImage($request->file('app_icon'));
+            setting('app_icon',$auth_image_url);
+        }
 
+        if($request->file('app_fevicon')){
+            $auth_image_url = uploadImage($request->file('app_fevicon'));
+            setting('app_fevicon',$auth_image_url);
+        }
 
+        if($request->file('auth_image')){
+            $auth_image_url = uploadImage($request->file('auth_image'));
+            setting('auth_image_url',$auth_image_url);
+        }
+     
 
         return redirect()->route('setting.index')
         ->with([

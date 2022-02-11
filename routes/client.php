@@ -1,5 +1,8 @@
 <?php
 
+
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Admin\PolicyController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -18,9 +21,13 @@ Route::get('/cookie_consent', [ClientController::class, 'cookie_consent'])->name
 
 Route::get('/auth/verify',[RegisterController::class,'verifyUser'])->name('app.auth.verify');
 
-// Route::get('/home', function(){
-//     return view('client.welcome');
-// })->name('home');
+Route::get('/upload',function(){
+
+    //return Storage::url();
+    return upload('sdfsdfsd');
+    return 'upload';
+
+});
 
 
 //Devlomatix Solutions & Devlomatix Games policy

@@ -32,6 +32,10 @@
                                 <li class="breadcrumb-item active">Posts</li>
                             </ol>
                         </div><!--end col-->
+
+                    <form method="post" action="{{route('post.store')}}" enctype="multipart/form-data">
+                    @csrf    
+
                         <div class="col-auto align-self-center">
                             <button class="btn btn-info waves-effect waves-light btn-sm">Publish Post</button>
                         </div><!--end col-->
@@ -45,10 +49,15 @@
                 <div class="card">
 
                     <div class="card-body">
-                        <form>
+                        
                             <div class="form-group">
                                 <label for="exampleInputEmail1"><b>Post Title</b></label>
                                 <input type="text" class="form-control" aria-describedby="emailHelp" name="title">
+                                @if ($errors->has('title'))
+                                    <span class="help-block">
+                                        <small>{{ $errors->first('title') }}</small>
+                                    </span>
+                                @endif
                             </div>
 
                             <div class="form-group">
@@ -58,16 +67,11 @@
 
                             <div class="form-group">
                                 <label for="exampleInputPassword1"><b>Post Content</b></label>
-                                <div id="content" class="ht-200"></div>
-                                <input type="text" name="body" style="display: none" id="bodyinput" value="{{ old('body') }}">
+                                <div id="post-body" class="ht-200"></div>
+                                <input type="text" name="body" style="display: none" id="bodyinput"  value="{{$post->body}}{{ old('body') }}">
                             </div>
 
 
-
-
-
-
-                        </form>
                     </div><!--end card-body-->
                 </div><!--end card-->
             </div>
@@ -84,11 +88,11 @@
                     </div><!--end card-header-->
                     <div class="card-body">
                         <div class="radio radio-info form-check-inline">
-                            <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked="">
+                            <input type="radio" id="inlineRadio1" value="published" name="status" checked>
                             <label for="inlineRadio1"> Published </label>
                         </div>
                         <div class="radio form-check-inline">
-                            <input type="radio" id="inlineRadio2" value="option2" name="radioInline">
+                            <input type="radio" id="inlineRadio2" value="draft" name="status">
                             <label for="inlineRadio2"> Draft </label>
                         </div>
                     </div><!--end card-body-->
@@ -104,10 +108,9 @@
                             <div class="col-md-12">
                                 <label class="mb-3">Select category for post</label>
                                 <select class="select2 mb-3 select2-multiple select2-hidden-accessible" style="width: 100%" name="categories[]" multiple="">
-                                        <option value="CA">California</option>
-                                        <option value="NV">Nevada</option>
-                                        <option value="OR">Oregon</option>
-                                        <option value="WA">Washington</option>\
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endforeach
                                 </select>
                             </div> <!-- end col -->
                         </div><!-- end row -->
@@ -134,15 +137,17 @@
                         <h4 class="card-title">Feature Image</h4>
                     </div><!--end card-header-->
                     <div class="card-body">
-                        <img class="card-img-top img-fluid bg-light-alt" src="{{asset('public/admin/assets/images/small/img-2.jpg')}}" alt="Card image cap">
+                        <!-- <img class="card-img-top img-fluid bg-light-alt avatar-preview" src="{{asset('public/admin/assets/images/small/img-2.jpg')}}" alt="Card image cap"> -->
+                        <div class="card-img-top img-fluid bg-light-alt avatar-preview"></div>
+                        <div class="list-inline-item remove-image" style="display:none"><b>Remove image</b></div>
                         <div class="mt-4">
-                            <input type="file">
+                            <input type="file" id="imageUpload" name="feature_image" value="Upload Image">
                         </div>
                     </div><!--end card -body-->
                 </div>
 
 
-
+            </form>
 
             </div>
 
@@ -201,10 +206,43 @@
             //var text = editor.getText();
             });
 
+            editor.root.innerHTML = $('#bodyinput').val();
+            //Asign qull editor content to body input
+                $('#btnpublish').on('click',function(){
+                $('#bodyinput').val(editor.root.innerHTML);
+            })
 
             $('.select2').select2();
 
+            $("#imageUpload").change(function() {
+                console.log('Image Upload')
+                if (this.files && this.files[0]) {
+                    var reader = new FileReader();
 
+                    reader.onload = function(e) {
+                            $('.avatar-preview').css('background-image', 'url('+e.target.result +')');
+                            $('.avatar-preview').css('height', '200px');
+                            $('.avatar-preview').css('width', '300px');
+                            $('.avatar-preview').css('display', 'block');
+                            $('.avatar-preview').css('background-size', 'cover');
+                            $('.avatar-preview').css('background-repeat', 'no-repeat');
+                            $('.avatar-preview').css('background-position', 'center');
+                            $('.avatar-preview').hide();
+                            $('.avatar-preview').fadeIn(650);
+                        }
+                    reader.readAsDataURL(this.files[0]);
+                    $('.remove-image').css('display', 'block');
+                    $('.remove-image').css('cursor', 'pointer');
+
+                }
+            });
+
+            $('.remove-image').on('click',function(){
+                $('.avatar-preview').css('background-image', 'none');
+                $('.avatar-preview').css('display', 'none');
+                $('.remove-image').css('display', 'none');
+                $("#imageUpload").val('');
+            });
         });
 
     </script>
