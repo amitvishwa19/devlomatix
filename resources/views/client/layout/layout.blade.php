@@ -157,7 +157,7 @@
                                 <rs-module id="rev_slider_1_1" style="display:none;" data-version="6.0.8">
                                     <rs-slides>
                                         <rs-slide data-key="rs-1" data-title="Slide 1" data-thumb="images/bg/as1.jpg" data-anim="ei:d;eo:d;s:d;r:0;t:slotslide-horizontal;sl:d;">
-                                            <img src="images/bg/as1.jpg" title="s6.jpg" width="1920" height="1280" data-bg="p:center center;" data-parallax="off" class="rev-slidebg" data-no-retina>
+                                            <img src="{{asset('public/client/images/bg/as1.jpg')}}" title="s6.jpg" width="1920" height="1280" data-bg="p:center center;" data-parallax="off" class="rev-slidebg" data-no-retina>
                                             <rs-layer
                                                 id="slider-1-slide-1-layer-14" 
                                                 class="text-theme-colored1 rs-pxl-1"
@@ -176,7 +176,7 @@
                                                 data-frame_999="y:0;o:0;rX:70deg;oZ:-50;e:Power4.easeInOut;st:w;sp:1750;"
                                                 data-frame_999_chars="e:Power4.easeInOut;dir:middletoedge;d:10;y:cyc(-100||100);o:0;"
                                                 style="z-index:13;background-color:rgba(0,0,0,0.3);font-family:Poppins;"
-                                            >Repair Shop  
+                                            >Phomefix 
                                             </rs-layer>
 
                                             <rs-layer
@@ -215,7 +215,7 @@
 
                                         </rs-slide>
                                         <rs-slide data-key="rs-2" data-title="Slide 1" data-thumb="images/bg/as02.jpg" data-anim="ei:d;eo:d;s:d;r:0;t:slotslide-horizontal;sl:d;">
-                                            <img src="images/bg/as02.jpg" title="s4.jpg" width="1920" height="1280" data-parallax="off" class="rev-slidebg" data-no-retina>
+                                            <img src="{{asset('public/client/images/bg/as02.jpg')}}" title="s4.jpg" width="1920" height="1280" data-parallax="off" class="rev-slidebg" data-no-retina>
 
                                             <rs-layer
                                                 id="slider-1-slide-2-layer-14" 
@@ -235,7 +235,7 @@
                                                 data-frame_999="y:0;o:0;rX:70deg;oZ:-50;e:Power4.easeInOut;st:w;sp:1750;"
                                                 data-frame_999_chars="e:Power4.easeInOut;dir:middletoedge;d:10;y:cyc(-100||100);o:0;"
                                                 style="z-index:13;background-color:rgba(0,0,0,0.3);font-family:Poppins;"
-                                            >Repair Shop 
+                                            >Phomefix
                                             </rs-layer>
 
                                             <rs-layer
@@ -273,7 +273,7 @@
                                             </rs-layer>
                                         </rs-slide>
                                         <rs-slide data-key="rs-3" data-title="Slide 1" data-thumb="images/bg/as3.jpg" data-anim="ei:d;eo:d;s:d;r:0;t:slotslide-horizontal;sl:d;">
-                                            <img src="images/bg/as3.jpg" title="s5.jpg" width="1920" height="1280" data-parallax="off" class="rev-slidebg" data-no-retina>
+                                            <img src="{{asset('public/client/images/bg/as3.jpg')}}" title="s5.jpg" width="1920" height="1280" data-parallax="off" class="rev-slidebg" data-no-retina>
 
                                             <rs-layer
                                                 id="slider-1-slide-3-layer-14" 
@@ -293,7 +293,7 @@
                                                 data-frame_999="y:0;o:0;rX:70deg;oZ:-50;e:Power4.easeInOut;st:w;sp:1750;"
                                                 data-frame_999_chars="e:Power4.easeInOut;dir:middletoedge;d:10;y:cyc(-100||100);o:0;"
                                                 style="z-index:13;background-color:rgba(0,0,0,0.3);font-family:Poppins;"
-                                            >Repair Shop
+                                            >Phomefix
                                             </rs-layer>
 
                                             <rs-layer
@@ -350,7 +350,7 @@
                             <div class="col-md-6 col-lg-6 col-xl-3">
                                 <div class="tm-sc tm-sc-icon-box icon-box icon-top tm-iconbox-icontype-font-icon text-center iconbox-style7-hover-moving-border bg-white iconbox-box-shadow  iconbox-theme-colored1 iconbox-default-padding icon-position-icon-top mb-lg-50">
                                     <div class="icon-box-wrapper">
-                                        <div class="icon-wrapper"> <a class="icon icon-type-image icon-default"> <img src="images/icon/c5.png" alt="Image"> </a></div>
+                                        <div class="icon-wrapper"> <a class="icon icon-type-image icon-default"> <img src="{{asset('public/client/images/icon/c5.png')}}" alt="Image"> </a></div>
                                         <div class="icon-text">
                                             <h5 class="icon-box-title mt-0"> Expert Engineers</h5>
                                             <div class="content">
@@ -364,7 +364,7 @@
                             <div class="col-md-6 col-lg-6 col-xl-3">
                                 <div class="tm-sc tm-sc-icon-box icon-box icon-top tm-iconbox-icontype-font-icon text-center iconbox-style7-hover-moving-border bg-white iconbox-box-shadow  iconbox-theme-colored2 iconbox-default-padding icon-position-icon-top  mb-lg-50">
                                     <div class="icon-box-wrapper">
-                                        <div class="icon-wrapper"> <a class="icon icon-type-image icon-default"> <img src="images/icon/c3.png" alt="Image"> </a></div>
+                                        <div class="icon-wrapper"> <a class="icon icon-type-image icon-default"> <img src="{{asset('public/client/images/icon/c3.png')}}" alt="Image"> </a></div>
                                         <div class="icon-text">
                                             <h5 class="icon-box-title mt-0"> On Time Delivery</h5>
                                             <div class="content">
@@ -378,7 +378,7 @@
                             <div class="col-md-6 col-lg-6 col-xl-3">
                                 <div class="tm-sc tm-sc-icon-box icon-box icon-top tm-iconbox-icontype-font-icon text-center iconbox-style7-hover-moving-border bg-white iconbox-box-shadow  iconbox-theme-colored1 iconbox-default-padding icon-position-icon-top  mb-lg-50">
                                     <div class="icon-box-wrapper">
-                                        <div class="icon-wrapper"> <a class="icon icon-type-image icon-default"> <img src="images/icon/c4.png" alt="Image"> </a></div>
+                                        <div class="icon-wrapper"> <a class="icon icon-type-image icon-default"> <img src="{{asset('public/client/images/icon/c4.png')}}" alt="Image"> </a></div>
                                         <div class="icon-text">
                                             <h5 class="icon-box-title mt-0"> Best Technology</h5>
                                             <div class="content">
@@ -392,7 +392,7 @@
                             <div class="col-md-6 col-lg-6 col-xl-3">
                                 <div class="tm-sc tm-sc-icon-box icon-box icon-top tm-iconbox-icontype-font-icon text-center iconbox-style7-hover-moving-border bg-white iconbox-box-shadow  iconbox-theme-colored2 iconbox-default-padding icon-position-icon-top">
                                     <div class="icon-box-wrapper">
-                                        <div class="icon-wrapper"> <a class="icon icon-type-image icon-default"> <img src="images/icon/c6.png" alt="Image"> </a></div>
+                                        <div class="icon-wrapper"> <a class="icon icon-type-image icon-default"> <img src="{{asset('public/client/images/icon/c6.png')}}" alt="Image"> </a></div>
                                         <div class="icon-text">
                                             <h5 class="icon-box-title mt-0">25 Years Exprience </h5>
                                             <div class="content">
@@ -417,7 +417,7 @@
                                 <img src="images/about/ac3.png" class="attachment-full" alt=""/>
                             </div>
                             <div class="col-xl-6 col-lg-6">
-                                <h2 class="font-size-54">Repair Services For Your Computer.</h2>
+                                <h2 class="font-size-54">Repair Services For Your Mobile.</h2>
                                 <ul class="list-unstyled mb-20">
                                     <li class="text-theme-colored1"><i class="fa fa-check-circle text-theme-colored1 mr-10"></i> Lorem Ipsum is not simply random text exercitation</li>
                                     <li class="text-theme-colored1"><i class="fa fa-check-circle text-theme-colored1 mr-10"></i> If you are going to use a passage aute irure dolor</li>
@@ -496,7 +496,7 @@
             <!-- End Divider -->
 
             <!-- Section: Service -->
-            <section class="bg-img-no-repeat" data-tm-bg-img="images/bg/bg-shape-bconsul1.png">
+            <section class="bg-img-no-repeat" data-tm-bg-img="{{asset('public/client/')}}images/bg/bg-shape-bconsul1.png">
                 <div class="container pt-90">
                     <div class="section-title">
                         <div class="row justify-content-md-center">
@@ -521,10 +521,9 @@
                                 <div class="services-block mb-50">
                                     <div class="inner-box">
                                         <div class="thumb">
-                                            <img src="images/service/1.jpg" alt=""/>
+                                            <img src="{{asset('public/client/images/service/1.jpg')}}" alt=""/>
                                         </div>
                                         <div class="content">
-                                            <div class='symbol-icon'><img src='images/icon/f1.png' alt='Image'/></div>
                                             <h4><a href="#">Laptop Repair</a></h4>
                                             <p>Leverage agile frameworks to provide a robust synopsis for high level overviews.</p>
                                         </div>
@@ -535,10 +534,9 @@
                                 <div class="services-block mb-50">
                                     <div class="inner-box">
                                         <div class="thumb">
-                                            <img src="images/service/2.jpg" alt=""/>
+                                            <img src="{{asset('public/client/images/service/2.jpg')}}" alt=""/>
                                         </div>
                                         <div class="content">
-                                            <div class='symbol-icon'><img src='images/icon/f2.png' alt='Image'/></div>
                                             <h4><a href="#">Computer Repair</a></h4>
                                             <p>Leverage agile frameworks to provide a robust synopsis for high level overviews.</p>
                                         </div>
@@ -549,10 +547,9 @@
                                 <div class="services-block mb-50">
                                     <div class="inner-box">
                                         <div class="thumb">
-                                            <img src="images/service/3.jpg" alt=""/>
+                                            <img src="{{asset('public/client/images/service/3.jpg')}}" alt=""/>
                                         </div>
                                         <div class="content">
-                                            <div class='symbol-icon'><img src='images/icon/f3.png' alt='Image'/></div>
                                             <h4><a href="#">Data Recovery</a></h4>
                                             <p>Leverage agile frameworks to provide a robust synopsis for high level overviews.</p>
                                         </div>
@@ -563,10 +560,9 @@
                                 <div class="services-block mb-lg-50">
                                     <div class="inner-box">
                                         <div class="thumb">
-                                            <img src="images/service/4.jpg" alt=""/>
+                                            <img src="{{asset('public/client/images/service/4.jpg')}}" alt=""/>
                                         </div>
                                         <div class="content">
-                                            <div class='symbol-icon'><img src='images/icon/f4.png' alt='Image'/></div>
                                             <h4><a href="#">Phone Unlock</a></h4>
                                             <p>Leverage agile frameworks to provide a robust synopsis for high level overviews.</p>
                                         </div>
@@ -577,10 +573,9 @@
                                 <div class="services-block mb-lg-50">
                                     <div class="inner-box">
                                         <div class="thumb">
-                                            <img src="images/service/5.jpg" alt=""/>
+                                            <img src="{{asset('public/client/images/service/5.jpg')}}" alt=""/>
                                         </div>
                                         <div class="content">
-                                            <div class='symbol-icon'><img src='images/icon/f5.png' alt='Image'/></div>
                                             <h4><a href="#">Mobile Repair</a></h4>
                                             <p>Leverage agile frameworks to provide a robust synopsis for high level overviews.</p>
                                         </div>
@@ -591,10 +586,9 @@
                                 <div class="services-block mb-lg-50">
                                     <div class="inner-box">
                                         <div class="thumb">
-                                            <img src="images/service/6.jpg" alt=""/>
+                                            <img src="{{asset('public/client/images/service/6.jpg')}}" alt=""/>
                                         </div>
                                         <div class="content">
-                                            <div class='symbol-icon'><img src='images/icon/f6.png' alt='Image'/></div>
                                             <h4><a href="#">Hardware Update</a></h4>
                                             <p>Leverage agile frameworks to provide a robust synopsis for high level overviews.</p>
                                         </div>
@@ -623,7 +617,7 @@
                                                     <div class="col-md-6 col-lg-6">
                                                         <div class="tm-sc tm-sc-icon-box icon-box icon-top tm-iconbox-icontype-font-icon iconbox-theme-colored1 icon-position-icon-top mb-40">
                                                             <div class="icon-box-wrapper">
-                                                                <div class="icon-wrapper"> <a class="icon icon-type-image icon-default"> <img src="images/icon/c1.png" alt="Image"> </a></div>
+                                                                <div class="icon-wrapper"> <a class="icon icon-type-image icon-default"> <img src="{{asset('public/client/images/icon/c1.png')}}" alt="Image"> </a></div>
                                                                 <div class="icon-text">
                                                                     <h5 class="icon-box-title mt-0">Accessories</h5>
                                                                     <div class="content">
@@ -636,7 +630,7 @@
                                                     <div class="col-md-6 col-lg-6">
                                                         <div class="tm-sc tm-sc-icon-box icon-box icon-top tm-iconbox-icontype-font-icon iconbox-theme-colored1 icon-position-icon-top mb-40">
                                                             <div class="icon-box-wrapper">
-                                                                <div class="icon-wrapper"> <a class="icon icon-type-image icon-default"> <img src="images/icon/c2.png" alt="Image"> </a></div>
+                                                                <div class="icon-wrapper"> <a class="icon icon-type-image icon-default"> <img src="{{asset('public/client/images/icon/c2.png')}}" alt="Image"> </a></div>
                                                                 <div class="icon-text">
                                                                     <h5 class="icon-box-title mt-0">Analysis</h5>
                                                                     <div class="content">
@@ -673,7 +667,10 @@
                                     <div class="tm-sc tm-sc-custom-columns-holder-item" data-item-class="bconsul-mascot-custom-columns-363166">
                                         <div class="item-inner">
                                             <div class="item-content charingo-mascot-custom-columns-872139 p-0">
-                                                <div id="twentytwenty-slider-516457" class="twentytwenty-container tm-sc tm-sc-before-after-slider text-center" data-orientation="horizontal" data-offset-percent="0.5" data-no-overlay="true" data-before-label="" data-after-label=""> <img src="images/bg/ab1.jpg" alt="Image"> <img src="images/bg/ab2.jpg" alt="Image"></div>
+                                                <div id="twentytwenty-slider-516457" class="twentytwenty-container tm-sc tm-sc-before-after-slider text-center" data-orientation="horizontal" data-offset-percent="0.5" data-no-overlay="true" data-before-label="" data-after-label=""> 
+                                                    <img src="{{asset('public/client/images/bg/ab1.jpg')}}" alt="Image"> 
+                                                    <img src="{{asset('public/client/images/bg/ab2.jpg')}}" alt="Image">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -711,7 +708,7 @@
                                 <div class="staff-block mb-lg-30">
                                     <div class="inner-box">
                                         <div class="image">
-                                            <img src="images/team/team1.jpg" alt=""/>
+                                            <img src="{{asset('public/client/images/team/team1.jpg')}}" alt=""/>
                                             <h4 class="name-tag">Ismail Alex</h4>
                                             <div class="overlay-box">
                                                 <div class="overlay-inner">
@@ -735,7 +732,7 @@
                                 <div class="staff-block mb-lg-30">
                                     <div class="inner-box">
                                         <div class="image">
-                                            <img src="images/team/team2.jpg" alt=""/>
+                                            <img src="{{asset('public/client/images/team/team2.jpg')}}" alt=""/>
                                             <h4 class="name-tag">Hilton Alex</h4>
                                             <div class="overlay-box">
                                                 <div class="overlay-inner">
@@ -759,7 +756,7 @@
                                 <div class="staff-block mb-lg-30">
                                     <div class="inner-box">
                                         <div class="image">
-                                            <img src="images/team/team3.jpg" alt=""/>
+                                            <img src="{{asset('public/client/images/team/team3.jpg')}}" alt=""/>
                                             <h4 class="name-tag">Maria Martin</h4>
                                             <div class="overlay-box">
                                                 <div class="overlay-inner">
@@ -783,7 +780,7 @@
                                 <div class="staff-block">
                                     <div class="inner-box">
                                         <div class="image">
-                                            <img src="images/team/team4.jpg" alt=""/>
+                                            <img src="{{asset('public/client/images/team/team4.jpg')}}" alt=""/>
                                             <h4 class="name-tag">Sakib Martin</h4>
                                             <div class="overlay-box">
                                                 <div class="overlay-inner">
@@ -839,7 +836,7 @@
                                             <div class="working-steps-item-inner">
                                                 <div class="image-holder-wrapper">
                                                     <div class="image-holder">
-                                                        <div class="image-holder-inner"> <img src="images/photos/w1.jpg" alt="Image"></div>
+                                                        <div class="image-holder-inner"> <img src="{{asset('public/client/images/photos/w1.jpg')}}" alt="Image"></div>
                                                         <div class="tag">A</div>
                                                     </div>
                                                 </div>
@@ -857,7 +854,7 @@
                                             <div class="working-steps-item-inner">
                                                 <div class="image-holder-wrapper">
                                                     <div class="image-holder">
-                                                        <div class="image-holder-inner"> <img src="images/photos/w2.jpg" alt="Image"></div>
+                                                        <div class="image-holder-inner"> <img src="{{asset('public/client/images/photos/w2.jpg')}}" alt="Image"></div>
                                                         <div class="tag">B</div>
                                                     </div>
                                                 </div>
@@ -875,7 +872,7 @@
                                             <div class="working-steps-item-inner">
                                                 <div class="image-holder-wrapper">
                                                     <div class="image-holder">
-                                                        <div class="image-holder-inner"> <img src="images/photos/w3.jpg" alt="Image"></div>
+                                                        <div class="image-holder-inner"> <img src="{{asset('public/client/images/photos/w3.jpg')}}" alt="Image"></div>
                                                         <div class="tag">C</div>
                                                     </div>
                                                 </div>
@@ -893,7 +890,7 @@
                                             <div class="working-steps-item-inner">
                                                 <div class="image-holder-wrapper">
                                                     <div class="image-holder">
-                                                        <div class="image-holder-inner"> <img src="images/photos/w4.jpg" alt="Image"></div>
+                                                        <div class="image-holder-inner"> <img src="{{asset('public/client/images/photos/w4.jpg')}}" alt="Image"></div>
                                                         <div class="tag">D</div>
                                                     </div>
                                                 </div>
@@ -1047,7 +1044,7 @@
                                             <div class="testimonial-author-details">
                                                 <div class="testimonial-footer">
                                                     <div class="testimonial-image-holder">
-                                                        <div class="author-thumb"> <img width="85" height="85" src="images/testimonials/1.jpg" class="img-fullwidth rounded-circle wp-post-image" alt=""/></div>
+                                                        <div class="author-thumb"> <img width="85" height="85" src="{{asset('public/client/images/testimonials/1.jpg')}}" class="img-fullwidth rounded-circle wp-post-image" alt=""/></div>
                                                     </div>
                                                     <div class="author-info">
                                                         <h5 class="name">Tarna Jasmin</h5>
@@ -1071,7 +1068,7 @@
                                             <div class="testimonial-author-details">
                                                 <div class="testimonial-footer">
                                                     <div class="testimonial-image-holder">
-                                                        <div class="author-thumb"> <img width="85" height="85" src="images/testimonials/2.jpg" class="img-fullwidth rounded-circle wp-post-image" alt=""/></div>
+                                                        <div class="author-thumb"> <img width="85" height="85" src="{{asset('public/client/images/testimonials/2.jpg')}}" class="img-fullwidth rounded-circle wp-post-image" alt=""/></div>
                                                     </div>
                                                     <div class="author-info">
                                                         <h5 class="name">Hilton Alex</h5>
@@ -1095,7 +1092,7 @@
                                             <div class="testimonial-author-details">
                                                 <div class="testimonial-footer">
                                                     <div class="testimonial-image-holder">
-                                                        <div class="author-thumb"> <img width="85" height="85" src="images/testimonials/3.jpg" class="img-fullwidth rounded-circle wp-post-image" alt=""/></div>
+                                                        <div class="author-thumb"> <img width="85" height="85" src="{{asset('public/client/images/testimonials/3.jpg')}}" class="img-fullwidth rounded-circle wp-post-image" alt=""/></div>
                                                     </div>
                                                     <div class="author-info">
                                                         <h5 class="name">Sonia Malkova</h5>
