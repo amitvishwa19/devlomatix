@@ -1,148 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-   <meta charset="utf-8">
-    <title>{{setting('app_name')}}</title>
-
-    <!-- Responsive Settings -->
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-
-    <link rel="shortcut icon" href="images/favicon.png" id="fav-shortcut" type="image/x-icon">
-    <link rel="icon" href="{{asset('public/client/images/logo.png')}}" id="fav-icon" type="image/x-icon">
-
-
-	<!--Fonts-->
-	<link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700,900" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Baloo+Paaji" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-
-
-	<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
-	<!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
-
-    <!-- Stylesheet -->
-    <link href="{{asset('public/client/assets/dist/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('public/client/assets/dist/css/animate.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('public/client/assets/dist/css/javascript-plugins-bundle.css')}}" rel="stylesheet"/>
-
-    <!-- CSS | menuzord megamenu skins -->
-    <link href="{{asset('public/client/assets/dist/js/menuzord/css/menuzord.css')}}" rel="stylesheet"/>
-
-    <!-- CSS | timeline -->
-    <link href="{{asset('public/client/assets/dist/js/timeline-cp-responsive-vertical/timeline-cp-responsive-vertical.css')}}" rel="stylesheet" type="text/css">
-
-    <!-- CSS | Main style file -->
-    <link href="{{asset('public/client/assets/dist/css/style-main.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('public/client/assets/dist/js/menuzord/css/skins/menuzord-rounded-boxed.css')}}" rel="stylesheet"/>
-
-    <!-- CSS | Responsive media queries -->
-    <link href="{{asset('public/client/assets/dist/css/responsive.css')}}" rel="stylesheet" type="text/css">
-    <!-- CSS | Style css. This is the file where you can place your own custom css code. Just uncomment it and use it. -->
-
-    <!-- CSS | Theme Color -->
-    <link href="{{asset('public/client/assets/dist/css/colors/theme-skin-color-set1.css')}}" rel="stylesheet" type="text/css">
-
-    <!-- external javascripts -->
-    <script src="{{asset('public/client/assets/dist/js/jquery.js')}}"></script>
-    <script src="{{asset('public/client/assets/dist/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('public/client/assets/dist/js/javascript-plugins-bundle.js')}}"></script>
-    <script src="{{asset('public/client/assets/dist/js/menuzord/js/menuzord.js')}}"></script>
-
-    <!-- REVOLUTION STYLE SHEETS -->
-    <link rel="stylesheet" type="text/css" href="{{asset('public/client/assets/dist/js/revolution-slider/css/rs6.css')}}">
-    <!-- REVOLUTION LAYERS STYLES -->
-                <!-- REVOLUTION JS FILES -->
-    <script type="text/javascript" src="{{asset('public/client/assets/dist/js/revolution-slider/js/revolution.tools.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('public/client/assets/dist/js/revolution-slider/js/rs6.min.js')}}"></script>
-
-</head>
-
-<body class="container-1340px">
-
-    <div id="wrapper" class="clearfix">
-        <!-- Header -->
-        <header id="header" class="header header-layout-type-header-2rows">
-            <!-- <div class="header-top ">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-auto header-top-left align-self-center text-center text-xl-left">
-                            <ul class="element contact-info">
-                                <li class="contact-phone"><i class="fa fa-phone font-icon sm-display-block"></i> Tel: +440-98-5298</li>
-                                <li class="contact-email"><i class="fa fa-envelope-o font-icon sm-display-block"></i> info@example.com</li>
-                                <li class="contact-address"><i class="fa fa-map-o font-icon sm-display-block"></i> 121 King Street, Melbourne</li>
-                            </ul>
-                        </div>
-                        <div class="col-xl-auto ml-xl-auto header-top-right align-self-center text-center text-xl-right">
-                            <div class="element">
-                                <ul class="header-top-nav list-inline">
-                                    <li class="menu-item"><a title="Home" class="menu-item-link" href="#"><strong>Home</strong></a></li>
-                                    <li class="menu-item"><a title="Home" class="menu-item-link" href="#"><strong>Cart</strong></a></li>
-                                    <li class="menu-item"><a title="Home" class="menu-item-link" href="#"><strong>Contact Us</strong></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            <div class="header-nav">
-                <div class="header-nav-wrapper navbar-scrolltofixed green">
-                    <div class="menuzord-container header-nav-container green ">
-                        <div class="container position-relative">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="row header-nav-col-row">
-                                        <div class="col-sm-auto align-self-center">
-                                            <a class="menuzord-brand site-brand" href="index-mp-layout1.html">
-                                                <img class="logo-default logo-1x" src="images/logo-wide.png" alt="Logo">
-                                                <img class="logo-default logo-2x retina" src="images/logo-wide%402x.png" alt="Logo">
-                                            </a>
-                                        </div>
-                                        <div class="col-sm-auto ml-auto pr-0 align-self-center">
-                                            <nav id="top-primary-nav" class="menuzord green" data-effect="fade" data-animation="none" data-align="right">
-                                                <ul id="main-nav" class="menuzord-menu">
-                                                    <li class="active"><a href="index-mp-layout1.html">Home</a></li>
-                                                    <li><a href="page-about.html">About</a></li>
-                                                    <li><a href="#">Pages</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="page-gallery.html">Gallery</a></li>
-                                                            <li><a href="page-team-grid.html">Team Grid</a></li>
-                                                            <li><a href="page-team-details.html">Team Details</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#home">Service</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="page-services.html">Service Grid</a></li>
-                                                            <li><a href="page-service-details.html">Service Deatils</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Blog</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="news-grid.html">News Grid</a></li>
-                                                            <li><a href="news-details.html">News Details</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="page-contact.html">Contact</a></li>
-                                                </ul>
-                                            </nav>
-                                        </div>
-                                    </div>
-                                    <div class="row d-block d-xl-none">
-                                        <div class="col-12">
-                                            <nav id="top-primary-nav-clone" class="menuzord d-block d-xl-none default menuzord-color-default menuzord-border-boxed menuzord-responsive" data-effect="slide" data-animation="none" data-align="right">
-                                            <ul id="main-nav-clone" class="menuzord-menu menuzord-right menuzord-indented scrollable">
-                                            </ul>
-                                            </nav>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
+    @include('client.layout.header')
         
         <!-- Start main-content -->
         <div class="main-content-area">
@@ -424,14 +280,14 @@
                                 </ul>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, do eiusmod temp or incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis ostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo in consequat. Duis aute irure dolor in reprehenderit.</p>
                                 <img src="images/signature01.png" class="mr-30" alt=""/>
-                                <div class="box-hover-effect play-video-button tm-sc tm-sc-video-popup tm-sc-video-popup-button-with-text-right">
+                                <!-- <div class="box-hover-effect play-video-button tm-sc tm-sc-video-popup tm-sc-video-popup-button-with-text-right">
                                     <div class="effect-wrapper d-flex align-items-center">
                                         <div class="thumb">
-                                            <img class="" src="images/play-button/s8.png" alt="Image">
+                                            <img class="" src="{{asset('public/client/images/play-button/s8.png')}}" alt="Image">
                                         </div>
                                         <h5 class="video-button-text">Take a Video Tour</h5>
                                         <a class="hover-link" data-lightbox-gallery="youtube-video" href="http://www.youtube.com/watch?v=hNQFjqDvPhA" title="Take a Video Tour"></a>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -496,7 +352,7 @@
             <!-- End Divider -->
 
             <!-- Section: Service -->
-            <section class="bg-img-no-repeat" data-tm-bg-img="{{asset('public/client/')}}images/bg/bg-shape-bconsul1.png">
+            <section class="bg-img-no-repeat" data-tm-bg-img="{{asset('public/client/images/bg/bg-shape-bconsul1.png')}}">
                 <div class="container pt-90">
                     <div class="section-title">
                         <div class="row justify-content-md-center">
@@ -1123,7 +979,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="tm-sc tm-sc-custom-columns-holder tm-cc-two-columns tm-cc-responsive-mode-1280">
-                                    <div class="tm-sc tm-sc-custom-columns-holder-item" data-item-class="senior-mascot-custom-columns-283434" data-tm-bg-img="images/bg/bg8.jpg">
+                                    <div class="tm-sc tm-sc-custom-columns-holder-item" data-item-class="senior-mascot-custom-columns-283434" data-tm-bg-img="{{asset('public/client/images/phones/phone.png')}}">
                                         <div class="item-inner">
                                             <div class="item-content senior-mascot-custom-columns-283434">
                                             </div>
@@ -1132,22 +988,53 @@
                                     <div class="tm-sc tm-sc-custom-columns-holder-item section-typo-light bg-theme-colored2" data-item-class="econsul-mascot-custom-columns-924797" data-tm-bg-img="images/bg/worldmap.png" data-1200-up="80px 25% 100px 10%" data-1199-down="80px 10% 100px 10%">
                                         <div class="item-inner">
                                             <div class="item-content econsul-mascot-custom-columns-924797">
-                                                <h2>Send Us Message</h2>
+                                                <h2>Fix your phone with PhomeFix</h2>
                                                 <div class="wpb_text_column wpb_content_element mb-60">
                                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error repellendus, ex culpa recusandae, velit, omnis dolores, possimus quis voluptatibus</p>
                                                 </div>
                                                 <div role="form" class="wpcf7" id="wpcf7-f452-p311-o1" lang="en-US" dir="ltr">
                                                     <div class="screen-reader-response"></div>
-                                                    <form action="https://kodesolution.com/corporate/business/econsul/demo/#wpcf7-f452-p311-o1" method="post" class="wpcf7-form" novalidate="novalidate">
+                                                    <form action="" method="post" class="wpcf7-form" novalidate="novalidate">
                                                         <div> <input type="hidden" name="_wpcf7" value="452" /> <input type="hidden" name="_wpcf7_version" value="5.1.1" /> <input type="hidden" name="_wpcf7_locale" value="en_US" /> <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f452-p311-o1" /> <input type="hidden" name="_wpcf7_container_post" value="311" /> <input type="hidden" name="g-recaptcha-response" value="" /></div>
                                                         <div class="tm-contact-form-transparent pr-0">
                                                             <div class="row">
-                                                                <div class="col-md-6"> <span class="wpcf7-form-control-wrap your-name"><input type="text" name="your-name" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Name*" /></span></div>
-                                                                <div class="col-md-6"> <span class="wpcf7-form-control-wrap your-email"><input type="email" name="your-email" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="Email*" /></span></div>
-                                                                <div class="col-md-6"> <span class="wpcf7-form-control-wrap your-phone"><input type="text" name="your-phone" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Phone*" /></span></div>
-                                                                <div class="col-md-6"> <span class="wpcf7-form-control-wrap your-subject"><input type="text" name="your-subject" value="" size="40" class="wpcf7-form-control wpcf7-text" aria-invalid="false" placeholder="Subject" /></span></div>
-                                                                <div class="col-md-12"> <span class="wpcf7-form-control-wrap textarea"><textarea name="textarea" cols="40" rows="3" class="wpcf7-form-control wpcf7-textarea wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Message*"></textarea></span></div>
-                                                                <div class="col-md-12"> <input type="submit" value="Submit Now" class="wpcf7-form-control wpcf7-submit btn btn-theme-colored1 btn-round" /></div>
+                                                                <div class="col-md-6"> 
+                                                                    <span class="wpcf7-form-control-wrap your-name">
+                                                                        <input type="text" name="your-name" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Name*" />
+                                                                    </span>
+                                                                </div>
+                                                                <div class="col-md-6"> 
+                                                                    <span class="wpcf7-form-control-wrap your-email">
+                                                                        <input type="email" name="your-email" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="Email*" />
+                                                                    </span>
+                                                                </div>
+                                                                <div class="col-md-6"> 
+                                                                    <span class="wpcf7-form-control-wrap your-phone">
+                                                                        <input type="text" name="your-phone" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Phone*" />
+                                                                    </span>
+                                                                </div>
+                                                                <div class="col-md-6"> 
+                                                                    <span class="wpcf7-form-control-wrap your-subject">
+                                                                        <input type="text" name="your-subject" value="" size="40" class="wpcf7-form-control wpcf7-text" aria-invalid="false" placeholder="Subject" />
+                                                                    </span>
+                                                                </div>
+                                                                <div class="col-md-6"> 
+                                                                    <span class="wpcf7-form-control-wrap your-subject">
+                                                                        <select name="" id="" >
+                                                                            <option value="" class="wpcf7-form-control wpcf7-text">-Select your Phone-</option>
+                                                                            <option value="" class="wpcf7-form-control wpcf7-text">IPhone-10</option>
+                                                                            <option value="" class="wpcf7-form-control wpcf7-text">IPhone-11</option>
+                                                                        </select>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="col-md-12"> 
+                                                                    <span class="wpcf7-form-control-wrap textarea">
+                                                                        <textarea name="textarea" cols="40" rows="3" class="wpcf7-form-control wpcf7-textarea wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Message*"></textarea>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <input type="submit" value="Submit Now" class="wpcf7-form-control wpcf7-submit btn btn-theme-colored1 btn-round" />
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="wpcf7-response-output wpcf7-display-none"></div>
@@ -1193,7 +1080,7 @@
                                         <div class="entry-header">
                                             <div class="post-thumb lightgallery-lightbox">
                                                 <div class="post-thumb-inner">
-                                                    <div class="thumb"> <img src="images/blog/1.jpg" alt="Image"/></div>
+                                                    <div class="thumb"> <img src="{{asset('public/client/images/blog/1.jpg')}}" alt="Image"/></div>
                                                 </div>
                                             </div>
                                             <a class="link" href="#"><i class="fa fa-link"></i></a>
@@ -1220,7 +1107,7 @@
                                         <div class="entry-header">
                                             <div class="post-thumb lightgallery-lightbox">
                                                 <div class="post-thumb-inner">
-                                                    <div class="thumb"> <img src="images/blog/2.jpg" alt="Image"/></div>
+                                                    <div class="thumb"> <img src="{{asset('public/client/images/blog/1.jpg')}}" alt="Image"/></div>
                                                 </div>
                                             </div>
                                             <a class="link" href="#"><i class="fa fa-link"></i></a>
@@ -1247,7 +1134,7 @@
                                         <div class="entry-header">
                                             <div class="post-thumb lightgallery-lightbox">
                                                 <div class="post-thumb-inner">
-                                                    <div class="thumb"> <img src="images/blog/3.jpg" alt="Image"/></div>
+                                                    <div class="thumb"> <img src="{{asset('public/client/images/blog/1.jpg')}}" alt="Image"/></div>
                                                 </div>
                                             </div>
                                             <a class="link" href="#"><i class="fa fa-link"></i></a>
@@ -1282,12 +1169,12 @@
                             <div class="col-sm-12">
                                 <div class="tm-sc tm-sc-clients tm-sc-clients-carousel owl-dots-light-skin owl-dots-center clients-animation-zoom">
                                     <div class="owl-carousel owl-theme tm-owl-carousel-6col" data-autoplay="true" data-loop="true" data-duration="6000" data-smartspeed="300" data-margin="30" data-stagepadding="0" data-laptop="2">
-                                        <div class="item"> <a target="_blank" href="#"> <img src='images/clients/client-white-img2.png' alt='Image' /> </a></div>
-                                        <div class="item"> <a target="_blank" href="#"> <img src='images/clients/client-white-img4.png' alt='Image' /> </a></div>
-                                        <div class="item"> <a target="_blank" href="#"> <img src='images/clients/client-white-img1.png' alt='Image' /> </a></div>
-                                        <div class="item"> <a target="_blank" href="#"> <img src='images/clients/client-white-img11.png' alt='Image' /> </a></div>
-                                        <div class="item"> <a target="_blank" href="#"> <img src='images/clients/client-white-img9.png' alt='Image' /> </a></div>
-                                        <div class="item"> <a target="_blank" href="#"> <img src='images/clients/client-white-img8.png' alt='Image' /> </a></div>
+                                        <div class="item"> <a target="_blank" href="#"> <img src='{{asset('public/client/images/phones/apple.jpg')}}' alt='Image' /> </a></div>
+                                        <div class="item"> <a target="_blank" href="#"> <img src='{{asset('public/client/images/phones/apple.jpg')}}' alt='Image' /> </a></div>
+                                        <div class="item"> <a target="_blank" href="#"> <img src='{{asset('public/client/images/phones/apple.jpg')}}' alt='Image' /> </a></div>
+                                        <div class="item"> <a target="_blank" href="#"> <img src='{{asset('public/client/images/phones/apple.jpg')}}' alt='Image' /> </a></div>
+                                        <div class="item"> <a target="_blank" href="#"> <img src='{{asset('public/client/images/phones/apple.jpg')}}' alt='Image' /> </a></div>
+                                        <div class="item"> <a target="_blank" href="#"> <img src='{{asset('public/client/images/phones/apple.jpg')}}' alt='Image' /> </a></div>
                                     </div>
                                 </div>
                             </div>
@@ -1299,133 +1186,4 @@
         </div>
         <!-- end main-content -->	
 
-        <!-- Footer -->
-        <footer id="footer" class="footer">
-            <div class="footer-widget-area">
-                <div class="container pt-90 pb-60">
-                    <div class="row">
-                        <div class="col-md-6 col-lg-6 col-xl-3">
-                            <div id="tm_widget_contact_info-1" class="split-nav-menu clearfix widget widget-contact-info clearfix mb-20">
-                                <div class="tm-widget tm-widget-contact-info contact-info contact-info-style1  contact-icon-theme-colored1">
-                                    <div class="thumb">
-                                        <img alt="Logo" src="images/logo-wide-white.png">
-                                    </div>
-                                    <div class="description">203, Envato Labs, Behind Alis Steet, Melbourne, Australia.immersion along the information close the loop on focusing</div>
-                                </div>
-                            </div>
-                            <div id="tm_widget_social_list_custom-1" class="split-nav-menu clearfix widget widget-social-list-custom clearfix">
-                                <ul class="tm-widget tm-widget-social-list tm-widget-social-list-custom styled-icons  icon-dark  icon-rounded icon-theme-colored1 ">
-                                    <li><a class="social-link" href="#" ><i class="fa fa-facebook"></i></a></li>
-                                    <li><a class="social-link" href="#" ><i class="fa fa-twitter"></i></a></li>
-                                    <li><a class="social-link" href="#" ><i class="fa fa-youtube"></i></a></li>
-                                    <li><a class="social-link" href="#" ><i class="fa fa-instagram"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-6 col-xl-3">
-                            <div id="tm_widget_blog_list-1" class="split-nav-menu clearfix widget widget-blog-list clearfix">
-                                <h4 class="widget-title widget-title-line-bottom line-bottom-footer-widget line-bottom-theme-colored1">Latest News</h4>
-                                <div class="tm-widget tm-widget-blog-list "> 
-                                    <!-- the loop -->
-                                    <article class="post media-post clearfix"> <a class="post-thumb" href="#"><img width="100" height="70" src="images/blog/3.jpg" class="" alt="" /></a>
-                                        <div class="post-right">
-                                            <h6 class="post-title"> <a href="#">Customer Focused </a> </h6>
-                                            <span class="post-date">
-                                            <time class="entry-date" datetime="2019-05-15T06:10:26+00:00">April 15, 2019</time>
-                                            </span> 
-                                        </div>
-                                    </article>
-                                    <article class="post media-post clearfix"> <a class="post-thumb" href="#"><img width="100" height="70" src="images/blog/2.jpg" class="" alt="" /></a>
-                                        <div class="post-right">
-                                            <h6 class="post-title"> <a href="#"> School For Poor </a> </h6>
-                                            <span class="post-date">
-                                            <time class="entry-date" datetime="2019-07-15T06:10:26+00:00">June 15, 2019</time>
-                                            </span> 
-                                        </div>
-                                    </article>
-                                    <article class="post media-post clearfix"> <a class="post-thumb" href="#"><img width="100" height="70" src="images/blog/1.jpg" class="" alt="" /></a>
-                                        <div class="post-right">
-                                            <h6 class="post-title"> <a href="#"> Shelter For Homeless </a> </h6>
-                                            <span class="post-date">
-                                            <time class="entry-date" datetime="2019-09-15T06:10:26+00:00">November 15, 2019</time>
-                                            </span> 
-                                        </div>
-                                    </article>
-                                    <!-- end of the loop --> 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-6 col-xl-3">
-                            <div id="nav_menu-1" class="widget widget_nav_menu">
-                                <h4 class="widget-title widget-title-line-bottom line-bottom-footer-widget line-bottom-theme-colored1">Services</h4>
-                                <div class="menu-service-nav-menu-container">
-                                    <ul id="menu-service-nav-menu" class="menu">
-                                        <li class="menu-item menu-item-type-post_type menu-item-object-services menu-item-20545"><a href="#">Kitchen Remodel</a></li>
-                                        <li class="menu-item menu-item-type-post_type menu-item-object-services menu-item-20546"><a href="#">Home Renovation</a></li>
-                                        <li class="menu-item menu-item-type-post_type menu-item-object-services menu-item-20547"><a href="#">Home Repair</a></li>
-                                        <li class="menu-item menu-item-type-post_type menu-item-object-services menu-item-20548"><a href="#">Painting</a></li>
-                                        <li class="menu-item menu-item-type-post_type menu-item-object-services menu-item-20549"><a href="#/">Windows & Doors</a></li>
-                                        <li class="menu-item menu-item-type-post_type menu-item-object-services menu-item-20550"><a href="#">Bathroom Remodel</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-6 col-xl-3">
-                            <div id="tm_widget_opening_hours_compressed-1" class="split-nav-menu clearfix widget widget-opening-hours-compressed clearfix">
-                                <h4 class="widget-title widget-title-line-bottom line-bottom-footer-widget line-bottom-theme-colored1">Opening Hours</h4>
-                                <ul class="tm-widget tm-widget-opening-hours tm-widget-opening-hours-compressed opening-hours border-dark">
-                                    <li class="clearfix"> <span>Monday - Tuesday</span>
-                                        <div class="value">9.00 - 17.00</div>
-                                    </li>
-                                    <li class="clearfix"> <span>Wednesday</span>
-                                        <div class="value">9.00 - 16.00</div>
-                                    </li>
-                                    <li class="clearfix"> <span>Thursday - Friday</span>
-                                        <div class="value">9.00 - 16.00</div>
-                                    </li>
-                                    <li class="clearfix"> <span>Saturday</span>
-                                        <div class="value">9.00 - 16.00</div>
-                                    </li>
-                                    <li class="clearfix"> <span>Sunday</span>
-                                        <div class="value">Closed</div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer-bottom" data-tm-bg-color="#2A2A2A">
-                    <div class="container">
-                        <div class="row pt-20 pb-20">
-                            <div class="col-sm-6">
-                                <div class="footer-paragraph">
-                                    © 2019 ThemeMascot. All Rights Reserved.
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="footer-paragraph text-right">
-                                    Site Template
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
-    </div>
-    <!-- end wrapper -->
-
-    
-
-    <!-- Footer Scripts -->
-    <!-- JS | Custom script for all pages -->
-    <script src="{{asset('public/client/assets/dist/js/custom.js')}}"></script>
-    <script src="{{asset('public/client/assets/dist/js/extra-rev-slider.js')}}"></script>
-
-
-</body>
-
-
-
-</html>
+    @include('client.layout.footer')

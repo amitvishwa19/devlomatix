@@ -1,13 +1,4 @@
-/*------------------------------------------------------------------
-[Master Stylesheet]
 
-Project:        Refit HTML
-Version:        1.0
-Last change:    02.04.2020
-Primary use:    HTML Template
-Author:         ThemeMascot
-URL:            https://themeforest.net/user/ThemeMascot
--------------------------------------------------------------------*/
 @import url(font-awesome.min.css);
 @import url(font-awesome-animation.min.css);
 @import url(pe-icon-7-stroke.css);
@@ -5445,12 +5436,12 @@ body.tm-dark-layout {
   outline: 0;
   border-radius: 0; }
   .form-control::placeholder {
-    color: #aaa;
+    color: #fff;
     opacity: 1; }
   .form-control:-ms-input-placeholder {
-    color: #aaa; }
+    color: #fff; }
   .form-control::-ms-input-placeholder {
-    color: #aaa; }
+    color: #fff; }
 
 textarea.form-control {
   border-radius: 0;
@@ -5484,6 +5475,7 @@ textarea.form-control {
   padding-right: 15px; }
   .tm-contact-form-transparent input[type=text],
   .tm-contact-form-transparent input[type=email],
+  .tm-contact-form-transparent input[type=select],
   .tm-contact-form-transparent textarea {
     transition: all 0.3s ease; }
     @media screen and (prefers-reduced-motion: reduce) {
@@ -5534,6 +5526,19 @@ textarea.form-control {
   .tm-contact-form-transparent.white-form textarea {
     background: #ffffff;
     border: 1px solid #eee; }
+
+  select{
+    border: none;
+    border-bottom: 1px solid #ddd;
+    padding: 14px;
+    padding-left: 0;
+    margin-bottom: 28px;
+    width: 100%;
+    background:transparent;
+    border-bottom: 1px solid #ddd;
+    color:#fff;
+  }
+
 
 /*Request A Call Back Form Style1*/
 .tm-request-a-call-back-form1 {
