@@ -89,11 +89,11 @@
                     </div><!--end card-header-->
                     <div class="card-body">
                         <div class="radio radio-info form-check-inline">
-                            <input type="radio" id="inlineRadio1" value="published" name="status" checked="">
+                            <input type="radio" id="inlineRadio1" value="published" name="status" @if($post->status == 'published') checked  @endif>
                             <label for="inlineRadio1"> Published </label>
                         </div>
                         <div class="radio form-check-inline">
-                            <input type="radio" id="inlineRadio2" value="draft" name="status">
+                            <input type="radio" id="inlineRadio2" value="draft" name="status" @if($post->status == 'draft') checked  @endif>
                             <label for="inlineRadio2"> Draft </label>
                         </div>
                     </div><!--end card-body-->
@@ -108,12 +108,19 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <label class="mb-3">Select category for post</label>
-                                <select class="select2 mb-3 select2-multiple select2-hidden-accessible" style="width: 100%" name="categories[]" multiple="">
-                                        <option value="CA">California</option>
-                                        <option value="NV">Nevada</option>
-                                        <option value="OR">Oregon</option>
-                                        <option value="WA">Washington</option>\
-                                </select>
+                                <select class="form-control select2" multiple="multiple" name="categories[]" multiple="">
+                            <option label="Choose one"></option>
+                                @foreach($categories as $category)
+                                <option value="{{$category->id}}"
+                                    @foreach($post->categories as $postCat)
+                                    @if($postCat->id == $category->id)
+                                        selected
+                                    @endif
+                                    @endforeach
+                                    >{{$category->name}}
+                                </option>
+                                @endforeach
+                            </select>
                             </div> <!-- end col -->
                         </div><!-- end row -->
                     </div><!-- end card-body -->
@@ -127,7 +134,13 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <select type="text" class="" value="" data-role="tagsinput" multiple="" style="width: 100%" name="tags[]"></select>
+                            <select type="text" class="form-control" value="" data-role="tagsinput" multiple="" name="tags[]" value="{{ old('tags[]') }}">
+                            @foreach($post->tags as $tag)
+                            <option value="{{$tag->name}}"
+
+                            >{{$tag->name}}</option>
+                            @endforeach
+                        </select>
                             </div> <!-- end col -->
                         </div><!-- end row -->
                     </div><!-- end card-body -->
@@ -139,10 +152,14 @@
                         <h4 class="card-title">Feature Image</h4>
                     </div><!--end card-header-->
                     <div class="card-body">
-                        <img class="card-img-top img-fluid bg-light-alt" src="{{asset('public/admin/assets/images/small/img-2.jpg')}}" alt="Card image cap">
+                        
+                        
+                        <div class="card-img-top rounded img-fluid bg-light-alt avatar-preview" @if($post->feature_image) style="display:block;height:200px;background-image:url({{$post->feature_image}})" @endif></div>
+                        <div class="list-inline-item remove-image" @if($post->feature_image) style="display:block;cursor:pointer;" @endif><b>Remove image</b></div>
                         <div class="mt-4">
-                            <input type="file">
+                            <input type="file" id="imageUpload" name="feature_image" value="{{$post->feature_image}}">
                         </div>
+                        <input type="hidden" id="feature_image_url" name="feature_image_url" value="{{$post->feature_image}}">
                     </div><!--end card -body-->
                 </div>
 
@@ -209,7 +226,36 @@
 
             $('.select2').select2();
 
+            $("#imageUpload").change(function() {
+                console.log('Image Upload')
+                if (this.files && this.files[0]) {
+                    var reader = new FileReader();
 
+                    reader.onload = function(e) {
+                            $('.avatar-preview').css('background-image', 'url('+e.target.result +')');
+                            $('.avatar-preview').css('height', '200px');
+                            $('.avatar-preview').css('width', '300px');
+                            $('.avatar-preview').css('display', 'block');
+                            $('.avatar-preview').css('background-size', 'cover');
+                            $('.avatar-preview').css('background-repeat', 'no-repeat');
+                            $('.avatar-preview').css('background-position', 'center');
+                            $('.avatar-preview').hide();
+                            $('.avatar-preview').fadeIn(650);
+                        }
+                    reader.readAsDataURL(this.files[0]);
+                    $('.remove-image').css('display', 'block');
+                    $('.remove-image').css('cursor', 'pointer');
+
+                }
+            });
+
+            $('.remove-image').on('click',function(){
+                $('.avatar-preview').css('background-image', 'none');
+                $('.avatar-preview').css('display', 'none');
+                $('.remove-image').css('display', 'none');
+                $("#imageUpload").val('');
+                $('#feature_image_url').val('')
+            });
         });
 
     </script>

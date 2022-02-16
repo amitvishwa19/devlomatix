@@ -24,28 +24,16 @@
             </li>
 
             <hr class="hr-dashed hr-menu">
-
             <li>
-                <a href="javascript: void(0);"><i data-feather="cast" class="align-self-center menu-icon"></i><span>CMS</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
-                <ul class="nav-second-level" aria-expanded="false">
-                    <li>
-                        <a href="{{route('post.index')}}"><i class="ti-control-record"></i>Posts</a>
-                    </li>
-
-                    <li>
-                        <a href="{{route('category.index')}}"><i class="ti-control-record"></i>Categories</a>
-                    </li>
-
-                    <li>
-                        <a href="{{route('menu.index')}}"><i class="ti-control-record"></i>Menus</a>
-                    </li>
-
-                </ul>
+                <a href="{{route('post.index')}}">
+                     <i data-feather="send" class="align-self-center menu-icon"></i><span>Posts</span>
+                </a>
             </li>
-
-            <hr class="hr-dashed hr-menu">
-
-
+            <li>
+                <a href="{{route('category.index')}}">
+                     <i data-feather="pause" class="align-self-center menu-icon"></i><span>Category</span>
+                </a>
+            </li>
             <li>
                 <a href="{{route('subscription.index')}}">
                     <i data-feather="thumbs-up" class="align-self-center menu-icon"></i><span>Subscriptions</span>
@@ -57,8 +45,17 @@
                     <i data-feather="zap" class="align-self-center menu-icon"></i><span>Inquiries</span>
                 </a>
             </li>
-
             <li>
+                <a href="{{route('menu.index')}}">
+                    <i data-feather="menu" class="align-self-center menu-icon"></i><span>Menu</span>
+                </a>
+            </li>
+
+
+
+            <!-- <hr class="hr-dashed hr-menu"> -->
+
+            <!-- <li>
                 <a href="{{route('mtemplate.index')}}">
                     <i data-feather="send" class="align-self-center menu-icon"></i><span>Mail Templates</span>
                 </a>
@@ -74,7 +71,7 @@
                 <a href="{{route('chat.index')}}">
                     <i data-feather="message-square" class="align-self-center menu-icon"></i><span>Chat</span>
                 </a>
-            </li>
+            </li> -->
 
             {{-- <li>
                 <a href="javascript: void(0);" class=""><i data-feather="layout" class="align-self-center menu-icon"></i>Pages <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>

@@ -47,16 +47,16 @@ class PostController extends Controller
                 if($post->feature_image){
                     return '<div class="d-flex justify-content-between">
                                 <div class="meta-box">
-                                    <div class="media">
-                                        <img src="'.$post->feature_image.'" alt="" class="thumb-sm rounded-circle mr-2">                                       
-                                        <div class="media-body align-self-center text-truncate">
-                                            <h6 class="m-0 text-dark">'. $post->title.'</h6>
-                                            <ul class="p-0 list-inline mb-0">
-                                                <li class="list-inline-item text-muted">'.$post->created_at->diffForHumans().'</li>
-                                                <li class="list-inline-item">by <a href="#" class="text-muted">'.$post->author->firstName .','. $post->author->lastName.'</a></li>
-                                            </ul>
-                                        </div><!--end media-body-->
-                                    </div>                                            
+                                <div class="media">
+                                    <img src="'.$post->feature_image.'" height="40" class="mr-3 align-self-center rounded" alt="...">
+                                    <div class="media-body align-self-center text-truncate">
+                                        <h6 class="m-0 text-dark">'. $post->title.'</h6>
+                                        <ul class="p-0 list-inline mb-0">
+                                            <li class="list-inline-item text-muted">'.$post->created_at->diffForHumans().'</li>
+                                            <li class="list-inline-item">by <a href="#" class="text-muted">'.$post->author->firstName .','. $post->author->lastName.'</a></li>
+                                        </ul>
+                                    </div><!--end media-body-->
+                                </div>                                      
                                 </div><!--end meta-box-->
                                 <div class="align-self-center">
                                     <div class="badge badge-soft-info"> '.ucfirst($post->status).' </div>
@@ -99,6 +99,19 @@ class PostController extends Controller
 
                 return $cat;
             })
+            ->addColumn('tag',function($post){
+                $tags = $post->tags;
+                //return $categories;
+                $tag = '';
+
+                if($tags){
+                    foreach($tags as $tg){
+                       $tag = $tag. '<div class="badge badge-warning mr-1" >'. $tg->name .'</div>';
+                    };
+                }
+
+                return $tag;
+            })
             ->addColumn('status',function(Post $post){
                 if($post->status == 'published'){
                     return '<a href="'.route('post.edit',$post->id).'" class="badge badge-soft-success"><small>Published</small></a>';
@@ -113,14 +126,14 @@ class PostController extends Controller
                         '</div>';
                 return $link;
             })
-            ->rawColumns(['action','status','author','category','postdetails','postmeta'])
+            ->rawColumns(['action','status','author','category','postdetails','postmeta','tag'])
             ->make(true);
 
 
         }
 
-
-        return view('admin.pages.posts.post');
+        $posts = Post::orderby('created_at','desc')->get();
+        return view('admin.pages.posts.post')->with('posts',$posts);
     }
 
     /**
@@ -171,20 +184,20 @@ class PostController extends Controller
         
 
         //Saving Tags
-        // $tagIds = [];
-        // if($request->tags){
+        $tagIds = [];
+        if($request->tags){
 
-        //     $tags = $request->tags;
-        //     foreach($tags as $tag){
+            $tags = $request->tags;
+            foreach($tags as $tag){
 
-        //         $ntag = Tag::firstOrCreate(['name'=>$tag]);
-        //         if($tag)
-        //         {
-        //             $tagIds[] = $ntag->id;
-        //         }
-        //     }
-        // }
-        // $post->tags()->sync($tagIds);
+                $ntag = Tag::firstOrCreate(['name'=>$tag,'slug'=>str_slug( $tag)]);
+                if($tag)
+                {
+                    $tagIds[] = $ntag->id;
+                }
+            }
+            $post->tags()->sync($tagIds);
+        }
 
 
 
@@ -215,7 +228,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.pages.posts.post_edit')->with('post',$post);
+        $categories = Category::where('parent_id','<>', 0 )->orderby('created_at','desc')->get();
+        //$tags = Tag::orderby('created_at','desc')->get();
+        return view('admin.pages.posts.post_edit')->with('post',$post)->with('categories',$categories);
     }
 
     /**
@@ -227,6 +242,7 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        //dd($request->tags);
         $validate = $request->validate([
             'title' => 'required',
         ]);
@@ -236,7 +252,39 @@ class PostController extends Controller
         $post->description = $request->description;
         $post->status = $request->status;
         $post->body = $request->body;
+        if($file = $request->file('feature_image')){ 
+            $post->feature_image = uploadImage($request->file('feature_image'));
+        }else{
+            if(!$request->feature_image_url){
+                $post->feature_image = null;
+            }   
+        }
         $post->update();
+
+        //Categoty Saving
+        if(!$request->categories){
+            $post->categories()->sync([$this->defaultCategory()]);
+         }else{
+            $post->categories()->sync($request->categories);
+         }
+
+        //Saving Tags
+        $tagIds = [];
+        if($request->tags){
+
+            $tags = $request->tags;
+            foreach($tags as $tag){
+
+                $ntag = Tag::firstOrCreate(['name'=>$tag,'slug'=>str_slug( $tag)]);
+                if($tag)
+                {
+                    $tagIds[] = $ntag->id;
+                }
+            }
+            $post->tags()->sync($tagIds);
+        }
+        
+
 
         return redirect() ->route('post.index')
         ->with([

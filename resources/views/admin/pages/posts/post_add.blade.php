@@ -67,8 +67,8 @@
 
                             <div class="form-group">
                                 <label for="exampleInputPassword1"><b>Post Content</b></label>
-                                <div id="post-body" class="ht-200"></div>
-                                <input type="text" name="body" style="display: none" id="bodyinput"  value="{{$post->body}}{{ old('body') }}">
+                                <div id="content" class="ht-200"></div>
+                                <input type="text" name="body" style="display: none" id="bodyinput" value="{{ old('body') }}">
                             </div>
 
 

@@ -17,10 +17,10 @@
             <div class="page-title-box">
                 <div class="row">
                     <div class="col">
-                        <h4 class="page-title">Roles</h4>
+                        <h4 class="page-title">Categories</h4>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Devlomatix</a></li>
-                            <li class="breadcrumb-item active">Roles</li>
+                            <li class="breadcrumb-item active">Categories</li>
                         </ol>
                     </div><!--end col-->
                 </div><!--end row-->
@@ -73,7 +73,7 @@
                     <small id="emailHelp" class="form-text text-muted"><i>The name is how it appears on your site</i>.</small>
                 </div>
 
-                <button class="btn btn-info waves-effect waves-light btn-sm">Add</button>
+                <button class="btn btn-info waves-effect waves-light btn-sm">Add Category</button>
 
             </form>
         </div>
