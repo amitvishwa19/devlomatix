@@ -50,7 +50,7 @@ class PostController extends Controller
                                 <div class="media">
                                     <img src="'.$post->feature_image.'" height="40" class="mr-3 align-self-center rounded" alt="...">
                                     <div class="media-body align-self-center text-truncate">
-                                        <h6 class="m-0 text-dark">'. $post->title.'</h6>
+                                        <h6 class="m-0 text-dark"><a href="'.route('post.edit',$post->id).'">'. $post->title.'</a></h6>
                                         <ul class="p-0 list-inline mb-0">
                                             <li class="list-inline-item text-muted">'.$post->created_at->diffForHumans().'</li>
                                             <li class="list-inline-item">by <a href="#" class="text-muted">'.$post->author->firstName .','. $post->author->lastName.'</a></li>
@@ -59,7 +59,7 @@ class PostController extends Controller
                                 </div>                                      
                                 </div><!--end meta-box-->
                                 <div class="align-self-center">
-                                    <div class="badge badge-soft-info"> '.ucfirst($post->status).' </div>
+                                    <div class="badge badge-soft-info"> '.ucfirst($post->status).' </a></div>
                                 </div>
                             </div>';
                 }else{
@@ -67,7 +67,7 @@ class PostController extends Controller
                                 <div class="meta-box">
                                     <div class="media">                                                                           
                                         <div class="media-body align-self-center text-truncate">
-                                            <h6 class="m-0 text-dark">'. $post->title.'</h6>
+                                            <h6 class="m-0 text-dark"><a href="'.route('post.edit',$post->id).'">'. $post->title.'</h6>
                                             <ul class="p-0 list-inline mb-0">
                                                 <li class="list-inline-item text-muted">'.$post->created_at->diffForHumans().'</li>
                                                 <li class="list-inline-item">by <a href="#" class="text-muted">'.$post->author->firstName .','. $post->author->lastName.'</a></li>

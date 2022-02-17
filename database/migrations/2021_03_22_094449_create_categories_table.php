@@ -17,7 +17,7 @@ class CreatecategoriesTable extends Migration
 
             $table->id();
             $table->string('name');
-            $table->string('name')->nullable();
+            $table->string('slug')->nullable();
             $table->timestamps();
 
         });
