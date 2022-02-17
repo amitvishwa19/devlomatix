@@ -15,7 +15,6 @@ class AddColumnToCategoryTable extends Migration
     {
         Schema::table('categories', function (Blueprint $table) {
             $table->integer('parent_id')->unsigned()->nullable()->after('id');
-            $table->string('slug')->after('name');
             $table->integer('order')->default(0)->after('slug');
             $table->boolean('status')->default(false)->after('order');
         });
@@ -30,7 +29,6 @@ class AddColumnToCategoryTable extends Migration
     {
         Schema::table('categories', function (Blueprint $table) {
             $table->dropColumn('parent_id');
-            $table->dropColumn('slug');
             $table->dropColumn('order');
             $table->dropColumn('status');
         });
