@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         //$schedule->command('app:cron')->everyTwoMinutes();
-        $schedule->command('app:cron')->everyFiveMinutes();
+        $schedule->command('app:cron')->everyMinute();
 
         $schedule->command('app:deleteactivitylog')->timezone('Asia/Kolkata')->at('13:00');
     }
