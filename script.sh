@@ -1,2 +1,2 @@
 #!bin/sh
-/usr/bin/php /home/u48422853/domains/devlomatix.com/public_html/devlomatix/php artisan schedule:run >> /dev/null 2>&1
+/usr/bin/php /home/u484822852/domains/devlomatix.com/public_html/devlomatix/php artisan schedule:run >> /dev/null 2>&1
