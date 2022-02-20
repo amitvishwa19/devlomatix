@@ -26,6 +26,14 @@
                                 <li class="breadcrumb-item active">Settings</li>
                             </ol>
                         </div><!--end col-->
+
+                        <form action="{{route('setting.store',['type'=>request()->type])}}" method="post" enctype="multipart/form-data">
+                         @csrf   
+
+                        <div class="col-auto align-self-center">
+                            <!-- <a href="#post_display" class="btn btn-info waves-effect waves-light btn-sm" data-toggle="modal" >Posts Grid</a> -->
+                            <button class="btn btn-info waves-effect waves-light btn-sm">Save Settings</button>
+                        </div><!--end col-->
                     </div><!--end row-->
                 </div><!--end page-title-box-->
             </div><!--end col-->
@@ -62,6 +70,12 @@
                                         <span>Writing</span>
                                     </a>
                                 </li>
+                                <li class="{{(request()->type =='profile') ? 'active' : 'null'}}">
+                                    <a href="{{route('setting.index',['type'=>'profile'])}}">
+                                        <i data-feather="user" class="align-self-center menu-icon"></i>
+                                        <span>Profile</span>
+                                    </a>
+                                </li>
                             </ul>
                         </div><!--end card-body-->
                     </div>
@@ -78,7 +92,13 @@
                     @if(request()->type == 'writing')
                         @include('admin.pages.setting.writing')
                     @endif
+
+                    @if(request()->type == 'profile')
+                        @include('admin.pages.setting.profile')
+                    @endif
+
                 </div>
+                    </form>
             </div>
         </div>
 

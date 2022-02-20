@@ -127,7 +127,7 @@
 
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="#"><i data-feather="user" class="align-self-center icon-xs icon-dual mr-1"></i> Profile</a>
+                    <a class="dropdown-item" href="{{route('profile.index')}}"><i data-feather="user" class="align-self-center icon-xs icon-dual mr-1"></i> Profile</a>
 
                     @if(!session('impersonated_by'))
                         <a class="dropdown-item" href="{{route('impersonate.index')}}"><i data-feather="repeat" class="align-self-center icon-xs icon-dual mr-1"></i> Impersonate</a>

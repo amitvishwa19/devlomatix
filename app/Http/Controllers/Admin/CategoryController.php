@@ -104,6 +104,7 @@ class CategoryController extends Controller
 
         $category = Category::findOrFail($id);
         $category->name = $request->name;
+        $category->slug = str_slug($request->name);
         $category->save();
 
         return redirect()->route('category.index')

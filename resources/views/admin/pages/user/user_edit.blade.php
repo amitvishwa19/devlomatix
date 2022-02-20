@@ -53,7 +53,7 @@
 
             <div class="form-group">
                 <label>Email</label>
-                <input type="email" class="form-control" name="email" value="{{$user->email}}{{old('email')}}">
+                <input type="email" class="form-control" name="email" value="{{$user->email}}{{old('email')}}" disabled>
                 <div class="error">{{$errors->first('email')}}</div>
             </div>
 

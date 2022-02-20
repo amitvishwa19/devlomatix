@@ -36,6 +36,7 @@ class SettingController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->get('type'));
         //dd($request->job_mail);
         //Setting::set('app_name','devlomatix2');
 

@@ -21,10 +21,12 @@ use App\Http\Controllers\Admin\ServerController;
 use App\Http\Controllers\Admin\ChapterController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\InquiryController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\SandboxController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TeacherController;
+use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ErrorLogController;
 use App\Http\Controllers\Admin\QuestionController;
@@ -34,10 +36,9 @@ use App\Http\Controllers\Admin\AutoDeployController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ActivityLogController;
 use App\Http\Controllers\Admin\ImpersonateController;
+
 use App\Http\Controllers\Admin\MailTemplateController;
 use App\Http\Controllers\Admin\SubscriptionController;
-
-use App\Http\Controllers\Client\ClientController;
 
 
 /*
@@ -98,6 +99,7 @@ Auth::routes();
 Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
 
     Route::get('/',[DashboardController::class,'index'])->name('admin.dashboard');
+    Route::resource('/profile',ProfileController::class);
     Route::resource('/setting',SettingController::class);
 
 

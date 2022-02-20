@@ -21,13 +21,13 @@
 
             <div class="form-group">
                 <label>Category name</label>
-                <input type="text" class="form-control" name="name"  value="{{old('name')}}">
+                <input type="text" class="form-control" name="name"  value="{{old('name')}}{{$category->name}}">
                 <div class="error">{{$errors->first('name')}}</div>
             </div>
 
             <div class="form-group mt-3">
-                <button class="btn btn-primary btn-sm">Update Category</button>
-                <a href="{{route('category.index')}}" class="btn btn-info btn-sm">Cancel</a>
+                <button class="btn btn-info waves-effect waves-light btn-sm">Update Category</button>
+                <a href="{{route('category.index')}}" class="btn btn-secondary waves-effect waves-light btn-sm">Cancel</a>
             </div>
 
         </form>
