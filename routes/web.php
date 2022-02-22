@@ -4,6 +4,8 @@
 //use App\Models\User;
 //use App\Facades\Test;
 //use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\ChatController;
@@ -34,9 +36,9 @@ use App\Http\Controllers\Admin\ClassroomController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AutoDeployController;
 use App\Http\Controllers\Admin\PermissionController;
+
 use App\Http\Controllers\Admin\ActivityLogController;
 use App\Http\Controllers\Admin\ImpersonateController;
-
 use App\Http\Controllers\Admin\MailTemplateController;
 use App\Http\Controllers\Admin\SubscriptionController;
 
@@ -91,7 +93,24 @@ Route::get('/payment', function(\App\Services\PaymentAPI $payment){
 });
 
 
-Route::prefix('/')->group(base_path('routes/client.php'));
+Route::get('/', [ClientController::class, 'home'])->name('app.home');
+Route::get('/contact', [ClientController::class, 'home'])->name('app.contact');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Auth::routes();
@@ -178,13 +197,3 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
 
 });
 
-//Digilearn
-Route::group(['middleware'=>['auth'],'prefix'=>'digilearn'],function(){
-    Route::get('/', [App\Http\Controllers\Admin\DigilearnDashboard::class, 'index'])->name('digilearn.dashboard');
-    Route::resource('/teacher',TeacherController::class);
-    Route::resource('/classroom',ClassroomController::class);
-    Route::resource('/chapter',ChapterController::class);
-    Route::resource('/quiz',QuizController::class);
-    Route::resource('/question',QuestionController::class);
-    Route::resource('/video',VideoController::class);
-});
