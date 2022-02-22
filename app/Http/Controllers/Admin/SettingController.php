@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cache;
 
 class SettingController extends Controller
@@ -36,26 +38,15 @@ class SettingController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->get('type'));
-        //dd($request->job_mail);
-        //Setting::set('app_name','devlomatix2');
+        //dd($request->get('type'));
+        
+        if($request->get('type') == 'profile'){
+            $this->updateProfile($request);
+        }
 
-        // if($request->app_name){
-        //     //dd('app name is there');
-        //     Setting::set('app_name',$request->app_name);
-        // }else{
-        //     dd('app name is not there');
-        // }
-        //dd($request->app_name);
-        //dd($request->all());
-        //General setting
-        // if($request->type == 'global'){
-        //     //$setting->set('global','app_name',$request->name);
-        //     //$setting->set('global','app_description',$request->description);
-
-        //     Setting::set('app_name',$request->name);
-        //     Setting::set('app_description',$request->description);
-        // }
+        if($request->get('type') == 'password'){
+            $this->changePassword($request);
+        }
         
         setting('app_name',$request->app_name);
         setting('app_description',$request->app_description);
@@ -76,63 +67,54 @@ class SettingController extends Controller
         }
      
 
-        return redirect()->route('setting.index')
+        // return redirect()->route('setting.index')
+        // ->with([
+        //     'message'    =>'Setting Saved Successfully',
+        //     'alert-type' => 'success',
+        // ]);
+
+        return redirect()->back()
         ->with([
             'message'    =>'Setting Saved Successfully',
             'alert-type' => 'success',
         ]);
 
+
     }
 
-    // public function show($id)
-    // {
-    //     $setting = Setting::findOrFail($id);
+    public function updateProfile($request){
+        //dd($request->all());
 
-    //     return response()->json($setting);
-    // }
-
-    // public function edit($id)
-    // {
-    //     $setting = Setting::findOrFail($id);
-
-    //     //return response()->json($setting);
-
-    //     return view('admin.pages.setting.setting_edit',compact('setting'));
-    // }
-
-    // public function update(Request $request, $id)
-    // {
-
-    //     $validate = $request->validate([
-    //         'name' => 'required'
-    //     ]);
-
-    //     $setting = Setting::findOrFail($id);
-    //     $setting->name = $request->name;
-    //     $setting->save();
-
-    //     return redirect()->route('setting.index')
-    //     ->with([
-    //         'message'    =>'Setting Updated Successfully',
-    //         'alert-type' => 'success',
-    //     ]);
+        $validate = $request->validate([
+            'firstname' => 'required|max:255',
+            'lastname' => 'required|max:255',
+        ]);
+        
+        $user = User::findOrFail( auth()->user()->id);
+        $user->firstName = $request->firstname;
+        $user->lastName = $request->lastname;
+        $user->save();
 
 
-    // }
+    }
 
-    // public function destroy($id)
-    // {
-    //     $setting = Setting::destroy($id);
+    public function changePassword($request){
 
-    //     if($setting){
-    //         return redirect()->route('setting.index')
-    //         ->with([
-    //             'message'    =>'Setting Updated Successfully',
-    //             'alert-type' => 'success',
-    //         ]);
-    //     }else{
+        $validate = $request->validate([
+            'current_password' => ['required', function ($attribute, $value, $fail) {
+                if (!Hash::check($value, auth()->user()->password)) {
+                    return $fail(__('The current password is incorrect.'));
+                }
+            }],
+            'new_password' => 'required|min:6|required_with:confirm_password|same:confirm_password',
+            'confirm_password' => 'required|min:6',
+        ]);
 
-    //     }
+        $user = User::findOrFail( auth()->user()->id);
+        $user->password = Hash::make($request->new_password);;
+        $user->save();
 
-    // }
+
+    }
+    
 }

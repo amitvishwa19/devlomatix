@@ -9,12 +9,12 @@
             @csrf
             <div class="form-group">
                 <label for="exampleInputEmail1"><b>App Name</b></label>
-                <input type="text" class="form-control" name="app_name" value="{{setting('app_name')}}">
+                <input type="text" class="form-control col-md-6" name="app_name" value="{{setting('app_name')}}">
             </div>
 
             <div class="form-group">
                 <label for="exampleInputPassword1"><b>App Description</b></label>
-                <input type="text" class="form-control" name="app_description" value="{{setting('app_description')}}">
+                <input type="text" class="form-control col-md-6" name="app_description" value="{{setting('app_description')}}">
             </div>
 
             <div class="form-group">

@@ -58,7 +58,7 @@
                                         <span>Global</span>
                                     </a>
                                 </li>
-                                <li class="{{(request()->type =='reading') ? 'active' : 'null'}}">
+                                <!-- <li class="{{(request()->type =='reading') ? 'active' : 'null'}}">
                                     <a href="{{route('setting.index',['type'=>'reading'])}}">
                                         <i data-feather="book-open" class="align-self-center menu-icon"></i>
                                         <span>Reading</span>
@@ -69,11 +69,17 @@
                                         <i data-feather="pen-tool" class="align-self-center menu-icon"></i>
                                         <span>Writing</span>
                                     </a>
-                                </li>
+                                </li> -->
                                 <li class="{{(request()->type =='profile') ? 'active' : 'null'}}">
                                     <a href="{{route('setting.index',['type'=>'profile'])}}">
                                         <i data-feather="user" class="align-self-center menu-icon"></i>
                                         <span>Profile</span>
+                                    </a>
+                                </li>
+                                <li class="{{(request()->type =='password') ? 'active' : 'null'}}">
+                                    <a href="{{route('setting.index',['type'=>'password'])}}">
+                                        <i data-feather="user" class="align-self-center menu-icon"></i>
+                                        <span>Password Management</span>
                                     </a>
                                 </li>
                             </ul>
@@ -95,6 +101,10 @@
 
                     @if(request()->type == 'profile')
                         @include('admin.pages.setting.profile')
+                    @endif
+
+                    @if(request()->type == 'password')
+                        @include('admin.pages.setting.password')
                     @endif
 
                 </div>
