@@ -129,23 +129,59 @@
     <div class="menu-sec">
         <div class="container">
             <div class="logo">
-                <a href="index.html" title=""><img class="hidesticky" src="{{asset('public/client/images/logo/internduniya.png')}}" alt="" /><img class="showsticky" src="images/resource/logo10.png" alt="" /></a>
+                <a href="{{route('app.home')}}" title=""><img class="hidesticky" src="{{asset('public/client/images/logo/internduniya.png')}}" alt="" /><img class="showsticky" src="images/resource/logo10.png" alt="" /></a>
             </div><!-- Logo -->
             <div class="btn-extars">
-                <a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Get Internship</a>
+
+                @if(Auth::user())
+                    @if(Auth::user()->role == 'student')
+                        <a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Get Internship</a>
+                    @else
+                        <a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Post Internship</a>
+                    @endif
+                    
+                @else
+                    <a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Get Internship</a>
+                @endif
+
                 <ul class="account-btns">
-                    <li class="signup-popup"><a title=""><i class="la la-key"></i> Sign Up</a></li>
-                    <li class="signin-popup"><a title=""><i class="la la-external-link-square"></i> Login</a></li>
+                    @if(!Auth::user()) 
+                    <li class="">
+                        <a href="{{route('register')}}" title=""><i class="la la-key"></i> Sign Up</a>
+                    </li>
+                    <li class="">
+                        <a href="{{route('login')}}" title=""><i class="la la-external-link-square"></i> Login</a>
+                    </li>
+                    @endif
+
+                    @if(Auth::user())
+                    
+                    <li class="">
+                        <a href="{{route('app.user.dashboard')}}" title=""></i>Dashboard</a>
+                    </li>
+
+                    <li class="">
+                        <a title=""></i>{{auth()->user()->firstName}}, {{auth()->user()->lastName}}</a>
+                    </li>
+
+                    <li class="">
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout').submit();"><i class="la la-external-link-square"></i> Logout</a>
+                        <form id="logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </li>
+                    @endif
                 </ul>
+
             </div><!-- Btn Extras -->
             <nav>
                 <ul>
                 <li class="">
-                        <a href="#" title="">Home</a>
+                        <a href="{{route('app.home')}}" title="">Home</a>
                     </li>
 
                     <li class="">
-                        <a href="#" title="">News</a>
+                        <a href="{{route('app.blogs')}}" title="">News</a>
                     </li>
                 </ul>
             </nav><!-- Menus -->

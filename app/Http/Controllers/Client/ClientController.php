@@ -15,14 +15,23 @@ class ClientController extends Controller
     public function dashboard()
     {
         $user = auth()->user();
+        
 
-        if($user->can('view_candidate_dashboard')){
-            return view('client.pages.candidate.dashboard');
+
+        if($user->role == 'student'){
+            return redirect() ->route('student.home');
         }
 
-        if($user->can('view_recruiter_dashboard')){
-            return view('client.pages.recruiter.dashboard');
+        if($user->role == 'company'){
+            //return 'Company Home';
+            return redirect() ->route('company.home');
         }
+
+        if($user->role == 'university'){
+            //return 'University Home';
+            return redirect() ->route('university.home');
+        }
+        
 
     }
     public function home(Request $request)
@@ -38,9 +47,10 @@ class ClientController extends Controller
         return view('client.pages.blogs',compact('posts'));
     }
 
-    public function blog()
+    public function blog($slug)
     {
 
+        
         return view('client.pages.blog');
     }
 

@@ -40,15 +40,17 @@ class LoginController extends Controller
     }
 
 
-    // protected function authenticated(Request $request, $user)
-    // {
-    //     //dd($user);
-    //     // if($user->role=='super_admin'){
-    //     //     return redirect()->route('admin.dashboard') ;
-    //     // }elseif($user->role=='brand_manager'){
-    //     //     return redirect()->route('brands.dashboard') ;
-    //     // }
-    // }
+    protected function authenticated(Request $request, $user)
+    {
+        //dd($user);
+        if($user->role=='student'){
+            return redirect()->route('student.home') ;
+        }elseif($user->role=='company'){
+            return redirect()->route('company.home') ;
+        }else{
+            return redirect()->route('university.home') ;
+        }
+    }
 
     public function credentials(Request $request)
     {

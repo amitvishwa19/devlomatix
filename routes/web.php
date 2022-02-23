@@ -41,6 +41,9 @@ use App\Http\Controllers\Admin\ActivityLogController;
 use App\Http\Controllers\Admin\ImpersonateController;
 use App\Http\Controllers\Admin\MailTemplateController;
 use App\Http\Controllers\Admin\SubscriptionController;
+use App\Http\Controllers\Client\company\CompanyController;
+use App\Http\Controllers\Client\student\StudentController;
+use App\Http\Controllers\Client\university\UniversityController;
 
 
 /*
@@ -94,16 +97,35 @@ Route::get('/payment', function(\App\Services\PaymentAPI $payment){
 
 
 Route::get('/', [ClientController::class, 'home'])->name('app.home');
-Route::get('/contact', [ClientController::class, 'home'])->name('app.contact');
+Route::get('/news', [ClientController::class, 'blogs'])->name('app.blogs');
+Route::get('/news/{slug}', [ClientController::class, 'blog'])->name('app.blog');
+Route::get('/dashboard', [ClientController::class, 'dashboard'])->name('app.user.dashboard');
+
+
+//Student
+//Route::prefix('/student')->middleware(['student','auth'])->group(base_path('routes/student.php'));
+Route::group(['middleware'=>['auth','student'],'prefix'=>'student'],function(){
+    
+    Route::get('/', [StudentController::class, 'home'])->name('student.home');
+    
+});
 
 
 
+//company
+Route::group(['middleware'=>['auth', 'company'],'prefix'=>'company'],function(){
+    
+    Route::get('/', [CompanyController::class, 'home'])->name('company.home');
+
+});
 
 
+//University
+Route::group(['middleware'=>['auth', 'university'],'prefix'=>'university'],function(){
 
+    Route::get('/', [UniversityController::class, 'home'])->name('university.home');
 
-
-
+});
 
 
 
