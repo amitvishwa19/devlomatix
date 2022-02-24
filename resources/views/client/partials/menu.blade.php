@@ -3,10 +3,10 @@
         <div class="res-logo"><a href="index.html" title=""><img src="images/resource/logo.png" alt="" /></a></div>
         <div class="menu-resaction">
             <div class="res-openmenu">
-                <img src="images/icon.png" alt="" /> Menu
+                <img src="{{asset('public/client/images/icon.png')}}" alt="" /> Menu
             </div>
             <div class="res-closemenu">
-                <img src="images/icon2.png" alt="" /> Close
+                <img src="{{asset('public/client/images/icon2.png')}}" alt="" /> Close
             </div>
         </div>
     </div>
@@ -129,7 +129,10 @@
     <div class="menu-sec">
         <div class="container">
             <div class="logo">
-                <a href="{{route('app.home')}}" title=""><img class="hidesticky" src="{{asset('public/client/images/logo/internduniya.png')}}" alt="" /><img class="showsticky" src="images/resource/logo10.png" alt="" /></a>
+                <a href="{{route('app.home')}}" title="">
+                    <img class="hidesticky" src="{{asset('public/client/images/logo/internduniya.png')}}" alt="" />
+                    <img class="showsticky" src="{{asset('public/client/images/logo/internduniya.png')}}" alt="" />
+                </a>
             </div><!-- Logo -->
             <div class="btn-extars">
 
