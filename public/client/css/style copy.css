@@ -660,10 +660,9 @@ label::after {
 .account-btns > li a {
     font-family: Open Sans;
     font-size: 15px;
-    color: #000;
+    color: #ffffff;
     float: left;
     line-height: 22px;
-    font-weight: 600;
 }
 .account-btns > li a i {
     font-size: 18px;
@@ -700,10 +699,9 @@ label::after {
     float: left;
     font-family: Open Sans;
     font-size: 15px;
-    color: #000;
+    color: #ffffff;
     position: relative;
     padding: 14px 20px;
-    font-weight: 600;
 }
 .menu-sec nav > ul > li.menu-item-has-children > a::before {
     position: absolute;
@@ -1082,7 +1080,7 @@ label::after {
     font-family: Quicksand;
     font-size: 40px;
     font-weight: normal;
-    color: #000;
+    color: #ffffff;
     letter-spacing: 0px;
     text-align: center;
     line-height: 39px;
@@ -1094,7 +1092,7 @@ label::after {
     font-family: Open Sans;
     font-size: 15px;
     font-weight: 400;
-    color: #000;
+    color: #d5d8f3;
     text-align: center;
     margin-top: 10px;
 }
@@ -1155,7 +1153,7 @@ label::after {
     width: 100%;
     padding: 9px 0;
     font-size: 30px;
-    background-color: #fb236a; height: 61px;
+    background-color: #8b91dd; height: 61px;
     border-radius: 8px;
 }
 .job-search form .row {
@@ -1426,7 +1424,7 @@ label::after {
     width: 100%;
     font-family: Quicksand;
     font-size: 40px;
-    color: #000;
+    color: #ffffff;
     font-weight: bold;
     margin: 0;
     margin-bottom: 20px;
@@ -1436,7 +1434,7 @@ label::after {
     width: 100%;
     font-family: Quicksand;
     font-size: 18px;
-    color: #000;
+    color: #ffffff;
 }
 .simple-text-block a {
     float: none;
@@ -1453,7 +1451,7 @@ label::after {
     font-family: Open Sans;
     font-size: 15px;
     margin-top: 40px;
-    color: #a22323;
+    color: #ffffff;
 }
 
 /* Job Listing */
@@ -1591,10 +1589,10 @@ label::after {
     border-bottom-color: #ffffff;
 }
 .heading.light h2 {
-    color: #000;
+    color: #ffffff;
 }
 .heading.light span {
-    color: #000;
+    color: #ffffff;
 }
 .layer.color.light::before {
     background: #8b91dd;
@@ -1830,7 +1828,7 @@ label::after {
     width: 100%;
     text-align: center;
     padding: 40px 0;
-    background: #FEC941;
+    background: #8b91dd;
     -webkit-transition: all 0.4s ease 0s;
     -moz-transition: all 0.4s ease 0s;
     -ms-transition: all 0.4s ease 0s;
@@ -1846,13 +1844,13 @@ label::after {
     float: left;
     width: 100%;
     font-weight: bold;
-    color: #000;
+    color: #ffffff;
 }
 .simple-text span {
     float: left;
     width: 100%;
     font-size: 15px;
-    color: #000;
+    color: #ffffff;
     margin: 0;
 }
 footer {
@@ -11599,7 +11597,7 @@ footer.ft .scrollup {
     height: 700px;
     overflow: hidden;
     position: relative;
-    background: #FEC32B;
+    background: rgb(20,31,114);
     /* background: -moz-linear-gradient(130deg,  rgba(20,31,114,1) 0%, rgba(52,65,161,1) 71%, rgba(52,65,161,1) 100%);
     background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,rgba(20,31,114,1)), color-stop(71%,rgba(52,65,161,1)), color-stop(100%,rgba(52,65,161,1)));
     background: -webkit-linear-gradient(130deg,  rgba(20,31,114,1) 0%,rgba(52,65,161,1) 71%,rgba(52,65,161,1) 100%);
@@ -11705,7 +11703,6 @@ footer.ft .scrollup {
 
 .newbg .or-browser > span{color: #888888;}
 .newbg .or-browser > a{color: #888888; border-color: #888888;}
-
 
 
 /* add new 21.03.2019 */
@@ -11832,9 +11829,4 @@ header.style4 .account-btns > li a,
     -ms-transition: all 0.4s ease 0s;
     -o-transition: all 0.4s ease 0s;
     transition: all 0.4s ease 0s;
-}
-
-
-.layer.color::before{
-    background-color: #FEC32B !important;
 }

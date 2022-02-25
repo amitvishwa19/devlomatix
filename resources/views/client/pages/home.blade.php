@@ -164,7 +164,7 @@
 
 	<section>
 		<div class="block double-gap-top double-gap-bottom">
-			<div data-velocity="-.1" style="background: url(images/resource/parallax1.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible layer color"></div><!-- PARALLAX BACKGROUND IMAGE -->
+			<div data-velocity="-.1" style="background: url({{asset('public/client/images/resource/parallax1.jpg')}}) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible layer color testblock"></div><!-- PARALLAX BACKGROUND IMAGE -->
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
