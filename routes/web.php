@@ -33,10 +33,11 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ErrorLogController;
 use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\ClassroomController;
+use App\Http\Controllers\Admin\CorporateController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AutoDeployController;
-use App\Http\Controllers\Admin\PermissionController;
 
+use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ActivityLogController;
 use App\Http\Controllers\Admin\ImpersonateController;
 use App\Http\Controllers\Admin\MailTemplateController;
@@ -69,31 +70,7 @@ Route::get('/mail', function(){
 
 });
 
-Route::get('/setting', function(){
-    //dump($setting->all());
-    dd(app());
-    //dd(app(\App\Services\Settings::class),app(\App\Services\Settings::class));
-    //return $setting->all();
-    //return Facades\App\Services\Settings::all();
-    //return \App\Facades\SettingFacade::all();
-    //return AppSetting::all();
-    return AppSetting::get('app_description');
-    //return AppSetting::set('app_name','devlomatix6');
 
-});
-
-Route::get('test',function(){
-    // return appmail();
-    // return setting('app_name');
-    // return setting('app_name','Devlomatix_new');
-    // return 'test';
-    return view('mails.wola');
-});
-
-Route::get('/payment', function(\App\Services\PaymentAPI $payment){
-    dump($payment->pay());
-    dd(app());
-});
 
 
 Route::get('/', [ClientController::class, 'home'])->name('app.home');
@@ -116,6 +93,24 @@ Route::group(['middleware'=>['auth','student'],'prefix'=>'student'],function(){
 Route::group(['middleware'=>['auth', 'company'],'prefix'=>'company'],function(){
     
     Route::get('/', [CompanyController::class, 'home'])->name('company.home');
+    Route::get('/profile', [CompanyController::class, 'profile'])->name('company.profile');
+    Route::post('/profile/update', [CompanyController::class, 'profile_update'])->name('company.profile.update');
+
+    Route::get('/internship', [CompanyController::class, 'internship'])->name('company.internship');
+
+    Route::get('/internship/show/{id}', [CompanyController::class, 'internship_view'])->name('company.internship.view');
+    Route::get('/internship/edit/{id}', [CompanyController::class, 'internship_edit'])->name('company.internship.edit');
+    Route::put('/internship/{id}/update', [CompanyController::class, 'internship_update'])->name('company.internship.update');
+
+    Route::get('/internship/new', [CompanyController::class, 'internship_new'])->name('company.internship.new');
+    Route::post('/internship/new/add', [CompanyController::class, 'internship_new_add'])->name('company.internship.new.add');
+    Route::get('/internship/delete/{id}', [CompanyController::class, 'internship_delete'])->name('company.internship.delete');
+
+    Route::get('/internship/applied', [CompanyController::class, 'internship_applied'])->name('company.internship.applied');
+
+    Route::get('/resumes', [CompanyController::class, 'resumes'])->name('company.resumes');
+    Route::get('/password_management', [CompanyController::class, 'password_management'])->name('company.password.management');
+    Route::post('/password_management/update', [CompanyController::class, 'password_update'])->name('company.password.update');
 
 });
 
@@ -215,6 +210,11 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
 
      //Tasks
      Route::resource('/task',TaskController::class);
+
+   
+
+    //Corporate
+    Route::resource('/corporate',CorporateController::class);
 
 
 });

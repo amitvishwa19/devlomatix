@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Corporate;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use App\Http\Requests\UserRequest;
@@ -52,7 +53,7 @@ class UserController extends Controller
                     return '<span class="badge badge-soft-dark"><small>InActive</small></span>';
                 }
             })
-            ->addColumn('role',function($user){
+            ->addColumn('roles',function($user){
                 $roles = $user->roles;
                 $perm = '';
                 if($roles){
@@ -63,7 +64,9 @@ class UserController extends Controller
 
                 return $perm;//$permission;
             })
-
+            ->editColumn('role',function(User $user){
+                return '<span class="badge badge-soft-info">'.ucfirst($user->role).'</span>';
+            })
 
             // ->addColumn('status',function(User $user){
             //     if($user->status == true){
@@ -79,7 +82,7 @@ class UserController extends Controller
                         '</div>';
                 return $link;
             })
-            ->rawColumns(['action','status','name','username','type','role'])
+            ->rawColumns(['action','status','name','username','type','roles','role'])
             ->make(true);
 
 
@@ -94,7 +97,8 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::get();
-        return view('admin.pages.user.user_add')->with('roles',$roles);
+        $corporates = Corporate::orderby('created_at','desc')->get();
+        return view('admin.pages.user.user_add')->with('roles',$roles)->with('corporates',$corporates);
     }
 
     public function store(Request $request)
@@ -138,10 +142,11 @@ class UserController extends Controller
     {
 
         $roles = Role::get();
+        $corporates = Corporate::orderby('created_at','desc')->get();
 
         //return response()->json($user);
 
-        return view('admin.pages.user.user_edit')->with('roles',$roles)->with('user',$user);
+        return view('admin.pages.user.user_edit')->with('roles',$roles)->with('user',$user)->with('corporates',$corporates);
     }
 
     public function update(Request $request, User $user)
@@ -151,17 +156,19 @@ class UserController extends Controller
         $validate = $request->validate([
             'firstName' => 'required',
             'lastName' => 'required',
-            'email' => 'email'
         ]);
 
 
         $user->firstName = $request->firstName;
         $user->lastName = $request->lastName;
-        $user->email = $request->email;
+        //$user->email = $request->email;
         $user->status = $request->status;
+        $user->corporate_id = $request->corporate_type;
         $user->update();
 
         $user->syncRoles($request->roles);
+
+        //$user->corporate()->sync($request->corporate_type);
 
         return redirect()->route('user.index')
         ->with([

@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
-@section('title','Impersonate')
+@section('title','Company')
 
-@section('impersonate','active')
+@section('company','active')
 
 
 @section('style')
@@ -22,19 +22,14 @@
                 <div class="page-title-box">
                     <div class="row">
                         <div class="col">
-                            <h4 class="page-title">Impersonate</h4>
+                            <h4 class="page-title">Companies & Universities</h4>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Devlomatix</a></li>
-                                <li class="breadcrumb-item active">Impersonate</li>
+                                <li class="breadcrumb-item active">Companies & Universities</li>
                             </ol>
                         </div><!--end col-->
                         <div class="col-auto align-self-center">
-                            <a href="#" class="btn btn-sm btn-outline-primary" id="Dash_Date">
-                                <span class="ay-name" id="Day_Name">Today:</span>&nbsp;
-                                <span class="" id="Select_date">Jan 11</span>
-                                <i data-feather="calendar" class="align-self-center icon-xs ml-1"></i>
-                            </a>
-
+                            <a href="{{route('company.create')}}" class="btn btn-info waves-effect waves-light btn-sm" ><b>Add New</b></a>
                         </div><!--end col-->
                     </div><!--end row-->
                 </div><!--end page-title-box-->
@@ -46,16 +41,13 @@
                 <div class="card">
                     <div class="card-body table-responsive">
                         <div class="">
-                            <table id="datatable" class="table dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Roles</th>
-                                        <th>Type</th>
-                                        <th>Role</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
+                                        <th style="width:20%">Title</th>
+                                        <th style="width:10%">Description</th>
+                                        <th style="width:10%">Type</th>
+                                        <th style="width:5%">Actions</th>
                                     </tr>
                                 </thead>
 
@@ -80,6 +72,7 @@
     {{-- Datatable JS --}}
     <script src="{{asset('public/admin/plugins/datatables.net/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('public/admin/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
+  
     {{-- Datatable JS --}}
 
 
@@ -93,16 +86,43 @@
             $('#datatable').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{!! route('impersonate.index') !!}',
+                ajax: '{!! route('company.index') !!}',
                 columns:[
-                    { data: 'name', name: 'name'},
-                    { data: 'email', name: 'email'},
-                    { data: 'roles', name: 'roles'},
-                    { data: 'type', name: 'type'},
-                    { data: 'role', name: 'role'},
-                    { data: 'status', name: 'status'},
+                    { data: 'companymeta', name: 'companymeta'},   
+                    { data: 'description', name: 'description'},
+                    { data: 'type', name: 'type'},    
                     { data: 'action', name: 'action' },
                 ]
+            });
+
+
+            //Action Delete function
+            $(document).on('click','.delete',function(){
+                var id =  $(this).attr('id');
+                swalWithBootstrapButtons({
+                    title: "Delete Selected Post?",
+                    text: "You won't be able to revert this!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Delete",
+                    cancelButtonText: "Cancel",
+                    reverseButtons: true
+                }).then(result => {
+                    if (result.value) {
+                    $.ajax({
+                        url: "post/"+id,
+                        type:"post",
+                        data: {_method: 'delete', _token: "{{ csrf_token() }}"},
+                        success: function(result){
+                            location.reload();
+                            toast({
+                                type: "success",
+                                title: "Post Deleted Successfully"
+                            });
+                        }
+                    });
+                    }
+                });
             });
 
         });

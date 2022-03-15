@@ -38,42 +38,35 @@
         <form action="{{route('user.store')}}" method="POST" autocomplete="off">
             @csrf
 
-
                 <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="exampleInputEmail1">First Name*</label>
-                            <input type="text" class="form-control" name="firstname" aria-describedby="emailHelp" >
-                        </div>
-                        <div class="col-md-6">
-                            <label for="exampleInputEmail1">Last Name*</label>
-                            <input type="text" class="form-control" name="lastname" aria-describedby="emailHelp" >
-                        </div>
-                    </div>
+                    <label for="exampleInputEmail1"><b>First Name*</b></label>
+                    <input type="text" class="form-control" name="firstname" aria-describedby="emailHelp" >
                 </div>
 
                 <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="exampleInputEmail1">Username</label>
-                            <input type="text" class="form-control" name="username" aria-describedby="emailHelp" autocomplete="off">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="exampleInputEmail1">Email*</label>
-                            <input type="email" class="form-control" name="email" aria-describedby="emailHelp" autocomplete="off">
-                        </div>
-                    </div>
+                    <label for="exampleInputEmail1"><b>Last Name*</b></label>
+                    <input type="text" class="form-control" name="lastname" aria-describedby="emailHelp" >
+                </div>
+         
+                <div class="form-group">
+                    <label for="exampleInputEmail1"><b>Username</b></label>
+                    <input type="text" class="form-control" name="username" aria-describedby="emailHelp" autocomplete="off">
                 </div>
 
                 <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="exampleInputEmail1">Password</label>
-                            <input type="password" class="form-control" name="password" aria-describedby="emailHelp" autocomplete="off">
+                    <label for="exampleInputEmail1"><b>Email</b>*</label>
+                    <input type="email" class="form-control" name="email" aria-describedby="emailHelp" autocomplete="off">
+                </div>
+           
 
-                        </div>
-
-                    </div>
+                <div class="form-group">
+                    <label><b>Assign Corporate</b></label>
+                    <select name="corporate_type" id="" class="form-control col-md-3">
+                        <option value="">-Select Corporate-</option>
+                        @foreach($corporates as $corporate)
+                        <option value="{{$corporate->id}}">{{$corporate->title}}</option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="form-group">
@@ -88,7 +81,8 @@
                     </div>
                 </div>
 
-                <div class="radio radio-success">
+                <div class="radio-success form-group">
+                    <label><b>Status</b></label><br>
                     <input type="radio"  name="status" value="1" id="yes">
                     <label for="yes">Active</label>
                     <input type="radio"  name="status" value="0" id="no">
@@ -96,7 +90,8 @@
                 </div>
 
 
-                <div class="checkbox check-success  mt-2">
+                <div class=" check-success  mt-2">
+                    <label><b>Notify User</b></label><br>
                     <input type="checkbox"  value="1" id="checkbox2">
                     <label for="checkbox2">Notify User</label>
                 </div>

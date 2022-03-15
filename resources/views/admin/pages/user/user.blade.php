@@ -47,6 +47,7 @@
                                         <th>Username</th>
                                         <th>Roles</th>
                                         <th>Type</th>
+                                        <th>Role</th>
                                         <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
@@ -185,8 +186,9 @@
                 columns:[
                     { data: 'name', name: 'name'},
                     { data: 'username', name: 'username'},
-                    { data: 'role', name: 'role'},
+                    { data: 'roles', name: 'roles'},
                     { data: 'type', name: 'type'},
+                    { data: 'role', name: 'role'},
                     { data: 'status', name: 'status'},
                     { data: 'action', name: 'action' },
                 ]

@@ -32,29 +32,36 @@
     </div><!--end row-->
 
     <div class="wrapper card p-2">
-        <h5>
-            Edit User
-        </h5>
+        
         <form role="form" method="post" action="{{route('user.update',$user->id)}}" enctype="multipart/form-data">
             @csrf
             {{method_field('PUT')}}
 
             <div class="form-group">
-                <label>First Name</label>
+                <label><b>First Name</b></label>
                 <input type="text" class="form-control" name="firstName"  value="{{$user->firstName}}{{old('firstName')}}">
                 <div class="error">{{$errors->first('firstName')}}</div>
             </div>
 
             <div class="form-group">
-                <label>Last Name</label>
+                <label><b>Last Name</b></label>
                 <input type="text" class="form-control" name="lastName" value="{{$user->lastName}}{{old('lastName')}}">
                 <div class="error">{{$errors->first('lastName')}}</div>
             </div>
 
             <div class="form-group">
-                <label>Email</label>
+                <label><b>Email</b></label>
                 <input type="email" class="form-control" name="email" value="{{$user->email}}{{old('email')}}" disabled>
                 <div class="error">{{$errors->first('email')}}</div>
+            </div>
+
+            <div class="form-group">
+                <label><b>Assign Corporate</b></label>
+                <select name="corporate_type" id="" class="form-control col-md-3">
+                    @foreach($corporates as $corporate)
+                    <option value="{{$corporate->id}}">{{$corporate->title}}</option>
+                    @endforeach
+                </select>
             </div>
 
             <div class="form-group">
@@ -75,7 +82,8 @@
                 </div>
             </div>
 
-            <div class="radio radio-success">
+            <div class=" radio-success form-group">
+                <label><b>Status</b></label><br>
                 <input type="radio" @if($user->status == 1)  checked  @endif value="1" name="status" id="yes">
                 <label for="yes">Active</label>
                 <input type="radio" @if($user->status == 0)  checked  @endif  value="0" name="status" id="no">
@@ -83,7 +91,8 @@
             </div>
 
 
-            <div class="checkbox check-success  mt-2">
+            <div class=" check-success  mt-2">
+                <label><b>Notify User</b></label><br>
                 <input type="checkbox" checked="checked" value="1" id="checkbox2">
                 <label for="checkbox2">Notify User</label>
             </div>

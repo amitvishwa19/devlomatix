@@ -6739,6 +6739,7 @@ aside .widget.border:first-child {
     font-size: 13px;
     color: #202020;
     margin-bottom: 13px;
+    font-weight: 600;
 }
 .pf-field {
     float: left;
@@ -6753,7 +6754,7 @@ aside .widget.border:first-child {
     float: left;
     width: 100%;
     border: 2px solid #e8ecec;
-    margin-bottom: 20px;
+    margin-bottom: 2px;
 
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
@@ -6970,7 +6971,7 @@ aside .widget.border:first-child {
     color: #888888;
     float: left;
     margin-top: 0px;
-    line-height: 10px;
+    line-height: 16px;
     margin-top: 8px;
     display: table;
 }
@@ -11837,4 +11838,25 @@ header.style4 .account-btns > li a,
 
 .layer.color::before{
     background-color: #FEC32B !important;
+}
+
+.validation-error{
+    color: #D73B3B;
+    font-weight: bold !important;
+}
+
+.validation_error_list li{
+    margin-bottom: 0px;
+
+}
+.alert_close_button{
+
+
+}
+
+.alert_close_button {
+    border: none !important;
+    background: none !important;
+    margin-top: 0px !important;
+    font-size: 24px !important;
 }

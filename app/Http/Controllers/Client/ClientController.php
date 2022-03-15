@@ -16,7 +16,9 @@ class ClientController extends Controller
     {
         $user = auth()->user();
         
-
+        if(!$user){
+            abort(404);
+        }
 
         if($user->role == 'student'){
             return redirect() ->route('student.home');
