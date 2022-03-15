@@ -116,9 +116,27 @@ Route::group(['middleware'=>['auth', 'company'],'prefix'=>'company'],function(){
 
 
 //University
-Route::group(['middleware'=>['auth', 'university'],'prefix'=>'university'],function(){
+Route::group(['middleware'=>['auth', 'corporate'],'prefix'=>'corporate'],function(){
 
-    Route::get('/', [UniversityController::class, 'home'])->name('university.home');
+    Route::get('/', [CompanyController::class, 'home'])->name('company.home');
+    Route::get('/profile', [CompanyController::class, 'profile'])->name('company.profile');
+    Route::post('/profile/update', [CompanyController::class, 'profile_update'])->name('company.profile.update');
+
+    Route::get('/internship', [CompanyController::class, 'internship'])->name('company.internship');
+
+    Route::get('/internship/show/{id}', [CompanyController::class, 'internship_view'])->name('company.internship.view');
+    Route::get('/internship/edit/{id}', [CompanyController::class, 'internship_edit'])->name('company.internship.edit');
+    Route::put('/internship/{id}/update', [CompanyController::class, 'internship_update'])->name('company.internship.update');
+
+    Route::get('/internship/new', [CompanyController::class, 'internship_new'])->name('company.internship.new');
+    Route::post('/internship/new/add', [CompanyController::class, 'internship_new_add'])->name('company.internship.new.add');
+    Route::get('/internship/delete/{id}', [CompanyController::class, 'internship_delete'])->name('company.internship.delete');
+
+    Route::get('/internship/applied', [CompanyController::class, 'internship_applied'])->name('company.internship.applied');
+
+    Route::get('/resumes', [CompanyController::class, 'resumes'])->name('company.resumes');
+    Route::get('/password_management', [CompanyController::class, 'password_management'])->name('company.password.management');
+    Route::post('/password_management/update', [CompanyController::class, 'password_update'])->name('company.password.update');
 
 });
 

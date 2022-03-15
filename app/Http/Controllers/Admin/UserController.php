@@ -108,7 +108,6 @@ class UserController extends Controller
             'firstname' => 'required',
             'lastname' => 'required',
             'email' => 'required',
-            'password' => 'password',
         ]);
 
         $user = New User;
@@ -118,6 +117,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->status = $request->status;
+        $user->role = $request->role;
         $user->save();
 
         $user->syncRoles($request->roles);
@@ -164,6 +164,7 @@ class UserController extends Controller
         //$user->email = $request->email;
         $user->status = $request->status;
         $user->corporate_id = $request->corporate_type;
+        $user->role = $request->role;
         $user->update();
 
         $user->syncRoles($request->roles);

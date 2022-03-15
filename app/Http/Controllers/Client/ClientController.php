@@ -33,6 +33,11 @@ class ClientController extends Controller
             //return 'University Home';
             return redirect() ->route('university.home');
         }
+
+        if($user->role == 'corporate'){
+            //return 'University Home';
+            return redirect() ->route('company.home');
+        }
         
 
     }
