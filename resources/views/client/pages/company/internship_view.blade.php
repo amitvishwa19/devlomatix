@@ -4,7 +4,7 @@
 
 @section('main_content')
 
-<div class="col-lg-9 column">
+<div class="col-lg-10 column">
     <div class="profile-title d-flex">
         <h3>{{$internship->title}}</h3>
         
@@ -29,12 +29,12 @@
                 {{$internship->title}}
             </div>
 
-            <div class="i-description mb-4" style="font-size: 14px;">
+            <div class="i-description mb-4 mr-5" style="font-size: 14px;">
                 <h5>Description</h5>
                 {!! $internship->description !!}
             </div>
 
-            <div class="i-description mb-4" style="font-size: 14px;">
+            <div class="i-description mb-4 mr-5" style="font-size: 14px;">
                 <h5>Requirements</h5>
                 {!! $internship->requirement !!}
             </div>

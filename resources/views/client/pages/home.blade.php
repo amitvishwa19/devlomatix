@@ -153,9 +153,9 @@
 						</div>
 					</div>
 					<div class="col-lg-12">
-						<div class="browse-all-cat">
+						<!-- <div class="browse-all-cat">
 							<a href="#" title="">Browse All Categories</a>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
@@ -170,8 +170,12 @@
 					<div class="col-lg-12">
 						<div class="simple-text-block">
 							<h3>Make a Difference with Your Online Resume!</h3>
-							<span>Your resume in minutes with JobHunt resume assistant is ready!</span>
+							<span>Your resume in minutes with Internduniya resume assistant is ready!</span>
+
 							<a href="#" title="">Create an Account</a>
+
+							<a href="#" title="">Create Resume</a>
+
 						</div>
 					</div>
 				</div>
@@ -189,66 +193,18 @@
 							<span>Leading Employers/Universities already looking for talent.</span>
 						</div><!-- Heading -->
 						<div class="job-listings-sec">
-							<div class="job-listing">
-								<div class="job-title-sec">
-									<div class="c-logo"> <img src="images/resource/l1.png" alt="" /> </div>
-									<h3><a href="#" title="">Web Designer / Developer</a></h3>
-									<span>Massimo Artemisis</span>
-								</div>
-								<span class="job-lctn"><i class="la la-map-marker"></i>Sacramento, California</span>
-								<span class="fav-job"><i class="la la-heart-o"></i></span>
-								<span class="job-is ft">FULL TIME</span>
-							</div><!-- Job -->
-							<div class="job-listing">
-								<div class="job-title-sec">
-									<div class="c-logo"> <img src="images/resource/l2.png" alt="" /> </div>
-									<h3><a href="#" title="">Marketing Director</a></h3>
-									<span>Tix Dog</span>
-								</div>
-								<span class="job-lctn"><i class="la la-map-marker"></i>Rennes, France</span>
-								<span class="fav-job"><i class="la la-heart-o"></i></span>
-								<span class="job-is pt">PART TIME</span>
-							</div><!-- Job -->
-							<div class="job-listing">
-								<div class="job-title-sec">
-									<div class="c-logo"> <img src="images/resource/l3.png" alt="" /> </div>
-									<h3><a href="#" title="">C Developer (Senior) C .Net</a></h3>
-									<span>StarHealth</span>
-								</div>
-								<span class="job-lctn"><i class="la la-map-marker"></i>London, United Kingdom</span>
-								<span class="fav-job"><i class="la la-heart-o"></i></span>
-								<span class="job-is ft">FULL TIME</span>
-							</div><!-- Job -->
-							<div class="job-listing">
-								<div class="job-title-sec">
-									<div class="c-logo"> <img src="images/resource/l4.png" alt="" /> </div>
-									<h3><a href="#" title="">Application Developer For Android</a></h3>
-									<span>Altes Bank</span>
-								</div>
-								<span class="job-lctn"><i class="la la-map-marker"></i>Istanbul, Turkey</span>
-								<span class="fav-job"><i class="la la-heart-o"></i></span>
-								<span class="job-is fl">FREELANCE</span>
-							</div><!-- Job -->
-							<div class="job-listing">
-								<div class="job-title-sec">
-									<div class="c-logo"> <img src="images/resource/l5.png" alt="" /> </div>
-									<h3><a href="#" title="">Regional Sales Manager South east Asia</a></h3>
-									<span>Vincent</span>
-								</div>
-								<span class="job-lctn"><i class="la la-map-marker"></i>Ajax, Ontario</span>
-								<span class="fav-job"><i class="la la-heart-o"></i></span>
-								<span class="job-is tp">TEMPORARY</span>
-							</div><!-- Job -->
-							<div class="job-listing">
-								<div class="job-title-sec">
-									<div class="c-logo"> <img src="images/resource/l6.png" alt="" /> </div>
-									<h3><a href="#" title="">Social Media and Public Relation Executive </a></h3>
-									<span>MediaLab</span>
-								</div>
-								<span class="job-lctn"><i class="la la-map-marker"></i>Ankara / Turkey</span>
-								<span class="fav-job"><i class="la la-heart-o"></i></span>
-								<span class="job-is ft">FULL TIME</span>
-							</div><!-- Job -->
+							@foreach($internships as $internship)
+								<div class="job-listing">
+									<div class="job-title-sec">
+										<div class="c-logo p-3"> <img src="{{$internship->corporate->avatar}}" alt="" /> </div>
+										<h3 class="ml-5"><a href="#" title="">{{$internship->title}}</a></h3>
+										<span>{{$internship->corporate->title}}</span>
+									</div>
+									<span class="job-lctn"><i class="la la-map-marker"></i>{{ucFirst($internship->city)}}, {{ucFirst($internship->state)}}</span>
+									<span class="fav-job"><i class="la la-heart-o"></i></span>
+									<span class="job-is ft">{{strtoupper($internship->type)}}</span>
+								</div><!-- Job -->
+							@endforeach
 						</div>
 					</div>
 					<div class="col-lg-12">
@@ -316,23 +272,15 @@
 							<h2>Companies/Universities We've Helped</h2>
 							<span>Some of the companies/Universities we've helped recruit excellent applicants over the years.</span>
 						</div><!-- Heading -->
+
 						<div class="comp-sec">
-							<div class="company-img">
-								<a href="#" title=""><img src="{{asset('public/client/images/resource/cc1.jpg')}}" alt="" /></a>
-							</div><!-- Client  -->
-							<div class="company-img">
-								<a href="#" title=""><img src="{{asset('public/client/images/resource/cc2.jpg')}}" alt="" /></a>
-							</div><!-- Client  -->
-							<div class="company-img">
-								<a href="#" title=""><img src="{{asset('public/client/images/resource/cc3.jpg')}}" alt="" /></a>
-							</div><!-- Client  -->
-							<div class="company-img">
-								<a href="#" title=""><img src="{{asset('public/client/images/resource/cc4.jpg')}}" alt="" /></a>
-							</div><!-- Client  -->
-							<div class="company-img">
-								<a href="#" title=""><img src="{{asset('public/client/images/resource/cc5.jpg')}}" alt="" /></a>
-							</div><!-- Client  -->
+							@foreach($corporates as $corporate)
+								<div class="company-img">
+									<span title=""><img src="{{$corporate->avatar}}" alt="" /></span>
+								</div><!-- Client  -->
+							@endforeach	
 						</div>
+
 					</div>
 				</div>
 			</div>

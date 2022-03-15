@@ -35,8 +35,9 @@ use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\ClassroomController;
 use App\Http\Controllers\Admin\CorporateController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\AutoDeployController;
+use App\Http\Controllers\Admin\IntenshipController;
 
+use App\Http\Controllers\Admin\AutoDeployController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ActivityLogController;
 use App\Http\Controllers\Admin\ImpersonateController;
@@ -233,7 +234,7 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
 
     //Corporate
     Route::resource('/corporate',CorporateController::class);
-
+    Route::resource('/internship',IntenshipController::class);
 
 });
 

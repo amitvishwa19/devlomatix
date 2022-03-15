@@ -4,7 +4,7 @@
 
 @section('main_content')
 
-<div class="col-lg-9 column">
+<div class="col-lg-10 column">
     <div class="profile-title d-flex">
         <h3>Post New Internships</h3>
         

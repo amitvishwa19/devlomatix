@@ -26,14 +26,14 @@
 
 <section>
 	<div class="block no-padding">
-		<div class="container">
+		<div class="container-fluid">
 				<div class="row no-gape">
-				<aside class="col-lg-3 column border-right">
+				<aside class="col-lg-2 column border-right">
 					<div class="widget">
 						<div class="tree_widget-sec">
 							<ul>
                                 <li><a href="{{route('company.home')}}" title=""><i class="la la-file-text"></i>Dashboard</a></li>
-								<li><a href="{{route('company.profile')}}" title=""><i class="la la-file-text"></i>Company Profile</a></li>
+								<li><a href="{{route('company.profile')}}" title=""><i class="la la-file-text"></i>Profile</a></li>
 								<li><a href="{{route('company.internship')}}" title=""><i class="la la-briefcase"></i>Internship</a></li>
 								<!-- <li><a href="{{route('company.internship.applied')}}" title=""><i class="la la-money"></i>Applied Internship</a></li> -->
 								<li><a href="{{route('company.resumes')}}" title=""><i class="la la-paper-plane"></i>Resumes</a></li>

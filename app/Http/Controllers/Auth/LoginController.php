@@ -45,10 +45,8 @@ class LoginController extends Controller
         //dd($user);
         if($user->role=='student'){
             return redirect()->route('student.home') ;
-        }elseif($user->role=='company'){
+        }elseif($user->role=='corporate'){
             return redirect()->route('company.home') ;
-        }else{
-            return redirect()->route('university.home') ;
         }
     }
 

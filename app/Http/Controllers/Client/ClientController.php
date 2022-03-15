@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Client;
 
 use App\Models\Post;
+use App\Models\Corporate;
+use App\Models\Intenship;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -24,16 +26,6 @@ class ClientController extends Controller
             return redirect() ->route('student.home');
         }
 
-        if($user->role == 'company'){
-            //return 'Company Home';
-            return redirect() ->route('company.home');
-        }
-
-        if($user->role == 'university'){
-            //return 'University Home';
-            return redirect() ->route('university.home');
-        }
-
         if($user->role == 'corporate'){
             //return 'University Home';
             return redirect() ->route('company.home');
@@ -43,9 +35,13 @@ class ClientController extends Controller
     }
     public function home(Request $request)
     {
-        //$value = $request->cookie('subscription');
-        //dd(request()->cookie() );
-        return view('client.pages.home');
+        $internships = Intenship::orderby('created_at','desc')
+                                ->where('status',true)
+                                ->where('approved',true)
+                                ->get();
+
+        $corporates = Corporate::orderby('created_at','desc')->get();
+        return view('client.pages.home')->with('internships',$internships)->with('corporates',$corporates);
     }
 
     public function blogs()

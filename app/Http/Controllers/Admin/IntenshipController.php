@@ -28,12 +28,36 @@ class IntenshipController extends Controller
             })
             ->addColumn('action',function($data){
                 $link = '<div class="d-flex">'.
-                            '<a href="'.route('intenship.edit',$data->id).'" class="mr-2"><small>Edit</small></a>'.
-                            '<a href="javascript:void(0);" id="'.$data->id.'" class="delete"><small>Delete</small></a>'.
+                            '<a href="'.route('internship.edit',$data->id).'" class="badge badge-info mr-2"><small>Edit</small></a>'.
+                            '<a href="javascript:void(0);" id="'.$data->id.'" class="badge badge-secondary delete"><small>Delete</small></a>'.
                         '</div>';
                 return $link;
             })
-            ->rawColumns(['action'])
+            ->addColumn('meta',function(Intenship $intenship){
+                return '<div class="media">
+                            <img src="'.$intenship->corporate->avatar.'" height="40" class="mr-3 align-self-center rounded" alt="...">
+                            <div class="media-body align-self-center"> 
+                                <a  class="m-0 d-block font-weight-semibold font-13">'.$intenship->corporate->title.'</a>
+                                <a  class="font-12 text-primary">'.$intenship->corporate->email.'</a>                                                                                           
+                            </div><!--end media body-->
+                        </div>';
+
+            })
+            ->addColumn('status',function(Intenship $intenship){
+                if($intenship->status == true){
+                    return '<span  class="badge badge-soft-success"><small>Open</small></span>';
+                }else{
+                    return '<span  class="badge badge-soft-danger"><small>Closed</small></span>';
+                }
+            })
+            ->addColumn('approved',function(Intenship $intenship){
+                if($intenship->approved == true){
+                    return '<span  class="badge badge-soft-success"><small>Approved</small></span>';
+                }else{
+                    return '<span  class="badge badge-soft-danger"><small>Draft</small></span>';
+                }
+            })
+            ->rawColumns(['action','meta','status','approved'])
             ->make(true);
 
 
@@ -85,16 +109,11 @@ class IntenshipController extends Controller
 
     public function update(Request $request, $id)
     {
-
-        $validate = $request->validate([
-            'name' => 'required'
-        ]);
-
         $intenship = Intenship::findOrFail($id);
-        $intenship->name = $request->name;
+        $intenship->approved = $request->approved;
         $intenship->save();
 
-        return redirect()->route('intenship.index')
+        return redirect()->route('internship.index')
         ->with([
             'message'    =>'Intenship Updated Successfully',
             'alert-type' => 'success',
