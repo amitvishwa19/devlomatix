@@ -26,19 +26,25 @@
 
 <section>
 	<div class="block no-padding">
-		<div class="container">
+		<div class="container-fluid">
 			<div class="row no-gape">
-				<aside class="col-lg-3 column border-right">
+				<aside class="col-lg-2 column border-right">
 					<div class="widget">
 						<div class="tree_widget-sec">
 							<ul>
-								<li><a href="candidates_profile.html" title=""><i class="la la-file-text"></i>My Profile</a></li>
-								<li><a href="candidates_my_resume.html" title=""><i class="la la-briefcase"></i>My Resume</a></li>
-								<li><a href="candidates_shortlist.html" title=""><i class="la la-money"></i>Shorlisted Internships</a></li>
-								<li><a href="candidates_applied_jobs.html" title=""><i class="la la-paper-plane"></i>Applied Interships</a></li>
-								<li><a href="candidates_cv_cover_letter.html" title=""><i class="la la-file-text"></i>Cover Letter</a></li>
-								<li><a href="candidates_change_password.html" title=""><i class="la la-flash"></i>Change Password</a></li>
-								<li><a href="#" title=""><i class="la la-unlink"></i>Logout</a></li>
+								<li><a href="{{route('student.home')}}" title=""><i class="la la-tachometer"></i>Dashboard</a></li>
+								<li><a href="{{route('student.profile')}}" title=""><i class="la la-file-text"></i>My Profile</a></li>
+								<li><a href="{{route('student.resume')}}" title=""><i class="la la-briefcase"></i>My Resume</a></li>
+								<li><a href="{{route('student.internships.shortlisted')}}" title=""><i class="la la-money"></i>Shorlisted Internships</a></li>
+								<li><a href="{{route('student.internships.applied')}}" title=""><i class="la la-paper-plane"></i>Applied Interships</a></li>
+								<!-- <li><a href="{{route('student.coverletter')}}" title=""><i class="la la-file-text"></i>Cover Letter</a></li> -->
+								<li><a href="{{route('student.password.management')}}" title=""><i class="la la-flash"></i>Change Password</a></li>
+								<li>
+                                    <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout').submit();"><i class="la la-unlink"></i>Logout</a>
+                                    <form id="logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
 							</ul>
 						</div>
 					</div>

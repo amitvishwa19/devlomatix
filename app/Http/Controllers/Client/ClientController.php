@@ -26,6 +26,10 @@ class ClientController extends Controller
             return redirect() ->route('student.home');
         }
 
+        if($user->role == 'student'){
+            return redirect() ->route('student.home');
+        }
+
         if($user->role == 'corporate'){
             //return 'University Home';
             return redirect() ->route('company.home');

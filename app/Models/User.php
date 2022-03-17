@@ -71,6 +71,12 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Corporate','corporate_id');
     }
 
+    public function resume()
+    {
+        //return $this->belongsTo('App\Models\Tag');
+        return $this->belongsTo('App\Models\Resume','resume_id');
+    }
+
 
 
     public function getActivitylogOptions(): LogOptions

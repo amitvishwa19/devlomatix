@@ -11,14 +11,14 @@
 				<div class="row no-gape">
 					<div class="col-lg-4 col-md-4 col-sm-12">
 						<div class="p-category">
-							<a href="#" title="">
+							<a href="{{route('student.internships.applied')}}" title="">
 								<i class="la la-briefcase"></i>
-								<span>Applied Job</span>
+								<span>Applied Internships</span>
 								<p>14 Applications</p>
 							</a>
 						</div>
 					</div>
-					<div class="col-lg-4 col-md-4 col-sm-12">
+					<!-- <div class="col-lg-4 col-md-4 col-sm-12">
 						<div class="p-category view-resume-list">
 							<a href="#" title="">
 								<i class="la la-eye"></i>
@@ -26,10 +26,19 @@
 								<p>22 View Statistic</p>
 							</a>
 						</div>
+					</div> -->
+					<div class="col-lg-4 col-md-4 col-sm-12">
+						<div class="p-category">
+							<a href="{{route('student.profile')}}" title="">
+								<i class="la la-file"></i>
+								<span>My Profile</span>
+								<p>View Profile</p>
+							</a>
+						</div>
 					</div>
 					<div class="col-lg-4 col-md-4 col-sm-12">
 						<div class="p-category">
-							<a href="#" title="">
+							<a href="{{route('student.resume')}}" title="">
 								<i class="la la-file-text "></i>
 								<span>My Resume</span>
 								<p>Create New Resume</p>
@@ -38,7 +47,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="cat-sec">
+			<!-- <div class="cat-sec">
 				<div class="row no-gape">
 					<div class="col-lg-4 col-md-4 col-sm-12">
 						<div class="p-category">
@@ -60,7 +69,7 @@
 					</div>
 					<div class="col-lg-4 col-md-4 col-sm-12">
 						<div class="p-category">
-							<a href="#" title="">
+							<a href="{{route('student.profile')}}" title="">
 								<i class="la la-file"></i>
 								<span>My Profile</span>
 								<p>View Profile</p>
@@ -68,7 +77,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 	</div>

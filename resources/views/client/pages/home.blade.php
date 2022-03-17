@@ -272,15 +272,19 @@
 							<h2>Companies/Universities We've Helped</h2>
 							<span>Some of the companies/Universities we've helped recruit excellent applicants over the years.</span>
 						</div><!-- Heading -->
-
 						<div class="comp-sec">
+
 							@foreach($corporates as $corporate)
-								<div class="company-img">
-									<span title=""><img src="{{$corporate->avatar}}" alt="" /></span>
+								<div class="company-img mr-5">
+									<span title="" class="mr-5""><img src="{{$corporate->avatar}}" alt="" /></span>
 								</div><!-- Client  -->
 							@endforeach	
-						</div>
 
+							<div class="company-img">
+								<a href="#" title=""><img src="{{asset('public/client/images/resource/cc1.jpg')}}" alt="" /></a>
+							</div><!-- Client  -->
+						</div>
+						
 					</div>
 				</div>
 			</div>
