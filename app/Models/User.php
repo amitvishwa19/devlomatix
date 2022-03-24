@@ -25,7 +25,8 @@ class User extends Authenticatable
         'email',
         'password',
         'status',
-        'verification_code'
+        'verification_code',
+        'google_id'
     ];
 
     /**
@@ -77,6 +78,22 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Resume','resume_id');
     }
 
+    public function favourite_internships()
+    {
+        return $this->belongsToMany('App\Models\Intenship','favourite_internships');
+    }
+
+    public function applied_internships()
+    {
+        return $this->belongsToMany('App\Models\Intenship','applied_internships');
+    }
+
+
+    public function applied_internship()
+    {
+        return $this->belongsToMany('App\Models\Intenship','applied_internships',2);
+
+    }
 
 
     public function getActivitylogOptions(): LogOptions

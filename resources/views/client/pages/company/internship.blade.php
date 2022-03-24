@@ -41,13 +41,13 @@
 				@foreach($internships as $internship)
 				<tr>
 					<td style="width:40%">
-						<div class="table-list-title">
-							<h3><a href="{{route('company.internship.view',$internship->id)}}" title="">{{$internship->title}}</a></h3>
+						<div class="table-list-title i-description">
+							<h5><a href="{{route('company.internship.view',$internship->id)}}" title="">{{$internship->title}}</a></h5>
 							<span>{{$internship->description}}</span>
 						</div>
 					</td>
 					<td>
-						<span class="applied-field ml-4">3</span>
+						<span class="applied-field ml-4">{{$internship->applied_users->count()}}</span>
 					</td>
 					<td>
 						<span>{{\Carbon\Carbon::parse($internship->start_date)->isoFormat('MMM Do YYYY')}}</span><br>

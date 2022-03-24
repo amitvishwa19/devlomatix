@@ -9,6 +9,8 @@ use App\Models\Education;
 use App\Models\Achivement;
 use App\Models\Experience;
 use Illuminate\Http\Request;
+use App\Models\AppliedInternship;
+use App\Models\FavouriteInternship;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
@@ -301,15 +303,81 @@ class StudentController extends Controller
         ]);
     }
 
+    public function add_favourite_internship($id){
+
+        //dd($id);
+        //$user = auth()->user();
+
+        
+        $user = User::findOrFail(auth()->user()->id);
+        //dd($user);
+        //$user->favourite_internship()->sync($id);
+        $favouriteInternship = New FavouriteInternship;
+        $favouriteInternship->user_id = auth()->user()->id;
+        $favouriteInternship->intenship_id = $id;
+        $favouriteInternship->save();
+
+        return redirect()->back()
+        ->with([
+            'message'    =>'Added to your favourite list',
+            'alert-type' => 'success',
+        ]);
+    }
+
+    public function delete_favourite_internship($id){
+
+        //dd($id);
+
+        $favouriteInternship = FavouriteInternship::where('intenship_id',$id);
+        $favouriteInternship->delete();
+
+
+        if($favouriteInternship){
+            return redirect()->back()
+                    ->with([
+                        'message'    =>'Shortlisted intership deleted successfully',
+                        'alert-type' => 'success',
+                    ]);
+        }
+
+    }
+
+    public function apply_internship($id){
+
+        $applied = AppliedInternship::where('intenship_id',$id)->where('user_id',auth()->user()->id)->first();
+        
+        if($applied == null){
+
+            $appliedInternship = New AppliedInternship;
+            $appliedInternship->user_id = auth()->user()->id;
+            $appliedInternship->intenship_id = $id;
+            $appliedInternship->save();
+
+            return redirect()->back()
+            ->with([
+                'message'    =>'Internship applied successfully',
+                'alert-type' => 'alert-primary',
+            ]);
+
+        }else{
+            return redirect()->back()
+            ->with([
+                'message'    =>'Dear candidate you have already applied for this Internship',
+                'alert-type' => 'alert-danger',
+            ]);
+        }
+
+        
+    }
+
 
 
     public function internships_shortlisted(){
 
         $user = auth()->user();
 
-        //dd($user->corporate->title);
-
-        return view('client.pages.student.internships')->with('user',$user);
+        $favourites = auth()->user()->favourite_internships;
+        return view('client.pages.student.internships')->with('favourites',$favourites);
     }
 
     public function internships_applied(){
@@ -318,7 +386,11 @@ class StudentController extends Controller
 
         //dd($user->corporate->title);
 
-        return view('client.pages.student.internships_applied')->with('user',$user);
+        $applied = auth()->user()->applied_internships;
+
+        //dd($favourite);
+
+        return view('client.pages.student.internships_applied')->with('applied',$applied);
     }
 
 

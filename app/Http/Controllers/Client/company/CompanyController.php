@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Category;
 use App\Models\Corporate;
 use App\Models\Intenship;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -108,15 +109,37 @@ class CompanyController extends Controller
         $this->validate($request,[
             'title' => 'required|min:5|max:255',
             'description' => 'required',
+            'duration' => 'required',
+            'stipend' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'apply_date' => 'required',
+            'opening' => 'required',
+            'state' => 'required',
+            'city' => 'required',
+            'type' => 'required',
+            'status' => 'required',
+
         ],[
             'title.required' => ' Title is required to to post new internship.',
             'description.required' => ' Description is required to to post new internship.',
+            'duration.required' => ' Please specify duration',
+            'stipend.required' => ' Please specify stipend',
+            'start_date.required' => ' Please specify start date',
+            'end_date.required' => ' Please specify end date',
+            'apply_date.required' => ' Please specify last date to apply',
+            'opening.required' => ' Please specify number of Openings',
+            'state.required' => ' Please specify State',
+            'city.required' => ' Please specify City',
+            'type.required' => ' Please specify Opening Type',
+            'status.required' => ' Please specify Status',
         ]);
 
         $internship = new Intenship;
         $internship->corporate_id = auth()->user()->corporate->id;
         $internship->user_id = auth()->user()->id;
         $internship->title = $request->title;
+        $internship->slug = Str::slug($request->title,'-');
         $internship->description = $request->description;
         $internship->requirement = $request->requirement;
         $internship->duration = $request->duration;
@@ -178,11 +201,22 @@ class CompanyController extends Controller
     }
 
 
-    public function internship_applied(){
-
-
-
+    public function applied_users(){
         return view('client.pages.company.internship_applied');
+    }
+
+    public function internship_applications($id){
+
+        $internship = Intenship::findOrFail($id);
+        return view('client.pages.company.internship_applications')->with('internship',$internship);
+    }
+
+    public function internship_user_resume($id){
+
+        $user = User::findOrFail($id);
+
+        //dd($user->resume->education);
+        return view('client.pages.company.user_resume')->with('user',$user);
     }
 
     public function resumes(){

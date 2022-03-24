@@ -37,7 +37,7 @@
                               </div>
                             @endif
 
-                            {{-- <div class="form-group">
+                            <!-- {{-- <div class="form-group">
                                 <label for="username">Username</label>
                                <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus value="{{ old('username') }}"/>
                                @if ($errors->has('username'))
@@ -45,9 +45,9 @@
                                   <strong>{{ $errors->first('username') }}</strong>
                                </span>
                                @endif
-                            </div> --}}
+                            </div> --}} -->
 
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="username">Username</label>
                                 <input type="text" class="form-control"  name="username" placeholder="Username" value="{{ old('username') }}" autofocus>
                                 @if ($errors->has('username'))
@@ -55,7 +55,7 @@
                                     <small><strong>{{ $errors->first('username') }}</strong></small>
                                 </span>
                                 @endif
-                            </div>
+                            </div> -->
 
                             <div class="form-group">
                                 <label for="email">Email Address</label>
@@ -77,7 +77,7 @@
                                @endif
                             </div>
 
-                            {{-- <div class="form-group">
+                            <div class="form-group">
                                 <label for="password">Confirm Password</label>
                                <input type="password" class="form-control" name="password_confirmation" placeholder="Enter your password" required="" />
                                @if ($errors->has('password_confirmation'))
@@ -85,7 +85,7 @@
                                   <strong>{{ $errors->first('password_confirmation') }}</strong>
                                </span>
                                @endif
-                            </div> --}}
+                            </div>
 
 
                             @captcha

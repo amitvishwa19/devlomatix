@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\CorporateRequest;
-use App\Http\Controllers\Controller;
+use App\Models\Corporate;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
-use App\Models\Corporate;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\CorporateRequest;
 
 class CorporateController extends Controller
 {
@@ -102,6 +103,7 @@ class CorporateController extends Controller
 
         $company = New Corporate;
         $company->title = $request->title;
+        $company->slug = Str::slug($request->title,'-');
         $company->description = $request->description;
         
         if(!$request->file('avatar') == null){
@@ -144,6 +146,7 @@ class CorporateController extends Controller
 
         $company = Corporate::findOrFail($id);
         $company->title = $request->title;
+        $company->slug = Str::slug($request->title,'-');
         $company->description = $request->description;
         
 

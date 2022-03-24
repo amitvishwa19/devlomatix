@@ -16,8 +16,7 @@
     <title> {{setting('app_name')}} | @yield('title')</title>
 
     <!-- vendor css -->
-    <link href="{{asset('public/admin/lib/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
-    <link href="{{asset('public/admin/lib/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
+    <link href="{{asset('public/admin/fontawsome/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{asset('public/admin/lib/ionicons/css/ionicons.min.css')}}" rel="stylesheet">
 
     <!-- DashForge CSS -->

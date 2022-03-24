@@ -33,7 +33,7 @@
 							</div>
 						</td>
 						<td>
-							<span class="applied-field">3+ Applied</span>
+							<span class="applied-field">{{$internship->applied_users->count()}} Applied</span>
 						</td>
 						<td>
 							<span>{{\Carbon\Carbon::parse($internship->start_date)->isoFormat('MMM Do YYYY')}}</span><br>

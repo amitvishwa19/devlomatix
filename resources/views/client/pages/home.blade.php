@@ -26,7 +26,7 @@
 										<div class="row">
 											<div class="col-lg-7 col-md-5 col-sm-12 col-xs-12">
 												<div class="job-field">
-													<input type="text" placeholder="Job title, keywords or company name" />
+													<input type="text" placeholder="Title, keywords or company name" />
 													<i class="la la-keyboard-o"></i>
 												</div>
 											</div>
@@ -46,10 +46,10 @@
 											</div>
 										</div>
 									</form>
-									<div class="or-browser">
+									<!-- <div class="or-browser">
 										<span>Browse job offers by</span>
 										<a href="#" title="">Category</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div class="scroll-to">
@@ -62,6 +62,7 @@
 		</div>
 	</section>
 
+	<!-- Catogories -->
 	<section id="scroll-here">
 		<div class="block">
 			<div class="container">
@@ -172,9 +173,13 @@
 							<h3>Make a Difference with Your Online Resume!</h3>
 							<span>Your resume in minutes with Internduniya resume assistant is ready!</span>
 
-							<a href="#" title="">Create an Account</a>
+							@if(Auth::user())
+							<a href="{{route('student.resume')}}" title="">Create Resume</a>
+							@else
+							<a href="{{route('register')}}" title="">Create an Account</a>
+							@endif
 
-							<a href="#" title="">Create Resume</a>
+							
 
 						</div>
 					</div>
@@ -183,6 +188,7 @@
 		</div>
 	</section>
 
+	<!-- Internships -->
 	<section>
 		<div class="block">
 			<div class="container">
@@ -197,12 +203,12 @@
 								<div class="job-listing">
 									<div class="job-title-sec">
 										<div class="c-logo p-3"> <img src="{{$internship->corporate->avatar}}" alt="" /> </div>
-										<h3 class="ml-5"><a href="#" title="">{{$internship->title}}</a></h3>
+										<h3 class="ml-5"><a href="{{route('app.detail.internship',['company'=>$internship->corporate->slug,'slug'=>$internship->slug])}}" title="">{{$internship->title}}</a></h3>
 										<span>{{$internship->corporate->title}}</span>
 									</div>
 									<span class="job-lctn"><i class="la la-map-marker"></i>{{ucFirst($internship->city)}}, {{ucFirst($internship->state)}}</span>
-									<span class="fav-job"><i class="la la-heart-o"></i></span>
-									<span class="job-is ft">{{strtoupper($internship->type)}}</span>
+									<!-- <span class="fav-job"><a href="{{route('app.student.favourite.internship',$internship->id)}}"><i class="la la-heart-o"></i></a></span> -->
+									<span class="job-is ft ml-5">{{strtoupper($internship->type)}}</span>
 								</div><!-- Job -->
 							@endforeach
 						</div>
@@ -215,8 +221,13 @@
 				</div>
 			</div>
 		</div>
-	</section>
 
+		
+	</section>
+	<!-- Internships -->
+
+
+	<!-- Reviews -->
 	<section>
 		<div class="block">
 			<div data-velocity="-.1" style="background: url(images/resource/parallax2.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible layer color light"></div><!-- PARALLAX BACKGROUND IMAGE -->
@@ -224,44 +235,29 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="heading light">
-							<h2>Kind Words From Happy Candidates</h2>
-							<span>What other people thought about the service provided by JobHunt</span>
+							<h2>Kind Words From Happy Clients & Students</h2>
+							<span>What other people thought about the service provided by InternDuniya</span>
 						</div><!-- Heading -->
 						<div class="reviews-sec" id="reviews-carousel">
+
+							@foreach($reviews as $review)
 							<div class="col-lg-6">
 								<div class="reviews">
 									<img src="images/resource/r1.jpg" alt="" />
-									<h3>Augusta Silva <span>Web designer</span></h3>
-									<p>Without JobHunt i’d be homeless, they found me a job and got me sorted out quickly with everything!  Can’t quite believe the service</p>
+									<h3>{{$review->title}} </h3>
+									<p>{!!$review->body!!}</p>
 								</div><!-- Reviews -->
 							</div>
-							<div class="col-lg-6">
-								<div class="reviews">
-									<img src="images/resource/r2.jpg" alt="" />
-									<h3>Ali Tufan <span>Web designer</span></h3>
-									<p>Without JobHunt i’d be homeless, they found me a job and got me sorted out quickly with everything!  Can’t quite believe the service</p>
-								</div><!-- Reviews -->
-							</div>
-							<div class="col-lg-6">
-								<div class="reviews">
-									<img src="images/resource/r1.jpg" alt="" />
-									<h3>Augusta Silva <span>Web designer</span></h3>
-									<p>Without JobHunt i’d be homeless, they found me a job and got me sorted out quickly with everything!  Can’t quite believe the service</p>
-								</div><!-- Reviews -->
-							</div>
-							<div class="col-lg-6">
-								<div class="reviews">
-									<img src="images/resource/r2.jpg" alt="" />
-									<h3>Ali Tufan <span>Web designer</span></h3>
-									<p>Without JobHunt i’d be homeless, they found me a job and got me sorted out quickly with everything!  Can’t quite believe the service</p>
-								</div><!-- Reviews -->
-							</div>
+							@endforeach
+							
+
 						</div>
 					</div>
 				</div>
 			</div>	
 		</div>
 	</section>
+	<!-- Reviews -->
 
 	<section>
 		<div class="block">
@@ -291,6 +287,7 @@
 		</div>
 	</section>
 
+	<!-- Blogs -->
 	<section>
 		<div class="block">
 			<div data-velocity="-.1" style="background: url({{asset('public/client/images/resource/parallax3.jpg')}}) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
@@ -303,54 +300,26 @@
 						</div><!-- Heading -->
 						<div class="blog-sec">
 							<div class="row">
-								<div class="col-lg-4">
-									<div class="my-blog">
-										<div class="blog-thumb">
-											<a href="#" title=""><img src="{{asset('public/client/images/resource/b1.jpg')}}" alt="" /></a>
-											<div class="blog-metas">
-												<a href="#" title="">March 29, 2017</a>
-												<a href="#" title="">0 Comments</a>
+
+								@foreach($blogs as $blog)
+									<div class="col-lg-4">
+										<div class="my-blog">
+											<div class="blog-thumb">
+												<a href="{{route('app.blog.detail',$blog->slug)}}" title=""><img src="{{$blog->feature_image}}" alt="" /></a>
+												<div class="blog-metas">
+													<a href="{{route('app.blog.detail',$blog->slug)}}" title="">{{\Carbon\Carbon::parse($blog->created_at)->isoFormat('MMM Do YYYY')}}</a>
+													
+												</div>
+											</div>
+											<div class="blog-details">
+												<h3><a href="{{route('app.blog.detail',$blog->slug)}}" title="">{{$blog->title}}</a></h3>
+												<p>{!!substr($blog->body, 0, 100)!!}</p>
+												<a href="{{route('app.blog.detail',$blog->slug)}}" title="">Read More <i class="la la-long-arrow-right"></i></a>
 											</div>
 										</div>
-										<div class="blog-details">
-											<h3><a href="#" title="">Attract More Attention Sales And Profits</a></h3>
-											<p>A job is a regular activity performed in exchange becoming an employee, volunteering, </p>
-											<a href="#" title="">Read More <i class="la la-long-arrow-right"></i></a>
-										</div>
 									</div>
-								</div>
-								<div class="col-lg-4">
-									<div class="my-blog">
-										<div class="blog-thumb">
-											<a href="#" title=""><img src="{{asset('public/client/images/resource/b2.jpg')}}" alt="" /></a>
-											<div class="blog-metas">
-												<a href="#" title="">March 29, 2017</a>
-												<a href="#" title="">0 Comments</a>
-											</div>
-										</div>
-										<div class="blog-details">
-											<h3><a href="#" title="">11 Tips to Help You Get New Clients</a></h3>
-											<p>A job is a regular activity performed in exchange becoming an employee, volunteering, </p>
-											<a href="#" title="">Read More <i class="la la-long-arrow-right"></i></a>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-4">
-									<div class="my-blog">
-										<div class="blog-thumb">
-											<a href="#" title=""><img src="{{asset('public/client/images/resource/b3.jpg')}}" alt="" /></a>
-											<div class="blog-metas">
-												<a href="#" title="">March 29, 2017</a>
-												<a href="#" title="">0 Comments</a>
-											</div>
-										</div>
-										<div class="blog-details">
-											<h3><a href="#" title="">An Overworked Newspaper Editor</a></h3>
-											<p>A job is a regular activity performed in exchange becoming an employee, volunteering, </p>
-											<a href="#" title="">Read More <i class="la la-long-arrow-right"></i></a>
-										</div>
-									</div>
-								</div>
+								@endforeach
+								
 							</div>
 						</div>
 					</div>
@@ -358,6 +327,7 @@
 			</div>
 		</div>
 	</section>
+	<!-- Blogs -->
 
 	<section>
 		<div class="block no-padding">

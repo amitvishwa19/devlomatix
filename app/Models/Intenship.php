@@ -15,4 +15,14 @@ class Intenship extends Model
         //return $this->belongsTo('App\Models\Tag');
         return $this->belongsTo('App\Models\Corporate','corporate_id');
     }
+
+    public function applied_user(){
+        ///return $this->belongsTo('App\Models\AppliedInternship','user_id');
+    }
+
+    public function applied_users()
+    {
+        return $this->belongsToMany('App\Models\User','applied_internships');
+    }
+
 }

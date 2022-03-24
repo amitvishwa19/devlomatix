@@ -7,6 +7,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Auth\GoogleLogin;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\ChatController;
 use App\Http\Controllers\Admin\FileController;
@@ -35,8 +36,8 @@ use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\ClassroomController;
 use App\Http\Controllers\Admin\CorporateController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\IntenshipController;
 
+use App\Http\Controllers\Admin\IntenshipController;
 use App\Http\Controllers\Admin\AutoDeployController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ActivityLogController;
@@ -80,6 +81,14 @@ Route::get('/news/{slug}', [ClientController::class, 'blog'])->name('app.blog');
 Route::get('/dashboard', [ClientController::class, 'dashboard'])->name('app.user.dashboard');
 
 
+Route::get('/internship/{company}/{slug}', [ClientController::class, 'detail_internship'])->name('app.detail.internship');
+Route::get('/blog/{slug}', [ClientController::class, 'blog_detail'])->name('app.blog.detail');
+
+
+Route::get('/terms', [ClientController::class, 'terms'])->name('app.terms');
+Route::get('/privacy', [ClientController::class, 'privacy'])->name('app.privacy');
+
+
 //Student
 //Route::prefix('/student')->middleware(['student','auth'])->group(base_path('routes/student.php'));
 Route::group(['middleware'=>['auth','student'],'prefix'=>'student'],function(){
@@ -118,6 +127,12 @@ Route::group(['middleware'=>['auth','student'],'prefix'=>'student'],function(){
     Route::get('/resume/achivement/edit/{id}', [StudentController::class, 'resume_achivement_edit'])->name('student.resume.achivement.edit');
     Route::put('/resume/achivement/{id}/update', [StudentController::class, 'resume_achivement_update'])->name('student.resume.achivement.update');
 
+    Route::get('/internship/favorite/add/{id}', [StudentController::class, 'add_favourite_internship'])->name('app.student.favourite.internship');
+    Route::get('/internship/favorite/delete/{id}', [StudentController::class, 'delete_favourite_internship'])->name('app.student.favourite.internship.delete');
+
+    Route::get('/internship/apply/add/{id}', [StudentController::class, 'apply_internship'])->name('app.student.apply.internship');
+
+
     Route::get('/internships/shortlisted', [StudentController::class, 'internships_shortlisted'])->name('student.internships.shortlisted');
     Route::get('/internships/applied', [StudentController::class, 'internships_applied'])->name('student.internships.applied');
 
@@ -149,7 +164,9 @@ Route::group(['middleware'=>['auth', 'corporate'],'prefix'=>'corporate'],functio
     Route::post('/internship/new/add', [CompanyController::class, 'internship_new_add'])->name('company.internship.new.add');
     Route::get('/internship/delete/{id}', [CompanyController::class, 'internship_delete'])->name('company.internship.delete');
 
-    Route::get('/internship/applied', [CompanyController::class, 'internship_applied'])->name('company.internship.applied');
+    Route::get('/internship/{id}/applications', [CompanyController::class, 'internship_applications'])->name('company.internship.applications');
+    Route::get('/internship/user/{id}', [CompanyController::class, 'internship_user_resume'])->name('company.internship.user.resume');
+    
 
     Route::get('/resumes', [CompanyController::class, 'resumes'])->name('company.resumes');
     Route::get('/password_management', [CompanyController::class, 'password_management'])->name('company.password.management');
@@ -166,6 +183,8 @@ Route::group(['middleware'=>['auth', 'corporate'],'prefix'=>'corporate'],functio
 
 
 Auth::routes();
+Route::get('/auth/google', [GoogleLogin::class, 'redirectToGoogle'])->name('app.auth.google.login');
+Route::get('/auth/google/callback', [GoogleLogin::class, 'handleGoogleCallback'])->name('app.auth.google.callback');
 
 Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
 

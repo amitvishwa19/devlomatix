@@ -54,6 +54,7 @@
 
 /*=============== Fonts ===================*/
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300i,400,400i,600,600i,700,700i,800,800i|Quicksand:300,400,500,700');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 /*=============== General Styling ===================*/
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
@@ -97,7 +98,7 @@ html{overflow-x:hidden}
 body{
     color:#555555;
     letter-spacing:0;
-    font-family:'Open Sans', sans-serif;;
+    font-family:'Roboto', sans-serif;
     overflow-x:hidden;
     position:relative;
 
@@ -108,7 +109,7 @@ button,a,input[type="submit"], input[type="button"]{
 *{outline:none!important}
 h1, h2, h3, h4, h5, h6{
     margin-bottom:20px;
-    font-family:'Quicksand', serif !important;
+    font-family:'Roboto', sans-serif !important;
 }
 h1{font-size:36px}
 h2{font-size:32px}
@@ -1474,7 +1475,7 @@ label::after {
 .job-title-sec {
     display: table-cell;
     vertical-align: middle;
-    width: 60%;
+    width: 90%;
 }
 .c-logo {
     float: left;
@@ -3677,7 +3678,7 @@ header.style4 .menu-sec nav > ul > li.menu-item-has-children > a::before {
 }
 .job-listing.wtabs .job-title-sec {
     float: left;
-    width: 70%;
+    width: 95%;
 }
 .job-listing.wtabs .job-title-sec > span {
     color: #1e83f0;
@@ -11859,4 +11860,25 @@ header.style4 .account-btns > li a,
     background: none !important;
     margin-top: 0px !important;
     font-size: 24px !important;
+}
+
+.i-description{
+    color: #888888;
+}
+
+.i-description h5{
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    color: #23c0e9;
+}
+
+.favourite{
+    float: left;
+    font-size: 26px;
+    color: #B8B8B8;
+    margin: 1px 0;
+    margin-left: 18px;
+    margin-top: -2px;
+    color: red;
 }

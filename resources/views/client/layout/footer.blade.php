@@ -2,11 +2,11 @@
 		<div class="block">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-3 column">
+					<div class="col-lg-4 column">
 						<div class="widget">
 							<div class="about_widget">
 								<div class="logo">
-									<a href="index.html" title=""><img src="images/resource/logo.png" alt="" /></a>
+									<a href="index.html" title=""><img src="{{asset('public/client/images/logo/internduniya.png')}}" alt="" /></a>
 								</div>
 								<span>CoHarni Road, Vadodara 390022, India.</span>
 								<span>+1 1111-111-111</span>
@@ -23,16 +23,16 @@
 					</div>
 					<div class="col-lg-4 column">
 						<div class="widget">
-							<h3 class="footer-title">Frequently Asked Questions</h3>
+							<!-- <h3 class="footer-title">Frequently Asked Questions</h3> -->
 							<div class="link_widgets">
 								<div class="row">
 									<div class="col-lg-6">
-										<a href="#" title="">Privacy & Seurty </a>
-										<a href="#" title="">Terms of Serice</a>
-										<a href="#" title="">Communications </a>
+										<a href="{{route('app.privacy')}}" title="">Privacy & Seurty </a>
+										<a href="{{route('app.terms')}}" title="">Terms of Serice</a>
+										<!-- <a href="#" title="">Communications </a>
 										<a href="#" title="">Referral Terms </a>
 										<a href="#" title="">Lending Licnses </a>
-										<a href="#" title="">Disclaimers </a>	
+										<a href="#" title="">Disclaimers </a>	 -->
 									</div>
 									<div class="col-lg-6">
 										<a href="#" title="">Support </a>
@@ -47,7 +47,7 @@
 					</div>
 					<div class="col-lg-2 column">
 						<div class="widget">
-							<h3 class="footer-title">Find Jobs</h3>
+							<h3 class="footer-title">Find Internships</h3>
 							<div class="link_widgets">
 								<div class="row">
 									<div class="col-lg-12">
@@ -62,11 +62,11 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-3 column">
+					<div class="col-lg-2 column">
 						<div class="widget">
 							<div class="download_widget">
-								<a href="#" title=""><img src="images/resource/dw1.png" alt="" /></a>
-								<a href="#" title=""><img src="images/resource/dw2.png" alt="" /></a>
+								<a href="#" title=""><img src="{{asset('public/client/images/resource/dw1.png')}}" alt="" /></a>
+								<a href="#" title=""><img src="{{asset('public/client/images/resource/dw2.png')}}" alt="" /></a>
 							</div>
 						</div>
 					</div>

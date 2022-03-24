@@ -92,15 +92,26 @@
                                @endif
 
                             </div>
+                           
+
                             @captcha
                             <div>
                                <button class="btn btn-primary btn-login submit btn-sm pull-left form-control" style="margin-top: 5px;">Sign In</button>
                             </div>
 
+                            <div class="mb-2">
+                               <a href="{{route('app.auth.google.login')}}" class="btn btn-primary btn-login submit btn-sm pull-left form-control" style="margin-top: 5px;">
+                                <i class="fa fa-google mr-2 mt-2" style="color:#E34133" aria-hidden="true"></i>
+                                <span style="color:#fff">Login with Google</span>
+                              </a>
+                            </div>
+
+                            
+
                         </form>
 
                         <div class="clearfix"></div>
-                        <div class="separator">
+                        <div class="separator mt-2">
                             <p class="change_link">New to site?
                                 <a href="{{ route('register') }}" class="to_register"> Create Account </a>
                             </p>

@@ -7,7 +7,7 @@
 <div class="col-lg-10 column">
 	<div class="padding-left">
 		<div class="manage-jobs-sec addscroll">
-			<h3>Applied Internship</h3>
+			<h3>Applied Users</h3>
 			
 
           
