@@ -144,7 +144,7 @@ class ClientController extends Controller
         ]);
     }
 
-    public function detail_internship($id){
+    public function detail_internship($id,$slug){
 
         //dd($id);
         $internship = Intenship::findOrFail($id);
