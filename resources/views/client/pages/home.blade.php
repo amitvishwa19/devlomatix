@@ -203,7 +203,7 @@
 								<div class="job-listing">
 									<div class="job-title-sec">
 										<div class="c-logo p-3"> <img src="{{$internship->corporate->avatar}}" alt="" /> </div>
-										<h3 class="ml-5"><a href="{{route('app.internship.detail',$internship->id)}}" title="">{{$internship->title}}</a></h3>
+										<h3 class="ml-5"><a href="{{route('app.internship.detail',['id'=>$internship->id,'slug'=>$internship->slug])}}" title="">{{$internship->title}}</a></h3>
 										<span>{{$internship->corporate->title}}</span>
 									</div>
 									<span class="job-lctn"><i class="la la-map-marker"></i>{{ucFirst($internship->city)}}, {{ucFirst($internship->state)}}</span>
