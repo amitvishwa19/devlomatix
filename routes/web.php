@@ -81,7 +81,7 @@ Route::get('/news/{slug}', [ClientController::class, 'blog'])->name('app.blog');
 Route::get('/dashboard', [ClientController::class, 'dashboard'])->name('app.user.dashboard');
 
 
-Route::get('/internship/{company}/{slug}', [ClientController::class, 'detail_internship'])->name('app.detail.internship');
+//Route::get('/internship/{company}/{slug}', [ClientController::class, 'detail_internship'])->name('app.detail.internship');
 Route::get('/blog/{slug}', [ClientController::class, 'blog_detail'])->name('app.blog.detail');
 
 
