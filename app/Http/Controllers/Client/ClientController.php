@@ -144,11 +144,13 @@ class ClientController extends Controller
         ]);
     }
 
-    public function detail_internship($corporate,$slug){
+    public function detail_internship($id){
 
-        $internship = Intenship::where('slug',$slug)->first();
+        //dd($id);
+        $internship = Intenship::findOrFail($id);
+        //$internship = Intenship::where('slug',$slug)->first();
         
-        return view('client.pages.internship_details')->with('internship', $internship);
+        return view('client.pages.internship_details')->with('internship',$internship);
     }
 
     public function cookie_consent()
