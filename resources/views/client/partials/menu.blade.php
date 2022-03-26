@@ -163,9 +163,9 @@
                         <a href="{{route('app.user.dashboard')}}" title=""></i>Dashboard</a>
                     </li>
 
-                    <li class="">
+                    <!-- <li class="">
                         <a title=""></i>{{auth()->user()->firstName}}, {{auth()->user()->lastName}}</a>
-                    </li>
+                    </li> -->
 
                     <li class="">
                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout').submit();"><i class="la la-external-link-square"></i> Logout</a>

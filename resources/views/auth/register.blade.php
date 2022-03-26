@@ -6,7 +6,7 @@
     <div class="login-page">
         <div class="row">
             <div class="col-9 d-none d-sm-block d-sm-none left-area">
-                <img src="https://miro.medium.com/max/2625/1*qAX1633WKgkCBjW-7BICCA.jpeg" alt="">
+                <img src="{{setting('auth_image_url')}}" alt="">
             </div>
 
             <div class="col-lg-3 col-sm-12  right-area">
@@ -14,7 +14,7 @@
                 <div class="login-content">
                     <div class="brand-logo">
                         <a href="{{route('app.home')}}">
-                            <img src="{{asset('public/admin/assets/1598601943DZ-Logo Orange-black.png')}}" alt="" style="width: 150px;">
+                            <img src="{{setting('app_icon')}}" alt="" style="width: 150px;">
                          </a>
                     </div>
 
@@ -37,25 +37,12 @@
                               </div>
                             @endif
 
-                            <!-- {{-- <div class="form-group">
-                                <label for="username">Username</label>
-                               <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus value="{{ old('username') }}"/>
-                               @if ($errors->has('username'))
-                               <span class="help-block">
-                                  <strong>{{ $errors->first('username') }}</strong>
-                               </span>
-                               @endif
-                            </div> --}} -->
+                            <input type="hidden" value="student" id="type" name="type">
 
-                            <!-- <div class="form-group">
-                                <label for="username">Username</label>
-                                <input type="text" class="form-control"  name="username" placeholder="Username" value="{{ old('username') }}" autofocus>
-                                @if ($errors->has('username'))
-                                <span class="help-block">
-                                    <small><strong>{{ $errors->first('username') }}</strong></small>
-                                </span>
-                                @endif
-                            </div> -->
+                            <div class="btn-group btn-block">
+                                <button type="button" class="studentbtn btn btn-sm btn-outline-secondary active">Student</button>
+                                <button type="button" class="corporatebtn btn btn-sm btn-outline-secondary">Corporate</button>
+                            </div>
 
                             <div class="form-group">
                                 <label for="email">Email Address</label>
@@ -114,4 +101,33 @@
             </div>
         </div>
     </div>
+@endsection
+
+
+@section('javascript')
+
+
+  	<script>
+  		$(function(){
+         'use strict'
+
+            
+
+            $(".studentbtn").click(function() { 
+                $(this).addClass("active");
+                $('.corporatebtn').removeClass("active");
+                $('#type').attr('value', 'student')
+            });
+
+            $(".corporatebtn").click(function() { 
+                $(this).addClass("active");
+                $('.studentbtn').removeClass("active");
+                $('#type').attr('value', 'corporate')
+            });
+
+
+
+      });
+  	</script>
+
 @endsection

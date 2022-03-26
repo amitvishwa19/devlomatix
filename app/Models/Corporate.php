@@ -9,5 +9,8 @@ class Corporate extends Model
 {
     use HasFactory;
 
-
+    public function internships()
+    {
+        return $this->hasMany('App\Models\Intenship');
+    }
 }

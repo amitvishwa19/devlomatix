@@ -15,13 +15,22 @@ class CompanyController extends Controller
 {
     public function home(){
 
-        $total_internship = Intenship::count();
-        $active_internship = Intenship::where('status',true)->count();
+        $total_internship = auth()->user()->corporate->internships->count();
+        $active_internship = auth()->user()->corporate->internships->where('status',true)->count();
+        $internships = auth()->user()->corporate->internships;
 
-        $internships = Intenship::orderby('created_at','desc')->get();
+        $applications = null;
+
+        foreach($internships as $internship){
+            $applications += $internship->applied_users->count();
+        }
+
+
+        $internships = auth()->user()->corporate->internships;
         return view('client.pages.company.dashboard')
                     ->with('internships',$internships)
                     ->with('total_internship',$total_internship)
+                    ->with('applications',$applications)
                     ->with('active_internship',$active_internship);
     }
 
@@ -72,7 +81,9 @@ class CompanyController extends Controller
     public function internship(){
 
         $internships = Intenship::orderby('created_at','desc')->get();
-        //dd($internship);
+
+        $internships = auth()->user()->corporate->internships;
+        //dd($user);
 
         return view('client.pages.company.internship')->with('internships',$internships);
     }
@@ -114,7 +125,7 @@ class CompanyController extends Controller
             'start_date' => 'required',
             'end_date' => 'required',
             'apply_date' => 'required',
-            'opening' => 'required',
+            'total_opening' => 'required',
             'state' => 'required',
             'city' => 'required',
             'type' => 'required',
@@ -128,7 +139,7 @@ class CompanyController extends Controller
             'start_date.required' => ' Please specify start date',
             'end_date.required' => ' Please specify end date',
             'apply_date.required' => ' Please specify last date to apply',
-            'opening.required' => ' Please specify number of Openings',
+            'total_opening.required' => ' Please specify number of Openings',
             'state.required' => ' Please specify State',
             'city.required' => ' Please specify City',
             'type.required' => ' Please specify Opening Type',

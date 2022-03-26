@@ -32,8 +32,8 @@
 
 
 
-    <!-- <script src="../../lib/jquery/jquery.min.js"></script>
-    <script src="../../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('public/admin/assets/js/jquery.min.js')}}"></script>
+    <!-- <script src="../../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../lib/feather-icons/feather.min.js"></script>
     <script src="../../lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 
@@ -42,6 +42,8 @@
     append theme customizer
     <script src="../../lib/js-cookie/js.cookie.js"></script>
     <script src="../../assets/js/dashforge.settings.js"></script> -->
+
+    @yield('javascript')
 
   </body>
 </html>

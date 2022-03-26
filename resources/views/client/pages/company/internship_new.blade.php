@@ -54,49 +54,49 @@
                 <div class="col-lg-12">
                     <span class="pf-title">Internship Requirements</span>
                     <div class="pf-field">
-                    <textarea name="requirement"></textarea>
+                    <textarea name="requirement">{{old('requirement')}}</textarea>
                     </div>
                 </div>
 
                 <div class="col-lg-6">
                     <span class="pf-title">Duration(days)</span>
                     <div class="pf-field">
-                        <input type="text" name="duration">
+                        <input type="text" name="duration" value="{{old('duration')}}">
                     </div>
                 </div>
 
                 <div class="col-lg-6">
                     <span class="pf-title">Stipend</span>
                     <div class="pf-field">
-                        <input type="text" name="stipend">
+                        <input type="text" name="stipend" value="{{old('stipend')}}">
                     </div>
                 </div>
 
                 <div class="col-lg-6">
                     <span class="pf-title">Start Date</span>
                     <div class="pf-field">
-                        <input type="date" name="start_date">
+                        <input type="date" name="start_date" value="{{old('start_date')}}">
                     </div>
                 </div>
 
                 <div class="col-lg-6">
                     <span class="pf-title">End Date</span>
                     <div class="pf-field">
-                        <input type="date" name="end_date">
+                        <input type="date" name="end_date" value="{{old('end_date')}}">
                     </div>
                 </div>
 
                 <div class="col-lg-6">
                     <span class="pf-title">Last Apply Date</span>
                     <div class="pf-field">
-                        <input type="date" name="apply_date">
+                        <input type="date" name="apply_date" value="{{old('apply_date')}}">
                     </div>
                 </div>
 
                 <div class="col-lg-6">
                     <span class="pf-title">Number of openings</span>
                     <div class="pf-field">
-                        <input type="number" name="total_opening">
+                        <input type="number" name="total_opening" value="{{old('total_opening')}}">
                     </div>
                 </div>
 

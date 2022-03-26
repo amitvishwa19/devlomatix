@@ -9,7 +9,7 @@
 			<h3>Dashboard</h3>
 			<div class="extra-job-info">
 				<span><i class="la la-clock-o"></i><strong>{{$total_internship}}</strong> Internship Posted</span>
-				<span><i class="la la-file-text"></i><strong>20</strong> Application</span>
+				<span><i class="la la-file-text"></i><strong>{{$applications}}</strong> Application</span>
 				<span><i class="la la-users"></i><strong>{{$active_internship}}</strong> Active Internship</span>
 			</div>
 			<table>

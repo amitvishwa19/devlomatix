@@ -24,14 +24,14 @@
                     @endif
 
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-3">
                             <span class="pf-title">First Name</span>
                             <div class="pf-field">
                                 <input type="text" name="firstname" value="{{ !$resume == null ? $resume->firstname : ""}}">
                             </div>
                         </div>
                         
-                        <div class="col-lg-6">
+                        <div class="col-lg-3">
                             <span class="pf-title">Last Name</span>
                             <div class="pf-field">
                                 <input type="text" name="lastname" value="{{ !$resume == null ? $resume->lastname : ""}}">
@@ -53,6 +53,18 @@
                             <span class="pf-title">Website</span>
                             <div class="pf-field">
                                 <input type="text" name="website" value="{{ !$resume == null ? $resume->website : ""}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <span class="pf-title">City</span>
+                            <div class="pf-field">
+                                <input type="text" name="city" value="{{ !$resume == null ? $resume->city : ""}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <span class="pf-title">State</span>
+                            <div class="pf-field">
+                                <input type="text" name="state" value="{{ !$resume == null ? $resume->state : ""}}">
                             </div>
                         </div>
                         <div class="col-lg-3">

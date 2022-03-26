@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Models\Resume;
+use App\Models\Corporate;
+use Illuminate\Http\Request;
 use App\Events\RegisterEvent;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -79,14 +81,38 @@ class RegisterController extends Controller
 
     public function register(Request $request){
 
+        //dd($request->type);
+
         $user = new User();
         $user->username = $request->username;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->verification_code = sha1(time());
         $user->type = 'user';
-        $user->role = 'student';
+        if($request->type == 'student'){
+            $user->role = 'student';
+        }else{
+            $user->role = 'corporate';
+        }
         $user->save();
+
+        if($request->type == 'student'){
+            $resume = new Resume;
+            $resume->user_id = $user->id;
+            $resume->save();
+
+            $user = User::findOrFail($user->id);
+            $user->resume_id = $resume->id;
+            $user->save();
+        }else{
+            $corporate = new Corporate;
+            $corporate->user_id = $user->id;
+            $corporate->save();
+
+            $user = User::findOrFail($user->id);
+            $user->corporate_id = $corporate->id;
+            $user->save();
+        }
 
 
         if($user != null){

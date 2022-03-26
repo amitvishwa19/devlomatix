@@ -16,7 +16,7 @@ class CreatecorporatesTable extends Migration
         Schema::create('corporates', function (Blueprint $table) {
 
             $table->id();
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->string('avatar')->nullable();
             $table->integer('employees')->nullable();

@@ -45,6 +45,8 @@ class StudentController extends Controller
             'email'     => $request->email,
             'mobile'     => $request->mobile,
             'website'     => $request->website,
+            'city'     => $request->city,
+            'state'     => $request->state,
             'post_code'     => $request->post_code,
             'address'     => $request->address,
         ]); 
@@ -308,20 +310,31 @@ class StudentController extends Controller
         //dd($id);
         //$user = auth()->user();
 
-        
+        $favourite = FavouriteInternship::where('intenship_id',$id)->where('user_id',auth()->user()->id)->first();
+
         $user = User::findOrFail(auth()->user()->id);
         //dd($user);
         //$user->favourite_internship()->sync($id);
-        $favouriteInternship = New FavouriteInternship;
-        $favouriteInternship->user_id = auth()->user()->id;
-        $favouriteInternship->intenship_id = $id;
-        $favouriteInternship->save();
+        if($favourite == null){
+            $favouriteInternship = New FavouriteInternship;
+            $favouriteInternship->user_id = auth()->user()->id;
+            $favouriteInternship->intenship_id = $id;
+            $favouriteInternship->save();
 
-        return redirect()->back()
-        ->with([
-            'message'    =>'Added to your favourite list',
-            'alert-type' => 'success',
-        ]);
+            return redirect()->back()
+            ->with([
+                'message'    =>'Added to your favourite list',
+                'alert-type' => 'success',
+            ]);
+        }else{
+            return redirect()->back()
+            ->with([
+                'message'    =>'Dear candidate you have already add in favourite list',
+                'alert-type' => 'alert-danger',
+            ]);
+        }
+
+        
     }
 
     public function delete_favourite_internship($id){
@@ -343,6 +356,15 @@ class StudentController extends Controller
     }
 
     public function apply_internship($id){
+
+        $resume = auth()->user()->resume; 
+        if($resume->firstname == null || $resume->lastname == null || $resume->email == null || $resume->mobile == null){
+            return redirect()->back()
+            ->with([
+                'message'    =>'Dear candidate please complete your profile to apply for this Internship',
+                'alert-type' => 'alert-danger',
+            ]);
+        }
 
         $applied = AppliedInternship::where('intenship_id',$id)->where('user_id',auth()->user()->id)->first();
         

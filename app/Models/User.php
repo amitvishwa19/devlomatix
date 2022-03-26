@@ -26,7 +26,11 @@ class User extends Authenticatable
         'password',
         'status',
         'verification_code',
-        'google_id'
+        'google_id',
+        'avatar_url',
+        'role',
+        'resume_id',
+        'corporate_id'
     ];
 
     /**

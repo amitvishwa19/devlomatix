@@ -25,11 +25,12 @@
 		</div>
 		@endif
 
+		@if($internships->count() > 0)
 		<table>
 			<thead>
 				<tr>
 					<td>Title</td>
-					<td>Positions</td>
+					<td>Applications</td>
 					<td>Created &amp; Expired</td>
 					<td>Status</td>
 					<td>Action</td>
@@ -71,6 +72,11 @@
 
 			</tbody>
 		</table>
+		@else
+			<div class="alert alert-primary alert-dismissible fade show mt-2 m-4" role="alert">
+				No Internship found ! Post your first internship <a href="{{route('company.internship.new')}}">Here</a>
+			</div>
+		@endif
     </div>
 
 </div>

@@ -80591,8 +80591,12 @@ button.bg-twitter:focus,
 }
 
 .login-page .right-area .login-content .login-form button {
-  color: #fff !important;
+  
   margin-bottom: 10px;
+}
+
+.studentbtn:focus{
+  outline: none !important;
 }
 
 .info-widget .card {

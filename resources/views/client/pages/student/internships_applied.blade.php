@@ -38,7 +38,7 @@
                         <div class="job-listing wtabs col-md-12">
                             <div class="job-title-sec">
                                 <div class="c-logo mr-4"> <img src="{{$apply->corporate->avatar}}" alt=""> </div>
-                                <h3><a href="{{route('app.detail.internship',['company'=>$apply->corporate->slug,'slug'=>$apply->slug])}}" title="">{{$apply->title}}</a></h3>
+                                <h3><a href="{{route('app.internship.detail',$apply->id)}}" title="">{{$apply->title}}</a></h3>
                                 <span>{{$apply->corporate->title}}</span>
                                 <div class="job-lctn">{{\Carbon\Carbon::parse($apply->created_at)->isoFormat('MMM Do YYYY')}}</div>
                             </div>

@@ -82,7 +82,7 @@
                         </div>
 
                         <div class="col-lg-12">
-                            <span class="pf-title">Avatar</span>
+                            <span class="pf-title">Corporate Logo</span>
                             <div class="upload-img-bar">
                                 <span><img src="{{$user->corporate->avatar}}" alt=""><i>x</i></span>
                                 <div class="upload-info">
