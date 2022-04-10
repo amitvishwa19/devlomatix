@@ -85,6 +85,18 @@
             <hr class="hr-dashed hr-menu">
 
             <li>
+                <a href="{{route('client.index')}}">
+                    <i data-feather="users" class="align-self-center menu-icon"></i><span>Clients</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="{{route('project.index')}}">
+                    <i data-feather="layers" class="align-self-center menu-icon"></i><span>Projects</span>
+                </a>
+            </li>
+
+            <li>
                 <a href="{{route('task.index')}}">
                     <i data-feather="check-square" class="align-self-center menu-icon"></i><span>Tasks</span>
                 </a>
@@ -96,17 +108,9 @@
                 </a>
             </li>
 
-            <li>
-                <a href="{{route('client.index')}}">
-                    <i data-feather="users" class="align-self-center menu-icon"></i><span>Clients</span>
-                </a>
-            </li>
+            
 
-            <li>
-                <a href="{{route('project.index')}}">
-                    <i data-feather="layers" class="align-self-center menu-icon"></i><span>Projects</span>
-                </a>
-            </li>
+            
 
 
 
