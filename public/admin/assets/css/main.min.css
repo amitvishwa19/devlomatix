@@ -1018,10 +1018,23 @@ body.dark-sidenav.navy-sidenav .left-sidenav .left-sidenav-menu li.mm-active .na
 body.dark-sidenav.navy-sidenav .left-sidenav .left-sidenav-menu li.mm-active .mm-active .mm-show li a.active {
     color: #f7f8f9;
 }
+
+
+
+
+
+
+
+
+
+
+
 html {
     position: relative;
     min-height: 100%;
 }
+
+
 body {
     margin: 0;
     overflow-x: hidden !important;
@@ -1061,10 +1074,7 @@ h3 {
 h4 {
     line-height: 22px;
 }
-a {
-    font-family: "Roboto", sans-serif;
-    color: #303e67;
-}
+
 a:hover,
 a:active,
 a:focus {
@@ -1108,13 +1118,7 @@ hr.hr-dashed {
     box-sizing: content-box;
     height: 0;
     overflow: visible;
-} /*!
- * Waves v0.7.6
- * http://fian.my.id/Waves
- *
- * Copyright 2014-2018 Alfiana E. Sibuea and other contributors
- * Released under the MIT license
- * https://github.com/fians/Waves/blob/master/LICENSE */
+} 
 .waves-effect {
     position: relative;
     cursor: pointer;

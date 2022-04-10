@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\ProfileRequest;
-use App\Http\Controllers\Controller;
+use Exception;
+use App\Models\User;
+use Facebook\Facebook;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
-use App\Models\Profile;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ProfileRequest;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
 {
@@ -15,107 +21,59 @@ class ProfileController extends Controller
 
     }
 
-    public function index(Request $request)
-    {
-
-
-        if ($request->ajax()) {
-            $profiles = Profile::orderby('created_at','desc')->latest('id');
-
-            return Datatables::of($profiles)
-            ->editColumn('created_at',function(Profile $profile){
-                return $profile->created_at->diffForHumans();
-            })
-            ->addColumn('action',function($data){
-                $link = '<div class="d-flex">'.
-                            '<a href="'.route('profile.edit',$data->id).'" class="mr-2"><small>Edit</small></a>'.
-                            '<a href="javascript:void(0);" id="'.$data->id.'" class="delete"><small>Delete</small></a>'.
-                        '</div>';
-                return $link;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
-
-
-        }
-
-
-        return view('admin.pages.profile.profile');
-
-    }
-
-    public function create()
-    {
-        return view('admin.pages.profile.profile_add');
-    }
-
     public function store(Request $request)
     {
-        $validate = $request->validate([
-            'name' => 'required'
-        ]);
-
-        $profile = New Profile;
-        $profile->name = $request->name;
-        $profile->save();
-
-        return redirect()->route('profile.index')
-        ->with([
-            'message'    =>'Profile Added Successfully',
-            'alert-type' => 'success',
-        ]);
-
-    }
-
-    public function show($id)
-    {
-        $profile = Profile::findOrFail($id);
-
-        return response()->json($profile);
-    }
-
-    public function edit($id)
-    {
-        $profile = Profile::findOrFail($id);
-
-        //return response()->json($profile);
-
-        return view('admin.pages.profile.profile_edit',compact('profile'));
-    }
-
-    public function update(Request $request, $id)
-    {
-
-        $validate = $request->validate([
-            'name' => 'required'
-        ]);
-
-        $profile = Profile::findOrFail($id);
-        $profile->name = $request->name;
-        $profile->save();
-
-        return redirect()->route('profile.index')
-        ->with([
-            'message'    =>'Profile Updated Successfully',
-            'alert-type' => 'success',
-        ]);
-
-
-    }
-
-    public function destroy($id)
-    {
-        $profile = Profile::destroy($id);
-
-        if($profile){
-            return redirect()->route('profile.index')
-            ->with([
-                'message'    =>'Profile Updated Successfully',
-                'alert-type' => 'success',
-            ]);
+        //return ['status' =>200];
+        $input = $request->all();
+        $rule = [
+            'firstname' => 'required',
+            'lastname' => 'required'
+        ];
+        $validator = Validator::make($input,$rule);
+        
+        if($validator->fails()){
+            return ['status'=> 400, 'msg'=>$validator->errors()->first()];
         }else{
-
+            try{
+                $user = User::findOrFail(auth()->user()->id);
+                $user->firstName = $request->firstname;
+                $user->lastName = $request->lastname;
+                $user->username = $request->username;
+                $user->save();
+                return ['status' =>200,'msg'=>'Profile updated successfully'];
+            }catch(Exception $ex){
+                return ['status'=> 400, 'msg'=>$validator->errors()->first()];
+            }
+            
         }
-
     }
+
+    public function facebookRedirect(){
+
+        //return config('services.facebook.client_id');
+
+
+        return Socialite::driver('facebook')->scopes([
+            "public_profile, pages_show_list", "pages_read_engagement", "pages_manage_posts", "pages_manage_metadata", "user_videos", "user_posts"
+        ])->redirect();
+
+        
+    }
+
+    public function facebookCallback(){
+
+        //return 'facebook callback';
+        $auth_user = Socialite::driver('facebook')->user();
+        //dd($auth_user);
+        DB::table('users')
+            ->where('id',auth()->user()->id)
+            ->update([
+                'facebook_token'=>$auth_user->token,
+                'facebook_app_id'=>$auth_user->id,
+                'avatar_url' => $auth_user->avatar,
+            ]);
+        return redirect()->to(route('setting.index',['type'=>'facebook']));
+    }
+
+    
 }

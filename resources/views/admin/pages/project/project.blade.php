@@ -133,7 +133,7 @@
                                         <th style="width:20%">Requirements</th>
                                         <th style="width:10%">Start Date</th>
                                         <th style="width:10%">End Date</th>
-                                        <th style="width:10%">Rate</th>
+                                        <th style="width:10%">Budget</th>
                                         <th style="width:10%">Priority</th>
                                         <th style="width:10%">Status</th>
                                         <th style="width:5%">Actions</th>

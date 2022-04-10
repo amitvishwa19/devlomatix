@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Events\SubscriptionEvent;
 use App\Services\AppMailingService;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -17,6 +18,7 @@ class ClientController extends Controller
 {
     public function home(Request $request)
     {
+        
         //$value = $request->cookie('subscription');
         //dd(request()->cookie() );
         return view('client.pages.home');
@@ -100,5 +102,18 @@ class ClientController extends Controller
         //return AppSetting::all();
         //return 'test from clientcontroller';
 
+    }
+
+    public function artisan_call(){
+
+        // $input = [
+        //     'model' => 'Test',
+        //     'type'  => $data['commandType'],
+        // ];
+        Artisan::call('crud:generate', ['name' => 'Test']);
+    }
+
+    public function privacy_policy(){
+        return view('client.pages.privacy');
     }
 }

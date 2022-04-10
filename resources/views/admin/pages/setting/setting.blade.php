@@ -27,13 +27,10 @@
                             </ol>
                         </div><!--end col-->
 
-                        <form action="{{route('setting.store',['type'=>request()->type])}}" method="post" enctype="multipart/form-data">
-                         @csrf   
+                        <!-- <form action="{{route('setting.store',['type'=>request()->type])}}" method="post" enctype="multipart/form-data">
+                         @csrf    -->
 
-                        <div class="col-auto align-self-center">
-                            <!-- <a href="#post_display" class="btn btn-info waves-effect waves-light btn-sm" data-toggle="modal" >Posts Grid</a> -->
-                            <button class="btn btn-info waves-effect waves-light btn-sm">Save Settings</button>
-                        </div><!--end col-->
+                        
                     </div><!--end row-->
                 </div><!--end page-title-box-->
             </div><!--end col-->
@@ -82,6 +79,14 @@
                                         <span>Password Management</span>
                                     </a>
                                 </li>
+
+                                <li class="{{(request()->type =='facebook') ? 'active' : 'null'}}">
+                                    <a href="{{route('setting.index',['type'=>'facebook'])}}">
+                                        <i data-feather="facebook" class="align-self-center menu-icon"></i>
+                                        <span>Manage Facebook</span>
+                                    </a>
+                                </li>
+
                             </ul>
                         </div><!--end card-body-->
                     </div>
@@ -107,8 +112,12 @@
                         @include('admin.pages.setting.password')
                     @endif
 
+                    @if(request()->type == 'facebook')
+                        @include('admin.pages.setting.facebook')
+                    @endif
+
                 </div>
-                    </form>
+                    <!-- </form> -->
             </div>
         </div>
 

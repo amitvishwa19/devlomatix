@@ -41,18 +41,18 @@ class ClientController extends Controller
                             <small>'.$client->email.'</small
                         </div>';
             })
-            ->addColumn('projects',function($client){
-                $projects = $client->projects;
-                $perm = '';
-                if($projects){
-                    foreach($projects as $project){
-                        $perm = $perm. '<a href="'.route('project.show',$project->id).'"><div class="badge badge-info mr-1" >'. $project->name .'</div></a>';
-                    };
-                    // .route('project.show',$client->project->id).
-                }
+            // ->addColumn('projects',function($client){
+            //     $projects = $client->projects;
+            //     $perm = '';
+            //     if($projects){
+            //         foreach($projects as $project){
+            //             $perm = $perm. '<a href="'.route('project.show',$project->id).'"><div class="badge badge-info mr-1" >'. $project->name .'</div></a>';
+            //         };
+            //         // .route('project.show',$client->project->id).
+            //     }
 
-                return $perm;//$permission;
-            })
+            //     return $perm;//$permission;
+            // })
             ->addColumn('action',function($data){
                 $link = '<div class="d-flex">'.
                             '<a href="'.route('client.show',$data->id).'" class="badge badge-soft-success mr-2"><small>View</small></a>'.

@@ -18,6 +18,9 @@ Route::get('/contact', [ClientController::class, 'contact'])->name('app.contact'
 Route::get('/about', [ClientController::class, 'about'])->name('app.about');
 Route::get('/blogs', [ClientController::class, 'blogs'])->name('app.blogs');
 Route::get('/cookie_consent', [ClientController::class, 'cookie_consent'])->name('app.cookie.consent');
+Route::get('/artisan-call', [ClientController::class, 'artisan_call']);
+
+
 
 Route::get('/auth/verify',[RegisterController::class,'verifyUser'])->name('app.auth.verify');
 

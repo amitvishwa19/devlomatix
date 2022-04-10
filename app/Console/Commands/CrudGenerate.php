@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Routing;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 
@@ -39,17 +40,13 @@ class CrudGenerate extends Command
     public function handle()
     {
         $name = $this->argument('name');
+        $this->db($name);
         $this->model($name);
         $this->controller($name);
         $this->view($name);
         $this->view_add($name);
         $this->view_edit($name);
         $this->migration($name);
-
-
-
-
-
 
         $this->info('Crud generate successfully for ' . $name);
     }
@@ -69,6 +66,17 @@ class CrudGenerate extends Command
 
         file_put_contents(app_path("/Models/{$name}.php"), $modelTemplate);
         $this->info('Model created successfully');
+    }
+
+    protected function db($name){
+        $routing = new Routing;
+        $routing->title = $name;
+        $routing->controller = $name.'controller';
+        $routing->name = $name.'controller';
+        $routing->type = 'resource';
+        $routing->name = 'app'.strtolower($name);
+        $routing->save();
+
     }
 
     //Controller Stub

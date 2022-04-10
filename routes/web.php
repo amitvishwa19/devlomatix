@@ -4,6 +4,8 @@
 //use App\Models\User;
 //use App\Facades\Test;
 //use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\ChatController;
@@ -29,14 +31,15 @@ use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ErrorLogController;
+use App\Http\Controllers\Admin\FacebookController;
 use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\ClassroomController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AutoDeployController;
+
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ActivityLogController;
 use App\Http\Controllers\Admin\ImpersonateController;
-
 use App\Http\Controllers\Admin\MailTemplateController;
 use App\Http\Controllers\Admin\SubscriptionController;
 
@@ -166,7 +169,7 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
      Route::resource('/contact',ContactController::class);
 
     //Client
-    Route::resource('/client',ClientController::class);
+    Route::resource('/client',App\Http\Controllers\Admin\ClientController::class);
 
      //Projects
      Route::resource('/project',ProjectController::class);
@@ -175,16 +178,12 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
      //Tasks
      Route::resource('/task',TaskController::class);
 
+     Route::get('/facebook/connect',[ProfileController::class,'facebookRedirect'])->name('facebook.connect');
+     Route::get('/facebook/callback',[ProfileController::class,'facebookCallback'])->name('facebook.callback');
+     Route::post('facebook/page/add',[FacebookController::class,'add_page'])->name('facebook.page.add');
+
+     Route::get('facebook/page/data',[FacebookController::class,'fb_data'])->name('facebook.data');
 
 });
 
-//Digilearn
-Route::group(['middleware'=>['auth'],'prefix'=>'digilearn'],function(){
-    Route::get('/', [App\Http\Controllers\Admin\DigilearnDashboard::class, 'index'])->name('digilearn.dashboard');
-    Route::resource('/teacher',TeacherController::class);
-    Route::resource('/classroom',ClassroomController::class);
-    Route::resource('/chapter',ChapterController::class);
-    Route::resource('/quiz',QuizController::class);
-    Route::resource('/question',QuestionController::class);
-    Route::resource('/video',VideoController::class);
-});
+

@@ -22,6 +22,7 @@ class UserSeeder extends Seeder
                 'email' => 'admin@admin.com',
                 'type' => 'user',
                 'password' => bcrypt('password'),
+                'status' => true,
             ]
         );
 

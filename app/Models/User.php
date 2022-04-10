@@ -23,9 +23,14 @@ class User extends Authenticatable
         'lastName',
         'username',
         'email',
+        'title',
+        'contact',
         'password',
         'status',
-        'verification_code'
+        'verification_code',
+        'facebook_token',
+        'facebook_app_id',
+        'facebook_page_id'
     ];
 
     /**

@@ -46,7 +46,6 @@
                                     <tr>
                                         <th style="width:10%">Name</th>
                                         <th style="width:20%">Description</th>
-                                        <th style="width:20%">Projects</th>
                                         <th style="width:5%">Actions</th>
                                     </tr>
                                 </thead>
@@ -89,7 +88,6 @@
                 columns:[
                     { data: 'name', name: 'name'},
                     { data: 'description', name: 'description'},
-                    { data: 'projects', name: 'projects'},
                     { data: 'action', name: 'action' },
                 ]
 

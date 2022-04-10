@@ -22,7 +22,7 @@
                 
                 @if(setting('app_icon'))
                 <div class="media mb-2">
-                    <img src="{{setting('app_icon')}}" height="60" class="mr-3 align-self-center rounded" alt="...">
+                    <img src="{{setting('app_icon')}}" height="40" class="mr-3 align-self-center rounded" alt="...">
                    
                 </div>
                 @endif
@@ -34,7 +34,7 @@
                 
                 @if(setting('app_fevicon'))
                 <div class="media mb-2">
-                    <img src="{{setting('app_fevicon')}}" height="60" class="mr-3 align-self-center rounded" alt="...">
+                    <img src="{{setting('app_fevicon')}}" height="40" class="mr-3 align-self-center rounded" alt="...">
                 </div>
                 @endif
                 <input type="file" class="" name="app_fevicon">
@@ -45,7 +45,7 @@
                 
                 @if(setting('auth_image_url'))
                 <div class="media mb-2">
-                    <img src="{{setting('auth_image_url')}}" height="60" class="mr-3 align-self-center rounded" alt="...">
+                    <img src="{{setting('auth_image_url')}}" height="40" class="mr-3 align-self-center rounded" alt="...">
                 </div>
                 @endif
                 <input type="file" class="" name="auth_image">
@@ -54,7 +54,7 @@
            
 
 
-            <button type="submit" class="btn btn-info waves-effect waves-light btn-sm">Save</button>
+            <button type="submit" class="btn btn-info waves-effect waves-light btn-sm">Save Setting</button>
         </form>
 
     </div><!--end card-body-->

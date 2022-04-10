@@ -29,14 +29,7 @@ class ProjectController extends Controller
             ->editColumn('created_at',function(Project $project){
                 return $project->created_at->diffForHumans();
             })
-            ->addColumn('name',function(Project $project){
-                // return $user->firstName. ", " .$user->lastName;
-
-                return '<div class="media-body align-self-center">
-                            <h6 class="m-0"><b><a href="'.route('project.show',$project->id).'">'. $project->name.'</b></h6>
-                            <small><a href="'.route('client.show',$project->client->id).'"><span class="badge badge-soft-info">'.$project->client->name.'</span></a></small
-                        </div>';
-            })
+            
             ->addColumn('requirement',function(Project $project){
                 return '<a href="'.route('project.show',$project->id).'">'.substr($project->requirement, 0, 100).'</a>' ;
             })
@@ -64,7 +57,7 @@ class ProjectController extends Controller
                         '</div>';
                 return $link;
             })
-            ->rawColumns(['action','name','status','requirement'])
+            ->rawColumns(['action','status','requirement'])
             ->make(true);
 
 
@@ -92,25 +85,21 @@ class ProjectController extends Controller
         //dd( $request->all());
         $validate = $request->validate([
             'name' => 'required',
-            'client_id' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required',
         ]);
 
         $project = New Project;
         $project->name = $request->name;
-        $project->client_id = $request->client_id;
+        $project->duration = $request->duration;
         $project->start_date = $request->start_date;
         $project->end_date = $request->end_date;
         $project->requirement = $request->requirement;
         $project->description = $request->description;
         $project->rate = $request->rate;
         $project->price_type = $request->price_type;
-        $project->invoice_time = $request->invoice_time;
         $project->priority = $request->priority;
         $project->status = $request->status;
-        $project->completion_status = $request->completion_status;
         $project->notes = $request->notes;
+        $project->completion_status = $request->completion_status;
         $project->save();
 
         return redirect()->route('project.index')
@@ -155,25 +144,22 @@ class ProjectController extends Controller
         //dd($request->all());
         $validate = $request->validate([
             'name' => 'required',
-            'client_id' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required',
         ]);
 
         $project = Project::findOrFail($id);
         $project->name = $request->name;
-        $project->client_id = $request->client_id;
+        $project->duration = $request->duration;
         $project->start_date = $request->start_date;
         $project->end_date = $request->end_date;
         $project->requirement = $request->requirement;
         $project->description = $request->description;
         $project->rate = $request->rate;
         $project->price_type = $request->price_type;
-        $project->invoice_time = $request->invoice_time;
         $project->priority = $request->priority;
         $project->status = $request->status;
-        $project->completion_status = $request->completion_status;
         $project->notes = $request->notes;
+        $project->payment = $request->payment;
+        $project->completion_status = $request->completion_status;
         $project->save();
 
         return redirect()->route('project.index')
