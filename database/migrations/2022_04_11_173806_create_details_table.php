@@ -16,8 +16,8 @@ class CreateDetailsTable extends Migration
         Schema::create('details', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('client_id')->unsigned();
-            $table->string('key');
-            $table->string('value');
+            $table->string('key')->nullable();
+            $table->string('value')->nullable();
             $table->timestamps();
         });
     }

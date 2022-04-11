@@ -88,7 +88,7 @@
             </div> -->
 
             <div class="form-group mt-3">
-                <label><h5><b>Additional Inputs</b></h5></label>
+                <label><h5><b>Additional Inputs</b></h5></label><span class="ml-4"></span>
 
                 <div class="form-group">
                     <table class="table table-bordered mb-0 table-centered">

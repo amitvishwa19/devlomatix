@@ -99,7 +99,7 @@ class ClientController extends Controller
 
         $details = [];
 
-        if($request->key){
+        if($request->key != ''){
             for($i=0; $i < count($request->key); $i++){
                 if($request->key[$i] != null){
                     $input = new Detail;
@@ -107,9 +107,8 @@ class ClientController extends Controller
                     $input->key = $request->key[$i];
                     $input->value = $request->value[$i];
                     $input->save();
-                }
-
-                array_push($details,$input->id);
+                    array_push($details,$input->id);
+                } 
             }
         }
 
@@ -164,9 +163,8 @@ class ClientController extends Controller
                     $input->key = $request->key[$i];
                     $input->value = $request->value[$i];
                     $input->save();
+                    array_push($details,$input->id);
                 }
-
-                array_push($details,$input->id);
             }
         }
 
