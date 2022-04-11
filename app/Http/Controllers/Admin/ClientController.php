@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\ClientRequest;
-use App\Http\Controllers\Controller;
+use App\Models\Client;
+use App\Models\Detail;
+use App\Models\ClientInput;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
-use App\Models\Client;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ClientRequest;
 
 class ClientController extends Controller
 {
@@ -91,9 +93,28 @@ class ClientController extends Controller
         $client->email = $request->email;
         $client->primary_contact = $request->primary_contact;
         $client->secondary_contact = $request->secondary_contact;
-        if($request->type){$client->type = $request->type;}
-        $client->status = $request->status;
+        //if($request->type){$client->type = $request->type;}
+        //$client->status = $request->status;
         $client->save();
+
+        $details = [];
+
+        if($request->key){
+            for($i=0; $i < count($request->key); $i++){
+                if($request->key[$i] != null){
+                    $input = new Detail;
+                    $input->client_id = $client->id;
+                    $input->key = $request->key[$i];
+                    $input->value = $request->value[$i];
+                    $input->save();
+                }
+
+                array_push($details,$input->id);
+            }
+        }
+
+        $client->details()->sync($details);
+
 
         return redirect()->route('client.index')
         ->with([
@@ -131,9 +152,25 @@ class ClientController extends Controller
         $client->email = $request->email;
         $client->primary_contact = $request->primary_contact;
         $client->secondary_contact = $request->secondary_contact;
-        if($request->type){$client->type = $request->type;}
-        $client->status = $request->status;
         $client->update();
+
+        $details = [];
+
+        if($request->key){
+            for($i=0; $i < count($request->key); $i++){
+                if($request->key[$i] != null){
+                    $input = new Detail;
+                    $input->client_id = $client->id;
+                    $input->key = $request->key[$i];
+                    $input->value = $request->value[$i];
+                    $input->save();
+                }
+
+                array_push($details,$input->id);
+            }
+        }
+
+        $client->details()->sync($details);
 
         return redirect()->route('client.index')
         ->with([

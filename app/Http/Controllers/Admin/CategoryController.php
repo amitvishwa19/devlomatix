@@ -67,7 +67,9 @@ class CategoryController extends Controller
         }else{
             $category->parent_id = $request->parent;
         }
-
+        $category->class = $request->class;
+        if($request->favourite){$category->favourite = true;}{$category->favourite = false;}
+        if($request->status){$category->status = true;}else{$category->status = false;}
         $category->save();
         Cache::forget('categories');
 
@@ -88,16 +90,18 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
+        $categories = Category::with('childs')->where('parent_id',null)->get();
         $category = Category::findOrFail($id);
 
         //return response()->json($category);
 
-        return view('admin.pages.category.category_edit',compact('category'));
+        return view('admin.pages.category.category_edit')->with('category',$category)->with('categories',$categories);
     }
 
     public function update(Request $request, $id)
     {
 
+        //dd($request->all());
         $validate = $request->validate([
             'name' => 'required'
         ]);
@@ -105,6 +109,9 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $category->name = $request->name;
         $category->slug = str_slug($request->name);
+        $category->class = $request->class;
+        if($request->favourite){$category->favourite = true;}{$category->favourite = false;}
+        if($request->status){$category->status = true;}else{$category->status = false;}
         $category->save();
 
         return redirect()->route('category.index')

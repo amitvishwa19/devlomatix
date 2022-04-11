@@ -18,6 +18,11 @@ class CreatecategoriesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->nullable();
+            $table->integer('parent_id')->unsigned()->nullable();
+            $table->integer('order')->default(0);
+            $table->string('class')->nullable();
+            $table->boolean('favourite')->default(false);
+            $table->boolean('status')->default(false);
             $table->timestamps();
 
         });

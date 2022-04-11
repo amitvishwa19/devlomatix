@@ -37,12 +37,10 @@
 
 				  <!--Content Side-->
 				  <div class="content-side col-lg-8 col-md-12 col-sm-12">
-						
+                        @foreach($posts as $post)
+						<div class="blog-posts">
 
                             
-							@foreach($posts as $post)
-
-							<div class="blog-posts">
                                 <!--News Block-->
                                 <div class="news-block-two">
                                     <div class="inner-box">
@@ -64,18 +62,18 @@
                                         </div>
                                     </div>
                             	</div>
+                            
 
-								</div>
-								<div class="more-box">
-									<a class="theme-btn btn-style-one" href="">
-										<i class="btn-curve"></i>
-										<span class="btn-title">Load more posts</span>
-									</a>
-								</div>
-                            @endforeach
 							 
 
-						
+						</div>
+						<div class="more-box">
+							 <a class="theme-btn btn-style-one" href="{{route('app.blog',$post->slug)}}">
+								  <i class="btn-curve"></i>
+								  <span class="btn-title">Load more posts</span>
+							 </a>
+						</div>
+                        @endforeach
 				  </div>
 
 				  <!--Sidebar Side-->
@@ -87,6 +85,7 @@
 										<div class="sidebar-title">
 											 <h4>Latest News</h4>
 										</div>
+
 										@foreach($random_posts as $random)
 										<div class="post">
 											 <figure class="post-thumb">
@@ -95,7 +94,6 @@
 											 <h5 class="text"><a href="{{route('app.blog',$random->slug)}}">{{$random->title}}</a></h5>
 										</div>
 										@endforeach
-										
 
 								  </div>
 							 </div>
@@ -126,7 +124,44 @@
 								  </div>
 							 </div>
 
-							 
+							 <!-- <div class="sidebar-widget recent-comments">
+								  <div class="widget-inner">
+										<div class="sidebar-title">
+											 <h4>Comments</h4>
+										</div>
+
+										<div class="comment">
+											 <div class="icon">
+												  <span class="flaticon-speech-bubble-2"></span>
+											 </div>
+											 <h5 class="text"><a href="#">A Wordpress Commenter on Launch New Mobile App</a>
+											 </h5>
+										</div>
+
+										<div class="comment">
+											 <div class="icon">
+												  <span class="flaticon-speech-bubble-2"></span>
+											 </div>
+											 <h5 class="text"><a href="#">John Doe on Template: <br>Comments</a></h5>
+										</div>
+
+										<div class="comment">
+											 <div class="icon">
+												  <span class="flaticon-speech-bubble-2"></span>
+											 </div>
+											 <h5 class="text"><a href="#">A Wordpress Commenter on Launch New Mobile App</a>
+											 </h5>
+										</div>
+
+										<div class="comment">
+											 <div class="icon">
+												  <span class="flaticon-speech-bubble-2"></span>
+											 </div>
+											 <h5 class="text"><a href="#">John Doe on Template: <br>Comments</a></h5>
+										</div>
+
+								  </div>
+							 </div> -->
 
 
 						</aside>

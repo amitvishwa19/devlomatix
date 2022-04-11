@@ -29,7 +29,7 @@
         </div><!--end col-->
     </div><!--end row-->
 
-    <div class="wrapper card p-2">
+    <div class="wrapper  p-2">
 
 
         <form role="form" method="post" action="{{route('client.store')}}" enctype="multipart/form-data">
@@ -57,11 +57,11 @@
 
 
             <div class="form-group">
-                <label><b>Client Description</b></label>
-                <textarea class="form-control" name="description" id="" cols="30" rows="3" >{{old('description')}}</textarea>
+                <label><b>Notes</b></label>
+                <textarea class="form-control" name="description" id="" cols="30" rows="2" >{{old('description')}}</textarea>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label><b>Client Type</b></label>
                 <div class="checkbox checkbox-info">
                     <input id="checkbox4" type="checkbox" name="type" value="premium">
@@ -85,6 +85,36 @@
                         InActive
                     </label>
                 </div>
+            </div> -->
+
+            <div class="form-group mt-3">
+                <label><h5><b>Additional Inputs</b></h5></label>
+
+                <div class="form-group">
+                    <table class="table table-bordered mb-0 table-centered">
+                        <thead>
+                            <tr>
+                                <th style="width:49%"><label for=""><b>Key</b></label></th>
+                                <th style="width:49%"><label for=""><b>Value</b></label></th>
+                                <th style="width:3%"><a href="javascript:void(0)" class="addrow"> <i class="fas fa-plus"></i>  </a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" name="key[]" value="{{old('kay')}}">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" name="value[]" value="{{old('value')}}">
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0)" class="deleterow"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
 
 
@@ -102,13 +132,27 @@
 
 
 @section('modal')
-
-
-
 @endsection
 
 
 @section('scripts')
 
+    <script>
+        $('thead').on('click','.addrow',function(){
+            //console.log('Add Item Clicked');
+            var tr = "<tr>"+
+                        "<td><input type='text' class='form-control form-control-sm' name='key[]' value=''></td>"+
+                        "<td><input type='text' class='form-control form-control-sm' name='value[]' value=''></td>"+
+                        "<td><a href='javascript:void(0)' class='deleterow'><i class='fas fa-trash-alt'></i></a></td>"+
+                    "</tr>"
+
+            $('tbody').append(tr);
+        });
+
+        $('tbody').on('click','.deleterow',function(){
+            $(this).parent().parent().remove();
+            //console.log('deleterow clicked');
+        });
+    </script>
 
 @endsection

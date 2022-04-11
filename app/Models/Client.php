@@ -13,4 +13,11 @@ class Client extends Model
     {
         return $this->hasMany('App\Models\Project');
     }
+
+ 
+    public function details()
+    {
+        return $this->belongsToMany('App\Models\Detail','client_detail');
+    }
+
 }

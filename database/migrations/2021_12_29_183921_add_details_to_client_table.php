@@ -19,7 +19,7 @@ class AddDetailsToClientTable extends Migration
             $table->string('primary_contact')->nullable()->after('email');
             $table->string('secondary_contact')->nullable()->after('primary_contact');
             $table->enum('type', ['general','premium'])->default('general')->after('secondary_contact');
-            $table->boolean('status')->default(0)->after('type');
+            $table->boolean('status')->default(0)->after('type')->nullable();
         });
     }
 

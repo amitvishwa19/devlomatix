@@ -155,3 +155,16 @@ small, .small {
   font-size: 86%;
   font-weight: 500;
 }
+
+.nest-item-action {
+  margin-top: -37px !important;
+  position: fixed;
+  right: 15px;
+}
+.nest-item-action a {
+  font-weight: 500;
+}
+
+.dd-handle {
+  font-weight: 500 !important;
+}

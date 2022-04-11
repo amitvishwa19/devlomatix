@@ -26,29 +26,29 @@
                    <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                        <ul class="navigation clearfix">
 
-                           <li class="current dropdown">
+                           <li class="dropdown {{ Request::is('/') ? 'current' : '' }}">
                                <a href="{{route('app.home')}}">Home</a>
                            </li>
 
-                           <li><a href="{{route('app.about')}}">About Us</a></li>
+                           <li class="dropdown {{ Request::is('about') ? 'current' : '' }}"><a href="{{route('app.about')}}">About Us</a></li>
 
-                           <li class="dropdown"><a href="services.html">Services</a>
-                               <ul>
-                                   <li><a href="services.html">All Services</a></li>
+                           <li class="dropdown {{ Request::is('service') ? 'current' : '' }}"><a href="{{route('app.service')}}">Services</a>
+                               <!-- <ul>
+                                   <li><a href="{{route('app.service')}}">All Services</a></li>
                                    <li><a href="web-development.html">Website Development</a></li>
                                    <li><a href="graphic-designing.html">Graphic Designing</a></li>
                                    <li><a href="digital-marketing.html">Digital Marketing</a></li>
                                    <li><a href="seo.html">SEO & Content Writting</a></li>
                                    <li><a href="app-development.html">App Development</a></li>
                                    <li><a href="ui-designing.html">UI/UX Designing</a></li>
-                               </ul>
+                               </ul> -->
                            </li>
 
-                           <li class=" dropdown">
+                           <li class=" dropdown {{ Request::is('blogs') ? 'current' : '' }}">
                                <a href="{{route('app.blogs')}}">Blog</a>
                            </li>
 
-                           <li><a href="{{route('app.contact')}}">Contact</a></li>
+                           <li class="{{ Request::is('contact') ? 'current' : '' }}"><a href="{{route('app.contact')}}">Contact</a></li>
 
                        </ul>
                    </div>

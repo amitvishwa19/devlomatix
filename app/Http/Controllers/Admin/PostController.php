@@ -190,7 +190,7 @@ class PostController extends Controller
             $tags = $request->tags;
             foreach($tags as $tag){
 
-                $ntag = Tag::firstOrCreate(['name'=>$tag,'slug'=>str_slug( $tag)]);
+                $ntag = Tag::firstOrCreate(['name'=>ucFirst($tag),'slug'=>str_slug( $tag)]);
                 if($tag)
                 {
                     $tagIds[] = $ntag->id;
@@ -275,7 +275,7 @@ class PostController extends Controller
             $tags = $request->tags;
             foreach($tags as $tag){
 
-                $ntag = Tag::firstOrCreate(['name'=>$tag,'slug'=>str_slug( $tag)]);
+                $ntag = Tag::firstOrCreate(['name'=>ucFirst($tag),'slug'=>str_slug( $tag)]);
                 if($tag)
                 {
                     $tagIds[] = $ntag->id;

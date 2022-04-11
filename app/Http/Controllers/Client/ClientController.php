@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Inquiry;
+use App\Models\Category;
 use App\Events\InquiryEvent;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
@@ -26,14 +28,113 @@ class ClientController extends Controller
 
     public function blogs()
     {
-        $posts = Post::where('status','published')->get();
-        return view('client.pages.blogs',compact('posts'));
+       
+        $posts = Post::whereHas('categories', function($q)
+        {
+            $q->where('slug', '=', 'blog');
+        })->where('status','published')->get();
+
+        $random_posts = Post::whereHas('categories', function($q)
+        {
+            $q->where('slug', '=', 'blog');
+        })->where('status','published')->limit(5)->get();
+
+        $blog_category = Category::where('slug','blog-categories')->first();
+        $categories = Category::where('parent_id', $blog_category->id )->orderby('created_at','desc')->get();
+
+        $tags = Tag::get();
+
+
+        return view('client.pages.blogs')
+                        ->with('posts',$posts)
+                        ->with('random_posts',$random_posts)
+                        ->with('categories',$categories)
+                        ->with('tags',$tags);
     }
 
-    public function blog()
+    public function blog($slug)
     {
+        $post = Post::where('slug',$slug)->first();
 
-        return view('client.pages.blog');
+        $random_posts = Post::whereHas('categories', function($q)
+        {
+            $q->where('slug', '=', 'blog');
+        })->where('status','published')->limit(5)->get();
+
+        $blog_category = Category::where('slug','blog-categories')->first();
+        $categories = Category::where('parent_id', $blog_category->id )->orderby('created_at','desc')->get();
+
+        $tags = Tag::get();
+
+        return view('client.pages.blog')
+                            ->with('post',$post)
+                            ->with('random_posts',$random_posts)
+                            ->with('categories',$categories)
+                            ->with('tags',$tags);
+    }
+
+    public function blogs_category($slug){
+        $posts = Post::whereHas('categories', function($q)
+        {
+            $q->where('slug', '=', 'blog');
+        })->get();
+
+        $random_posts = Post::whereHas('categories', function($q)
+        {
+            $q->where('slug', '=', 'blog');
+        })->where('status','published')->limit(5)->get();
+
+        $blog_category = Category::where('slug','blog-categories')->first();
+        $categories = Category::where('parent_id', $blog_category->id )->orderby('created_at','desc')->get();
+
+        $category = Category::where('slug',$slug)->first();
+        $posts = $category->posts()->get();
+
+        
+
+        ///dd($posts);
+
+        $tags = Tag::get();
+
+
+        return view('client.pages.blogs')
+                        ->with('posts',$posts)
+                        ->with('random_posts',$random_posts)
+                        ->with('categories',$categories)
+                        ->with('tags',$tags);
+
+    }
+
+    public function blogs_tag($slug){
+        $posts = Post::whereHas('categories', function($q)
+        {
+            $q->where('slug', '=', 'blog');
+        })->get();
+
+        $random_posts = Post::whereHas('categories', function($q)
+        {
+            $q->where('slug', '=', 'blog');
+        })->where('status','published')->limit(5)->get();
+
+        $blog_category = Category::where('slug','blog-categories')->first();
+        $categories = Category::where('parent_id', $blog_category->id )->orderby('created_at','desc')->get();
+
+        $tag = Tag::where('slug',$slug)->first();
+        $posts = $tag->posts()->get();
+
+        
+
+        ///dd($posts);
+
+        $tags = Tag::get();
+
+
+        return view('client.pages.blogs')
+                        ->with('posts',$posts)
+                        ->with('random_posts',$random_posts)
+                        ->with('categories',$categories)
+                        ->with('tags',$tags);
+            
     }
 
     public function about()
@@ -41,6 +142,13 @@ class ClientController extends Controller
 
         return view('client.pages.about');
     }
+
+    public function services()
+    {
+
+        return view('client.pages.about');
+    }
+
 
     public function contact()
     {

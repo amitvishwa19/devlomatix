@@ -5,9 +5,9 @@
            <!--Image Column-->
            <div class="image-column col-xl-6 col-lg-12 col-md-12 col-sm-12">
                <div class="inner">
-                   <div class="image-block wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms"><img
+                   <div class="image-block" ><img
                        src="{{asset('public/client/images/background/1.jpg')}}" alt=""></div>
-                   <div class="image-block wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms"><img
+                   <div class="image-block"><img
                            src="{{asset('public/client/images/background/2.jpg')}}" alt=""></div>
                </div>
            </div>
@@ -42,3 +42,4 @@
        </div>
    </div>
 </section>
+<!--About Section-->

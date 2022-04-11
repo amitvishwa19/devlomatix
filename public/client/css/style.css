@@ -1,75 +1,7 @@
 
-
-/*--------------------------------------------------------------
->>> TABLE OF CONTENTS:
-----------------------------------------------------------------
-1.	Fonts
-2.	Reset
-3.	Global Settings
-4.	Scroll To Top style
-5.	Main Header style / Header Style One
-6.	Sticky Header
-7.	Search Popup
-8.	Mobile Menu
-9.	Lazy Load Settings
-10.	Banner Section
-11.	Section Title
-12.	Services Section
-13.	About Section
-14.	Live Section
-15.	We DO Section
-16.	Gallery Section
-17.	Fun Facts Section
-18.	We DO Section
-19.	Team Section
-20.	Parallax Section
-21.	Sponsors Section
-22.	Agency Section
-23.	News Section
-24.	Call Section
-25.	Main Footer
-26.	Services Section
-27.	We DO Section
-28.	Gallery Section
-29.	Why Us Section
-30.	Testimonials Section
-31.	Parallax Section
-32.	We DO Section
-33.	Call Section
-34.	Call Section
-35.	Services Section
-36.	Discover Section
-37.	Parallax Section
-38.	We Work Section
-39.	Testimonials Section
-40.	We DO Section
-41.	Get Quote
-42.	Map Section
-43.	Sponsors Section
-44.	Page Banner
-45.	Faqs Section
-46.	Get Quote
-47.	Error Section
-48.	Contact Section
-49.	Sidebar Page Container
-50.	Comment Area
-51.	Leave Comments Form
-52.	Service Details
-53.	Service Details
-54. Consent section
---------------------------------------------------------------*/
-
-/*
-	font-family: 'Teko', sans-serif;
-*/
-
-/***
-
-====================================================================
-2.	Reset
-====================================================================
-
- ***/
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300i,400,400i,600,600i,700,700i,800,800i|Quicksand:300,400,500,700');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300i,400,400i,600,600i,700,700i,800,800i|Quicksand:300,400,500,700');
 
 * {
   margin: 0px;
@@ -101,11 +33,11 @@ body {
   font-size: 12px;
   color: var(--thm-text);
   line-height: 1.8em;
-  font-weight: 300;
+  font-weight: 500 !important;
   background: #ffffff;
   -webkit-font-smoothing: antialiased;
   -moz-font-smoothing: antialiased;
-  font-family: var(--thm-font);
+  font-family:'Montserrat', sans-serif;
   top: 0 !important;
 }
 
@@ -191,6 +123,7 @@ p {
 .text {
   line-height: 1.8em;
   margin: 0 0;
+  font-weight: 500 !important;
 }
 
 ::-webkit-input-placeholder {
@@ -431,7 +364,7 @@ figure {
 img {
   display: inline-block;
   max-width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 .dropdown-toggle::after {
@@ -825,7 +758,7 @@ img {
   padding: 5px 0px;
   line-height: 24px;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 12px;
   color: #171b27;
   letter-spacing: 0.03em;
   text-align: left;
@@ -2967,7 +2900,7 @@ img.lazy-image.loaded {
 
 .about-section .text-column .sec-title .lower-text {
   text-transform: uppercase;
-  font-size: 26px;
+  font-size: 18px;
   font-weight: 300;
   letter-spacing: 0;
   color: var(--thm-base);
@@ -8703,7 +8636,7 @@ img.lazy-image.loaded {
   line-height: 1.45em;
   text-align: center;
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 500;
   color: var(--thm-text);
   letter-spacing: 0.09em;
   text-transform: capitalize;
@@ -8747,7 +8680,7 @@ img.lazy-image.loaded {
   letter-spacing: 1px;
   text-transform: capitalize;
   color: var(--thm-text);
-  font-weight: 300;
+  font-weight: 500;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
@@ -8759,7 +8692,7 @@ img.lazy-image.loaded {
 .sidebar .archives ul li:hover a,
 .sidebar .archives ul li.active a {
   color: var(--thm-black);
-  font-weight: 400;
+  font-weight: 600;
 }
 
 .sidebar .archives ul li a:after {

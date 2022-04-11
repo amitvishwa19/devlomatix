@@ -20,7 +20,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Devlomatix</a></li>
                             <li class="breadcrumb-item"><a href="{{route('client.index')}}">Clients</a></li>
-                            <li class="breadcrumb-item active">Create</li>
+                            <li class="breadcrumb-item active">Edit</li>
                         </ol>
                     </div><!--end col-->
 
@@ -29,7 +29,7 @@
         </div><!--end col-->
     </div><!--end row-->
 
-    <div class="wrapper card p-2">
+    <div class="wrapper p-2">
 
 
         <form role="form" method="post" action="{{route('client.update',$client->id)}}" enctype="multipart/form-data">
@@ -57,34 +57,40 @@
 
 
             <div class="form-group">
-                <label><b>Client Description</b></label>
-                <textarea class="form-control" name="description" id="" cols="30" rows="3" >{{$client->description}}{{old('description')}}</textarea>
+                <label><b>Notes</b></label>
+                <textarea class="form-control" name="description" id="" cols="30" rows="2" >{{$client->description}}{{old('description')}}</textarea>
             </div>
 
-            <div class="form-group">
-                <label><b>Client Type</b></label>
-                <div class="checkbox checkbox-info">
-                    <input id="checkbox4" type="checkbox" name="type" value="premium" @if($client->type == "premium") checked @endif>
-                    <label for="checkbox4">
-                        Premium
-                    </label>
-                </div>
-            </div>
+            <div class="form-group mt-3">
+                <label><h5><b>Additional Inputs</b></h5></label>
 
-            <div class="form-group">
-                <label><b>Client Status</b></label>
-                <div class="radio radio-info">
-                    <input type="radio" name="status" id="radio4" value="1" @if($client->status == 1)  checked  @endif>
-                    <label for="radio4">
-                        Active
-                    </label>
+                <div class="form-group">
+                    <table class="table table-bordered mb-0 table-centered">
+                        <thead>
+                            <tr>
+                                <th style="width:49%"><label for=""><b>Key</b></label></th>
+                                <th style="width:49%"><label for=""><b>Value</b></label></th>
+                                <th style="width:3%"><a href="javascript:void(0)" class="addrow"> <i class="fas fa-plus"></i> </a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($client->details as $detail)
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" name="key[]" value="{{old('kay')}}{{$detail->key}}">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" name="value[]" value="{{old('value')}}{{$detail->value}}">
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0)" class="deleterow"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
-                <div class="radio radio-info">
-                    <input type="radio" name="status" id="radio5" value="0" @if($client->status == 0)  checked  @endif>
-                    <label for="radio5">
-                        InActive
-                    </label>
-                </div>
+
             </div>
 
 
@@ -110,5 +116,22 @@
 
 @section('scripts')
 
+    <script>
+        $('thead').on('click','.addrow',function(){
+            //console.log('Add Item Clicked');
+            var tr = "<tr>"+
+                        "<td><input type='text' class='form-control form-control-sm' name='key[]' value=''></td>"+
+                        "<td><input type='text' class='form-control form-control-sm' name='value[]' value=''></td>"+
+                        "<td><a href='javascript:void(0)' class='deleterow'><i class='fas fa-trash-alt'></i></a></td>"+
+                    "</tr>"
+
+            $('tbody').append(tr);
+        });
+
+        $('tbody').on('click','.deleterow',function(){
+            $(this).parent().parent().remove();
+            //console.log('deleterow clicked');
+        });
+    </script>
 
 @endsection
