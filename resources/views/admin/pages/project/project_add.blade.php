@@ -32,10 +32,10 @@
     <!-- end page title end breadcrumb -->
 
 
-    <div class="row">
+    <div class="row " >
         <div class="col-12">
             <div class="col-lg-12">
-                <form action="{{route('project.store')}}" method="POST" autocomplete="off">
+                <form action="{{route('project.store')}}" method="POST" autocomplete="off" class="mb-5">
                     @csrf
 
                     <div class="form-group">
@@ -72,16 +72,12 @@
 
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-md-4">
-                                <label for="pro-message"><b>Requirement</b></label>
-                                <textarea class="form-control" rows="2" name="requirement"  placeholder="Project Requirement">{{old("requirement")}}</textarea>
-                            </div><!--end col-->
-
-                            <div class="col-md-4">
+                        
+                            <div class="col-md-6">
                                 <label for="pro-message"><b>Description</b></label>
                                 <textarea class="form-control" rows="2" name="description"  placeholder="Project Description">{{old("description")}}</textarea>
                             </div><!--end col-->
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label for="pro-message"><b>Notes</b></label>
                                 <textarea class="form-control" rows="2" id="pro-message"  placeholder="Additional Notes"></textarea>
                             </div><!--end form-group-->
@@ -146,7 +142,6 @@
 
                     <div class="form-group mt-2">
                         <label><h5><b>Project Requirements</b></h5></label>
-
                         <div class="form-group">
                             <table class="table table-bordered mb-0 table-centered">
                                 <thead>
@@ -156,10 +151,11 @@
                                         <th style="width:2%"><a href="javascript:void(0)" class="addrow"> <i class="fas fa-plus"></i> </a></th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="reqmnt">
                                     <tr>
                                         <td>
                                             <input type="text" class="form-control" name="r_requirement[]" value="{{old('requirement')}}">
+                                            <input type='hidden'  name='p_id[]' value=''>
                                         </td>
                                         <td>
                                             <select class="form-control" name="r_status[]">
@@ -174,7 +170,34 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
 
+                    <div class="form-group mt-2">
+                        <label><h5><b>Project Payments</b></h5></label>
+                        <div class="form-group">
+                            <table class="table table-bordered mb-0 table-centered">
+                                <thead>
+                                    <tr>
+                                        <th style="width:49%"><label for=""><b>Date</b></label></th>
+                                        <th style="width:49%"><label for=""><b>Amount</b></label></th>
+                                        <th style="width:2%"><a href="javascript:void(0)" class="addpayment"> <i class="fas fa-plus"></i> </a></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="pymnt">
+                                    <tr>
+                                        <td>
+                                            <input type="date" class="form-control" name="p_date[]" value="{{old('p_date')}}">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control" name="p_amount[]" value="{{old('p_amount')}}">
+                                        </td>
+                                        <td>
+                                            <a href="javascript:void(0)" class=" deletepayment"><i class="fas fa-trash-alt"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                     
@@ -205,9 +228,9 @@
         $('thead').on('click','.addrow',function(){
             //console.log('Add Item Clicked');
             var tr = "<tr>"+
-                        "<td><input type='text' class='form-control form-control-sm' name='requirement[]' value=''></td>"+
+                        "<td><input type='text' class='form-control form-control-sm' name='r_requirement[]' value=''><input type='hidden'  name='p_id[]' value=''></td>"+
                         "<td>"+
-                            "<select class='form-control' name='status[]'>"+
+                            "<select class='form-control' name='r_status[]'>"+
                                 "<option value='0'>Pending</option>"+
                                 "<option value='1' >Completed</option>"+
                             "</select>"+
@@ -215,13 +238,30 @@
                         "<td><a href='javascript:void(0)' class='deleterow'><i class='fas fa-trash-alt'></i></a></td>"+
                     "</tr>"
 
-            $('tbody').append(tr);
+            $('#reqmnt').append(tr);
         });
 
         $('tbody').on('click','.deleterow',function(){
             $(this).parent().parent().remove();
             //console.log('deleterow clicked');
         });
+
+        $('thead').on('click','.addpayment',function(){
+            //console.log('Add Item Clicked');
+            var tr = "<tr>"+
+                        "<td><input type='date' class='form-control form-control-sm' name='p_date[]' value=''><input type='hidden'  name='pm_id[]' value=''></td></td>"+
+                        "<td><input type='number' class='form-control form-control-sm' name='p_amount[]' value=''></td>"+
+                        "<td><a href='javascript:void(0)' class='deleterow'><i class='fas fa-trash-alt'></i></a></td>"+
+                    "</tr>"
+
+            $('#pymnt').append(tr);
+        });
+
+        $('tbody').on('click','.deletepayment',function(){
+            $(this).parent().parent().remove();
+            //console.log('deleterow clicked');
+        });
+
     </script>
 
 

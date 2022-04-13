@@ -116,6 +116,7 @@
                                         <th style="width:10%">Start Date</th>
                                         <th style="width:10%">End Date</th>
                                         <th style="width:10%">Budget</th>
+                                        <th style="width:10%">Payment Received</th>
                                         <th style="width:10%">Priority</th>
                                         <th style="width:10%">Status</th>
                                         <th style="width:5%">Actions</th>
@@ -147,47 +148,48 @@
                     <div class="modal-body">
 
                         <div class="row">
+
+                        @foreach($projects as $project)
                             <div class="col-lg-4">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="media mb-3">
                                             <img src="assets/images/widgets/project2.jpg" alt="" class="thumb-md rounded-circle">
                                             <div class="media-body align-self-center text-truncate ml-3">
-                                                <h4 class="m-0 font-weight-semibold text-dark font-15">Banking</h4>
-                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Client : </span>Hyman M. Cross</p>
+                                                <h4 class="m-0 font-weight-semibold text-dark font-15">{{$project->name}}</h4>
+                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Client : </span>{{$project->client->name}}</p>
                                             </div><!--end media-body-->
                                         </div>
                                         <hr class="hr-dashed">
                                         <div class="d-flex justify-content-between mb-3">
-                                            <h6 class="font-weight-semibold m-0">Start : <span class="text-muted font-weight-normal"> 15 Nov 2020</span></h6>
-                                            <h6 class="font-weight-semibold m-0">Deadline : <span class="text-muted font-weight-normal"> 28 Fab 2021</span></h6>
+                                            <h6 class="font-weight-semibold m-0">Start : <span class="text-muted font-weight-normal"> {{$project->start_date}}</span></h6>
+                                            <h6 class="font-weight-semibold m-0">Deadline : <span class="text-muted font-weight-normal"> {{$project->end_date}}</span></h6>
                                         </div>
                                         <div class="row">
                                             <div class="col">
                                                 <div>
-                                                    <h5 class="font-16 m-0 font-weight-bold">$56,800</h5>
+                                                    <h5 class="font-16 m-0 font-weight-bold">₹ {{$project->rate}}</h5>
                                                     <p class="mb-0 font-weight-semibold">Total Budget</p>
                                                 </div>
-                                            </div><!--end col-->
+                                            </div><!--end col--> 
                                             <div class="col-auto align-self-center">
                                                 <h5 class="font-14 m-0 font-weight-bold">$22,100 <span class="font-12 text-muted font-weight-normal">Used Budget</span></h5>
                                             </div><!--end col-->
                                         </div><!--end row-->
 
                                         <div>
-                                            <p class="text-muted mt-2 mb-1">There are many variations of passages of Lorem Ipsum available,
-                                                but the majority have suffered alteration in some form.
+                                            <p class="text-muted mt-2 mb-1">{{substr($project->description,0,200)}}
                                             </p>
-                                            <div class="d-flex justify-content-between">
+                                            <!-- <div class="d-flex justify-content-between">
                                                 <h6 class="font-weight-semibold">All Hours : <span class="text-muted font-weight-normal"> 530 / 281:30</span></h6>
                                                 <h6 class="font-weight-semibold">Today : <span class="text-muted font-weight-normal"> 2:45</span><span class="badge badge-soft-pink font-weight-semibold ml-2"><i class="far fa-fw fa-clock"></i> 35 days left</span></h6>
-                                            </div>
-                                            <p class="text-muted text-right mb-1">15% Complete</p>
-                                            <div class="progress mb-4" style="height: 4px;">
-                                                <div class="progress-bar bg-purple" role="progressbar" style="width: 15%;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div> -->
+                                            <p class="text-muted text-right mb-1 mt-4">{{$project->completion_status}}% Complete</p>
+                                            <div class="progress mb-4 " style="height: 4px;">
+                                                <div class="progress-bar bg-purple" role="progressbar" style="width: {{$project->completion_status}}%;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                             <div class="d-flex justify-content-between">
-                                                <div class="img-group">
+                                                <!-- <div class="img-group">
                                                     <a class="user-avatar user-avatar-group" href="#">
                                                         <img src="assets/images/users/user-6.jpg" alt="user" class="rounded-circle thumb-xxs">
                                                     </a>
@@ -203,8 +205,8 @@
                                                     <a href="#" class="avatar-box thumb-xxs align-self-center">
                                                         <span class="avatar-title bg-soft-info rounded-circle font-13 font-weight-normal">+6</span>
                                                     </a>
-                                                </div><!--end img-group-->
-                                                <ul class="list-inline mb-0 align-self-center">
+                                                </div> -->
+                                                <!-- <ul class="list-inline mb-0 align-self-center">
                                                     <li class="list-item d-inline-block mr-2">
                                                         <a class="" href="#">
                                                             <i class="mdi mdi-format-list-bulleted text-success font-15"></i>
@@ -227,447 +229,15 @@
                                                             <i class="mdi mdi-trash-can-outline text-muted font-18"></i>
                                                         </a>
                                                     </li>
-                                                </ul>
+                                                </ul> -->
                                             </div>
                                         </div><!--end task-box-->
                                     </div><!--end card-body-->
                                 </div><!--end card-->
                             </div><!--end col-->
+                        @endforeach
 
-                            <div class="col-lg-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="media mb-3">
-                                            <img src="assets/images/widgets/project1.jpg" alt="" class="thumb-md rounded-circle">
-                                            <div class="media-body align-self-center text-truncate ml-3">
-                                                <h4 class="m-0 font-weight-semibold text-dark font-15">Transfer money</h4>
-                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Client : </span>Jack Z Jackson</p>
-                                            </div><!--end media-body-->
-                                        </div>
-                                        <hr class="hr-dashed">
-                                        <div class="d-flex justify-content-between mb-3">
-                                            <h6 class="font-weight-semibold m-0">Start : <span class="text-muted font-weight-normal"> 08 Dec 2020</span></h6>
-                                            <h6 class="font-weight-semibold m-0">Deadline : <span class="text-muted font-weight-normal"> 28 Fab 2021</span></h6>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div>
-                                                    <h5 class="font-16 m-0 font-weight-bold">$71,500</h5>
-                                                    <p class="mb-0 font-weight-semibold">Total Budget</p>
-                                                </div>
-                                            </div><!--end col-->
-                                            <div class="col-auto align-self-center">
-                                                <h5 class="font-14 m-0 font-weight-bold">$61,800 <span class="font-12 text-muted font-weight-normal">Used Budget</span></h5>
-                                            </div><!--end col-->
-                                        </div><!--end row-->
-                                        <div>
-                                            <p class="text-muted mt-2 mb-1">There are many variations of passages of Lorem Ipsum available,
-                                                but the majority have suffered alteration in some form.
-                                            </p>
-                                            <div class="d-flex justify-content-between">
-                                                <h6 class="font-weight-semibold">All Hours : <span class="text-muted font-weight-normal"> 530 / 281:30</span></h6>
-                                                <h6 class="font-weight-semibold">Today : <span class="text-muted font-weight-normal"> 2:45</span><span class="badge badge-soft-success font-weight-semibold ml-2"><i class="far fa-fw fa-clock"></i> 35 days left</span></h6>
-                                            </div>
-                                            <p class="text-muted text-right mb-1">15% Complete</p>
-                                            <div class="progress mb-4" style="height: 4px;">
-                                                <div class="progress-bar bg-purple" role="progressbar" style="width: 15%;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                            <div class="d-flex justify-content-between">
-                                                <div class="img-group">
-                                                    <a class="user-avatar user-avatar-group" href="#">
-                                                        <img src="assets/images/users/user-5.jpg" alt="user" class="rounded-circle thumb-xxs">
-                                                    </a>
-                                                    <a class="user-avatar user-avatar-group" href="#">
-                                                        <img src="assets/images/users/user-4.jpg" alt="user" class="rounded-circle thumb-xxs">
-                                                    </a>
-                                                    <a class="user-avatar user-avatar-group" href="#">
-                                                        <img src="assets/images/users/user-1.jpg" alt="user" class="rounded-circle thumb-xxs">
-                                                    </a>
-                                                    <a class="user-avatar user-avatar-group" href="#">
-                                                        <img src="assets/images/users/user-7.jpg" alt="user" class="rounded-circle thumb-xxs">
-                                                    </a>
-                                                    <a href="#" class="avatar-box thumb-xxs align-self-center">
-                                                        <span class="avatar-title bg-soft-info rounded-circle font-13 font-weight-normal">+6</span>
-                                                    </a>
-                                                </div><!--end img-group-->
-                                                <ul class="list-inline mb-0 align-self-center">
-                                                    <li class="list-item d-inline-block mr-2">
-                                                        <a class="" href="#">
-                                                            <i class="mdi mdi-format-list-bulleted text-success font-15"></i>
-                                                            <span class="text-muted font-weight-bold">15/100</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="list-item d-inline-block">
-                                                        <a class="" href="#">
-                                                            <i class="mdi mdi-comment-outline text-primary font-15"></i>
-                                                            <span class="text-muted font-weight-bold">3</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="list-item d-inline-block">
-                                                        <a class="ml-2" href="#">
-                                                            <i class="mdi mdi-pencil-outline text-muted font-18"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li class="list-item d-inline-block">
-                                                        <a class="" href="#">
-                                                            <i class="mdi mdi-trash-can-outline text-muted font-18"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div><!--end task-box-->
-                                    </div><!--end card-body-->
-                                </div><!--end card-->
-                            </div><!--end col-->
-                            <div class="col-lg-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="media mb-3">
-                                            <img src="assets/images/widgets/project3.jpg" alt="" class="thumb-md rounded-circle">
-                                            <div class="media-body align-self-center text-truncate ml-3">
-                                                <h4 class="m-0 font-weight-semibold text-dark font-15">Organic Farming</h4>
-                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Client : </span>Hyman M. Cross</p>
-                                            </div><!--end media-body-->
-                                        </div>
-                                        <hr class="hr-dashed">
-                                        <div class="d-flex justify-content-between mb-3">
-                                            <h6 class="font-weight-semibold m-0">Start : <span class="text-muted font-weight-normal"> 15 Nov 2020</span></h6>
-                                            <h6 class="font-weight-semibold m-0">Deadline : <span class="text-muted font-weight-normal"> 28 Fab 2021</span></h6>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div>
-                                                    <h5 class="font-16 m-0 font-weight-bold">$45,300</h5>
-                                                    <p class="mb-0 font-weight-semibold">Total Budget</p>
-                                                </div>
-                                            </div><!--end col-->
-                                            <div class="col-auto align-self-center">
-                                                <h5 class="font-14 m-0 font-weight-bold">$24,500 <span class="font-12 text-muted font-weight-normal">Used Budget</span></h5>
-                                            </div><!--end col-->
-                                        </div><!--end row-->
-                                        <div>
-                                            <p class="text-muted mt-2 mb-1">There are many variations of passages of Lorem Ipsum available,
-                                                but the majority have suffered alteration in some form.
-                                            </p>
-                                            <div class="d-flex justify-content-between">
-                                                <h6 class="font-weight-semibold">All Hours : <span class="text-muted font-weight-normal"> 530 / 281:30</span></h6>
-                                                <h6 class="font-weight-semibold">Today : <span class="text-muted font-weight-normal"> 2:45</span><span class="badge badge-soft-primary font-weight-semibold ml-2"><i class="far fa-fw fa-clock"></i> 35 days left</span></h6>
-                                            </div>
-                                            <p class="text-muted text-right mb-1">15% Complete</p>
-                                            <div class="progress mb-4" style="height: 4px;">
-                                                <div class="progress-bar bg-purple" role="progressbar" style="width: 15%;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                            <div class="d-flex justify-content-between">
-                                                <div class="img-group">
-                                                    <a class="user-avatar user-avatar-group" href="#">
-                                                        <img src="assets/images/users/user-10.jpg" alt="user" class="rounded-circle thumb-xxs">
-                                                    </a>
-                                                    <a class="user-avatar user-avatar-group" href="#">
-                                                        <img src="assets/images/users/user-8.jpg" alt="user" class="rounded-circle thumb-xxs">
-                                                    </a>
-                                                    <a class="user-avatar user-avatar-group" href="#">
-                                                        <img src="assets/images/users/user-5.jpg" alt="user" class="rounded-circle thumb-xxs">
-                                                    </a>
-                                                    <a class="user-avatar user-avatar-group" href="#">
-                                                        <img src="assets/images/users/user-2.jpg" alt="user" class="rounded-circle thumb-xxs">
-                                                    </a>
-                                                    <a href="#" class="avatar-box thumb-xxs align-self-center">
-                                                        <span class="avatar-title bg-soft-info rounded-circle font-13 font-weight-normal">+6</span>
-                                                    </a>
-                                                </div><!--end img-group-->
-                                                <ul class="list-inline mb-0 align-self-center">
-                                                    <li class="list-item d-inline-block mr-2">
-                                                        <a class="" href="#">
-                                                            <i class="mdi mdi-format-list-bulleted text-success font-15"></i>
-                                                            <span class="text-muted font-weight-bold">15/100</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="list-item d-inline-block">
-                                                        <a class="" href="#">
-                                                            <i class="mdi mdi-comment-outline text-primary font-15"></i>
-                                                            <span class="text-muted font-weight-bold">3</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="list-item d-inline-block">
-                                                        <a class="ml-2" href="#">
-                                                            <i class="mdi mdi-pencil-outline text-muted font-18"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li class="list-item d-inline-block">
-                                                        <a class="" href="#">
-                                                            <i class="mdi mdi-trash-can-outline text-muted font-18"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div><!--end task-box-->
-                                    </div><!--end card-body-->
-                                </div><!--end card-->
-                            </div><!--end col-->
                         </div>
-
-                        <div class="row">
-
-                            <div class="col-lg-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="media mb-3">
-                                            <img src="assets/images/widgets/project1.jpg" alt="" class="thumb-md rounded-circle">
-                                            <div class="media-body align-self-center text-truncate ml-3">
-                                                <h4 class="m-0 font-weight-semibold text-dark font-15">Book My World</h4>
-                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Client : </span>Hyman M. Cross</p>
-                                            </div><!--end media-body-->
-                                        </div>
-                                        <hr class="hr-dashed">
-                                        <div class="d-flex justify-content-between mb-3">
-                                            <h6 class="font-weight-semibold m-0">Start : <span class="text-muted font-weight-normal"> 15 Nov 2020</span></h6>
-                                            <h6 class="font-weight-semibold m-0">Deadline : <span class="text-muted font-weight-normal"> 28 Fab 2021</span></h6>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div>
-                                                    <h5 class="font-16 m-0 font-weight-bold">$38,200</h5>
-                                                    <p class="mb-0 font-weight-semibold">Total Budget</p>
-                                                </div>
-                                            </div><!--end col-->
-                                            <div class="col-auto align-self-center">
-                                                <h5 class="font-14 m-0 font-weight-bold">$16,800 <span class="font-12 text-muted font-weight-normal">Used Budget</span></h5>
-                                            </div><!--end col-->
-                                        </div><!--end row-->
-                                        <div>
-                                            <p class="text-muted mt-2 mb-1">There are many variations of passages of Lorem Ipsum available,
-                                                but the majority have suffered alteration in some form.
-                                            </p>
-                                            <div class="d-flex justify-content-between">
-                                                <h6 class="font-weight-semibold">All Hours : <span class="text-muted font-weight-normal"> 530 / 281:30</span></h6>
-                                                <h6 class="font-weight-semibold">Today : <span class="text-muted font-weight-normal"> 2:45</span><span class="badge badge-soft-warning font-weight-semibold ml-2"><i class="far fa-fw fa-clock"></i> 35 days left</span></h6>
-                                            </div>
-                                            <p class="text-muted text-right mb-1">15% Complete</p>
-                                            <div class="progress mb-4" style="height: 4px;">
-                                                <div class="progress-bar bg-purple" role="progressbar" style="width: 15%;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                            <div class="d-flex justify-content-between">
-                                                <div class="img-group">
-                                                    <a class="user-avatar user-avatar-group" href="#">
-                                                        <img src="assets/images/users/user-5.jpg" alt="user" class="rounded-circle thumb-xxs">
-                                                    </a>
-                                                    <a class="user-avatar user-avatar-group" href="#">
-                                                        <img src="assets/images/users/user-4.jpg" alt="user" class="rounded-circle thumb-xxs">
-                                                    </a>
-                                                    <a class="user-avatar user-avatar-group" href="#">
-                                                        <img src="assets/images/users/user-3.jpg" alt="user" class="rounded-circle thumb-xxs">
-                                                    </a>
-                                                    <a class="user-avatar user-avatar-group" href="#">
-                                                        <img src="assets/images/users/user-2.jpg" alt="user" class="rounded-circle thumb-xxs">
-                                                    </a>
-                                                    <a href="#" class="avatar-box thumb-xxs align-self-center">
-                                                        <span class="avatar-title bg-soft-info rounded-circle font-13 font-weight-normal">+6</span>
-                                                    </a>
-                                                </div><!--end img-group-->
-                                                <ul class="list-inline mb-0 align-self-center">
-                                                    <li class="list-item d-inline-block mr-2">
-                                                        <a class="" href="#">
-                                                            <i class="mdi mdi-format-list-bulleted text-success font-15"></i>
-                                                            <span class="text-muted font-weight-bold">15/100</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="list-item d-inline-block">
-                                                        <a class="" href="#">
-                                                            <i class="mdi mdi-comment-outline text-primary font-15"></i>
-                                                            <span class="text-muted font-weight-bold">3</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="list-item d-inline-block">
-                                                        <a class="ml-2" href="#">
-                                                            <i class="mdi mdi-pencil-outline text-muted font-18"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li class="list-item d-inline-block">
-                                                        <a class="" href="#">
-                                                            <i class="mdi mdi-trash-can-outline text-muted font-18"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div><!--end task-box-->
-                                    </div><!--end card-body-->
-                                </div><!--end card-->
-                            </div><!--end col-->
-                            <div class="col-lg-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="media mb-3">
-                                            <img src="assets/images/widgets/project3.jpg" alt="" class="thumb-md rounded-circle">
-                                            <div class="media-body align-self-center text-truncate ml-3">
-                                                <h4 class="m-0 font-weight-semibold text-dark font-15">New GPS System</h4>
-                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Client : </span>Hyman M. Cross</p>
-                                            </div><!--end media-body-->
-                                        </div>
-                                        <hr class="hr-dashed">
-                                        <div class="d-flex justify-content-between mb-3">
-                                            <h6 class="font-weight-semibold m-0">Start : <span class="text-muted font-weight-normal"> 15 Nov 2020</span></h6>
-                                            <h6 class="font-weight-semibold m-0">Deadline : <span class="text-muted font-weight-normal"> 28 Fab 2021</span></h6>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div>
-                                                    <h5 class="font-16 m-0 font-weight-bold">$55,600</h5>
-                                                    <p class="mb-0 font-weight-semibold">Total Budget</p>
-                                                </div>
-                                            </div><!--end col-->
-                                            <div class="col-auto align-self-center">
-                                                <h5 class="font-14 m-0 font-weight-bold">$27,200 <span class="font-12 text-muted font-weight-normal">Used Budget</span></h5>
-                                            </div><!--end col-->
-                                        </div><!--end row-->
-                                        <div>
-                                            <p class="text-muted mt-2 mb-1">There are many variations of passages of Lorem Ipsum available,
-                                                but the majority have suffered alteration in some form.
-                                            </p>
-                                            <div class="d-flex justify-content-between">
-                                                <h6 class="font-weight-semibold">All Hours : <span class="text-muted font-weight-normal"> 530 / 281:30</span></h6>
-                                                <h6 class="font-weight-semibold">Today : <span class="text-muted font-weight-normal"> 2:45</span><span class="badge badge-soft-pink font-weight-semibold ml-2"><i class="far fa-fw fa-clock"></i> 35 days left</span></h6>
-                                            </div>
-                                            <p class="text-muted text-right mb-1">15% Complete</p>
-                                            <div class="progress mb-4" style="height: 4px;">
-                                                <div class="progress-bar bg-purple" role="progressbar" style="width: 15%;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                            <div class="d-flex justify-content-between">
-                                                <div class="img-group">
-                                                    <a class="user-avatar user-avatar-group" href="#">
-                                                        <img src="assets/images/users/user-2.jpg" alt="user" class="rounded-circle thumb-xxs">
-                                                    </a>
-                                                    <a class="user-avatar user-avatar-group" href="#">
-                                                        <img src="assets/images/users/user-9.jpg" alt="user" class="rounded-circle thumb-xxs">
-                                                    </a>
-                                                    <a class="user-avatar user-avatar-group" href="#">
-                                                        <img src="assets/images/users/user-5.jpg" alt="user" class="rounded-circle thumb-xxs">
-                                                    </a>
-                                                    <a class="user-avatar user-avatar-group" href="#">
-                                                        <img src="assets/images/users/user-10.jpg" alt="user" class="rounded-circle thumb-xxs">
-                                                    </a>
-                                                    <a href="#" class="avatar-box thumb-xxs align-self-center">
-                                                        <span class="avatar-title bg-soft-info rounded-circle font-13 font-weight-normal">+6</span>
-                                                    </a>
-                                                </div><!--end img-group-->
-                                                <ul class="list-inline mb-0 align-self-center">
-                                                    <li class="list-item d-inline-block mr-2">
-                                                        <a class="" href="#">
-                                                            <i class="mdi mdi-format-list-bulleted text-success font-15"></i>
-                                                            <span class="text-muted font-weight-bold">15/100</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="list-item d-inline-block">
-                                                        <a class="" href="#">
-                                                            <i class="mdi mdi-comment-outline text-primary font-15"></i>
-                                                            <span class="text-muted font-weight-bold">3</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="list-item d-inline-block">
-                                                        <a class="ml-2" href="#">
-                                                            <i class="mdi mdi-pencil-outline text-muted font-18"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li class="list-item d-inline-block">
-                                                        <a class="" href="#">
-                                                            <i class="mdi mdi-trash-can-outline text-muted font-18"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div><!--end task-box-->
-                                    </div><!--end card-body-->
-                                </div><!--end card-->
-                            </div><!--end col-->
-                            <div class="col-lg-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="media mb-3">
-                                            <img src="assets/images/widgets/project2.jpg" alt="" class="thumb-md rounded-circle">
-                                            <div class="media-body align-self-center text-truncate ml-3">
-                                                <h4 class="m-0 font-weight-semibold text-dark font-15">Body Care</h4>
-                                                <p class="text-muted  mb-0 font-13"><span class="text-dark">Client : </span>Hyman M. Cross</p>
-                                            </div><!--end media-body-->
-                                        </div>
-                                        <hr class="hr-dashed">
-                                        <div class="d-flex justify-content-between mb-3">
-                                            <h6 class="font-weight-semibold m-0">Start : <span class="text-muted font-weight-normal"> 15 Nov 2020</span></h6>
-                                            <h6 class="font-weight-semibold m-0">Deadline : <span class="text-muted font-weight-normal"> 28 Fab 2021</span></h6>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div>
-                                                    <h5 class="font-16 m-0 font-weight-bold">$65,000</h5>
-                                                    <p class="mb-0 font-weight-semibold">Total Budget</p>
-                                                </div>
-                                            </div><!--end col-->
-                                            <div class="col-auto align-self-center">
-                                                <h5 class="font-14 m-0 font-weight-bold">$36,900 <span class="font-12 text-muted font-weight-normal">Used Budget</span></h5>
-                                            </div><!--end col-->
-                                        </div><!--end row-->
-                                        <div>
-                                            <p class="text-muted mt-2 mb-1">There are many variations of passages of Lorem Ipsum available,
-                                                but the majority have suffered alteration in some form.
-                                            </p>
-                                            <div class="d-flex justify-content-between">
-                                                <h6 class="font-weight-semibold">All Hours : <span class="text-muted font-weight-normal"> 530 / 281:30</span></h6>
-                                                <h6 class="font-weight-semibold">Today : <span class="text-muted font-weight-normal"> 2:45</span><span class="badge badge-soft-info font-weight-semibold ml-2"><i class="far fa-fw fa-clock"></i> 35 days left</span></h6>
-                                            </div>
-                                            <p class="text-muted text-right mb-1">15% Complete</p>
-                                            <div class="progress mb-4" style="height: 4px;">
-                                                <div class="progress-bar bg-purple" role="progressbar" style="width: 15%;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                            <div class="d-flex justify-content-between">
-                                                <div class="img-group">
-                                                    <a class="user-avatar user-avatar-group" href="#">
-                                                        <img src="assets/images/users/user-6.jpg" alt="user" class="rounded-circle thumb-xxs">
-                                                    </a>
-                                                    <a class="user-avatar user-avatar-group" href="#">
-                                                        <img src="assets/images/users/user-2.jpg" alt="user" class="rounded-circle thumb-xxs">
-                                                    </a>
-                                                    <a class="user-avatar user-avatar-group" href="#">
-                                                        <img src="assets/images/users/user-3.jpg" alt="user" class="rounded-circle thumb-xxs">
-                                                    </a>
-                                                    <a class="user-avatar user-avatar-group" href="#">
-                                                        <img src="assets/images/users/user-4.jpg" alt="user" class="rounded-circle thumb-xxs">
-                                                    </a>
-                                                    <a href="#" class="avatar-box thumb-xxs align-self-center">
-                                                        <span class="avatar-title bg-soft-info rounded-circle font-13 font-weight-normal">+6</span>
-                                                    </a>
-                                                </div><!--end img-group-->
-                                                <ul class="list-inline mb-0 align-self-center">
-                                                    <li class="list-item d-inline-block mr-2">
-                                                        <a class="" href="#">
-                                                            <i class="mdi mdi-format-list-bulleted text-success font-15"></i>
-                                                            <span class="text-muted font-weight-bold">15/100</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="list-item d-inline-block">
-                                                        <a class="" href="#">
-                                                            <i class="mdi mdi-comment-outline text-primary font-15"></i>
-                                                            <span class="text-muted font-weight-bold">3</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="list-item d-inline-block">
-                                                        <a class="ml-2" href="#">
-                                                            <i class="mdi mdi-pencil-outline text-muted font-18"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li class="list-item d-inline-block">
-                                                        <a class="" href="#">
-                                                            <i class="mdi mdi-trash-can-outline text-muted font-18"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div><!--end task-box-->
-                                    </div><!--end card-body-->
-                                </div><!--end card-->
-                            </div><!--end col-->
-                        </div>
-
-
-
-
 
                     </div><!--end modal-body-->
 
@@ -803,6 +373,7 @@
                     { data: 'start_date', name: 'start_date'},
                     { data: 'end_date', name: 'end_date'},
                     { data: 'rate', name: 'rate'},
+                    { data: 'payment_received', name: 'payment_received'},
                     { data: 'priority', name: 'priority'},
                     { data: 'status', name: 'status'},
                     { data: 'action', name: 'action' },

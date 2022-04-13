@@ -66,16 +66,12 @@
 
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-md-4">
-                                <label for="pro-message"><b>Requirement</b></label>
-                                <textarea class="form-control" rows="2" name="requirement"  placeholder="Project Requirement">{{old("requirement")}}{{$project->requirement}}</textarea>
-                            </div><!--end col-->
-
-                            <div class="col-md-4">
+                           
+                            <div class="col-md-6">
                                 <label for="pro-message"><b>Description</b></label>
                                 <textarea class="form-control" rows="2" name="description"  placeholder="Project Description">{{old("description")}}{{$project->description}}</textarea>
                             </div><!--end col-->
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label for="pro-message"><b>Notes</b></label>
                                 <textarea class="form-control" rows="2" name="notes"  placeholder="Additional Notes">{{$project->notes}}</textarea>
                             </div><!--end form-group-->
@@ -172,6 +168,38 @@
 
                     </div>
 
+                    <div class="form-group mt-2">
+                        <label><h5><b>Project Payments</b></h5></label>
+                        <div class="form-group">
+                            <table class="table table-bordered mb-0 table-centered">
+                                <thead>
+                                    <tr>
+                                        <th style="width:49%"><label for=""><b>Date</b></label></th>
+                                        <th style="width:49%"><label for=""><b>Amount</b></label></th>
+                                        <th style="width:2%"><a href="javascript:void(0)" class="addpayment"> <i class="fas fa-plus"></i> </a></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="pymnt">
+                                    @foreach($project->payments as $payment)
+                                    <tr>
+                                        <td>
+                                            <input type="date" class="form-control" name="p_date[]" value="{{old('p_date')}}{{$payment->date}}">
+                                            <input type="hidden" name="pm_id[]" value="{{$payment->id}}">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control" name="p_amount[]" value="{{old('p_amount')}}{{$payment->amount}}">
+                                        </td>
+                                        <td>
+                                            <a href="javascript:void(0)" class=" deletepayment"><i class="fas fa-trash-alt"></i></a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
                     
 
                     <button type="submit" class="btn btn-info waves-effect waves-light btn-sm">Update project</button>
@@ -216,6 +244,23 @@
             $(this).parent().parent().remove();
             //console.log('deleterow clicked');
         });
+
+        $('thead').on('click','.addpayment',function(){
+            //console.log('Add Item Clicked');
+            var tr = "<tr>"+
+                        "<td><input type='date' class='form-control form-control-sm' name='p_date[]' value=''><input type='hidden'  name='pm_id[]' value=''></td>"+
+                        "<td><input type='number' class='form-control form-control-sm' name='p_amount[]' value=''></td>"+
+                        "<td><a href='javascript:void(0)' class='deleterow'><i class='fas fa-trash-alt'></i></a></td>"+
+                    "</tr>"
+
+            $('#pymnt').append(tr);
+        });
+
+        $('tbody').on('click','.deletepayment',function(){
+            $(this).parent().parent().remove();
+            //console.log('deleterow clicked');
+        });
+
     </script>
 
 @endsection

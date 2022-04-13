@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Carbon\Carbon;
 use App\Models\Client;
+use App\Models\Payment;
 use App\Models\Project;
 use App\Models\Requirement;
 use Illuminate\Support\Str;
@@ -67,10 +68,12 @@ class ProjectController extends Controller
         $projectCount = Project::count();
         $projectCompleted = Project::where('status','completed')->count();
         $totalbudget = Project::sum('rate');
+        $projects = Project::orderby('created_at','desc')->get();
         return view('admin.pages.project.project')
                 ->with('projectCount',$projectCount)
                 ->with('projectCompleted',$projectCompleted)
-                ->with('totalbudget',$totalbudget);
+                ->with('totalbudget',$totalbudget)
+                ->with('projects',$projects);
 
     }
 
@@ -104,22 +107,43 @@ class ProjectController extends Controller
         $project->completion_status = $request->completion_status;
         $project->save();
 
-        // $requirements = [];
+        $requirements = [];
+        if($request->r_requirement){
+            for($i=0; $i < count($request->r_requirement); $i++){
+                if($request->r_requirement[$i] != null){
+                    $input = Requirement::updateOrCreate([
+                        //Add unique field combo to match here
+                        //For example, perhaps you only want one entry per user:
+                        'id'   => $request->p_id[$i]
+                    ],[
+                        'project_id'     => $project->id,
+                        'requirement' => $request->r_requirement[$i],
+                        'status'    => $request->r_status[$i],
+                    ]);
+                    array_push($requirements,$input->id);
+                }
+            }
+        }
+        $project->requirements()->sync($requirements);
 
-        // if($request->requirement){
-        //     for($i=0; $i < count($request->requirement); $i++){
-        //         if($request->requirement[$i] != null){
-        //             $input = new Requirement;
-        //             $input->project_id = $project->id;
-        //             $input->requirement = $request->requirement[$i];
-        //             $input->status = $request->status[$i];
-        //             $input->save();
-        //             array_push($requirements,$input->id);
-        //         }
-        //     }
-        // }
-
-        // $project->requirements()->sync($requirements);
+        $payments = [];
+        if($request->p_date){
+            for($i=0; $i < count($request->p_date); $i++){
+                if($request->p_date[$i] != null){
+                    $input = Payment::updateOrCreate([
+                        //Add unique field combo to match here
+                        //For example, perhaps you only want one entry per user:
+                        'id'   => $request->pm_id[$i]
+                    ],[
+                        'project_id'     => $project->id,
+                        'date'     => $request->p_date[$i],
+                        'amount' => $request->p_amount[$i],
+                    ]);
+                    array_push($payments,$input->id);
+                }
+            }
+        }
+        $project->payments()->sync($payments);
 
 
         return redirect()->route('project.index')
@@ -183,12 +207,9 @@ class ProjectController extends Controller
         $project->save();
 
         $requirements = [];
-
         if($request->r_requirement){
             for($i=0; $i < count($request->r_requirement); $i++){
                 if($request->r_requirement[$i] != null){
-
-
                     $input = Requirement::updateOrCreate([
                         //Add unique field combo to match here
                         //For example, perhaps you only want one entry per user:
@@ -198,21 +219,30 @@ class ProjectController extends Controller
                         'requirement' => $request->r_requirement[$i],
                         'status'    => $request->r_status[$i],
                     ]);
-
-
-                    // $input = new Requirement;
-                    // $input->project_id = $project->id;
-                    // $input->requirement = $request->r_requirement[$i];
-                    // $input->status = $request->r_status[$i];
-                    // $input->save();
-
-
                     array_push($requirements,$input->id);
                 }
             }
         }
-
         $project->requirements()->sync($requirements);
+
+        $payments = [];
+        if($request->p_date){
+            for($i=0; $i < count($request->p_date); $i++){
+                if($request->p_date[$i] != null){
+                    $input = Payment::updateOrCreate([
+                        //Add unique field combo to match here
+                        //For example, perhaps you only want one entry per user:
+                        'id'   => $request->pm_id[$i]
+                    ],[
+                        'project_id'     => $project->id,
+                        'date'     => $request->p_date[$i],
+                        'amount' => $request->p_amount[$i],
+                    ]);
+                    array_push($payments,$input->id);
+                }
+            }
+        }
+        $project->payments()->sync($payments);
 
         return redirect()->route('project.index')
         ->with([
