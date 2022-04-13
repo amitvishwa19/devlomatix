@@ -40,13 +40,19 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-3">
+                                <label for="pro-end-date"><b>Client</b></label>
+                                <select class="form-control" name="client">
+                                    <option value="">-Select Client-</option>
+                                    @foreach($clients as $client)
+                                        <option value="{{$client->id}}" {{ $project->client_id == $client->id ? "selected" : "" }}>{{$client->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div><!--end col-->
+                            <div class="col-md-3">
                                 <label for="projectName"><b>Project Name</b></label>
                                 <input type="text" class="form-control" name="name"  placeholder="Project name" value="{{old("name")}}{{$project->name}}">
                             </div>
-                            <div class="col-md-3">
-                                <label for="projectName"><b>Project Duration(Days)</b></label>
-                                <input type="number" class="form-control" name="duration"  placeholder="Project duration" value="{{old("name")}}{{$project->duration}}">
-                            </div>
+                            
                             <div class="col-md-3">
                                 <label for="pro-start-date"><b>Start Date</b></label>
                                 <input type="date" class="form-control" name="start_date" value="{{old('start_date')}}{{$project->start_date}}" placeholder="dd-mm-yyyy">
@@ -60,16 +66,19 @@
 
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label for="pro-message"><b>Requirement</b></label>
                                 <textarea class="form-control" rows="2" name="requirement"  placeholder="Project Requirement">{{old("requirement")}}{{$project->requirement}}</textarea>
                             </div><!--end col-->
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label for="pro-message"><b>Description</b></label>
                                 <textarea class="form-control" rows="2" name="description"  placeholder="Project Description">{{old("description")}}{{$project->description}}</textarea>
                             </div><!--end col-->
-
+                            <div class="col-md-4">
+                                <label for="pro-message"><b>Notes</b></label>
+                                <textarea class="form-control" rows="2" name="notes"  placeholder="Additional Notes">{{$project->notes}}</textarea>
+                            </div><!--end form-group-->
                         </div>
                     </div>
 
@@ -127,12 +136,43 @@
                         </div><!--end row-->
                     </div><!--end form-group-->
 
-                    
+                    <div class="form-group mt-2">
+                        <label><h5><b>Project Requirements</b></h5></label>
 
-                    <div class="form-group">
-                        <label for="pro-message"><b>Notes</b></label>
-                        <textarea class="form-control" rows="2" name="notes"  placeholder="Additional Notes">{{$project->notes}}</textarea>
-                    </div><!--end form-group-->
+                        <div class="form-group">
+                            <table class="table table-bordered mb-0 table-centered">
+                                <thead>
+                                    <tr>
+                                        <th style="width:80%"><label for=""><b>Requirements</b></label></th>
+                                        <th style="width:10%"><label for=""><b>Status</b></label></th>
+                                        <th style="width:2%"><a href="javascript:void(0)" class="addrow"> <i class="fas fa-plus"></i> </a></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($project->requirements as $requirement)
+                                    <tr>
+                                        <td>
+                                            <input type="text" class="form-control" name="r_requirement[]" value="{{old('task_title')}}{{$requirement->requirement}}">
+                                            <input type="hidden" name="p_id[]" value="{{$requirement->id}}">
+                                        </td>
+                                        <td>
+                                            <select class="form-control" name="r_status[]">
+                                                <option value="0" {{ $requirement->status == false? "selected" : "" }}>Pending</option>
+                                                <option value="1" {{ $requirement->status == true? "selected" : "" }}>Completed</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <a href="javascript:void(0)" class=" deleterow"><i class="fas fa-trash-alt"></i></a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    
 
                     <button type="submit" class="btn btn-info waves-effect waves-light btn-sm">Update project</button>
                     <a href="{{route('project.index')}}" class="btn btn-secondary btn-sm">Cancel</a>
@@ -155,6 +195,27 @@
 
 
 @section('scripts')
+    <script>    
+        $('thead').on('click','.addrow',function(){
+            //console.log('Add Item Clicked');
+            var tr = "<tr>"+
+                        "<td><input type='text' class='form-control form-control-sm' name='r_requirement[]' value=''><input type='hidden'  name='p_id[]' value=''></td>"+
+                        "<td>"+
+                            "<select class='form-control' name='r_status[]'>"+
+                                "<option value=0>Pending</option>"+
+                                "<option value=1 >Completed</option>"+
+                            "</select>"+
+                        "</td>"+
+                        "<td><a href='javascript:void(0)' class='deleterow'><i class='fas fa-trash-alt'></i></a></td>"+
+                    "</tr>"
 
+            $('tbody').append(tr);
+        });
+
+        $('tbody').on('click','.deleterow',function(){
+            $(this).parent().parent().remove();
+            //console.log('deleterow clicked');
+        });
+    </script>
 
 @endsection

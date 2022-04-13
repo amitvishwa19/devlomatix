@@ -14,4 +14,9 @@ class Project extends Model
         //return $this->belongsTo('App\Models\Tag');
         return $this->belongsTo('App\Models\client','client_id');
     }
+
+    public function requirements()
+    {
+        return $this->belongsToMany('App\Models\Requirement','project_requirement');
+    }
 }

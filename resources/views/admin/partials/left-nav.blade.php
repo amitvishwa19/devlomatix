@@ -1,11 +1,11 @@
 <!-- Left Sidenav -->
 <div class="left-sidenav">
     <!-- LOGO -->
-    <div class="brand">
+    <div class="brand mt-2">
         <a href="{{route('admin.dashboard')}}" class="logo">
             <span class="admin-sidebar-logo-title">
-                <img src="{{asset('public/admin/assets/images/logo-sm.png')}}" alt="logo-small" class="logo-sm">
-                <span class="title-text">DevloMatix</span>
+                <img src="{{setting('app_fevicon')}}" alt="logo-small" class="logo-sm">
+                <span class="title-text">{{setting('app_name')}}</span>
             </span>
             {{-- <span>
                 <img src="{{asset('public/admin/assets/images/logo.png')}}" alt="logo-large" class="logo-lg logo-light">

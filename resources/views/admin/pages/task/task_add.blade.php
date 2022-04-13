@@ -48,10 +48,9 @@
                 <div class="col-lg-2">
                     <label for="pro-end-date"><b>Priority</b></label>
                     <select class="form-control" name="priority">
-                        <option>-- Select Priority --</option>
-                        <option value="high" {{ (old("priority") == "high" ? "selected":"") }}>High</option>
-                        <option value="medium" {{ (old("priority") == "medium" ? "selected":"") }}>Medium</option>
                         <option value="low" {{ (old("priority") == "low" ? "selected":"") }}>Low</option>
+                        <option value="high" {{ (old("priority") == "high" ? "selected":"") }}>High</option>
+                        <option value="medium" {{ (old("priority") == "medium" ? "selected":"") }}>Medium</option>  
                     </select>
                 </div>
 
@@ -65,15 +64,11 @@
                     <input type="date" class="form-control" name="due_date" value="{{old('due_date')}}">
                 </div>
 
-                <div class="col-md-2">
-                    <label for="pro-start-date"><b>Progress</b></label>
-                    <input type="text" class="form-control" name="progress" value="{{old('progress')}}">
-                </div>
+              
 
                 <div class="col-lg-2">
                     <label for="pro-end-date"><b>Status</b></label>
                     <select class="form-control" name="status">
-                        <option>-- Select Status --</option>
                         <option value="planning" {{ (old("status") == "planning" ? "selected":"") }}>Planning</option>
                         <option value="wip" {{ (old("status") == "wip" ? "selected":"") }}>WIP</option>
                         <option value="completed" {{ (old("status") == "completed" ? "selected":"") }}>Completed</option>
@@ -90,28 +85,28 @@
                     <table class="table table-bordered mb-0 table-centered">
                         <thead>
                             <tr>
-                                <th style="width:30%"><label for=""><b>Title</b></label></th>
-                                <th style="width:45%"><label for=""><b>Description</b></label></th>
-                                <th style="width:15%"><label for=""><b>Status</b></label></th>
-                                <th style="width:10%"><a href="javascript:void(0)" class="btn btn-info waves-effect waves-light btn-sm addrow"> Add </a></th>
+                                <th style="width:40%"><label for=""><b>Title</b></label></th>
+                                <th style="width:40%"><label for=""><b>Description</b></label></th>
+                                <th style="width:8%"><label for=""><b>Status</b></label></th>
+                                <th style="width:2%"><a href="javascript:void(0)" class="addrow"> <i class="fas fa-plus"></i>  </a></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" name="task_item_title[]" value="{{old('task_title')}}">
+                                    <input type="text" class="form-control" name="t_title[]" value="{{old('task_title')}}">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" name="task_item_description[]" value="{{old('task_description')}}">
+                                    <input type="text" class="form-control" name="t_description[]" value="{{old('task_description')}}">
                                 </td>
                                 <td>
-                                    <select class="form-control" name="task_item_status[]">
+                                    <select class="form-control" name="t_status[]">
                                         <option value="0" {{ (old("task_item_status") == 0? "selected":"") }}>Pending</option>
                                         <option value="1" {{ (old("task_item_status") == 1 ? "selected":"") }}>Completed</option>
                                     </select>
                                 </td>
                                 <td>
-                                    <a href="javascript:void(0)" class="btn btn-danger waves-effect waves-light btn-sm deleterow">Delete</a>
+                                    <a href="javascript:void(0)" class="deleterow"><i class="fas fa-trash-alt"></i></a>
                                 </td>
                             </tr>
                         </tbody>
@@ -144,10 +139,10 @@
         $('thead').on('click','.addrow',function(){
             //console.log('Add Item Clicked');
             var tr = "<tr>"+
-                        "<td><input type='text' class='form-control' name='task_item_title[]' value=''></td>"+
-                        "<td><input type='text' class='form-control' name='task_item_description[]' value=''></td>"+
+                        "<td><input type='text' class='form-control' name='t_title[]' value=''></td>"+
+                        "<td><input type='text' class='form-control' name='t_description[]' value=''></td>"+
                         "<td>"+
-                            "<select class='form-control' name='task_item_status[]'>"+
+                            "<select class='form-control' name='t_status[]'>"+
                                 "<option value='0'>Pending</option>"+
                                 "<option value='1' >Completed</option>"+
                             "</select>"+

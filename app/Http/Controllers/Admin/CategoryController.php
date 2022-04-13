@@ -54,6 +54,7 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
+        //dd($request->all());
         $validate = $request->validate([
             'category' => 'required|unique:categories,name'
         ]);
@@ -68,7 +69,7 @@ class CategoryController extends Controller
             $category->parent_id = $request->parent;
         }
         $category->class = $request->class;
-        if($request->favourite){$category->favourite = true;}{$category->favourite = false;}
+        if($request->favourite){$category->favourite = true;}else{$category->favourite = false;}
         if($request->status){$category->status = true;}else{$category->status = false;}
         $category->save();
         Cache::forget('categories');
@@ -110,7 +111,7 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->slug = str_slug($request->name);
         $category->class = $request->class;
-        if($request->favourite){$category->favourite = true;}{$category->favourite = false;}
+        if($request->favourite){$category->favourite = true;}else{$category->favourite = false;}
         if($request->status){$category->status = true;}else{$category->status = false;}
         $category->save();
 

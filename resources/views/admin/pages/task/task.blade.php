@@ -22,7 +22,7 @@
                 <div class="page-title-box">
                     <div class="row">
                         <div class="col">
-                            <h4 class="page-title">Clients</h4>
+                            <h4 class="page-title">Tasks</h4>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Devlomatix</a></li>
                                 <li class="breadcrumb-item active">Tasks</li>
@@ -38,13 +38,13 @@
 
         {{-- project metrix info --}}
         <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-3">
+            <div class="col-md-6 col-lg-6">
                 <div class="card report-card">
                     <div class="card-body">
                         <div class="row d-flex justify-content-center">
                             <div class="col">
                                 <p class="text-dark mb-1 font-weight-semibold">Tasks</p>
-                                <h3 class="m-0">12</h3>
+                                <h3 class="m-0">{{$taskCount}}</h3>
 
                             </div>
                             <div class="col-auto align-self-center">
@@ -56,13 +56,13 @@
                     </div><!--end card-body-->
                 </div><!--end card-->
             </div> <!--end col-->
-            <div class="col-md-6 col-lg-3">
+            <div class="col-md-6 col-lg-6">
                 <div class="card report-card">
                     <div class="card-body">
                         <div class="row d-flex justify-content-center">
                             <div class="col">
                                 <p class="text-dark mb-1 font-weight-semibold">Completed</p>
-                                <h3 class="m-0">41</h3>
+                                <h3 class="m-0">{{$taskCompleted}}</h3>
 
                             </div>
                             <div class="col-auto align-self-center">
@@ -74,43 +74,8 @@
                     </div><!--end card-body-->
                 </div><!--end card-->
             </div> <!--end col-->
-            <div class="col-md-6 col-lg-3">
-                <div class="card report-card">
-                    <div class="card-body">
-                        <div class="row d-flex justify-content-center">
-                            <div class="col">
-                                <p class="text-dark mb-1 font-weight-semibold">Total Hours</p>
-                                <h3 class="m-0">801:30</h3>
-
-
-                            </div>
-                            <div class="col-auto align-self-center">
-                                <div class="report-main-icon bg-light-alt">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock align-self-center text-muted icon-md"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!--end card-body-->
-                </div><!--end card-->
-            </div> <!--end col-->
-            <div class="col-md-6 col-lg-3">
-                <div class="card report-card">
-                    <div class="card-body">
-                        <div class="row d-flex justify-content-center">
-                            <div class="col">
-                                <p class="text-dark mb-1 font-weight-semibold">Budget</p>
-                                <h3 class="m-0">23443</h3>
-
-                            </div>
-                            <div class="col-auto align-self-center">
-                                <div class="report-main-icon bg-light-alt">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign align-self-center text-muted icon-md"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!--end card-body-->
-                </div><!--end card-->
-            </div> <!--end col-->
+            
+            
         </div>
         {{-- project metrix info --}}
 
@@ -122,7 +87,14 @@
                             <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                     <tr>
-                                        <th style="width:40%">Tasks</th>
+                                        <th style="width:20%">Tasks</th>
+                                        <th style="width:30%">Description</th>
+                                        <th style="width:5%">Priority</th>
+                                        <th style="width:5%">Start Date</th>
+                                        <th style="width:5%">End Date</th>
+                                        <th style="width:5%">Progress</th>
+                                        <th style="width:5%">Status</th>
+                                        <th style="width:2%">Action</th>
                                     </tr>
                                 </thead>
 
@@ -163,6 +135,13 @@
                 ajax: '{!! route('task.index') !!}',
                 columns:[
                     { data: 'title', name: 'title'},
+                    { data: 'description', name: 'description'},
+                    { data: 'priority', name: 'priority'},
+                    { data: 'start_date', name: 'start_date'},
+                    { data: 'due_date', name: 'due_date'},
+                    { data: 'progress', name: 'progress'},
+                    { data: 'status', name: 'status'},
+                    { data: 'action', name: 'action'},
                 ]
 
             });

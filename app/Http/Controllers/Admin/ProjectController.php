@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Carbon\Carbon;
 use App\Models\Client;
 use App\Models\Project;
+use App\Models\Requirement;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
@@ -31,7 +32,7 @@ class ProjectController extends Controller
             })
             
             ->addColumn('requirement',function(Project $project){
-                return '<a href="'.route('project.show',$project->id).'">'.substr($project->requirement, 0, 100).'</a>' ;
+                return substr($project->requirement, 0, 100) ;
             })
             ->addColumn('priority',function(Project $project){
                 //if($project->priority == 'low'){'dasdad'};
@@ -88,6 +89,7 @@ class ProjectController extends Controller
         ]);
 
         $project = New Project;
+        $project->client_id = $request->client;
         $project->name = $request->name;
         $project->duration = $request->duration;
         $project->start_date = $request->start_date;
@@ -101,6 +103,24 @@ class ProjectController extends Controller
         $project->notes = $request->notes;
         $project->completion_status = $request->completion_status;
         $project->save();
+
+        // $requirements = [];
+
+        // if($request->requirement){
+        //     for($i=0; $i < count($request->requirement); $i++){
+        //         if($request->requirement[$i] != null){
+        //             $input = new Requirement;
+        //             $input->project_id = $project->id;
+        //             $input->requirement = $request->requirement[$i];
+        //             $input->status = $request->status[$i];
+        //             $input->save();
+        //             array_push($requirements,$input->id);
+        //         }
+        //     }
+        // }
+
+        // $project->requirements()->sync($requirements);
+
 
         return redirect()->route('project.index')
         ->with([
@@ -161,6 +181,38 @@ class ProjectController extends Controller
         $project->payment = $request->payment;
         $project->completion_status = $request->completion_status;
         $project->save();
+
+        $requirements = [];
+
+        if($request->r_requirement){
+            for($i=0; $i < count($request->r_requirement); $i++){
+                if($request->r_requirement[$i] != null){
+
+
+                    $input = Requirement::updateOrCreate([
+                        //Add unique field combo to match here
+                        //For example, perhaps you only want one entry per user:
+                        'id'   => $request->p_id[$i]
+                    ],[
+                        'project_id'     => $project->id,
+                        'requirement' => $request->r_requirement[$i],
+                        'status'    => $request->r_status[$i],
+                    ]);
+
+
+                    // $input = new Requirement;
+                    // $input->project_id = $project->id;
+                    // $input->requirement = $request->r_requirement[$i];
+                    // $input->status = $request->r_status[$i];
+                    // $input->save();
+
+
+                    array_push($requirements,$input->id);
+                }
+            }
+        }
+
+        $project->requirements()->sync($requirements);
 
         return redirect()->route('project.index')
         ->with([

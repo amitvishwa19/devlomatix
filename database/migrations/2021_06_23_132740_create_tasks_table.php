@@ -18,13 +18,12 @@ class CreatetasksTable extends Migration
 
             $table->id();
             $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('title');
             $table->text('description')->nullable();
             $table->enum('priority', ['low','medium','high'])->default('low');
-            $table->date('start_date')->default(Carbon::now());
+            $table->date('start_date')->nullable();
             $table->date('due_date')->nullable();
-            $table->integer('progress')->nullable()->default(0);
+            $table->integer('progress')->default(0);
             $table->enum('status', ['planning','wip','completed'])->default('planning');
             $table->timestamps();
 

@@ -29,75 +29,9 @@ class TaskController extends Controller
             ->editColumn('created_at',function(Task $task){
                 return $task->created_at->diffForHumans();
             })
-            ->addColumn('title',function(Task $task){
-                $statusicon = null;
-                $priority = null;
-                $status = null;
-
-                if($task->status == 'wip'){$statusicon = 'fas fa-circle text-success';}
-                if($task->status == 'completed'){$statusicon = 'fas fa-check text-success';}
-                if($task->status == 'planning'){$statusicon = 'fas fa-circle text-secondary';}
-
-                if($task->priority == 'high'){$priority = 'badge badge-danger';}
-                if($task->priority == 'medium'){$priority = 'badge badge-success';}
-                if($task->priority == 'low'){$priority = 'badge badge-secondary';}
-
-                if($task->status == 'planning'){$status = 'badge badge-danger';}
-                if($task->status == 'wip'){$status = 'badge badge-secondary';}
-                if($task->status == 'completed'){$status = 'badge badge-success';}
-
-
-                return '<div class="card">
-                            <div class="card-body">
-                                <div class="task-box">
-                                    <div class="task-priority-icon"><i class="'.$statusicon.'"></i></div>
-                                    <p class="text-muted float-right">
-
-                                        <span class="text-muted"><i class="far fa-fw fa-clock"></i>'.date('d-m-Y', strtotime($task->start_date)).'</span>
-                                        <span class="mx-1">·</span>
-                                        <span><i class="far fa-fw fa-clock"></i>'.\Carbon\Carbon::parse($task->due_date)->diffForHumans().'</span>
-                                    </p>
-                                    <h5 class="mt-0">'.$task->title.'</h5>
-                                    <p class="text-muted mb-1">
-                                        '.substr($task->description, 0, 200).'
-                                    </p>
-                                    <p class="text-muted text-right mb-1">'.$task->progress.'% Complete</p>
-                                    <div class="progress mb-4" style="height: 4px;">
-                                        <div class="progress-bar bg-primary" role="progressbar" style="width: '.$task->progress.'%;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <div class="d-flex justify-content-between">
-                                        <div class="img-group">
-                                            <span class="'.$priority.'">'.Str::ucfirst($task->priority).'</span>
-                                            <span class="'.$status.'">'.Str::ucfirst($task->status).'</span>
-                                        </div><!--end img-group-->
-                                        <ul class="list-inline mb-0 align-self-center">
-
-                                            <li class="list-item d-inline-block">
-                                                <a class="ml-2" href="'.route('task.show',$task->id).'">
-                                                    <i class="mdi mdi-eye-settings text-muted font-18"></i>
-                                                </a>
-                                            </li>
-                                            <li class="list-item d-inline-block">
-                                                <a class="ml-2" href="'.route('task.edit',$task->id).'">
-                                                    <i class="mdi mdi-pencil-outline text-muted font-18"></i>
-                                                </a>
-                                            </li>
-                                            <li class="list-item d-inline-block">
-                                                <a class="delete" href="javascript:void(0);" id="'.$task->id.'" class="delete">
-                                                    <i class="mdi mdi-trash-can-outline text-muted font-18"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div><!--end task-box-->
-                            </div><!--end card-body-->
-                        </div>';
-            })
+            
             ->addColumn('progress',function(Task $task){
-                return '<p class="text-muted text-right mb-1">'.$task->progress.'% Complete</p>
-                        <div class="progress mb-4" style="height: 4px;">
-                            <div class="progress-bar bg-secondary" role="progressbar" style="width: '.$task->progress.'%;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>';
+                return  $task->progress . '%';;
             })
             ->addColumn('duration',function(Task $task){
                 return '<p class="text-muted text-right mb-1">'.$task->progress.'% Complete</p>
@@ -108,8 +42,8 @@ class TaskController extends Controller
 
             ->addColumn('action',function($data){
                 $link = '<div class="d-flex">'.
-                            '<a href="'.route('client.show',$data->id).'" class="badge badge-soft-success mr-2"><small>View</small></a>'.
-                            '<a href="'.route('client.edit',$data->id).'" class="badge badge-soft-info mr-2"><small>Edit</small></a>'.
+                            '<a href="'.route('task.show',$data->id).'" class="badge badge-soft-success mr-2"><small>View</small></a>'.
+                            '<a href="'.route('task.edit',$data->id).'" class="badge badge-soft-info mr-2"><small>Edit</small></a>'.
                             '<a href="javascript:void(0);" id="'.$data->id.'" class="badge badge-soft-danger delete"><small>Delete</small></a>'.
                         '</div>';
                 return $link;
@@ -118,10 +52,13 @@ class TaskController extends Controller
             ->make(true);
 
 
-        }
+        };
 
-        ;
-        return view('admin.pages.task.task');
+        $taskCount = Task::count();
+        $taskCompleted = Task::where('status','completed')->count();
+       
+
+        return view('admin.pages.task.task')->with('taskCount',$taskCount)->with('taskCompleted',$taskCompleted);
 
     }
 
@@ -146,7 +83,7 @@ class TaskController extends Controller
         $task->priority = $request->priority;
         $task->start_date = $request->start_date;
         $task->due_date = $request->due_date;
-        $task->progress = $request->progress;
+        $task->progress = 0;
         $task->status = $request->status;
         $task->save();
 
@@ -206,7 +143,7 @@ class TaskController extends Controller
         $task->priority = $request->priority;
         $task->start_date = $request->start_date;
         $task->due_date = $request->due_date;
-        $task->progress = $request->progress;
+        $task->progress = 10;
         $task->status = $request->status;
         $task->save();
 
@@ -242,15 +179,21 @@ class TaskController extends Controller
         //Progress and Status calculation
         $totalItems = $task->milestones()->count();
         $completedItems = $task->milestones()->where('status',true)->count();
+        //dd($completedItems);
+        if($totalItems > 0 ){
+            $progress = ($completedItems / $totalItems) * 100;
+            $task->progress = $progress;
 
-        $progress = ($completedItems / $totalItems) * 100;
-        $task->progress = $progress;
-
-        if($progress == 100){
-            //dd($progress);
-            $task->status = 'completed';
-        };
-        $task->save();
+            if($progress == 100){
+                //dd($progress);
+                $task->status = 'completed';
+            };
+            $task->save();
+        }else{
+            $task->progress = 0;
+            $task->save();
+        }
+        
 
 
 

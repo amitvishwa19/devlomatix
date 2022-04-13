@@ -44,7 +44,7 @@
 
         {{-- project metrix info --}}
         <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-3">
+            <div class="col-md-6 col-lg-4">
                 <div class="card report-card">
                     <div class="card-body">
                         <div class="row d-flex justify-content-center">
@@ -62,25 +62,7 @@
                     </div><!--end card-body-->
                 </div><!--end card-->
             </div> <!--end col-->
-            <div class="col-md-6 col-lg-3">
-                <div class="card report-card">
-                    <div class="card-body">
-                        <div class="row d-flex justify-content-center">
-                            <div class="col">
-                                <p class="text-dark mb-1 font-weight-semibold">Tasks</p>
-                                <h3 class="m-0">41</h3>
-                                <p class="mb-0 text-truncate text-muted"><span class="badge badge-soft-success">Active</span> Weekly Avg.Sessions</p>
-                            </div>
-                            <div class="col-auto align-self-center">
-                                <div class="report-main-icon bg-light-alt">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-square align-self-center text-muted icon-md"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!--end card-body-->
-                </div><!--end card-->
-            </div> <!--end col-->
-            <div class="col-md-6 col-lg-3">
+            <div class="col-md-6 col-lg-4">
                 <div class="card report-card">
                     <div class="card-body">
                         <div class="row d-flex justify-content-center">
@@ -99,14 +81,14 @@
                     </div><!--end card-body-->
                 </div><!--end card-->
             </div> <!--end col-->
-            <div class="col-md-6 col-lg-3">
+            <div class="col-md-6 col-lg-4">
                 <div class="card report-card">
                     <div class="card-body">
                         <div class="row d-flex justify-content-center">
                             <div class="col">
-                                <p class="text-dark mb-1 font-weight-semibold">Budget</p>
+                                <p class="text-dark mb-1 font-weight-semibold">Income</p>
                                 <h3 class="m-0">{{$totalbudget}}</h3>
-                                <p class="mb-0 text-truncate text-muted"><span class="text-dark">{{$totalbudget}}</span> Total used budgets</p>
+                                <p class="mb-0 text-truncate text-muted"><span class="text-dark">{{$totalbudget}}</span> Total Income</p>
                             </div>
                             <div class="col-auto align-self-center">
                                 <div class="report-main-icon bg-light-alt">
