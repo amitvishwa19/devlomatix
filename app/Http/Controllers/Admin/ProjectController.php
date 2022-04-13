@@ -226,6 +226,7 @@ class ProjectController extends Controller
         $project->requirements()->sync($requirements);
 
         $payments = [];
+        $payment_received=0;
         if($request->p_date){
             for($i=0; $i < count($request->p_date); $i++){
                 if($request->p_date[$i] != null){
@@ -238,12 +239,17 @@ class ProjectController extends Controller
                         'date'     => $request->p_date[$i],
                         'amount' => $request->p_amount[$i],
                     ]);
+                    $payment_received +=$request->p_amount[$i];
                     array_push($payments,$input->id);
                 }
             }
         }
         $project->payments()->sync($payments);
 
+        $project->payment_received = $payment_received;
+        $project->save();
+
+        //dd($payment_received);
         return redirect()->route('project.index')
         ->with([
             'message'    =>'Project Updated Successfully',
@@ -267,5 +273,15 @@ class ProjectController extends Controller
 
         }
 
+    }
+
+    public function project_quotation($id){
+
+
+    }
+
+    public function project_billing($id){
+
+        
     }
 }

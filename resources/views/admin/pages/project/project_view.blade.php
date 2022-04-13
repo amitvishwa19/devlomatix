@@ -32,23 +32,31 @@
 
     <div class="card">
         <div class="card-body">
-            <div class="media mb-3">
-                <div class="avatar-box thumb-lg align-self-center me-2">
-                    <span class="avatar-title bg-soft-pink rounded-circle">{{substr($project->name, 0, 1)}}</span>
+            <div class="media mb-3 row align-items-center">
+                <div class="left-area d-flex col">
+                    <div class="avatar-box thumb-lg align-self-center me-2">
+                        <span class="avatar-title bg-soft-pink rounded-circle">{{substr($project->name, 0, 2)}}</span>
+                    </div>
+                    <div class="media-body align-self-center text-truncate ml-3">
+                        <h4 class="m-0 font-weight-semibold text-dark font-15">{{$project->name}}</h4>
+                        <p class="text-muted  mb-0 font-13">
+                            <span class="text-dark">Client :
+                                <a href="{{route('client.show',$project->client->id)}}"><span class="badge badge-soft-info">{{$project->client->name}}</span></a>
+                            </span>
+                        </p>
+                    </div><!--end media-body-->
                 </div>
-                <div class="media-body align-self-center text-truncate ml-3">
-                    <h4 class="m-0 font-weight-semibold text-dark font-15">{{$project->name}}</h4>
-                    <p class="text-muted  mb-0 font-13">
-                        <span class="text-dark">Client :
-                            <a href="{{route('client.show',$project->client->id)}}"><span class="badge badge-soft-info">{{$project->client->name}}</span></a>
-                        </span>
-                    </p>
-                </div><!--end media-body-->
+                <div class="col-auto">
+                    <a href="{{route('project.edit',$project->id)}}" class="btn btn-info waves-effect waves-light btn-sm">Edit</a>
+                    <a href="{{route('project.quotation',$project->id)}}" class="btn btn-info waves-effect waves-light btn-sm">Quotation</a>
+                    <a href="{{route('project.billing',$project->id)}}" class="btn btn-info waves-effect waves-light btn-sm">Billing</a>
+                    <a href="{{route('project.index')}}" class="btn btn-info waves-effect waves-light btn-sm">Cancel</a>
+                </div>
             </div>
             <hr class="hr-dashed">
             <div class="d-flex justify-content-between mb-3">
-                <h6 class="font-weight-semibold m-0">Start : <span class="text-muted font-weight-normal"> {{$project->start_date}}</span></h6>
-                <h6 class="font-weight-semibold m-0">Deadline : <span class="text-muted font-weight-normal"> {{$project->end_date}}</span></h6>
+                <h6 class="font-weight-semibold m-0">Start : <span class="text-muted font-weight-normal"> {{\Carbon\Carbon::parse($project->date)->isoFormat('MMM Do YYYY')}}</span></h6>
+                <h6 class="font-weight-semibold m-0">Deadline : <span class="text-muted font-weight-normal"> {{\Carbon\Carbon::parse($project->date)->isoFormat('MMM Do YYYY')}}</span></h6>
             </div>
             <div class="row">
                 <div class="col">
@@ -61,10 +69,6 @@
             </div><!--end row-->
 
             <div>
-                <div class="mt-2">
-                    <b>Requirements</b>
-                    <p class="text-muted mb-1">{{$project->requirement}}</p>
-                </div>
 
                 <div class="mt-2">
                     <b>Description</b>
@@ -76,13 +80,37 @@
                     <p class="text-muted mb-1">{{$project->notes}}</p>
                 </div>
 
-                <div class="d-flex justify-content-between">
+                <div class="mt-2">
+                    <b>Requirements</b>
+                    <ul class="mb-0 list-unstyled">
+                        @foreach($project->requirements as $requirement)
+                        <li class="text-muted"><i class="mdi mdi-circle-outline font-13 text-success mr-1"></i> {{$requirement->requirement}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+
+                <div class="mt-2">
+                    <b>Payments</b>
+                    <ul class="mb-0 list-unstyled">
+                        @foreach($project->payments as $payment)
+                        <li class="text-muted"><i class="mdi mdi-circle-outline font-13 text-success mr-1"></i>₹ {{$payment->amount}} on {{\Carbon\Carbon::parse($payment->date)->isoFormat('MMM Do YYYY')}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+
+
+                <div class="d-flex justify-content-between mt-4">
                     {{-- {{$sd = \Carbon\Carbon::createFromFormat('d-m-Y', $project->start_date)}} --}}
                     {{-- <h6 class="font-weight-semibold">All Hours : <span class="text-muted font-weight-normal">{{$project->start_date->diffInDays($project->end_date)}} / 281:30</span></h6> --}}
-                    <h6 class="font-weight-semibold">Today :
-                        <span class="text-muted font-weight-normal"> {{date('h:i')}}</span>
-                        <span class="badge badge-soft-pink font-weight-semibold ml-2"><i class="far fa-fw fa-clock"></i> {{$days}} days left</span>
+                    
+                    
+                    <h6 class="font-weight-semibold">Payment Received :
+                        <span class="text-muted font-weight-normal"> <i class="fas fa-rupee-sign"> {{$project->payment_received}} </i></span>
                     </h6>
+                    <h6 class="font-weight-semibold">Payment Pending :
+                        <span class="text-muted font-weight-normal"> <i class="fas fa-rupee-sign"> {{$project->rate - $project->payment_received}} </i></span>
+                    </h6>
+
                 </div>
                 <p class="text-muted text-right mb-1">{{$project->completion_status}}% Complete</p>
                 <div class="progress mb-4" style="height: 4px;">

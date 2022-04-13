@@ -172,17 +172,19 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
     Route::resource('/client',App\Http\Controllers\Admin\ClientController::class);
 
      //Projects
-     Route::resource('/project',ProjectController::class);
+    Route::resource('/project',ProjectController::class);
+    Route::get('/project/quotation/{id}',[ProjectController::class, 'project_quotation'])->name('project.quotation');
+    Route::get('/project/billing/{id}',[ProjectController::class, 'project_billing'])->name('project.billing');
 
 
-     //Tasks
-     Route::resource('/task',TaskController::class);
+    //Tasks
+    Route::resource('/task',TaskController::class);
 
-     Route::get('/facebook/connect',[ProfileController::class,'facebookRedirect'])->name('facebook.connect');
-     Route::get('/facebook/callback',[ProfileController::class,'facebookCallback'])->name('facebook.callback');
-     Route::post('facebook/page/add',[FacebookController::class,'add_page'])->name('facebook.page.add');
+    Route::get('/facebook/connect',[ProfileController::class,'facebookRedirect'])->name('facebook.connect');
+    Route::get('/facebook/callback',[ProfileController::class,'facebookCallback'])->name('facebook.callback');
+    Route::post('facebook/page/add',[FacebookController::class,'add_page'])->name('facebook.page.add');
 
-     Route::get('facebook/page/data',[FacebookController::class,'fb_data'])->name('facebook.data');
+    Route::get('facebook/page/data',[FacebookController::class,'fb_data'])->name('facebook.data');
 
 });
 

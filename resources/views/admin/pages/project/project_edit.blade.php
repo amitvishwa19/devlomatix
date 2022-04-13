@@ -33,7 +33,7 @@
         <div class="col-12">
             <div class="col-lg-12">
 
-                <form role="form" method="post" action="{{route('project.update',$project->id)}}" enctype="multipart/form-data">
+                <form role="form" method="post" action="{{route('project.update',$project->id)}}" enctype="multipart/form-data" class="mb-5">
                     @csrf
                     {{method_field('PUT')}}
 
