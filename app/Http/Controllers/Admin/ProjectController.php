@@ -292,7 +292,7 @@ class ProjectController extends Controller
         
 
         try{
-            $mail =  appmail($to,$subject,$body,$project,$view,false);
+            $mail =  appmail($to,$subject,$body,$project,$view,true);
             return ['status' =>200,'msg'=>'Quotation mail sent successfully'];
         }catch(Exception $ex){
             return ['status' =>400,'msg'=>'Error while sending quotation mail'];
