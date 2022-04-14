@@ -39,6 +39,7 @@
                     </div>
                     <div class="media-body align-self-center text-truncate ml-3">
                         <h4 class="m-0 font-weight-semibold text-dark font-15">{{$project->name}}</h4>
+                        <input type="hidden" id="project_id" value="{{$project->id}}">
                         <p class="text-muted  mb-0 font-13">
                             <span class="text-dark">Client :
                                 <a href="{{route('client.show',$project->client->id)}}"><span class="badge badge-soft-info">{{$project->client->name}}</span></a>
@@ -48,8 +49,8 @@
                 </div>
                 <div class="col-auto">
                     <a href="{{route('project.edit',$project->id)}}" class="btn btn-info waves-effect waves-light btn-sm">Edit</a>
-                    <a href="{{route('project.quotation',$project->id)}}" class="btn btn-info waves-effect waves-light btn-sm">Quotation</a>
-                    <a href="{{route('project.billing',$project->id)}}" class="btn btn-info waves-effect waves-light btn-sm">Billing</a>
+                    <a href="javascript:void(0)" id="sendquotation" class="btn btn-info waves-effect waves-light btn-sm">Send Quotation <span class="submitspinner"></a>
+                    <a href="{{route('project.billing',$project->id)}}" class="btn btn-info waves-effect waves-light btn-sm">Invoice</a>
                     <a href="{{route('project.index')}}" class="btn btn-info waves-effect waves-light btn-sm">Cancel</a>
                 </div>
             </div>
@@ -171,6 +172,37 @@
                     }
                 });
             });
+
+            $('#sendquotation').on('click',function(){
+                
+                var id = $('#project_id').val();
+                console.log(id);
+                $.ajax({
+                    url:"{!! route('project.quotation') !!}",
+                    data:{project :  id },
+                    type:'POST',
+                    headers:{'X-CSRF-TOKEN':'{{csrf_token()}}'},
+                    beforeSend:function(){
+                        $('.submitspinner').html('<i class="fa fa-spinner fa-spin"></1>')
+                    },
+                    success:function(data){
+                        $('.submitspinner').html('')
+                        console.log(data);
+                        if(data.status == 200){
+                            toast({
+                                type: "success",
+                                title: data.msg
+                            });
+                        }
+                        if(data.status == 400){
+                            toast({
+                                type: "error",
+                                title: data.msg
+                            });
+                        }
+                    },
+                });
+            })
 
         });
 

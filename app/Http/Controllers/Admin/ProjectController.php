@@ -6,12 +6,17 @@ use Carbon\Carbon;
 use App\Models\Client;
 use App\Models\Payment;
 use App\Models\Project;
+
+use Barryvdh\DomPDF\Facade as PDF;
+//use Barryvdh\DomPDF\Facade\PDF;
 use App\Models\Requirement;
 use Illuminate\Support\Str;
+
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectRequest;
+use Exception;
 
 class ProjectController extends Controller
 {
@@ -275,13 +280,47 @@ class ProjectController extends Controller
 
     }
 
-    public function project_quotation($id){
+    public function project_quotation(Request $request){
+        $project = Project::findOrFail($request->project);
 
+        $to = 'amitvishwa19@gmail.com';
+        $subject = 'Quotation for ' . $project->name ;
+        $body = 'test body';
+        $data = 'test data';
+        $view = 'mails.testmail';
 
+        
+
+        try{
+            $mail =  appmail($to,$subject,$body,$project,$view,false);
+            return ['status' =>200,'msg'=>'Quotation mail sent successfully'];
+        }catch(Exception $ex){
+            return ['status' =>400,'msg'=>'Error while sending quotation mail'];
+        }
+        
+        
+        
+
+        return $project;
+        return 'Send Quotation';
+        return view('admin.pages.project.quotation')->with('project',$project);
     }
 
     public function project_billing($id){
+        $project = Project::findOrFail($id);
 
-        
+        return view('admin.pages.project.billing')->with('project',$project);
+    }
+
+    public function project_quotation_pdf($id){
+        $project = Project::findOrFail($id);
+
+        $data = array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'attachment; filename="file.pdf"'
+            );
+        $pdf = PDF::loadView('admin.pdf.quotation', $data);
+        return $pdf->download('invoice.pdf');
+        return view('admin.pdf.quotation')->with('project',$project);
     }
 }

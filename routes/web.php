@@ -173,8 +173,9 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
 
      //Projects
     Route::resource('/project',ProjectController::class);
-    Route::get('/project/quotation/{id}',[ProjectController::class, 'project_quotation'])->name('project.quotation');
+    Route::post('/project/quotation',[ProjectController::class, 'project_quotation'])->name('project.quotation');
     Route::get('/project/billing/{id}',[ProjectController::class, 'project_billing'])->name('project.billing');
+    Route::get('/project/quotation/pdf/{id}',[ProjectController::class, 'project_quotation_pdf'])->name('project.quotation.pdf');
 
 
     //Tasks

@@ -15,7 +15,7 @@
                                             <tr>
                                                 <td>
                                                     <a href="#">
-                                                        <img src="setting('app_icon_url')" alt="" style="margin-left: auto; margin-right: auto; display:block; margin-bottom: 10px; height: 40px;">
+                                                        <img src="setting('app_icon')" alt="" style="margin-left: auto; margin-right: auto; display:block; margin-bottom: 10px; height: 40px;">
                                                     </a>
                                                 </td>
                                             </tr>
