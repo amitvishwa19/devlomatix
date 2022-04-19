@@ -1,11 +1,12 @@
-
-
-
 <div class="card">
     <div class="card-header">
         <h4 class="card-title">Password Management</h4>
     </div><!--end card-header-->
     <div class="card-body"> 
+
+    <form action="{{route('setting.store',['type'=>'password'])}}" method="post" enctype="multipart/form-data">
+        @csrf
+
         <div class="form-group">
             <label class=""><b>Current Password</b></label>
             <div class="">
@@ -15,7 +16,6 @@
                         <small class="badge badge-secondary">{{ $errors->first('current_password') }}</small>
                     </span>
                 @endif
-                <a href="#" class="text-primary font-12">Forgot password ?</a>
             </div>
         </div>
         <div class="form-group">
@@ -41,6 +41,9 @@
                 <span class="form-text text-muted font-12">Never share your password.</span>
             </div>
         </div>
+
+            <button type="submit" class="btn btn-info waves-effect waves-light btn-sm">Change Password</button>
+    </form>
 
     </div>
 </div>

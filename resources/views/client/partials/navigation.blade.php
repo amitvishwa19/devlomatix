@@ -8,7 +8,7 @@
            <div class="logo-box">
                <div class="logo">
                    <a href="{{route('app.home')}}">
-                       <img src="{{asset('public/client/images/devlomatix_Light.png')}}" id="thm-logo" alt="Digizigs Technologies Light">
+                       <img src="{{setting('app_icon')}}" id="thm-logo" alt="Digizigs Technologies Light">
                    </a>
                </div>
            </div>

@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
-@section('title','File')
+@section('title','Filemanager')
 
-@section('file','active')
+@section('filemanager','active')
 
 @section('style')
 @endsection
@@ -12,21 +12,22 @@
 
     <div class="wrapper card p-2">
         <h5>
-            Add New File
+            Edit Filemanager
         </h5>
 
-        <form role="form" method="post" action="{{route('file.store')}}" enctype="multipart/form-data">
+        <form role="form" method="post" action="{{route('filemanager.update',$filemanager->id)}}" enctype="multipart/form-data">
             @csrf
+            {{method_field('PUT')}}
 
             <div class="form-group">
-                <label>File name</label>
+                <label>Filemanager name</label>
                 <input type="text" class="form-control" name="name"  value="{{old('name')}}">
                 <div class="error">{{$errors->first('name')}}</div>
             </div>
 
             <div class="form-group mt-3">
-                <button class="btn btn-primary btn-sm">Add File</button>
-                <a href="{{route('file.index')}}" class="btn btn-info btn-sm">Cancel</a>
+                <button class="btn btn-primary btn-sm">Update Filemanager</button>
+                <a href="{{route('filemanager.index')}}" class="btn btn-info btn-sm">Cancel</a>
             </div>
 
         </form>

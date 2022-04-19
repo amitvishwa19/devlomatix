@@ -13,7 +13,10 @@
         <meta name="csrf-token" content="{{csrf_token()}}">
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{asset('public/admin/assets/images/logo-sm.png')}}">
+        <link rel="shortcut icon" href="{{setting('app_fevicon')}}">
+
+        <!-- Fontawsome -->
+        <!-- <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" /> -->
 
         <!-- App css -->
         <link href="{{asset('public/admin/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />

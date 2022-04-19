@@ -287,7 +287,7 @@ class ProjectController extends Controller
         $subject = 'Quotation for ' . $project->name ;
         $body = 'test body';
         $data = 'test data';
-        $view = 'mails.testmail';
+        $view = 'mails.quotation';
 
         
 

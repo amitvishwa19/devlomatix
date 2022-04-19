@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
-@section('title','File')
+@section('title','Note')
 
-@section('file','active')
+@section('note','active')
 
 
 @section('style')
@@ -22,10 +22,10 @@
                 <div class="page-title-box">
                     <div class="row">
                         <div class="col">
-                            <h4 class="page-title">Files</h4>
+                            <h4 class="page-title">Notes</h4>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Devlomatix</a></li>
-                                <li class="breadcrumb-item active">Files</li>
+                                <li class="breadcrumb-item active">Notes</li>
                             </ol>
                         </div><!--end col-->
                     </div><!--end row-->

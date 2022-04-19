@@ -354,7 +354,7 @@
     <!-- Required datatable js -->
     <script src="{{asset('public/admin/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
-    //charts
+    
     {{-- <script src="{{asset('public/admin/plugins/apex-charts/apexcharts.min.js')}}"></script> --}}
 
     <script>

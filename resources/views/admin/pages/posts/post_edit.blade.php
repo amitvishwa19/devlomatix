@@ -33,17 +33,15 @@
                             </ol>
                         </div><!--end col-->
 
-                <form method="post" action="{{route('post.update', $post->id)}}" enctype="multipart/form-data">
-                @csrf
-                {{method_field('PUT')}}
-
-                        <div class="col-auto align-self-center">
-                            <button class="btn btn-info waves-effect waves-light btn-sm">Update Post</button>
-                        </div><!--end col-->
+            
                     </div><!--end row-->
                 </div><!--end page-title-box-->
             </div><!--end col-->
         </div><!--end row-->
+
+        <form method="post" action="{{route('post.update', $post->id)}}" enctype="multipart/form-data">
+        @csrf
+        {{method_field('PUT')}}
 
         <div class="row">
             <div class="col-lg-9">
@@ -66,11 +64,6 @@
                                 <div id="content" class="ht-200"></div>
                                 <input type="text" name="body" style="display: none" id="bodyinput" value="{{ old('body') }}{{$post->body}}">
                             </div>
-
-
-
-
-
 
                         
                     </div><!--end card-body-->
@@ -164,12 +157,18 @@
                 </div>
 
 
-            </form>
+          
 
             </div>
 
         </div>
 
+        <div class="mb-5" style="height: 50px;">
+            <div class="col-auto align-self-center">
+                    <button class="btn btn-info waves-effect waves-light btn-sm">Update Post</button>
+                </div><!--end col-->
+            </form>
+        </div>
 
 
     </div>
@@ -185,9 +184,7 @@
     <script src="{{asset('public/admin/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
     {{-- Tiny mc editor --}}
-    <script src="https://cdn.tiny.cloud/1/oiidq8jebp02vu4vrjy0ewufnmx0dz2b8x5oxniofbhylzc5/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script src="{{asset('public/admin/plugins/tinymce/tinymce.min.js')}}"></script>
-    <script src="{{asset('public/admin/assets/pages/jquery.form-editor.init.js')}}"></script>
+   
     <script src="{{asset('public/admin/plugins/quill/quill.min.js')}}"></script>
     <script src="{{asset('public/admin/plugins/select2/select2.min.js')}}"></script>
     <script src="{{asset('public/admin/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js')}}"></script>

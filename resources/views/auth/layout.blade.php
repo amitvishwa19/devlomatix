@@ -11,7 +11,7 @@
     <meta name="author" content="Digizigs">
 
     <!-- Favicon -->
-    {{-- <link rel="icon" href="{{setting('app.fevicon')}}" type="image/ico" /> --}}
+    <link rel="icon" href="{{setting('app_fevicon')}}" type="image/ico" />
 
     <title> {{setting('app_name')}} | @yield('title')</title>
 

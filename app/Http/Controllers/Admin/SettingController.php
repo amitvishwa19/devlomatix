@@ -99,7 +99,7 @@ class SettingController extends Controller
     }
 
     public function changePassword($request){
-
+        //dd('change password');
         $validate = $request->validate([
             'current_password' => ['required', function ($attribute, $value, $fail) {
                 if (!Hash::check($value, auth()->user()->password)) {

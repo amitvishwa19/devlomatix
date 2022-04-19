@@ -39,9 +39,12 @@ class ClientController extends Controller
             $q->where('slug', '=', 'blog');
         })->where('status','published')->limit(5)->get();
 
+        $categories = [];
         $blog_category = Category::where('slug','blog-categories')->first();
-        $categories = Category::where('parent_id', $blog_category->id )->orderby('created_at','desc')->get();
-
+        if($blog_category){
+            $categories = Category::where('parent_id', $blog_category->id )->orderby('created_at','desc')->get();
+        }
+        
         $tags = Tag::get();
 
 
@@ -54,6 +57,7 @@ class ClientController extends Controller
 
     public function blog($slug)
     {
+        dd('blogs');
         $post = Post::where('slug',$slug)->first();
 
         $random_posts = Post::whereHas('categories', function($q)
@@ -61,8 +65,15 @@ class ClientController extends Controller
             $q->where('slug', '=', 'blog');
         })->where('status','published')->limit(5)->get();
 
+        $categories = [];
         $blog_category = Category::where('slug','blog-categories')->first();
-        $categories = Category::where('parent_id', $blog_category->id )->orderby('created_at','desc')->get();
+
+        //dd($blog_category);
+
+        if($blog_category){
+            $categories = Category::where('parent_id', $blog_category->id )->orderby('created_at','desc')->get();
+        }
+        
 
         $tags = Tag::get();
 

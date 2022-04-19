@@ -45,12 +45,16 @@
                     <i data-feather="zap" class="align-self-center menu-icon"></i><span>Inquiries</span>
                 </a>
             </li>
-            <li>
+            <!-- <li>
                 <a href="{{route('menu.index')}}">
                     <i data-feather="menu" class="align-self-center menu-icon"></i><span>Menu</span>
                 </a>
+            </li> -->
+            <li>
+                <a href="{{route('filemanager.index',['type'=>'all','id'=>0])}}">
+                    <i data-feather="grid" class="align-self-center menu-icon"></i><span>Files</span>
+                </a>
             </li>
-
 
 
             <!-- <hr class="hr-dashed hr-menu"> -->
@@ -105,6 +109,12 @@
             <li>
                 <a href="{{route('contact.index')}}">
                     <i data-feather="user-check" class="align-self-center menu-icon"></i><span>Contacts</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{{route('note.index')}}">
+                    <i data-feather="file-text" class="align-self-center menu-icon"></i><span>Notes</span>
                 </a>
             </li>
 
@@ -165,9 +175,9 @@
 
         </ul>
 
-        <div class="update-msg text-center">
+        <!-- <div class="update-msg text-center">
             <a href="javascript: void(0);" class="btn btn-outline-warning btn-sm"> &copy; 2021 Devlomatix Solutions Version: {{config('app.version')}}</a>
-        </div>
+        </div> -->
     </div>
 </div>
 <!-- end left-sidenav-->

@@ -121,8 +121,9 @@ class PostController extends Controller
             })
             ->addColumn('action',function($data){
                 $link = '<div class="d-flex">'.
-                            '<a href="'.route('post.edit',$data->id).'" class="badge badge-info mr-2"><small>Edit</small></a>'.
-                            '<a href="javascript:void(0);" id="'.$data->id.'" class="badge badge-secondary delete"><small>Delete</small></a>'.
+                            '<a href="'.route('post.edit',$data->id).'" class="badge badge-soft-success mr-2"><small>Edit</small></a>'.
+                            '<a href="javascript:void(0);" id="'.$data->id.'" class="badge badge-secondary delete mr-2"><small>Delete</small></a>'.
+                            '<a href="javascript:void(0);"  class="badge badge-info"><i data-pid="'.$data->id.'" class="fab fa-facebook-f fbpublish"><span class="submitspinner'.$data->id.'"></i></a>'.
                         '</div>';
                 return $link;
             })
@@ -242,7 +243,8 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //dd($request->tags);
+        //dd($post);
+        //dd($request->all());
         $validate = $request->validate([
             'title' => 'required',
         ]);

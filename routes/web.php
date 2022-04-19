@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\ChatController;
 use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\NoteController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\QuizController;
 use App\Http\Controllers\Admin\RoleController;
@@ -35,10 +36,11 @@ use App\Http\Controllers\Admin\FacebookController;
 use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\ClassroomController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\AutoDeployController;
 
+use App\Http\Controllers\Admin\AutoDeployController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ActivityLogController;
+use App\Http\Controllers\Admin\FilemanagerController;
 use App\Http\Controllers\Admin\ImpersonateController;
 use App\Http\Controllers\Admin\MailTemplateController;
 use App\Http\Controllers\Admin\SubscriptionController;
@@ -129,10 +131,6 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
     Route::get('/logs',[ErrorLogController::class,'index'])->name('admin.logs');
 
 
-    //Routes Controller
-     Route::resource('/route',RouteController::class);
-
-
     //Activity Log
     Route::resource('/activity',ActivityLogController::class);
 
@@ -180,12 +178,17 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
 
     //Tasks
     Route::resource('/task',TaskController::class);
+    //File
+    Route::resource('/filemanager',FilemanagerController::class);
+    //Note
+    Route::resource('/note',NoteController::class);
 
     Route::get('/facebook/connect',[ProfileController::class,'facebookRedirect'])->name('facebook.connect');
     Route::get('/facebook/callback',[ProfileController::class,'facebookCallback'])->name('facebook.callback');
     Route::post('facebook/page/add',[FacebookController::class,'add_page'])->name('facebook.page.add');
 
     Route::get('facebook/page/data',[FacebookController::class,'fb_data'])->name('facebook.data');
+    Route::post('facebook/post/publish',[FacebookController::class,'publishToPage'])->name('facebook.publish');
 
 });
 

@@ -48,10 +48,11 @@
                         <div class="form-group"> 
                             <label for="exampleInputPassword1"><b>Page ID</b></label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Facebook page id" name="page_id" value="{{auth()->user()->facebook_page_id ?? ''}}">
+                                <input type="text" class="form-control" placeholder="Facebook page id" id="page_id" name="page_id" value="{{auth()->user()->facebook_page_id ?? ''}}">
                                 <span class="input-group-append">
                                     <button class="btn btn-secondary" type="submit">Add Page <span class="submitspinner"></button>
                                 </span>
+                                
                             </div>                                                    
                         </div>
                     </div>
@@ -61,8 +62,10 @@
             </div>
            
                     
-    </form>
-    <a href="{{route('facebook.data')}}" class="btn btn-info waves-effect waves-light btn-sm ">FB Data </a>   
+        </form>
+        
+        
+        <facebook class="mt-2"></facebook>
     </div>
 </div>
 

@@ -33,18 +33,19 @@
                             </ol>
                         </div><!--end col-->
 
-                    <form method="post" action="{{route('post.store')}}" enctype="multipart/form-data">
-                    @csrf    
+                      
 
-                        <div class="col-auto align-self-center">
-                            <button class="btn btn-info waves-effect waves-light btn-sm">Publish Post</button>
-                        </div><!--end col-->
+                        
                     </div><!--end row-->
                 </div><!--end page-title-box-->
             </div><!--end col-->
         </div><!--end row-->
 
+        <form method="post" action="{{route('post.store')}}" enctype="multipart/form-data" class="mb-4">
+        @csrf  
+
         <div class="row">
+
             <div class="col-lg-9">
                 <div class="card">
 
@@ -146,13 +147,16 @@
                     </div><!--end card -body-->
                 </div>
 
-
-            </form>
-
             </div>
 
         </div>
 
+        <div class="mb-5" style="height: 50px;">
+            <div class="col-auto align-self-center">
+                    <button class="btn btn-info waves-effect waves-light btn-sm">Publish Post</button>
+                </div><!--end col-->
+            </form>
+        </div>
 
 
     </div>

@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
-@section('title','File')
+@section('title','Note')
 
-@section('file','active')
+@section('note','active')
 
 @section('style')
 @endsection
@@ -12,22 +12,21 @@
 
     <div class="wrapper card p-2">
         <h5>
-            Edit File
+            Add New Note
         </h5>
 
-        <form role="form" method="post" action="{{route('file.update',$file->id)}}" enctype="multipart/form-data">
+        <form role="form" method="post" action="{{route('note.store')}}" enctype="multipart/form-data">
             @csrf
-            {{method_field('PUT')}}
 
             <div class="form-group">
-                <label>File name</label>
+                <label>Note name</label>
                 <input type="text" class="form-control" name="name"  value="{{old('name')}}">
                 <div class="error">{{$errors->first('name')}}</div>
             </div>
 
             <div class="form-group mt-3">
-                <button class="btn btn-primary btn-sm">Update File</button>
-                <a href="{{route('file.index')}}" class="btn btn-info btn-sm">Cancel</a>
+                <button class="btn btn-primary btn-sm">Add Note</button>
+                <a href="{{route('note.index')}}" class="btn btn-info btn-sm">Cancel</a>
             </div>
 
         </form>

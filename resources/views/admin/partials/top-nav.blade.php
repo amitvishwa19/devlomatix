@@ -77,7 +77,7 @@
                             <small class="float-right text-muted pl-2">1 hr ago</small>
                             <div class="media">
                                 <div class="avatar-md bg-soft-primary">
-                                    <img src="{{asset('public/admin/assets/images/users/user-3.jpg')}}" alt="" class="thumb-sm rounded-circle">
+                                    <img src="{{auth()->user()->avatar_url ? auth()->user()->avatar_url : asset('public/admin/assets/images/users/user-3.jpg')}}" alt="" class="thumb-sm rounded-circle">
                                 </div>
                                 <div class="media-body align-self-center ml-2 text-truncate">
                                     <h6 class="my-0 font-weight-normal text-dark">Your order is placed</h6>
@@ -118,7 +118,7 @@
                             <span class="avatar-title bg-soft-pink rounded-circle">{{substr(Auth::user()->firstName, 0, 1) . substr(Auth::user()->lastName, 0, 1)}}</span>
                         </div>
                     @else
-                        <img src="{{asset('public/admin/assets/images/users/user-5.jpg')}}" alt="profile-user" class="rounded-circle thumb-md" />
+                        <img src="{{auth()->user()->avatar_url ? auth()->user()->avatar_url : asset('public/admin/assets/images/users/user-3.jpg')}}" alt="profile-user" class="rounded-circle thumb-md" />
                     @endif
 
 

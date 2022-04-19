@@ -123,8 +123,6 @@
 
 
 @section('scripts')
-    {{-- <script src="{{asset('public/assets/plugins/datatables.net/js/jquery.dataTables.min.js')}}"></script> --}}
-
     <script src="{{asset('public/admin/plugins/nestable/jquery.nestable.min.js')}}"></script>
     <script src="{{asset('public/admin/assets/pages/jquery.nastable.init.js')}}"></script>
 

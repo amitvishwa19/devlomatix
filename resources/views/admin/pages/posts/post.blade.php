@@ -407,6 +407,28 @@
                 selector: 'textarea#content'
             });
 
+            $('body').on('click','.fbpublish',function(){
+                var id = $(this).data('pid');
+                
+                $.ajax({
+                    url: "{{ route('facebook.publish')}}",
+                    type: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    data:{id:id},
+                    beforeSend:function(){
+                        $('.submitspinner'+id).html('<i class="fa fa-spinner fa-spin"></1>');
+                    },
+                    success:function(data){
+                        $('.submitspinner'+id).html('')
+                        console.log(data);
+
+
+                    }
+                });
+            });
+
         });
 
     </script>
