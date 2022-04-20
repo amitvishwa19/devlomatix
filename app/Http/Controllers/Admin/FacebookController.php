@@ -104,7 +104,7 @@ class FacebookController extends Controller
 
         $page_id = Auth::user()->facebook_page_id??'';
 
-        return $page_id;
+        //return $page_id;
         $access_token = Auth::user()->facebook_token;
         $page_access_token = $this->pageAccessToken($page_id);
 
@@ -114,7 +114,7 @@ class FacebookController extends Controller
         $post = Post::find($id);
         $post = Post::findOrFail($id);
 
-        //return $post->title;
+        return $post->title;
         return $this->textPost('test post description', $page_id, $page_access_token);
         return $this->textPost($post->description, $page_id, $page_access_token);
         //return $this->imagePost($post['description'], $post['feature_image'],$page_id, $page_access_token);
