@@ -106,8 +106,8 @@ class FacebookController extends Controller
         $post = Post::find($id);
 
         //return $this->textPost($post['description'], $page_id, $page_access_token);
-        return $this->imagePost($post['description'], $post['feature_image'],$page_id, $page_access_token);
-
+        //return $this->imagePost($post['description'], $post['feature_image'],$page_id, $page_access_token);
+        return $this->linkPost($post['description'], 'www.devlomatix.com/blog/'.$post['slug'], $page_id, $page_access_token);
     }
 
     public function pageAccessToken($page_id){
@@ -138,32 +138,48 @@ class FacebookController extends Controller
        }
     }
 
-    public function textPost($text,$pageId,$token){
+    public function textPost($text, $pageId, $token){
         try {
-              
-                $fb_post = $this->api->post('/' . $pageId . '/feed', array('message' =>$text), $token);
-                $fb_post = $fb_post->getGraphNode()->asArray();
 
-                
-                if($fb_post){
-                    return ['status' =>200,'msg'=>'Published to facebook page successfully'];
-                }else{
-                    return ['status' =>400,'msg'=>'Error while publishing to facebook page'];
-                }
+            $linkData = [
+                'link' => 'https://www/devlomatix.com',
+                'message' => 'Test Link post to page'
+            ];
+
+            //$fb_post = $this->api->post('/' . $pageId . '/feed', $linkData, $token);
+              
+            $fb_post = $this->api->post('/' . $pageId . '/feed', array('message' =>$text), $token);
+            $fb_post = $fb_post->getGraphNode()->asArray();
+
+            
+            if($fb_post){
+                return [
+                    'status' =>200,
+                    'msg'=>'Published to facebook page successfully',
+                    'id' => $fb_post['id']
+                    ];
+            }else{
+                return ['status' =>400,'msg'=>'Error while publishing to facebook page'];
+            }
         }catch(FacebookSDKException $ex){
-            return ['status' =>400,'msg'=>'Error while publishing to facebook page'];
+            return ['status' =>400,'msg'=>$ex];
         }
 
     }
 
     public function imagePost($text, $image, $pageId, $token){
 
+        $link = 'www.devlomatix.com';
         try {
             $fb_post = $this->api->post('/' . $pageId . '/' . 'photos', array('message' => $text, 'source' => $this->api->fileToUpload($image)), $token);
             $fb_post = $fb_post->getGraphNode()->asArray();
 
             if($fb_post){
-                return ['status' =>200,'msg'=>'Published to facebook page successfully'];
+                return [
+                    'status' =>200,
+                    'msg'=>'Published to facebook page successfully',
+                    'id' => $fb_post['id']
+                    ];
             }else{
                 return ['status' =>400,'msg'=>'Error while publishing to facebook page'];
             }
@@ -174,4 +190,32 @@ class FacebookController extends Controller
         }
     }   
     
+    public function linkPost($text, $link, $pageId, $token){
+        try {
+
+            $linkData = [
+                'link' => 'https://www/devlomatix.com',
+                'message' => 'Test Link post to page'
+            ];
+
+            //$fb_post = $this->api->post('/' . $pageId . '/feed', $linkData, $token);
+              
+            $fb_post = $this->api->post('/' . $pageId . '/feed', array('link' =>$link), $token);
+            $fb_post = $fb_post->getGraphNode()->asArray();
+
+            
+            if($fb_post){
+                return [
+                    'status' =>200,
+                    'msg'=>'Published to facebook page successfully',
+                    'id' => $fb_post['id']
+                    ];
+            }else{
+                return ['status' =>400,'msg'=>'Error while publishing to facebook page'];
+            }
+        }catch(FacebookSDKException $ex){
+            return ['status' =>400,'msg'=>'Error while publishing to facebook page'];
+        }
+
+    }
 }

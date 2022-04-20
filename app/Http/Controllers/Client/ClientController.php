@@ -57,7 +57,7 @@ class ClientController extends Controller
 
     public function blog($slug)
     {
-        dd('blogs');
+        //dd('blogs');
         $post = Post::where('slug',$slug)->first();
 
         $random_posts = Post::whereHas('categories', function($q)

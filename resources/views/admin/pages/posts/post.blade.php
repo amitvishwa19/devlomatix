@@ -423,7 +423,18 @@
                     success:function(data){
                         $('.submitspinner'+id).html('')
                         console.log(data);
-
+                        if(data.status == 200){
+                            toast({
+                                type: "success",
+                                title: data.msg
+                            });
+                        }
+                        if(data.status == 400){
+                            toast({
+                                type: "error",
+                                title: data.msg
+                            });
+                        }
 
                     }
                 });
