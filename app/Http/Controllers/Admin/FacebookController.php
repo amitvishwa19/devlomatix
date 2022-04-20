@@ -102,7 +102,7 @@ class FacebookController extends Controller
 
         //return $page_id;
         $access_token = Auth::user()->facebook_token;
-        //$page_access_token = $this->pageAccessToken($page_id);
+        $page_access_token = $this->pageAccessToken($page_id);
 
         $text = ['message' =>'Test Messege'];
         
