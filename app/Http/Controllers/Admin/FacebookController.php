@@ -32,8 +32,8 @@ class FacebookController extends Controller
 
         //return $request->page_id;
 
-        $pages = $this->api->get('/me/accounts', auth()->user()->facebook_token);
-        $pages = $pages->getGraphEdge()->asArray();
+        //$pages = $this->api->get('/me/accounts', auth()->user()->facebook_token);
+        //$pages = $pages->getGraphEdge()->asArray();
 
 
 
