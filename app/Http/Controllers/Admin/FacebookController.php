@@ -105,9 +105,9 @@ class FacebookController extends Controller
         $id = $request->id;
         $post = Post::find($id);
 
-        //return $this->textPost($post['description'], $page_id, $page_access_token);
+        return $this->textPost($post['description'], $page_id, $page_access_token);
         //return $this->imagePost($post['description'], $post['feature_image'],$page_id, $page_access_token);
-        return $this->linkPost($post['description'], 'www.devlomatix.com/blog/'.$post['slug'], $page_id, $page_access_token);
+        //return $this->linkPost($post['description'], 'www.devlomatix.com/blog/'.$post['slug'], $page_id, $page_access_token);
     }
 
     public function pageAccessToken($page_id){
