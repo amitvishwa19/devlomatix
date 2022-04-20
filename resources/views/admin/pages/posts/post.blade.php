@@ -409,7 +409,7 @@
 
             $('body').on('click','.fbpublish',function(){
                 var id = $(this).data('pid');
-                
+                console.log(id);
                 $.ajax({
                     url: "{{ route('facebook.publish')}}",
                     type: 'POST',
