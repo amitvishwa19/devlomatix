@@ -23,6 +23,14 @@
                             <li class="breadcrumb-item active">Edit</li>
                         </ol>
                     </div><!--end col-->
+                    <div class="col-auto align-self-center">
+                        <a href="#requirements" data-toggle="modal" class="btn btn-info waves-effect waves-light btn-sm" >
+                            Add Requirement
+                        </a>
+                        <a href="#payments" data-toggle="modal" class="btn btn-info waves-effect waves-light btn-sm" >
+                            Add Payment
+                        </a>
+                    </div>
                 </div><!--end row-->
             </div><!--end page-title-box-->
         </div><!--end col-->
@@ -69,11 +77,11 @@
                            
                             <div class="col-md-6">
                                 <label for="pro-message"><b>Description</b></label>
-                                <textarea class="form-control" rows="2" name="description"  placeholder="Project Description">{{old("description")}}{{$project->description}}</textarea>
+                                <textarea class="form-control" rows="6" name="description"  placeholder="Project Description">{{old("description")}}{{$project->description}}</textarea>
                             </div><!--end col-->
                             <div class="col-md-6">
                                 <label for="pro-message"><b>Notes</b></label>
-                                <textarea class="form-control" rows="2" name="notes"  placeholder="Additional Notes">{{$project->notes}}</textarea>
+                                <textarea class="form-control" rows="6" name="notes"  placeholder="Additional Notes">{{$project->notes}}</textarea>
                             </div><!--end form-group-->
                         </div>
                     </div>
@@ -132,74 +140,114 @@
                         </div><!--end row-->
                     </div><!--end form-group-->
 
-                    <div class="form-group mt-2">
-                        <label><h5><b>Project Requirements</b></h5></label>
+                   
 
-                        <div class="form-group">
-                            <table class="table table-bordered mb-0 table-centered">
-                                <thead>
-                                    <tr>
-                                        <th style="width:80%"><label for=""><b>Requirements</b></label></th>
-                                        <th style="width:10%"><label for=""><b>Status</b></label></th>
-                                        <th style="width:2%"><a href="javascript:void(0)" class="addrow"> <i class="fas fa-plus"></i> </a></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($project->requirements as $requirement)
-                                    <tr>
-                                        <td>
-                                            <input type="text" class="form-control" name="r_requirement[]" value="{{old('task_title')}}{{$requirement->requirement}}">
-                                            <input type="hidden" name="p_id[]" value="{{$requirement->id}}">
-                                        </td>
-                                        <td>
-                                            <select class="form-control" name="r_status[]">
-                                                <option value="0" {{ $requirement->status == false? "selected" : "" }}>Pending</option>
-                                                <option value="1" {{ $requirement->status == true? "selected" : "" }}>Completed</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <a href="javascript:void(0)" class=" deleterow"><i class="fas fa-trash-alt"></i></a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                    
+
+                    {{-- Add Requirement Modal --}}
+                    <div class="modal fade" id="requirements" tabindex="-1" role="dialog" aria-labelledby="exampleModalDefaultLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h6 class="modal-title m-0" id="myExtraLargeModalLabel"><b>Project Requirements</b></h6>
+                                    <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"><i class="la la-times"></i></span>
+                                    </button>
+                                </div><!--end modal-header-->
+                                <div class="modal-body">
+
+                                    <div class="form-group">
+
+                                        <div class="form-group">
+                                            <table class="table table-bordered mb-0 table-centered">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width:70%"><label for=""><b>Requirements</b></label></th>
+                                                        <th style="width:20%"><label for=""><b>Status</b></label></th>
+                                                        <th style="width:2%"><a href="javascript:void(0)" class="addrow"> <i class="fas fa-plus"></i> </a></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="reqmnt">
+                                                    @foreach($project->requirements as $requirement)
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" class="form-control" name="r_requirement[]" value="{{old('task_title')}}{{$requirement->requirement}}">
+                                                            <input type="hidden" name="p_id[]" value="{{$requirement->id}}">
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control" name="r_status[]">
+                                                                <option value="0" {{ $requirement->status == false? "selected" : "" }}>Pending</option>
+                                                                <option value="1" {{ $requirement->status == true? "selected" : "" }}>Completed</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <a href="javascript:void(0)" class=" deleterow"><i class="fas fa-trash-alt"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                  
+
+                                </div><!--end modal-body-->
+
+                            </div><!--end modal-content-->
                         </div>
+                    </div><!--end modal-->
+                    {{-- Add Requirement Modal --}}
 
-                    </div>
+                    {{-- Add Payment Model--}}
+                    <div class="modal fade" id="payments" tabindex="-1" role="dialog" aria-labelledby="exampleModalDefaultLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h6 class="modal-title m-0" id="myExtraLargeModalLabel"><b>Project Payments</b></h6>
+                                    <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"><i class="la la-times"></i></span>
+                                    </button>
+                                </div><!--end modal-header-->
+                                <div class="modal-body">
 
-                    <div class="form-group mt-2">
-                        <label><h5><b>Project Payments</b></h5></label>
-                        <div class="form-group">
-                            <table class="table table-bordered mb-0 table-centered">
-                                <thead>
-                                    <tr>
-                                        <th style="width:49%"><label for=""><b>Date</b></label></th>
-                                        <th style="width:49%"><label for=""><b>Amount</b></label></th>
-                                        <th style="width:2%"><a href="javascript:void(0)" class="addpayment"> <i class="fas fa-plus"></i> </a></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="pymnt">
-                                    @foreach($project->payments as $payment)
-                                    <tr>
-                                        <td>
-                                            <input type="date" class="form-control" name="p_date[]" value="{{old('p_date')}}{{$payment->date}}">
-                                            <input type="hidden" name="pm_id[]" value="{{$payment->id}}">
-                                        </td>
-                                        <td>
-                                            <input type="number" class="form-control" name="p_amount[]" value="{{old('p_amount')}}{{$payment->amount}}">
-                                        </td>
-                                        <td>
-                                            <a href="javascript:void(0)" class=" deletepayment"><i class="fas fa-trash-alt"></i></a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <table class="table table-bordered mb-0 table-centered">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width:49%"><label for=""><b>Date</b></label></th>
+                                                        <th style="width:49%"><label for=""><b>Amount</b></label></th>
+                                                        <th style="width:2%"><a href="javascript:void(0)" class="addpayment"> <i class="fas fa-plus"></i> </a></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="pymnt">
+                                                    @foreach($project->payments as $payment)
+                                                    <tr>
+                                                        <td>
+                                                            <input type="date" class="form-control" name="p_date[]" value="{{old('p_date')}}{{$payment->date}}">
+                                                            <input type="hidden" name="pm_id[]" value="{{$payment->id}}">
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" class="form-control" name="p_amount[]" value="{{old('p_amount')}}{{$payment->amount}}">
+                                                        </td>
+                                                        <td>
+                                                            <a href="javascript:void(0)" class=" deletepayment"><i class="fas fa-trash-alt"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    
+
+                                </div><!--end modal-body-->
+
+                            </div><!--end modal-content-->
                         </div>
-                    </div>
-
-
+                    </div><!--end modal-->
+                    {{-- Add Payment Modal --}}
                     
 
                     <button type="submit" class="btn btn-info waves-effect waves-light btn-sm">Update project</button>
@@ -223,21 +271,21 @@
 
 
 @section('scripts')
-    <script>    
+<script>    
         $('thead').on('click','.addrow',function(){
-            //console.log('Add Item Clicked');
+            console.log('Add Item Clicked');
             var tr = "<tr>"+
                         "<td><input type='text' class='form-control form-control-sm' name='r_requirement[]' value=''><input type='hidden'  name='p_id[]' value=''></td>"+
                         "<td>"+
                             "<select class='form-control' name='r_status[]'>"+
-                                "<option value=0>Pending</option>"+
-                                "<option value=1 >Completed</option>"+
+                                "<option value='0'>Pending</option>"+
+                                "<option value='1' >Completed</option>"+
                             "</select>"+
                         "</td>"+
                         "<td><a href='javascript:void(0)' class='deleterow'><i class='fas fa-trash-alt'></i></a></td>"+
                     "</tr>"
 
-            $('tbody').append(tr);
+            $('#reqmnt').append(tr);
         });
 
         $('tbody').on('click','.deleterow',function(){
@@ -248,7 +296,7 @@
         $('thead').on('click','.addpayment',function(){
             //console.log('Add Item Clicked');
             var tr = "<tr>"+
-                        "<td><input type='date' class='form-control form-control-sm' name='p_date[]' value=''><input type='hidden'  name='pm_id[]' value=''></td>"+
+                        "<td><input type='date' class='form-control form-control-sm' name='p_date[]' value=''><input type='hidden'  name='pm_id[]' value=''></td></td>"+
                         "<td><input type='number' class='form-control form-control-sm' name='p_amount[]' value=''></td>"+
                         "<td><a href='javascript:void(0)' class='deleterow'><i class='fas fa-trash-alt'></i></a></td>"+
                     "</tr>"

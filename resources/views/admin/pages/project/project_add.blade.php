@@ -25,6 +25,14 @@
                             <li class="breadcrumb-item active">Create</li>
                         </ol>
                     </div><!--end col-->
+                    <div class="col-auto align-self-center">
+                        <a href="#requirements" data-toggle="modal" class="btn btn-info waves-effect waves-light btn-sm" >
+                            Add Requirement
+                        </a>
+                        <a href="#payments" data-toggle="modal" class="btn btn-info waves-effect waves-light btn-sm" >
+                            Add Payment
+                        </a>
+                    </div>
                 </div><!--end row-->
             </div><!--end page-title-box-->
         </div><!--end col-->
@@ -75,11 +83,11 @@
                         
                             <div class="col-md-6">
                                 <label for="pro-message"><b>Description</b></label>
-                                <textarea class="form-control" rows="2" name="description"  placeholder="Project Description">{{old("description")}}</textarea>
+                                <textarea class="form-control" rows="6" name="description"  placeholder="Project Description">{{old("description")}}</textarea>
                             </div><!--end col-->
                             <div class="col-md-6">
                                 <label for="pro-message"><b>Notes</b></label>
-                                <textarea class="form-control" rows="2" id="pro-message"  placeholder="Additional Notes"></textarea>
+                                <textarea class="form-control" rows="6" id="pro-message"  placeholder="Additional Notes"></textarea>
                             </div><!--end form-group-->
                         </div>
                     </div>
@@ -137,69 +145,105 @@
                         </div><!--end row-->
                     </div><!--end form-group-->
 
-                    
+                    {{-- Add Requirement Modal --}}
+                    <div class="modal fade" id="requirements" tabindex="-1" role="dialog" aria-labelledby="exampleModalDefaultLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h6 class="modal-title m-0" id="myExtraLargeModalLabel"><b>Project Requirements</b></h6>
+                                    <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"><i class="la la-times"></i></span>
+                                    </button>
+                                </div><!--end modal-header-->
+                                <div class="modal-body">
 
+                                    <div class="form-group">
+                                     
+                                        <div class="form-group">
+                                            <table class="table table-bordered mb-0 table-centered">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width:70%"><label for=""><b>Requirements</b></label></th>
+                                                        <th style="width:20%"><label for=""><b>Status</b></label></th>
+                                                        <th style="width:2%"><a href="javascript:void(0)" class="addrow"> <i class="fas fa-plus"></i> </a></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="reqmnt">
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" class="form-control" name="r_requirement[]" value="{{old('requirement')}}">
+                                                            <input type='hidden'  name='p_id[]' value=''>
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control" name="r_status[]">
+                                                                <option value="0" {{ (old("task_item_status") == 0? "selected":"") }}>Pending</option>
+                                                                <option value="1" {{ (old("task_item_status") == 1 ? "selected":"") }}>Completed</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <a href="javascript:void(0)" class=" deleterow"><i class="fas fa-trash-alt"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    
 
-                    <div class="form-group mt-2">
-                        <label><h5><b>Project Requirements</b></h5></label>
-                        <div class="form-group">
-                            <table class="table table-bordered mb-0 table-centered">
-                                <thead>
-                                    <tr>
-                                        <th style="width:80%"><label for=""><b>Requirements</b></label></th>
-                                        <th style="width:10%"><label for=""><b>Status</b></label></th>
-                                        <th style="width:2%"><a href="javascript:void(0)" class="addrow"> <i class="fas fa-plus"></i> </a></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="reqmnt">
-                                    <tr>
-                                        <td>
-                                            <input type="text" class="form-control" name="r_requirement[]" value="{{old('requirement')}}">
-                                            <input type='hidden'  name='p_id[]' value=''>
-                                        </td>
-                                        <td>
-                                            <select class="form-control" name="r_status[]">
-                                                <option value="0" {{ (old("task_item_status") == 0? "selected":"") }}>Pending</option>
-                                                <option value="1" {{ (old("task_item_status") == 1 ? "selected":"") }}>Completed</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <a href="javascript:void(0)" class=" deleterow"><i class="fas fa-trash-alt"></i></a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                </div><!--end modal-body-->
+
+                            </div><!--end modal-content-->
                         </div>
-                    </div>
+                    </div><!--end modal-->
+                    {{-- Add Requirement Modal --}}
 
-                    <div class="form-group mt-2">
-                        <label><h5><b>Project Payments</b></h5></label>
-                        <div class="form-group">
-                            <table class="table table-bordered mb-0 table-centered">
-                                <thead>
-                                    <tr>
-                                        <th style="width:49%"><label for=""><b>Date</b></label></th>
-                                        <th style="width:49%"><label for=""><b>Amount</b></label></th>
-                                        <th style="width:2%"><a href="javascript:void(0)" class="addpayment"> <i class="fas fa-plus"></i> </a></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="pymnt">
-                                    <tr>
-                                        <td>
-                                            <input type="date" class="form-control" name="p_date[]" value="{{old('p_date')}}">
-                                        </td>
-                                        <td>
-                                            <input type="number" class="form-control" name="p_amount[]" value="{{old('p_amount')}}">
-                                        </td>
-                                        <td>
-                                            <a href="javascript:void(0)" class=" deletepayment"><i class="fas fa-trash-alt"></i></a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    {{-- Add Payment Model--}}
+                    <div class="modal fade" id="payments" tabindex="-1" role="dialog" aria-labelledby="exampleModalDefaultLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h6 class="modal-title m-0" id="myExtraLargeModalLabel"><b>Project Payments</b></h6>
+                                    <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"><i class="la la-times"></i></span>
+                                    </button>
+                                </div><!--end modal-header-->
+                                <div class="modal-body">
+
+                                    <div class="form-group">
+                                        
+                                        <div class="form-group">
+                                            <table class="table table-bordered mb-0 table-centered">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width:49%"><label for=""><b>Date</b></label></th>
+                                                        <th style="width:49%"><label for=""><b>Amount</b></label></th>
+                                                        <th style="width:2%"><a href="javascript:void(0)" class="addpayment"> <i class="fas fa-plus"></i> </a></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="pymnt">
+                                                    <tr>
+                                                        <td>
+                                                            <input type="date" class="form-control" name="p_date[]" value="{{old('p_date')}}">
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" class="form-control" name="p_amount[]" value="{{old('p_amount')}}">
+                                                        </td>
+                                                        <td>
+                                                            <a href="javascript:void(0)" class=" deletepayment"><i class="fas fa-trash-alt"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    
+
+                                </div><!--end modal-body-->
+
+                            </div><!--end modal-content-->
                         </div>
-                    </div>
-
+                    </div><!--end modal-->
+                    {{-- Add Payment Modal --}}
                     
 
                     
@@ -211,6 +255,8 @@
         </div><!--end col-->
     </div><!--end row-->
 
+
+    
 
 
 @endsection

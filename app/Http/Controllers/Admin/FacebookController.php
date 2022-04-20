@@ -96,7 +96,7 @@ class FacebookController extends Controller
 
     public function publishToPage(Request $request){
 
-        
+        $id = $request->id;
 
         $page_id = Auth::user()->facebook_page_id??'';
 
@@ -106,15 +106,14 @@ class FacebookController extends Controller
 
         $text = ['message' =>'Test Messege'];
         
-        return $id = $request->id;
+        //return $id = $request->id;
         $post = Post::find($id);
         $post = Post::findOrFail($id);
 
-        return $post->title;
-        //return $this->textPost('test post description', $page_id, $page_access_token);
+        
         //return $this->textPost($post->description, $page_id, $page_access_token);
-        //return $this->imagePost($post['description'], $post['feature_image'],$page_id, $page_access_token);
-        //return $this->linkPost($post['description'], 'www.devlomatix.com/blog/'.$post['slug'], $page_id, $page_access_token);
+        //return $this->imagePost($post->description, $post['feature_image'],$page_id, $page_access_token);
+        return $this->linkPost($post->description, 'www.devlomatix.com/blog/'.$post['slug'], $page_id, $page_access_token);
     }
 
     public function pageAccessToken($page_id){
