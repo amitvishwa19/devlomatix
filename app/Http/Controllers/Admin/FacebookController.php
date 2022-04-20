@@ -110,7 +110,7 @@ class FacebookController extends Controller
 
         $text = ['message' =>'Test Messege'];
         
-        $id = $request->id;
+        return $id = $request->id;
         $post = Post::find($id);
         $post = Post::findOrFail($id);
 
