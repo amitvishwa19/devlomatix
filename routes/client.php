@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Admin\PolicyController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Client\ClientController;
+use App\Http\Controllers\Admin\AutoDeployController;
 use App\Http\Controllers\Admin\SubscriptionController;
 
 
@@ -56,3 +57,4 @@ Route::post('/inquire', [ClientController::class, 'inquiry'])->name('app.inquire
 
 //Auto deploy of app
 Route::post('/deploy',[AutoDeployController::class,'deploy'])->name('app.auto.deploy');
+Route::post('/git/deploy',[AutoDeployController::class,'gitDeploy'])->name('app.git.deploy');
