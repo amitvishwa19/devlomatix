@@ -96,11 +96,11 @@ class FacebookController extends Controller
 
     public function publishToPage(Request $request){
 
-        return [
-            'status' =>200,
-            'msg'=>'Published to facebook page successfully',
-            'id' => 'id'
-            ];
+        // return [
+        //     'status' =>200,
+        //     'msg'=>'Published to facebook page successfully',
+        //     'id' => 'id'
+        //     ];
 
         $page_id = Auth::user()->facebook_page_id??'';
         $access_token = Auth::user()->facebook_token;
