@@ -54,7 +54,7 @@ class ProfileController extends Controller
 
 
         return Socialite::driver('facebook')->scopes([
-            "public_profile, pages_show_list", "pages_read_engagement", "pages_manage_posts", "pages_manage_metadata", "user_videos", "user_posts"
+            "public_profile", "pages_show_list", "pages_read_engagement", "pages_manage_posts", "pages_manage_metadata", "user_videos", "user_posts"
         ])->redirect();
 
         

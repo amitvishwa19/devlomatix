@@ -83,10 +83,9 @@ class FacebookController extends Controller
 
     public function publishToPage(Request $request){
 
-        $response = $this->api->get('/me/accounts', auth()->user()->facebook_token);
-        
-        $pages = $response->getGraphEdge()->asArray();
-        return $pages;
+        //$response = $this->api->get('/me/accounts', auth()->user()->facebook_token);
+        //$pages = $response->getGraphEdge()->asArray();
+        //return $pages;
 
         $page_id = Auth::user()->facebook_page_id??'';
 
