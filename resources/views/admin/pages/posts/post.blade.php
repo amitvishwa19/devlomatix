@@ -309,7 +309,7 @@
 
        
 
-        <form action="{{route('facebook.publish',['id'=>5])}}" method="post">
+        <form action="{{route('facebook.publish',['id'=>6])}}" method="post">
         @csrf
             <button>Post</button>
         </form>
