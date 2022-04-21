@@ -96,7 +96,7 @@ class FacebookController extends Controller
         
         $id = $request->id;
         $post = Post::find($id);
-        $post = Post::findOrFail($id);
+        return $post = Post::findOrFail($id);
 
         //return $this->textPost($post->description, $page_id, $page_access_token);
 
