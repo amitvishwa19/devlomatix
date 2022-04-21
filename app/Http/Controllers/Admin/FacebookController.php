@@ -90,13 +90,13 @@ class FacebookController extends Controller
 
         //return $response = $this->api->get('/me/accounts', Auth::user()->facebook_token);
         $access_token = Auth::user()->facebook_token;
-        $page_access_token = $this->pageAccessToken($page_id);
+        return $page_access_token = $this->pageAccessToken($page_id);
 
         $text = ['message' =>'Test Messege'];
         
         $id = $request->id;
         $post = Post::find($id);
-        return $post = Post::findOrFail($id);
+        $post = Post::findOrFail($id);
 
         //return $this->textPost($post->description, $page_id, $page_access_token);
 
