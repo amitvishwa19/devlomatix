@@ -164,7 +164,7 @@ class FacebookController extends Controller
                 return ['status' =>400,'msg'=>'Error while publishing to facebook page'];
             }
         }catch(FacebookSDKException $ex){
-            return ['status' =>400,'msg'=>$ex];
+            return ['status' =>400,'msg'=>'Error while publishing to facebook page'];
         }
 
     }
