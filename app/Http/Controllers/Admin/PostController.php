@@ -123,7 +123,17 @@ class PostController extends Controller
                 $link = '<div class="d-flex">'.
                             '<a href="'.route('post.edit',$data->id).'" class="badge badge-soft-success mr-2"><small>Edit</small></a>'.
                             '<a href="javascript:void(0);" id="'.$data->id.'" class="badge badge-secondary delete mr-2"><small>Delete</small></a>'.
-                            '<a href="javascript:void(0);"  class="badge badge-info"><i data-pid="'.$data->id.'" class="fab fa-facebook-f fbpublish"><span class="submitspinner'.$data->id.'"></i></a>'.
+                            '<div class="dropdown kanban-main-dropdown show">
+                                <a class="dropdown-toggle  badge badge-info" id="drop1" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="true">
+                                    <i class="fab fa-facebook-f"></i>
+                                    <span class="submitspinner'.$data->id.'"></span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="drop1" x-placement="bottom-end" style="position: absolute; transform: translate3d(-136px, 24px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                    <a href="javascript:void(0);" class="dropdown-item fbpublish" data-pid="'.$data->id.'" data-type="text">Text Post</a>
+                                    <a href="javascript:void(0);" class="dropdown-item fbpublish" data-pid="'.$data->id.'" data-type="image">Image Post</a>
+                                    <a href="javascript:void(0);" class="dropdown-item fbpublish" data-pid="'.$data->id.'" data-type="link">Link Post</a>
+                                </div>
+                            </div>'.
                         '</div>';
                 return $link;
             })

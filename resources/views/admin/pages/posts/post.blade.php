@@ -307,6 +307,12 @@
             </div>
         </div><!--end modal-->
 
+       
+
+        <form action="{{route('facebook.publish',['id'=>4])}}" method="post">
+        @csrf
+            <button>Post</button>
+        </form>
 
     </div>
 @endsection
@@ -409,14 +415,18 @@
 
             $('body').on('click','.fbpublish',function(){
                 var id = $(this).data('pid');
+                var type = $(this).data('type');
+
                 //console.log(id);
+                //console.log(type);
+
                 $.ajax({
                     url: "{{ route('facebook.publish')}}",
                     type: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     },
-                    data:{id:id},
+                    data:{id:id, type:type},
                     beforeSend:function(){
                         $('.submitspinner'+id).html('<i class="fa fa-spinner fa-spin"></1>');
                     },

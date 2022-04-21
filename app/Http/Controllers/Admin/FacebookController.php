@@ -30,13 +30,6 @@ class FacebookController extends Controller
     
     public function add_page(Request $request){
 
-        //return $request->page_id;
-
-        //$pages = $this->api->get('/me/accounts', auth()->user()->facebook_token);
-        //$pages = $pages->getGraphEdge()->asArray();
-
-
-
         $input = $request->all();
         $rule = [
             'page_id' => 'required',
@@ -50,16 +43,10 @@ class FacebookController extends Controller
                 $user = User::findOrFail(auth()->user()->id);
                 $user->facebook_page_id = $request->page_id;
                 $user->save();
-                
-                //$pages = [];
-                //$pgs = $this->api->get('/me/accounts', auth()->user()->facebook_token)->getGraphEdge()->asArray();
-
-                //$response = $this->api->get('/me?fields=id,name,email', auth()->user()->facebook_token);
-
-
+            
                 return ['status' =>200,'msg'=>'Facebook page added successfully'];
             }catch(Exception $ex){
-                return ['status'=> 400, 'msg'=>$validator->errors()->first()];
+                return ['status'=> 400, 'msg'=>'Error while adding page to database'];
             }
             
         }
@@ -96,24 +83,33 @@ class FacebookController extends Controller
 
     public function publishToPage(Request $request){
 
-        $id = $request->id;
+        //return $request->all();
+        //return $id = $request->id;
 
         $page_id = Auth::user()->facebook_page_id??'';
 
-        //return $page_id;
+        //return $response = $this->api->get('/me/accounts', Auth::user()->facebook_token);
         $access_token = Auth::user()->facebook_token;
         $page_access_token = $this->pageAccessToken($page_id);
 
         $text = ['message' =>'Test Messege'];
         
-        //return $id = $request->id;
+        $id = $request->id;
         $post = Post::find($id);
         $post = Post::findOrFail($id);
 
-        
         //return $this->textPost($post->description, $page_id, $page_access_token);
-        //return $this->imagePost($post->description, $post['feature_image'],$page_id, $page_access_token);
-        return $this->linkPost($post->description, 'www.devlomatix.com/blog/'.$post['slug'], $page_id, $page_access_token);
+
+        if($request->type == 'text'){
+            return $this->textPost($post->description, $page_id, $page_access_token);
+        }elseif($request->type == 'image'){
+            return $this->imagePost($post->description, $post->feature_image,$page_id, $page_access_token);
+        }else{
+            return $this->linkPost($post->description, 'www.devlomatix.com/blog/'.$post['slug'], $page_id, $page_access_token);
+        }
+        //return $this->textPost($post->description, $page_id, $page_access_token);
+        //return $this->imagePost($post->description, $post->feature_image,$page_id, $page_access_token);
+        //return $this->linkPost($post->description, 'www.devlomatix.com/blog/'.$post['slug'], $page_id, $page_access_token);
     }
 
     public function pageAccessToken($page_id){
