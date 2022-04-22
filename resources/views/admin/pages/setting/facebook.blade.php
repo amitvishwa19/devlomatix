@@ -12,8 +12,8 @@
     <div class="card-body"> 
 
 
-        <form action="{{route('facebook.page.add')}}" enctype="multipart/form-data" method="post" class="formsubmit">
-
+        <form action="{{route('facebook.page.id.add')}}" enctype="multipart/form-data" method="post" class="formsubmit">
+            @csrf
             <div class="row">
                 <!-- <div class="form-group col-md-6">
                     <label class=""><b>App ID</b></label>

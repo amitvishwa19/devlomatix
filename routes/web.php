@@ -185,7 +185,7 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
 
     Route::get('/facebook/connect',[ProfileController::class,'facebookRedirect'])->name('facebook.connect');
     Route::get('/facebook/callback',[ProfileController::class,'facebookCallback'])->name('facebook.callback');
-    Route::post('facebook/page/add',[FacebookController::class,'add_page'])->name('facebook.page.add');
+    Route::post('facebook/page/add',[FacebookController::class,'add_fb_page'])->name('facebook.page.id.add');
 
     Route::get('facebook/page/data',[FacebookController::class,'fb_data'])->name('facebook.data');
     Route::post('facebook/post/publish',[FacebookController::class,'publishToPage'])->name('facebook.publish');

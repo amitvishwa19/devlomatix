@@ -28,8 +28,8 @@ class FacebookController extends Controller
         });
     }
     
-    public function add_page(Request $request){
 
+    public function add_fb_page(Request $request){
         $input = $request->all();
         $rule = [
             'page_id' => 'required',
@@ -51,6 +51,7 @@ class FacebookController extends Controller
             
         }
     }
+
 
     public function userProfile(){
         try {
@@ -83,30 +84,22 @@ class FacebookController extends Controller
 
     public function publishToPage(Request $request){
 
-        //$response = $this->api->get('/me/accounts', auth()->user()->facebook_token);
-        //$pages = $response->getGraphEdge()->asArray();
-        //return $pages;
-
         $page_id = Auth::user()->facebook_page_id??'';
-
-        //return $response = $this->api->get('/me/accounts', Auth::user()->facebook_token);
-        $access_token = Auth::user()->facebook_token;
         $page_access_token = $this->pageAccessToken($page_id);
-
-        $text = ['message' =>'Test Messege'];
         
         $id = $request->id;
-        $post = Post::find($id);
         $post = Post::findOrFail($id);
 
-        //return $this->textPost($post->description, $page_id, $page_access_token);
+        $message = $post->description;
+        $slug = $post->slug;
+        $post_fb_id = $post->facebook_post_id;
 
         if($request->type == 'text'){
-            return $this->textPost($post->description, $page_id, $page_access_token);
+            return $this->textPost($post->id, $message, $page_id, $page_access_token);
         }elseif($request->type == 'image'){
-            return $this->imagePost($post->description, $post->feature_image,$page_id, $page_access_token);
+            return $this->imagePost($post->id, $message, $post->feature_image,$page_id, $page_access_token);
         }else{
-            return $this->linkPost($post->description, 'www.devlomatix.com/blog/'.$post['slug'], $page_id, $page_access_token);
+            return $this->linkPost( $message, 'www.devlomatix.com/blog/'.$slug, $page_id, $page_access_token);
         }
         //return $this->textPost($post->description, $page_id, $page_access_token);
         //return $this->imagePost($post->description, $post->feature_image,$page_id, $page_access_token);
@@ -141,26 +134,20 @@ class FacebookController extends Controller
        }
     }
 
-    public function textPost($text, $pageId, $token){
+    public function textPost($post_id, $text, $pageId, $token){
         try {
 
-            $linkData = [
-                'link' => 'https://www/devlomatix.com',
-                'message' => 'Test Link post to page'
-            ];
+            $post = Post::findOrFail($post_id);
 
-            //$fb_post = $this->api->post('/' . $pageId . '/feed', $linkData, $token);
-              
             $fb_post = $this->api->post('/' . $pageId . '/feed', array('message' =>$text), $token);
+           
             $fb_post = $fb_post->getGraphNode()->asArray();
-
             
             if($fb_post){
-                return [
-                    'status' =>200,
-                    'msg'=>'Published to facebook page successfully',
-                    'id' => $fb_post['id']
-                    ];
+                
+                $post->facebook_post_id = $fb_post['id'];
+                $post->save();
+                return ['status' =>200, 'msg'=>'Published to facebook page successfully', 'id' => $fb_post['id']];
             }else{
                 return ['status' =>400,'msg'=>'Error while publishing to facebook page'];
             }
@@ -170,19 +157,19 @@ class FacebookController extends Controller
 
     }
 
-    public function imagePost($text, $image, $pageId, $token){
-
-        $link = 'www.devlomatix.com';
+    public function imagePost($post_id, $text, $image, $pageId, $token){
         try {
+
+            $post = Post::findOrFail($post_id);
+          
             $fb_post = $this->api->post('/' . $pageId . '/' . 'photos', array('message' => $text, 'source' => $this->api->fileToUpload($image)), $token);
+
             $fb_post = $fb_post->getGraphNode()->asArray();
 
             if($fb_post){
-                return [
-                    'status' =>200,
-                    'msg'=>'Published to facebook page successfully',
-                    'id' => $fb_post['id']
-                    ];
+                $post->facebook_post_id = $fb_post['id'];
+                $post->save();
+                return ['status' =>200, 'msg'=>'Published to facebook page successfully', 'id' => $fb_post['id']];
             }else{
                 return ['status' =>400,'msg'=>'Error while publishing to facebook page'];
             }
@@ -208,11 +195,8 @@ class FacebookController extends Controller
 
             
             if($fb_post){
-                return [
-                    'status' =>200,
-                    'msg'=>'Published to facebook page successfully',
-                    'id' => $fb_post['id']
-                    ];
+                return ['status' =>200, 'msg'=>'Published to facebook page successfully', 'id' => $fb_post['id']];
+
             }else{
                 return ['status' =>400,'msg'=>'Error while publishing to facebook page'];
             }
