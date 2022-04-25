@@ -11,7 +11,7 @@ class GitPush extends Command
      *
      * @var string
      */
-    protected $signature = 'git:push {msg : Message for git commit}';
+    protected $signature = 'git:push';
 
     /**
      * The console command description.
@@ -37,12 +37,12 @@ class GitPush extends Command
      */
     public function handle()
     {
-        $msg = $this->argument('msg');
+        
 
         exec('git add .');
         $this->info('Git added successfully');
 
-        exec('git commit -m ' . $msg);
+        exec('git commit -m "Auto push from command"');
         $this->info('Git commited successfully');
 
         exec('git push');
