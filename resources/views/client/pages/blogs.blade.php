@@ -67,7 +67,7 @@
 
 								</div>
 								<div class="more-box">
-									<a class="theme-btn btn-style-one" href="">
+									<a class="theme-btn btn-style-one" href="{{route('app.blog',$post->slug)}}">
 										<i class="btn-curve"></i>
 										<span class="btn-title">Load more posts</span>
 									</a>
