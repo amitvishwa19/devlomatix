@@ -41,9 +41,9 @@ class GitPull extends Command
         //exec('git pull');
 
 
-        //Artisan::call('php artisan migrate');
+        Artisan::call('php artisan migrate');
 
-        //Artisan::call('composer install');
+        Artisan::call('composer install');
 
 
         $this->info('Git Pull successfully');
