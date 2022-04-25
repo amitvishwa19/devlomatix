@@ -11,7 +11,7 @@ class AutoDeploy extends Command
      *
      * @var string
      */
-    protected $signature = 'git:deploy';
+    protected $signature = 'git:deploy {msg : Message for git commit}';
 
     /**
      * The console command description.
@@ -37,10 +37,12 @@ class AutoDeploy extends Command
      */
     public function handle()
     {
+        $msg = $this->argument('msg');
+
         exec('git add .');
         $this->info('Git added successfully');
 
-        exec('git commit -m "local change"');
+        exec('git commit -m ' . $msg);
         $this->info('Git commited successfully');
 
         exec('git push');
