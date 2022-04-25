@@ -38,7 +38,14 @@ class GitPull extends Command
      */
     public function handle()
     {
-        Artisan::call('git:push "Local Changes"');
+        exec('git pull');
+
+
+        Artisan::call('php artisan migrate');
+
+        Artisan::call('composer install');
+
+
         $this->info('Git Pull successfully');
         activity('Git Pull')->log('Git pull from github');
     }
