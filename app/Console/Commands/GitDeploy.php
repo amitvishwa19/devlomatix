@@ -4,14 +4,14 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class AutoDeploy extends Command
+class GitDeploy extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'git:deploy {msg : Message for git commit}';
+    protected $signature = 'git:push {msg : Message for git commit}';
 
     /**
      * The console command description.
@@ -47,5 +47,7 @@ class AutoDeploy extends Command
 
         exec('git push');
         $this->info('Git push successfully');
+
+        activity()->log('Git Push');
     }
 }
