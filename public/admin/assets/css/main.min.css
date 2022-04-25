@@ -7680,3 +7680,23 @@ ul.steppedprogress li:first-child:after {
     font-size: 10px;
 }
 /*# sourceMappingURL=app.min.css.map */
+
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #12a4ed !important;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    cursor: default;
+    float: left;
+    margin-right: 5px;
+    margin-top: 5px;
+    padding: 0 5px;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    color: #FFF !important;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 2px;
+}
