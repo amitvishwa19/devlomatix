@@ -48,6 +48,6 @@ class GitDeploy extends Command
         exec('git push');
         $this->info('Git push successfully');
 
-        activity('Git')->log('Git Push');
+        activity('Git Push')->log('Git Push to git server');
     }
 }
