@@ -38,7 +38,7 @@ class GitPull extends Command
      */
     public function handle()
     {
-        //exec('git pull');
+        exec('git pull');
 
 
         Artisan::call('php artisan migrate --force');
