@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;family=Roboto:wght@300;400;500;700&amp;display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
 .left-sidenav {
     min-width: 220px;
     max-width: 220px;
@@ -1021,14 +1024,6 @@ body.dark-sidenav.navy-sidenav .left-sidenav .left-sidenav-menu li.mm-active .mm
 
 
 
-
-
-
-
-
-
-
-
 html {
     position: relative;
     min-height: 100%;
@@ -1046,7 +1041,9 @@ body {
     line-height: 1.5;
     display: flex;
     position: relative;
+    font-style: 'poppins' !important;
 }
+
 .h1,
 .h2,
 .h3,

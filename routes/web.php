@@ -1,43 +1,26 @@
 <?php
-
-
-//use App\Models\User;
-//use App\Facades\Test;
-//use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\ChatController;
 use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\NoteController;
 use App\Http\Controllers\Admin\PostController;
-use App\Http\Controllers\Admin\QuizController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\RouteController;
-use App\Http\Controllers\Admin\VideoController;
-use App\Http\Controllers\Admin\PolicyController;
 use App\Http\Controllers\Admin\ServerController;
-use App\Http\Controllers\Admin\ChapterController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\InquiryController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\SandboxController;
 use App\Http\Controllers\Admin\SettingController;
-use App\Http\Controllers\Admin\TeacherController;
-use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ErrorLogController;
 use App\Http\Controllers\Admin\FacebookController;
-use App\Http\Controllers\Admin\QuestionController;
-use App\Http\Controllers\Admin\ClassroomController;
 use App\Http\Controllers\Admin\DashboardController;
-
-use App\Http\Controllers\Admin\AutoDeployController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ActivityLogController;
 use App\Http\Controllers\Admin\FilemanagerController;
@@ -69,33 +52,6 @@ Route::get('/mail', function(){
 
 });
 
-Route::get('/setting', function(){
-    //dump($setting->all());
-    dd(app());
-    //dd(app(\App\Services\Settings::class),app(\App\Services\Settings::class));
-    //return $setting->all();
-    //return Facades\App\Services\Settings::all();
-    //return \App\Facades\SettingFacade::all();
-    //return AppSetting::all();
-    return AppSetting::get('app_description');
-    //return AppSetting::set('app_name','devlomatix6');
-
-});
-
-Route::get('test',function(){
-    // return appmail();
-    // return setting('app_name');
-    // return setting('app_name','Devlomatix_new');
-    // return 'test';
-    return view('mails.wola');
-});
-
-Route::get('/payment', function(\App\Services\PaymentAPI $payment){
-    dump($payment->pay());
-    dd(app());
-});
-
-
 Route::prefix('/')->group(base_path('routes/client.php'));
 
 
@@ -105,7 +61,7 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
 
     Route::get('/',[DashboardController::class,'index'])->name('admin.dashboard');
     Route::resource('/profile',ProfileController::class);
-    Route::resource('/setting',SettingController::class);
+    
 
 
     //App Menu Controller Routes
@@ -190,6 +146,9 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){
     Route::get('facebook/page/data',[FacebookController::class,'fb_data'])->name('facebook.data');
     Route::post('facebook/post/publish',[FacebookController::class,'publishToPage'])->name('facebook.publish');
 
+
+    Route::resource('/setting',SettingController::class);
+    
 });
 
 

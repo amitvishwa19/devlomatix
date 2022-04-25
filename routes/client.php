@@ -46,9 +46,6 @@ Route::get('/games/terms', [PolicyController::class, 'DevlomatixGamesTerms'])->n
 Route::get('/privacy', [PolicyController::class, 'DevlomatixSolutionsPrivacy'])->name('privacy');
 Route::get('/terms', [PolicyController::class, 'DevlomatixSolutionsTerms'])->name('terms');
 
-
-Route::get('/termscondition', [HomeController::class, 'terms'])->name('terms');
-
 // App Subscription
 Route::post('/subscribe',[ClientController::class,'subscribe'])->name('app.subscribe');
 

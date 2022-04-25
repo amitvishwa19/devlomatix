@@ -10,9 +10,7 @@
     "require": {
         "php": "^8.0",
         "albertcht/invisible-recaptcha": "^1.9",
-        "aws/aws-sdk-php-resources": "^0.3.0",
         "barryvdh/laravel-dompdf": "^1.0",
-        "beyondcode/laravel-websockets": "^1.12",
         "facebook/graph-sdk": "^5.1",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",

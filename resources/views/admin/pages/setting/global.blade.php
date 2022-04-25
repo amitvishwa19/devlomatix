@@ -51,8 +51,10 @@
                 <input type="file" class="" name="auth_image">
             </div>
 
-           
-
+            <!-- <label data-toggle="tooltip" data-placement="top" data-original-title="Upload New Picture" class="btn btn-info m-0" for="fileAttachmentBtn">
+                <i class="feather-image"></i>
+                <input id="fileAttachmentBtn" name="file-attachment" type="file" class="d-none">
+            </label> -->
 
             <button type="submit" class="btn btn-info waves-effect waves-light btn-sm">Save Setting</button>
         </form>

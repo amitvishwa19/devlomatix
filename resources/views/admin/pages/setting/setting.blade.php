@@ -75,7 +75,7 @@
                                 </li>
                                 <li class="{{(request()->type =='password') ? 'active' : 'null'}}">
                                     <a href="{{route('setting.index',['type'=>'password'])}}">
-                                        <i data-feather="user" class="align-self-center menu-icon"></i>
+                                        <i data-feather="key" class="align-self-center menu-icon"></i>
                                         <span>Password Management</span>
                                     </a>
                                 </li>

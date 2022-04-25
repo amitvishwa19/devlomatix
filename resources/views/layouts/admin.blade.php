@@ -24,10 +24,10 @@
         <link href="{{asset('public/admin/assets/css/metisMenu.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('public/admin/plugins/daterangepicker/daterangepicker.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('public/admin/plugins/sweet-alert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css">
-        @yield('style')
         <link href="{{asset('public/admin/assets/css/main.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('public/admin/assets/css/app.css')}}" rel="stylesheet" type="text/css" />
 
+        @yield('style')
 
     </head>
 
@@ -79,7 +79,6 @@
         <script src="{{asset('public/admin/assets/js/moment.js')}}"></script>
         <script src="{{asset('public/admin/plugins/daterangepicker/daterangepicker.js')}}"></script>
 
-        {{-- Custom js scripts from blade file --}}
         @yield('scripts')
 
         <!-- App js -->
@@ -89,42 +88,43 @@
 
         <script>
             @if(Session::has('message'))
-            var alertType = {!! json_encode(Session::get('alert-type', 'info')) !!};
-            var alertMessage = {!! json_encode(Session::get('message')) !!};
+                var alertType = {!! json_encode(Session::get('alert-type', 'info')) !!};
+                var alertMessage = {!! json_encode(Session::get('message')) !!};
 
-            if(alertType == 'success'){
-                toast({
-                    type: "success",
-                    title: alertMessage
-                });
-            }
+                if(alertType == 'success'){
+                    toast({
+                        type: "success",
+                        title: alertMessage
+                    });
+                }
 
-            if(alertType == 'error'){
-                toast({
-                    type: "error",
-                    title: alertMessage
-                });
-            }
+                if(alertType == 'error'){
+                    toast({
+                        type: "error",
+                        title: alertMessage
+                    });
+                }
 
-            if(alertType == 'warning'){
-                toast({
-                    type: "warning",
-                    title: alertMessage
-                });
-            }
+                if(alertType == 'warning'){
+                    toast({
+                        type: "warning",
+                        title: alertMessage
+                    });
+                }
 
-            if(alertType == 'info'){
-                toast({
-                    type: "info",
-                    title: alertMessage
-                });
-            }
+                if(alertType == 'info'){
+                    toast({
+                        type: "info",
+                        title: alertMessage
+                    });
+                }
 
             @endif
 
             @if(Session::has('errors'))
 
             @endif
+
         </script>
 
         {{-- Firebase intigration --}}
