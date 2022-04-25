@@ -2,25 +2,23 @@
 
 namespace App\Console\Commands;
 
-use Carbon\Carbon;
 use Illuminate\Console\Command;
-use Spatie\Activitylog\Models\Activity;
 
-class DeleteActivityLogs extends Command
+class GitPull extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'app:deleteactivitylog';
+    protected $signature = 'git:pull';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'This will delete activity log older than 10 minutes';
+    protected $description = 'Command description';
 
     /**
      * Create a new command instance.
@@ -39,8 +37,6 @@ class DeleteActivityLogs extends Command
      */
     public function handle()
     {
-        $activities = Activity::where('created_at','<',Carbon::now()->subMinutes(5))->delete();
-        activity('Activity Log')->causedBy(auth()->user())
-        ->log('All Activity log is deleted at ' . Carbon::now() . 'Schedule delete is set @ 13.00 Hrs Daily');
+        activity('Git Pull')->log('Git pull from github');
     }
 }
