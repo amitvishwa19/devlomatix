@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 
 class GitPull extends Command
 {
@@ -37,6 +38,8 @@ class GitPull extends Command
      */
     public function handle()
     {
+        Artisan::call('git:push "Local Changes"');
+        $this->info('Git Pull successfully');
         activity('Git Pull')->log('Git pull from github');
     }
 }
