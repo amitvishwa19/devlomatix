@@ -74,7 +74,7 @@
             </div>
         </div><!--end row-->
 
-        Activity Log
+        Activity Log new
 
     </div>
 @endsection
