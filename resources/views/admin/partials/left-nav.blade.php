@@ -57,34 +57,21 @@
             </li>
 
 
-            <!-- <hr class="hr-dashed hr-menu"> -->
-
-            <!-- <li>
-                <a href="{{route('mtemplate.index')}}">
-                    <i data-feather="send" class="align-self-center menu-icon"></i><span>Mail Templates</span>
+           
+            <hr class="hr-dashed hr-menu">
+            <li>
+                <a href="{{route('devlearn.dashboard')}}">
+                    <i data-feather="book" class="align-self-center menu-icon"></i><span>Devlearn</span>
                 </a>
             </li>
 
             <li>
-                <a href="{{route('file.index')}}">
-                    <i data-feather="file" class="align-self-center menu-icon"></i><span>File Manager</span>
+                <a href="{{route('devlearn.dashboard')}}">
+                    <i data-feather="shopping-cart" class="align-self-center menu-icon"></i><span>Devcomm</span>
                 </a>
             </li>
-
-            <li>
-                <a href="{{route('chat.index')}}">
-                    <i data-feather="message-square" class="align-self-center menu-icon"></i><span>Chat</span>
-                </a>
-            </li> -->
-
-            {{-- <li>
-                <a href="javascript: void(0);" class=""><i data-feather="layout" class="align-self-center menu-icon"></i>Pages <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
-                <ul class="nav-second-level" aria-expanded="false">
-                    <li class="active"><a href="{{route('project.index')}}">Blog</a></li>
-                    <li><a href="apps-project-projects.html">E-comm</a></li>
-                    <li><a href="apps-project-board.html">E-learning</a></li>
-                </ul>
-            </li> --}}
+            
+        
 
             <hr class="hr-dashed hr-menu">
 
