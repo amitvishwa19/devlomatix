@@ -22,8 +22,10 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
         "phpoffice/phpspreadsheet": "1.16.0",
+        "pusher/pusher-php-server": "^7.0",
         "spatie/laravel-activitylog": "^4.0",
         "spatie/laravel-permission": "^4.0",
+        "tymon/jwt-auth": "^1.0",
         "uxweb/sweet-alert": "^2.0",
         "yajra/laravel-datatables": "^1.5"
     },
