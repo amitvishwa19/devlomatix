@@ -45,7 +45,7 @@ class AuthController extends Controller
         ]);
         
         if($validator->fails()){
-            return response()->json(['success' => false, 'message' => 'Invalid details', $validator->errors()],422);
+            return response()->json(['success' => false, 'message' => 'Invalid details', 'token'=>null],422);
         }
         
         $user = User::create(
@@ -55,7 +55,10 @@ class AuthController extends Controller
                 )
             );
 
-        return response()->json(['success' => true, 'message' => 'User created successfully','user' => $user],200);
+        $credentials = $request->only(['email', 'password']);
+        $token = $this->guard()->attempt($credentials);
+
+        return response()->json(['success' => true, 'message' => 'User created successfully','token'=>$token],200);
 
     }
 
