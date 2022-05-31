@@ -71,6 +71,7 @@ class CategoryController extends Controller
         $category->class = $request->class;
         if($request->favourite){$category->favourite = true;}else{$category->favourite = false;}
         if($request->status){$category->status = true;}else{$category->status = false;}
+        if($file = $request->file('feature_image')){ $category->feature_image = uploadImage($request->file('feature_image'));}
         $category->save();
         Cache::forget('categories');
 
@@ -113,6 +114,7 @@ class CategoryController extends Controller
         $category->class = $request->class;
         if($request->favourite){$category->favourite = true;}else{$category->favourite = false;}
         if($request->status){$category->status = true;}else{$category->status = false;}
+        if($file = $request->file('feature_image')){ $category->feature_image = uploadImage($request->file('feature_image'));}
         $category->save();
 
         return redirect()->route('category.index')

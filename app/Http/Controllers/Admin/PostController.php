@@ -154,7 +154,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = Category::where('parent_id','<>', 0 )->orderby('created_at','desc')->get();
+        $categories = Category::orderby('created_at','desc')->get();
+        //dd($categories);
         return view('admin.pages.posts.post_add')->with('categories',$categories);
     }
 
@@ -239,7 +240,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        $categories = Category::where('parent_id','<>', 0 )->orderby('created_at','desc')->get();
+        $categories = Category::orderby('created_at','desc')->get();
         //$tags = Tag::orderby('created_at','desc')->get();
         return view('admin.pages.posts.post_edit')->with('post',$post)->with('categories',$categories);
     }

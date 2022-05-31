@@ -31,7 +31,7 @@
     <div class="row">
         <div class="col-sm-4">
 
-            <form method="post" action="{{route('category.store')}}"  class="mg-t-30">
+            <form method="post" action="{{route('category.store')}}" enctype="multipart/form-data" class="mg-t-30">
                 @csrf
 
                 <div class="form-group">
@@ -77,6 +77,12 @@
                     <label for="exampleInputEmail1"><b>Add Class</b></label>
                     <input type="text" class="form-control" name="class" value="{{ old('class') }}">
                     <small id="emailHelp" class="form-text text-muted"><i>Additional Class</i>.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1"><b>Feature Image</b></label>
+                    <input type="file" class="" name="feature_image" value="{{ old('feature_image') }}">
+                    
                 </div>
 
                 <div class="checkbox form-group">

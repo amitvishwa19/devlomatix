@@ -93,6 +93,8 @@
                 </div>
 
 
+                
+
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Category</h4>
@@ -101,19 +103,17 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <label class="mb-3">Select category for post</label>
-                                <select class="form-control select2" multiple="multiple" name="categories[]" multiple="">
-                            <option label="Choose one"></option>
-                                @foreach($categories as $category)
-                                <option value="{{$category->id}}"
-                                    @foreach($post->categories as $postCat)
-                                    @if($postCat->id == $category->id)
-                                        selected
-                                    @endif
+                                <select class="select2 mb-3 select2-multiple select2-hidden-accessible" style="width: 100%" name="categories[]" multiple="">
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->id}}"
+                                        @foreach($post->categories as $postCat)
+                                            @if($postCat->id == $category->id)
+                                                selected
+                                            @endif                                     
+                                        @endforeach
+                                        >{{$category->name}}</option>
                                     @endforeach
-                                    >{{$category->name}}
-                                </option>
-                                @endforeach
-                            </select>
+                                </select>
                             </div> <!-- end col -->
                         </div><!-- end row -->
                     </div><!-- end card-body -->

@@ -29,10 +29,10 @@
         </div><!--end col-->
     </div><!--end row-->
 
-    <div class="row">
+    <div class="row pb-5">
         <div class="col-sm-4">
 
-            <form method="post" action="{{route('category.update',$category->id)}}"  class="mg-t-30">
+            <form method="post" action="{{route('category.update',$category->id)}}" enctype="multipart/form-data" class="mg-t-30">
                 @csrf
                 {{method_field('PUT')}}
                 <div class="form-group">
@@ -87,6 +87,16 @@
                     <small id="emailHelp" class="form-text text-muted"><i>Additional Class</i>.</small>
                 </div>
 
+                <div class="form-group ">
+                    <label for="exampleInputEmail1"><b>Feature Image</b></label><br>
+                    @if($category->feature_image)
+                    <img src="{{$category->feature_image}}" alt="" class="img-thumbnail mb-1" width="100">
+                    @endif
+                    <br>
+                    <input type="file" class="" name="feature_image" value="{{ old('feature_image') }}">
+                    
+                </div>
+
                 <div class="checkbox form-group">
                     <input id="checkbox0" type="checkbox" name="favourite" {{$category->favourite == true ? "checked" : ""}}>
                     <label for="checkbox0">
@@ -105,6 +115,8 @@
                 <a href="{{route('category.index')}}" class="btn btn-secondary waves-effect waves-light btn-sm">Cancel</a>
             </form>
         </div>
+
+        <div style="height: 20px;"></div>
 
         
     </div>
