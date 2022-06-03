@@ -23,7 +23,7 @@ class CategoryController extends Controller
         $categories = Post::whereHas('categories', function($q)
         {
             $q->where('slug', '=', 'grocery-category');
-        })->where('status','published')->limit(5)->get();
+        })->where('status','published')->get();
 
         return  GroceryCategoryResource::collection($categories);
 
