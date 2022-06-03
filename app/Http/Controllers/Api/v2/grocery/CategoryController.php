@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Api\v2\grocery;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Post;
 use App\Models\Category;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\GroceryCategoryResource;
 
 class CategoryController extends Controller
 {
@@ -16,10 +18,14 @@ class CategoryController extends Controller
     public function index()
     {
 
-        $app_category = Category::where('slug','grocery-app-categories')->first();
-        if($app_category){
-            $categories = Category::where('parent_id', $app_category->id )->orderby('created_at','desc')->get();
-        }
+       
+
+        $categories = Post::whereHas('categories', function($q)
+        {
+            $q->where('slug', '=', 'grocery-category');
+        })->where('status','published')->limit(5)->get();
+
+        return  GroceryCategoryResource::collection($categories);
 
 
         //$category = Category::get();
