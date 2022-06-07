@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\v2\AuthController;
 use App\Http\Controllers\Api\v2\PostController;
 use App\Http\Controllers\Api\v2\grocery\SliderController;
+use App\Http\Controllers\Api\v2\grocery\ProductController;
 use App\Http\Controllers\Api\v2\grocery\CategoryController;
 
 /*
@@ -38,6 +39,7 @@ Route::prefix('v2')->group(function(){
         
         Route::get('categories',[CategoryController::class,'index']);
         Route::get('slider',[SliderController::class,'index']);
+        Route::get('product/{cat}',[ProductController::class,'index']);
         
 
     });

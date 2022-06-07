@@ -4,8 +4,11 @@
     <div class="brand mt-2">
         <a href="{{route('admin.dashboard')}}" class="logo">
             <span class="admin-sidebar-logo-title">
-                <img src="{{setting('app_fevicon')}}" alt="logo-small" class="logo-sm">
+                @if(setting('app_icon'))
+                <img src="{{setting('app_icon')}}" alt="logo-small" class="logo-sm">
+                @else
                 <span class="title-text">{{setting('app_name')}}</span>
+                @endif
             </span>
             {{-- <span>
                 <img src="{{asset('public/admin/assets/images/logo.png')}}" alt="logo-large" class="logo-lg logo-light">
@@ -66,7 +69,7 @@
             </li>
 
             <li>
-                <a href="{{route('devlearn.dashboard')}}">
+                <a href="{{route('devcomm.dashboard')}}">
                     <i data-feather="shopping-cart" class="align-self-center menu-icon"></i><span>Devcomm</span>
                 </a>
             </li>

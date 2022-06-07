@@ -5,27 +5,26 @@ namespace App\Http\Controllers\Api\v2\grocery;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\GrocerySlider;
-use App\Http\Resources\GrocerySliderResource;
+use App\Http\Resources\GroceryProductResource;
 
-
-class SliderController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($category)
     {
-        $slider = Post::whereHas('categories', function($q)
+
+        $products = Post::whereHas('categories', function($q)
         {
-            $q->where('slug', '=', 'grocery-slider');
+            $q->where('slug', '=', 'fruit');
         })->where('status','published')->get();
 
-        return  GrocerySliderResource::collection($slider);
-
-        //return $slider;
+        return  GroceryProductResource::collection($products);
+        
+        return $products;
     }
 
     /**
