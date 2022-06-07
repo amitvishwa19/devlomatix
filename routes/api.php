@@ -39,7 +39,9 @@ Route::prefix('v2')->group(function(){
         
         Route::get('categories',[CategoryController::class,'index']);
         Route::get('slider',[SliderController::class,'index']);
-        Route::get('product/{cat}',[ProductController::class,'index']);
+
+        Route::get('products',[ProductController::class,'allProducts']);
+        Route::get('products/{cat}',[ProductController::class,'index']);
         
 
     });

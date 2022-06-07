@@ -16,7 +16,7 @@ class ProductController extends Controller
      */
     public function index($category)
     {
-
+        
         $products = Post::whereHas('categories', function($q) use($category)
         {
             $q->where('slug', '=', $category);
@@ -25,6 +25,18 @@ class ProductController extends Controller
         return  GroceryProductResource::collection($products);
         
         return $products;
+    }
+
+    public function allProducts(){
+        $products = Post::whereHas('categories', function($q)
+        {
+            $q->where('slug', '=', 'grocery-products');
+        })->where('status','published')->get();
+
+        return  GroceryProductResource::collection($products);
+        
+        return $products;
+
     }
 
     /**
