@@ -19,7 +19,7 @@ class ProductController extends Controller
 
         $products = Post::whereHas('categories', function($q)
         {
-            $q->where('slug', '=', 'fruit');
+            $q->where('slug', '=', 'grocery-products');
         })->where('status','published')->get();
 
         return  GroceryProductResource::collection($products);
