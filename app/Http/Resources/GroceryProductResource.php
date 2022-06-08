@@ -20,8 +20,9 @@ class GroceryProductResource extends JsonResource
             'slug' => $this->slug,
             'description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
             'image' => $this->feature_image,
-            'price' => $this->description,
+            'price' => '₹ ' . $this->description,
             'discount' => false,
+            'netPrice' => $this->description,
             'sku' => '5',
             'featured' => $this->featured
         ];
