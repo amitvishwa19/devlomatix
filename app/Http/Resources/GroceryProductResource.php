@@ -22,7 +22,7 @@ class GroceryProductResource extends JsonResource
             'image' => $this->feature_image,
             'price' => '₹ ' . $this->description,
             'discount' => false,
-            'netPrice' => $this->description,
+            'netPrice' => '₹ ' . $this->description -100,
             'sku' => '5',
             'featured' => $this->featured
         ];
