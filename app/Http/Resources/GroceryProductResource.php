@@ -25,7 +25,7 @@ class GroceryProductResource extends JsonResource
             'netPrice' => '₹ ' . $this->description -100,
             'sku' => '5',
             'featured' => $this->featured,
-            'rating' => '5'
+            'rating' => 5
         ];
     }
 }
