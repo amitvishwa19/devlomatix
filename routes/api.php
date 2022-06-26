@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\v2\AuthController;
 use App\Http\Controllers\Api\v2\PostController;
+use App\Http\Controllers\Devcomm\CartController;
 use App\Http\Controllers\Api\v2\grocery\SliderController;
 use App\Http\Controllers\Api\v2\grocery\ProductController;
 use App\Http\Controllers\Api\v2\grocery\CategoryController;
@@ -29,9 +30,9 @@ Route::prefix('v2')->group(function(){
     Route::middleware('auth:api')->group(function(){
         Route::get('refresh',[AuthController::class,'refresh']);
         Route::get('user',[AuthController::class,'user']);
-
         Route::get('posts',[PostController::class,'posts']);
 
+        Route::get('cart',[CartController::class,'index']);
     });
 
     Route::prefix('grocery')->group(function(){
@@ -42,6 +43,8 @@ Route::prefix('v2')->group(function(){
 
         Route::get('products',[ProductController::class,'allProducts']);
         Route::get('products/{cat}',[ProductController::class,'index']);
+
+        
         
 
     });
