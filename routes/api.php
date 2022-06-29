@@ -33,7 +33,7 @@ Route::prefix('v2')->group(function(){
         Route::get('posts',[PostController::class,'posts']);
 
         Route::get('cart',[CartController::class,'index']);
-        Route::post('cart/add',[CartController::class,'index']);
+        Route::post('cart/add',[CartController::class,'store']);
     });
 
     Route::prefix('grocery')->group(function(){
@@ -43,7 +43,7 @@ Route::prefix('v2')->group(function(){
         Route::get('slider',[SliderController::class,'index']);
 
         Route::get('products',[ProductController::class,'allProducts']);
-        Route::get('products/{cat}',[ProductController::class,'store']);
+        Route::get('products/{cat}',[ProductController::class,'index']);
 
         
         
