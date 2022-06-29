@@ -33,7 +33,7 @@ Route::prefix('v2')->group(function(){
         Route::get('posts',[PostController::class,'posts']);
 
         Route::get('cart',[CartController::class,'index']);
-        Route::get('cart/add',[CartController::class,'index']);
+        Route::post('cart/add',[CartController::class,'index']);
     });
 
     Route::prefix('grocery')->group(function(){
