@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Devcomm;
 
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CartResource;
@@ -43,8 +44,14 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {   
+        $cart = new Cart;
+        $cart->user_id =  auth()->user()->id;
+        $cart_product_id = $request->productId;
+        $cart->quantity = 1;
+
+
         $user = auth()->user()->id;
-        return $request->productId;
+        return $request;
         return 'Add to cart from web controller';
 
         // $chat = New Chat;
