@@ -42,8 +42,9 @@ class CartController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        return $request;
+    {   
+        $user = auth()->user()->id;
+        return $user;
         return 'Add to cart from web controller';
     }
 
