@@ -43,10 +43,12 @@ class CartController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {  
+        //return $request;
+
         $cart = new Cart;
         $cart->user_id =  auth()->user()->id;
-        $cart->product_id = $request->productId;
+        $cart->post_id = $request->productId;
         $cart->quantity = $request->quantity;
         $cart->save();
 
