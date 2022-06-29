@@ -44,7 +44,7 @@ class CartController extends Controller
     public function store(Request $request)
     {   
         $user = auth()->user()->id;
-        return $request;
+        return $request->productId;
         return 'Add to cart from web controller';
 
         // $chat = New Chat;
