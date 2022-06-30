@@ -46,11 +46,31 @@ class CartController extends Controller
     {  
         //return $request;
 
-        $cart = new Cart;
-        $cart->user_id =  auth()->user()->id;
-        $cart->post_id = $request->productId;
-        $cart->quantity = $request->quantity;
-        $cart->save();
+        // $cart = new Cart;
+        // $cart->user_id =  auth()->user()->id;
+        // $cart->post_id = $request->productId;
+        // $cart->quantity = $request->quantity;
+        // $cart->save();
+
+        // $cart = Cart::updateOrCreate(
+        //     ['user_id' => auth()->user()->id,'post_id'=>$request->productId],
+        //     ['user_id' => auth()->user()->id]
+        // );
+
+        $item = Cart::where('user_id',auth()->user()->id)->where('post_id',$request->productId)->first();
+
+        if( $item){
+            $item->quantity = $item->quantity + $request->quantity;
+            $item->save();
+        }else{
+            $item = new Cart;
+            $item->user_id =  auth()->user()->id;
+            $item->post_id = $request->productId;
+            $item->quantity = $request->quantity;
+            $item->save();
+        }
+
+        return $item;
 
         $user = auth()->user()->id;
         return $request;

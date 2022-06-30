@@ -15,10 +15,11 @@ class CartResource extends JsonResource
      */
     public function toArray($request)
     {
-        //post_idreturn parent::toArray($request);
+        //return parent::toArray($request);
 
         return[
             'cart_id' => $this->id,
+            //'product' =>Post::where('id',$this->post_id)->get(),
             'product' =>new GroceryProductResource(Post::findOrFail($this->post_id)),
             'quantity' => $this->quantity
         ];
