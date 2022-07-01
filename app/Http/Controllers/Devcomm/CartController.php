@@ -124,5 +124,14 @@ class CartController extends Controller
     public function destroy(Request $request)
     {
         return $request->cartId;
+
+        $cart = Cart::destroy($request->cartId);
+
+        if($cart){
+            return response()->json(['message' => 'Deleted successfully'],200);
+        }else{
+            return response()->json(['message' => 'Error'],500);
+        }
+
     }
 }
