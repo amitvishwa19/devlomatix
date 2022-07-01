@@ -110,9 +110,21 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        
+
+        if($request->add){
+            $cart = Cart::find($request->cartId);
+            $cart->quantity = $cart->quantity +1;
+            $cart->save(); 
+            return 'Item will be added';
+        }else{
+            $cart = Cart::find($request->cartId);
+            $cart->quantity = $cart->quantity -1;
+            $cart->save(); 
+            return 'item will be deleted';
+        }
     }
 
     /**
