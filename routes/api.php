@@ -34,6 +34,7 @@ Route::prefix('v2')->group(function(){
 
         Route::get('cart',[CartController::class,'index']);
         Route::post('cart/add',[CartController::class,'store']);
+        Route::post('cart/delete',[CartController::class,'store']);
     });
 
     Route::prefix('grocery')->group(function(){
