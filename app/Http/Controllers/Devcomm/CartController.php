@@ -123,7 +123,7 @@ class CartController extends Controller
      */
     public function destroy(Request $request)
     {
-        return $request->cartId;
+        
 
         $cart = Cart::destroy($request->cartId);
 
