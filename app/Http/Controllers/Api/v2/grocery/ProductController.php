@@ -6,6 +6,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\GroceryProductResource;
+use App\Models\ViewedProduct;
 
 class ProductController extends Controller
 {
@@ -82,6 +83,7 @@ class ProductController extends Controller
         //
     }
 
+
     /**
      * Update the specified resource in storage.
      *
@@ -104,4 +106,18 @@ class ProductController extends Controller
     {
         //
     }
+
+    public function viewedProducts(Request $request)
+    {
+
+        $vp =new  ViewedProduct();
+        $vp->user_id = auth()->user()->id;
+        $vp->post_id = $request->productId;
+        $vp->save();
+        
+        return $request->all();
+        return 'viewed products';
+    }
+
+    
 }
