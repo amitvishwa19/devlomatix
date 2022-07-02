@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Devcomm;
+namespace App\Http\Controllers\Api\v2\grocery;
 
 use App\Models\Cart;
 use Illuminate\Http\Request;
