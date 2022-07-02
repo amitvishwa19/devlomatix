@@ -71,12 +71,20 @@ class User extends Authenticatable implements JWTSubject
 
     }
 
+    ////Grocery  Ecomm
     public function cart_items()
     {
         return $this->hasMany('App\Models\Cart');
     }
 
+    public function viewedItems()
+    {
+        return $this->hasMany('App\Models\ViewedProduct');
+    }
 
+
+
+    ////Grocery  Ecomm
 
     public function getActivitylogOptions(): LogOptions
     {
