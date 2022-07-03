@@ -33,9 +33,8 @@ Route::prefix('v2')->group(function(){
         Route::get('user',[AuthController::class,'user']);
         Route::get('posts',[PostController::class,'posts']);
 
-
+        Route::post('products/viewed',[ProductController::class,'viewed']);
         Route::get('products/viewed',[ProductController::class,'recently_viewed']);
-        Route::post('products/viewed',[ProductController::class,'viewedProducts']);
 
         Route::get('cart',[CartController::class,'index']);
         Route::post('cart/add',[CartController::class,'store']);

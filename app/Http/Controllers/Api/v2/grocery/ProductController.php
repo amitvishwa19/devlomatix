@@ -74,7 +74,7 @@ class ProductController extends Controller
         //
     }
 
-    public function viewedProducts(Request $request)
+    public function viewed(Request $request)
     {   
         $vp = ViewedProduct::where('user_id',auth()->user()->id)->where('post_id',$request->productId)->first();
 
