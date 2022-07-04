@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Api\v2\grocery;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Resources\GroceryProductResource;
-use App\Http\Resources\ViewedResource;
 use App\Models\ViewedProduct;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\ViewedResource;
+use App\Http\Resources\GroceryProductResource;
 
 class ProductController extends Controller
 {
@@ -102,7 +103,15 @@ class ProductController extends Controller
 
 
     public function most_viewed(){
-        $products = ViewedProduct::where('user_id','<>',auth()->user()->id)->orderBy('views', 'DESC')->get();
+        //$products = ViewedProduct::where('user_id','<>',auth()->user()->id)->orderBy('views', 'DESC')->get();
+        $products = ViewedProduct::select('post_id')->groupBy('post_id')->get();
+
+        // $products = DB::table('viewed_products')
+        //          ->select('post_id', DB::raw('views(*) as total'))
+        //          ->groupBy('post_id')
+        //          ->get();
+        //return $products;
+
         return ViewedResource::collection($products);
         //return $products;
     }
