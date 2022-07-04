@@ -102,7 +102,7 @@ class ProductController extends Controller
 
 
     public function most_viewed(){
-        $products = ViewedProduct::orderBy('views', 'DESC')->get();
+        $products = ViewedProduct::where('user_id','<>',auth()->user()->id)->orderBy('views', 'DESC')->get();
         return ViewedResource::collection($products);
         //return $products;
     }
