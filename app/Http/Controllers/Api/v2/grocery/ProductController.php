@@ -94,18 +94,17 @@ class ProductController extends Controller
     }
 
     public function recently_viewed(){
-
-        return ViewedResource::collection(auth()->user()->viewedItems);
+        
         $products = auth()->user()->viewedItems;
-        return $products;
-
-
+        return ViewedResource::collection($products);
+       
     }
 
 
     public function most_viewed(){
-
-        
+        $products = ViewedProduct::orderBy('views', 'DESC')->get();
+        return ViewedResource::collection($products);
+        //return $products;
     }
 
     
