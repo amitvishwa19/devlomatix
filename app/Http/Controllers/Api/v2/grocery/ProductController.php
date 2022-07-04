@@ -102,5 +102,11 @@ class ProductController extends Controller
 
     }
 
+
+    public function most_viewed(){
+
+        
+    }
+
     
 }
