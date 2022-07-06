@@ -107,7 +107,7 @@ class ProductController extends Controller
             'discount' => 'required|numeric',
             'sku' => 'required',
             'quantity' => 'required|numeric',
-            'feature_image'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024'
+            'feature_image'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         $product = New Product;
