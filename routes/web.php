@@ -31,7 +31,7 @@ Route::middleware('auth')->prefix('admin')->group(base_path('routes/admin.php'))
 
 Route::middleware('auth')->prefix('devlearn')->group(base_path('routes/devlearn.php'));
 
-Route::middleware('auth')->prefix('devcomm')->group(base_path('routes/devcomm.php'));
+Route::middleware('auth')->group(base_path('routes/devcomm.php'));
 
 
 Auth::routes();

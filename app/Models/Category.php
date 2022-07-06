@@ -17,15 +17,15 @@ class Category extends Model
         parent::boot();
 
         static::created(function ($model) {
-            \Cache::forget('categories');
+            Cache::forget('categories');
         });
 
         static::saved(function ($model) {
-            \Cache::forget('categories');
+            Cache::forget('categories');
         });
 
         static::deleted(function ($model) {
-            \Cache::forget('categories');
+            Cache::forget('categories');
         });
 
     }

@@ -215,3 +215,14 @@ small, .small {
         font-weight: 500;
     }
 }
+
+.select2-container--default .select2-selection--multiple{
+    background-color: red;
+    border: 1px solid #aaa;
+    border-radius: 2px !important;
+    cursor: text;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__rendered{
+    padding: 3px 6px !important;
+}

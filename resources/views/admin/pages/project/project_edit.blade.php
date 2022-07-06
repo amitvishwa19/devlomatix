@@ -58,7 +58,7 @@
                             </div><!--end col-->
                             <div class="col-md-3">
                                 <label for="projectName"><b>Project Name</b></label>
-                                <input type="text" class="form-control" name="name"  placeholder="Project name" value="{{old("name")}}{{$project->name}}">
+                                <input type="text" class="form-control" name="name"  placeholder="Project name" value="{{old('name')}}{{$project->name}}">
                             </div>
                             
                             <div class="col-md-3">

@@ -68,11 +68,31 @@
                 </a>
             </li>
 
+          
+
             <li>
-                <a href="{{route('devcomm.dashboard')}}">
-                    <i data-feather="shopping-cart" class="align-self-center menu-icon"></i><span>Devcomm</span>
-                </a>
+                <a href="javascript: void(0);"><i data-feather="shopping-cart" class="align-self-center menu-icon"></i><span>DevComm</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                <ul class="nav-second-level" aria-expanded="false">
+
+                    <li>
+                        <a href="">
+                            <i class="ti-control-record"></i>Sliders</a>
+                    </li>
+                    
+                    <li>
+                        <a href="">
+                            <i class="ti-control-record"></i>Categories</a>
+                    </li>
+                    <li>
+                        <a href="{{route('product.index')}}">
+                            <i class="ti-control-record"></i>Products</a>
+                    </li>
+
+                   
+
+                </ul>
             </li>
+
             
         
 

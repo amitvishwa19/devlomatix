@@ -28,7 +28,7 @@
         </div><!--end col-->
     </div><!--end row-->
 
-    <div class="wrapper card p-2">
+    <div class="wrapper  p-2">
 
         <form role="form" method="post" action="{{route('task.store')}}" enctype="multipart/form-data">
             @csrf
