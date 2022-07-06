@@ -371,6 +371,7 @@
             $('#datatable').DataTable({
                 processing: true,
                 serverSide: true,
+                pageLength: 50,
                 ajax: '{!! route('post.index') !!}',
                 columns:[
                     { data: 'postmeta', name: 'postmeta'},
