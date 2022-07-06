@@ -12,6 +12,19 @@ use App\Http\Resources\GroceryProductResource;
 
 class ProductController extends Controller
 {
+
+    public function allProducts(){
+        $products = Post::whereHas('categories', function($q)
+        {
+            $q->where('slug', '=', 'grocery-products');
+        })->where('status','published')->get();
+
+        return  GroceryProductResource::collection($products);
+        
+        return $products;
+
+    }
+    
     
     public function index($category)
     {
@@ -26,17 +39,7 @@ class ProductController extends Controller
         return $products;
     }
 
-    public function allProducts(){
-        $products = Post::whereHas('categories', function($q)
-        {
-            $q->where('slug', '=', 'grocery-products');
-        })->where('status','published')->get();
-
-        return  GroceryProductResource::collection($products);
-        
-        return $products;
-
-    }
+    
 
    
     public function create()

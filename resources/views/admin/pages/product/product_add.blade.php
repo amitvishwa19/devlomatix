@@ -137,8 +137,8 @@
                     </div>
 
                     <div class="checkbox check-success  mt-2">
-                        <input type="checkbox" value="1" id="checkbox2">
-                        <label for="checkbox2"><b>Featured</b></label>
+                        <input type="checkbox" value="1" id="checkbox1">
+                        <label for="checkbox1"><b>Featured</b></label>
                     </div>
 
                     <div class="checkbox check-success  mt-2">
