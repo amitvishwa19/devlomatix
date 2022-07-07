@@ -40,7 +40,7 @@ class ProductController extends Controller
     public function products($category)
     {
         
-        $products = Post::whereHas('categories', function($q) use($category)
+        $products = Product::whereHas('categories', function($q) use($category)
         {
             $q->where('slug', '=', $category);
         })->where('status','published')->get();
