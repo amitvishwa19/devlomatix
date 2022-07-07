@@ -22,7 +22,7 @@ class ProductResource extends JsonResource
             'image' => $this->feature_image,
             'price' => $this->price,
             'discount' => $this->discount,
-            'netPrice' => $this->price -($this->price * $this->discount)/100,
+            'netPrice' => number_format($this->price -($this->price * $this->discount)/100,1),
             'sku' => $this->sku,
             'featured' => $this->featured,
             'rating' => $this->rating,
