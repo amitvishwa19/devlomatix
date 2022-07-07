@@ -95,8 +95,9 @@ class ProductController extends Controller
 
     public function create()
     {
+        $products = Product::orderby('created_at','desc')->get();
         $categories = Category::orderby('created_at','desc')->get();
-        return view('admin.pages.product.product_add')->with('categories',$categories);
+        return view('admin.pages.product.product_add')->with('categories',$categories)->with('products',$products);
     }
 
     public function store(Request $request)

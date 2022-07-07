@@ -163,8 +163,8 @@
                     <div class="form-group">    
                         <label class=""><b>Related Products</b></label>
                         <select class="select2 select2-multiple select2-hidden-accessible" style="width: 100%" name="categories[]" multiple="">
-                            @foreach($categories as $category)
-                                <option value="{{$category->id}}">{{$category->name}}</option>
+                            @foreach($products as $prod)
+                                <option value="{{$prod->id}}">{{$prod->name}}</option>
                             @endforeach
                         </select>   
                     </div>
