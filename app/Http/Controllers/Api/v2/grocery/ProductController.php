@@ -45,7 +45,7 @@ class ProductController extends Controller
             $q->where('slug', '=', $category);
         })->where('status',true)->get();
 
-        return  GroceryProductResource::collection($products);
+        return  ProductResource::collection($products);
 
     }
 
