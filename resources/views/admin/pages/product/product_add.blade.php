@@ -88,7 +88,7 @@
                                 <!-- <input type="text" class="form-control" name="title"  value="{{old('title')}}"> -->
                                 <select name="sku" id="" class="form-control">
                                     <option value="">-Select SKU-</option>
-                                    <option value="Kg">Kg</option>
+                                    <option value="Kg">1 Kg</option>
                                     <option value="Grms">Grms</option>
                                     <option value="Peice">Peice</option>
                                     <option value="Dozens">Dozens</option>
