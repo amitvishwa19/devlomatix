@@ -57,7 +57,7 @@ class CartController extends Controller
         //     ['user_id' => auth()->user()->id]
         // );
 
-        $item = Cart::where('user_id',auth()->user()->id)->where('post_id',$request->productId)->first();
+        $item = Cart::where('user_id',auth()->user()->id)->where('product_id',$request->productId)->first();
 
         if( $item){
             $item->quantity = $item->quantity + $request->quantity;
@@ -65,7 +65,7 @@ class CartController extends Controller
         }else{
             $item = new Cart;
             $item->user_id =  auth()->user()->id;
-            $item->post_id = $request->productId;
+            $item->product_id = $request->productId;
             $item->quantity = $request->quantity;
             $item->save();
         }

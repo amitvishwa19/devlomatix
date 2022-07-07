@@ -16,7 +16,7 @@ class CreateCartsTable extends Migration
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('post_id')->unsigned();
+            $table->bigInteger('product_id')->unsigned();
             $table->integer('quantity')->default(0);
             $table->timestamps();
         });

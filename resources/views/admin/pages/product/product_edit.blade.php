@@ -40,7 +40,7 @@
 
                     <div class="form-group">
                         <label><b>Product Title</b></label>
-                        <input type="text" class="form-control" name="title"  value="{{$product->title}}{{old('title')}}">
+                        <input type="text" class="form-control" name="title"  value="{{$product->title}}">
                         @if ($errors->has('title'))
                             <span class="error">
                                 <small>{{ $errors->first('title') }}</small>
@@ -50,7 +50,7 @@
 
                     <div class="form-group">
                         <label><b>Product Description</b></label>
-                        <textarea name="description" id="" class="form-control" cols="30" rows="3">{{$product->description}}{{old('description')}}</textarea>
+                        <textarea name="description" id="" class="form-control" cols="30" rows="3">{{$product->description}}</textarea>
                         @if ($errors->has('description'))
                             <span class="error">
                                 <small>{{ $errors->first('description') }}</small>
@@ -63,7 +63,7 @@
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <label><b>Price(₹)</b></label>
-                                <input type="number" class="form-control" name="price" min=0  value="{{$product->price}}{{old('price')}}">
+                                <input type="number" class="form-control" name="price" min=0  value="{{$product->price}}">
                                 @if ($errors->has('price'))
                                     <span class="error">
                                         <small>{{ $errors->first('price') }}</small>
@@ -74,7 +74,7 @@
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <label><b>Discount(%)</b></label>
-                                <input type="number" class="form-control" name="discount" min=0 max=100  value="{{$product->discount}}{{old('discount')}}">
+                                <input type="number" class="form-control" name="discount" min=0 max=100  value="{{$product->discount}}">
                                 @if ($errors->has('discount'))
                                     <span class="error">
                                         <small>{{ $errors->first('discount') }}</small>
@@ -103,7 +103,7 @@
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <label><b>Quantity</b></label>
-                                <input type="number" class="form-control" name="quantity" min=0   value="{{$product->quantity}}{{old('quantity')}}">
+                                <input type="number" class="form-control" name="quantity" min=0   value="{{$product->quantity}}">
                                 @if ($errors->has('quantity'))
                                     <span class="error">
                                         <small>{{ $errors->first('quantity') }}</small>
@@ -114,7 +114,7 @@
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <label><b>Rating</b></label>
-                                <input type="number" class="form-control" name="rating" min=0 max=5  value="{{$product->rating}}{{old('rating')}}">
+                                <input type="number" class="form-control" name="rating" min=0 max=5  value="{{$product->rating}}">
                             </div>
                         </div>
 
