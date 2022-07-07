@@ -18,18 +18,15 @@ class ProductController extends Controller
     }
 
     public function index(Request $request)
-    {
+    {   
+        //dd(auth()->user()->role);
        
         if ($request->ajax()) {
 
-          
+            $products = Product::orderby('created_at','desc')->latest('id');
+            //$products = auth()->user()->products;
 
-
-            //dd(auth()->user()->hasRole('admin'));
-            //$products = Product::orderby('created_at','desc')->latest('id');
-            $products = auth()->user()->products;
-
-            //dd($products);
+            
 
             return Datatables::of($products)
             ->editColumn('created_at',function(Product $product){

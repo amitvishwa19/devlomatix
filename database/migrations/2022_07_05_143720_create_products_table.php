@@ -26,7 +26,8 @@ class CreateproductsTable extends Migration
             $table->string('sku')->nullable();
             $table->integer('quantity')->default(0);
             $table->boolean('featured')->default(0);
-            $table->integer('rating')->default(0);
+            $table->integer('rating')->default(0);  
+            $table->json('related')->nullable();
             $table->integer('status')->default(0);
             $table->timestamps();
 
