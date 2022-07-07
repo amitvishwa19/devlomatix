@@ -43,7 +43,7 @@ class ProductController extends Controller
         $products = Product::whereHas('categories', function($q) use($category)
         {
             $q->where('slug', '=', $category);
-        })->where('status','published')->get();
+        })->where('status',true)->get();
 
         return  GroceryProductResource::collection($products);
 
