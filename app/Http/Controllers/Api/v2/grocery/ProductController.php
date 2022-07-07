@@ -90,7 +90,7 @@ class ProductController extends Controller
 
     public function viewed(Request $request)
     {   
-        $vp = ViewedProduct::where('user_id',auth()->user()->id)->where('post_id',$request->productId)->first();
+        $vp = ViewedProduct::where('user_id',auth()->user()->id)->where('product_id',$request->productId)->first();
 
         if($vp){
             $vp->views = $vp->views + 1;
