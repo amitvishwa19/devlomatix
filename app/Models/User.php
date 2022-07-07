@@ -60,16 +60,14 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany('App\Models\Post');
     }
 
-    function teachers()
-    {
-        return $this->hasMany('User', 'group_message_id');
-    }
 
-    public function classrooms()
+    public function products()
     {
-        return $this->hasMany(Classroom::class);
-
+        return $this->hasMany('App\Models\Product');
     }
+    
+
+   
 
     ////Grocery  Ecomm
     public function cart_items()
