@@ -20,13 +20,11 @@ class ProductController extends Controller
         })->where('status','published')->get();
 
         return  GroceryProductResource::collection($products);
-        
-        return $products;
 
     }
+
     
-    
-    public function index($category)
+    public function products($category)
     {
         
         $products = Post::whereHas('categories', function($q) use($category)
@@ -35,8 +33,7 @@ class ProductController extends Controller
         })->where('status','published')->get();
 
         return  GroceryProductResource::collection($products);
-        
-        return $products;
+
     }
 
     

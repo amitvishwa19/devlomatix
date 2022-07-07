@@ -50,7 +50,7 @@ Route::prefix('v2')->group(function(){
         Route::get('slider',[SliderController::class,'index']);
 
         Route::get('products',[ProductController::class,'allProducts']);
-        Route::get('products/{cat}',[ProductController::class,'index']);
+        Route::get('products/{cat}',[ProductController::class,'products']);
 
         
         
