@@ -26,7 +26,7 @@ class ProductController extends Controller
         $products = Product::whereHas('categories', function($q)
         {
             $q->where('slug', '=', 'grocery-products');
-        })->where('status',true)->get();
+        })->where('status',true)->orderBy('id','desc')->get();
 
         //return $products;
 
