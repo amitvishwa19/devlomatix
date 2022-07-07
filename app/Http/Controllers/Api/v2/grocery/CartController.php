@@ -18,7 +18,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        //return 'cart';
+        
         $user = auth()->user();
         //$cart_items = new CartResource($user->cart_items);
         $cart_items = $user->cart_items;
@@ -44,19 +44,7 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {  
-        //return $request;
-
-        // $cart = new Cart;
-        // $cart->user_id =  auth()->user()->id;
-        // $cart->post_id = $request->productId;
-        // $cart->quantity = $request->quantity;
-        // $cart->save();
-
-        // $cart = Cart::updateOrCreate(
-        //     ['user_id' => auth()->user()->id,'post_id'=>$request->productId],
-        //     ['user_id' => auth()->user()->id]
-        // );
-
+       
         $item = Cart::where('user_id',auth()->user()->id)->where('product_id',$request->productId)->first();
 
         if( $item){
