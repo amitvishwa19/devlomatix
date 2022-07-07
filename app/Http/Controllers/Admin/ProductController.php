@@ -123,6 +123,16 @@ class ProductController extends Controller
         $product->sku = $request->sku;
         $product->quantity = $request->quantity;
         if($file = $request->file('feature_image')){ $product->feature_image = uploadImage($request->file('feature_image'));}
+
+        if($request->featured){
+            $product->featured = $request->featured;
+        }else{$product->featured = 0;};
+
+        if($request->status){
+            $product->status = $request->status;
+        }else{$product->status = 0;};
+
+        $product->related = $request->related;
         $product->save();
 
         //Categoty Saving
