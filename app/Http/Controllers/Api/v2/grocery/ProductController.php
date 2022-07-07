@@ -28,7 +28,7 @@ class ProductController extends Controller
             $q->where('slug', '=', 'grocery-products');
         })->where('status',true)->get();
 
-        return $products;
+        //return $products;
 
         return  ProductResource::collection($products);
 
