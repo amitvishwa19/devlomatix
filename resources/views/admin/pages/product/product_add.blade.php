@@ -164,7 +164,7 @@
                         <label class=""><b>Related Products</b></label>
                         <select class="select2 select2-multiple select2-hidden-accessible" style="width: 100%" name="categories[]" multiple="">
                             @foreach($products as $prod)
-                                <option value="{{$prod->id}}">{{$prod->name}}</option>
+                                <option value="{{$prod->id}}">{{$prod->title}}</option>
                             @endforeach
                         </select>   
                     </div>
