@@ -98,7 +98,7 @@ class ProductController extends Controller
         }else{
             $vp =new  ViewedProduct();
             $vp->user_id = auth()->user()->id;
-            $vp->post_id = $request->productId;
+            $vp->product_id = $request->productId;
             $vp->save();
         }
         
