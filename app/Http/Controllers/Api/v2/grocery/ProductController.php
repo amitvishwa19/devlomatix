@@ -3,23 +3,36 @@
 namespace App\Http\Controllers\Api\v2\grocery;
 
 use App\Models\Post;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\ViewedProduct;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ViewedResource;
 use App\Http\Resources\GroceryProductResource;
+use App\Http\Resources\Grocery\ProductResource;
 
 class ProductController extends Controller
 {
 
     public function allProducts(){
-        $products = Post::whereHas('categories', function($q)
+
+        // $products = Post::whereHas('categories', function($q)
+        // {
+        //     $q->where('slug', '=', 'grocery-products');
+        // })->where('status','published')->get();
+        //return  GroceryProductResource::collection($products);
+
+        $products = Product::whereHas('categories', function($q)
         {
             $q->where('slug', '=', 'grocery-products');
-        })->where('status','published')->get();
+        })->where('status',true)->get();
 
-        return  GroceryProductResource::collection($products);
+        return $products;
+
+        return  ProductResource::collection($products);
+
+        
 
     }
 

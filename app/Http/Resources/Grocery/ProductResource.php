@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Grocery;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class GroceryProductResource extends JsonResource
+class ProductResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -21,12 +21,13 @@ class GroceryProductResource extends JsonResource
             'description' => $this->description,
             'image' => $this->feature_image,
             'price' => $this->price,
-            'discount' => 5,
-            'netPrice' => $this->description -($this->description * 20)/100,
+            'discount' => $this->discount,
+            'netPrice' => $this->price -($this->price * $this->discount)/100,
             'sku' => '5',
             'featured' => $this->featured,
-            'rating' => 5,
-            'quantity' => 5
+            'rating' => $this->rating,
+            'quantity' => $this->quantity
+          
         ];
     }
 }
