@@ -6,12 +6,13 @@ use App\Models\Post;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\ViewedProduct;
+use App\Models\FavouriteProduct;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ViewedResource;
+use App\Http\Resources\WishlistResource;
 use App\Http\Resources\GroceryProductResource;
 use App\Http\Resources\Grocery\ProductResource;
-use App\Models\FavouriteProduct;
 
 class ProductController extends Controller
 {
@@ -107,6 +108,6 @@ class ProductController extends Controller
     public function get_wishlist(){
 
         $products = auth()->user()->wishlist;
-        return $products;
+        return WishlistResource::collection($products);
     }
 }
