@@ -81,7 +81,7 @@ class ProductController extends Controller
 
     public function most_viewed(){
         //$products = ViewedProduct::where('user_id','<>',auth()->user()->id)->orderBy('views', 'DESC')->get();
-        $products = ViewedProduct::select('product_id')->groupBy('product_id')->get();
+        $products = ViewedProduct::select('product_id')->groupBy('product_id')->orderBy('views','desc')->get();
 
         // $products = DB::table('viewed_products')
         //          ->select('post_id', DB::raw('views(*) as total'))
