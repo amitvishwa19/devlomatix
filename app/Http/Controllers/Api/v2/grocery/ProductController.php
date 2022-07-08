@@ -106,6 +106,7 @@ class ProductController extends Controller
 
     public function get_wishlist(){
 
-        
+        $products = auth()->user()->wishlist;
+        return $products;
     }
 }
