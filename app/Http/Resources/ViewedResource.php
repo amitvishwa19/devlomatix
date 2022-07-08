@@ -3,6 +3,8 @@
 namespace App\Http\Resources;
 
 use App\Models\Post;
+use App\Models\Product;
+use App\Http\Resources\Grocery\ProductResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ViewedResource extends JsonResource
@@ -17,6 +19,6 @@ class ViewedResource extends JsonResource
     {
         //return parent::toArray($request);
 
-        return new GroceryProductResource(Post::findOrFail($this->post_id));
+        return new ProductResource(Product::findOrFail($this->product_id));
     }
 }
