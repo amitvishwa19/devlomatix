@@ -88,8 +88,8 @@ class ProductController extends Controller
         //
     }
 
-    public function viewed(Request $request)
-    {   
+    public function viewed(Request $request){
+
         $vp = ViewedProduct::where('user_id',auth()->user()->id)->where('product_id',$request->productId)->first();
 
         if($vp){
@@ -129,5 +129,8 @@ class ProductController extends Controller
         //return $products;
     }
 
-    
+    public function mark_favourite(){
+
+        return 'marked favourite';
+    }
 }
