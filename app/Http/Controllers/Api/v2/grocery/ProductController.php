@@ -129,8 +129,8 @@ class ProductController extends Controller
         //return $products;
     }
 
-    public function mark_favourite(){
+    public function add_to_wishlist(){
 
-        return 'marked favourite';
+        return 'added to wishlist in product controller';
     }
 }
