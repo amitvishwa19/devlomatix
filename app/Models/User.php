@@ -81,6 +81,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany('App\Models\ViewedProduct');
     }
 
+    public function wishlist()
+    {
+        return $this->hasMany('App\Models\FavouriteProduct');
+    }
+
 
 
     ////Grocery  Ecomm

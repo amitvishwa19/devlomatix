@@ -37,6 +37,7 @@ Route::prefix('v2')->group(function(){
         Route::get('products/viewed/recent',[ProductController::class,'recently_viewed']);
         Route::get('products/viewed/most',[ProductController::class,'most_viewed']);
         Route::post('products/wishlist/add',[ProductController::class,'add_to_wishlist']);
+        Route::get('products/wishlist/get',[ProductController::class,'get_wishlist']);
 
         Route::get('cart',[CartController::class,'index']);
         Route::post('cart/add',[CartController::class,'store']);

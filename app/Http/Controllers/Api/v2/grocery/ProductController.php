@@ -103,4 +103,9 @@ class ProductController extends Controller
             $vp->save();
         }
     }
+
+    public function get_wishlist(){
+
+        
+    }
 }
