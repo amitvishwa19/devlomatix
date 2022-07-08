@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ViewedResource;
 use App\Http\Resources\GroceryProductResource;
 use App\Http\Resources\Grocery\ProductResource;
+use App\Models\FavouriteProduct;
 
 class ProductController extends Controller
 {
@@ -49,44 +50,6 @@ class ProductController extends Controller
 
     }
 
-    
-
-   
-    public function create()
-    {
-        //
-    }
-
-    
-    public function store(Request $request)
-    {
-        //
-    }
-
-    
-    public function show($id)
-    {
-        //
-    }
-
-   
-    public function edit($id)
-    {
-        //
-    }
-
-
-    
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    
-    public function destroy($id)
-    {
-        //
-    }
 
     public function viewed(Request $request){
 
@@ -129,8 +92,15 @@ class ProductController extends Controller
         //return $products;
     }
 
-    public function add_to_wishlist(){
+    public function add_to_wishlist(Request $request){
 
-        return 'added to wishlist in product controller';
+        $fp = FavouriteProduct::where('user_id',auth()->user()->id)->where('product_id',$request->productId)->first();
+
+        if(!$fp){
+            $vp =new  FavouriteProduct();
+            $vp->user_id = auth()->user()->id;
+            $vp->product_id = $request->productId;
+            $vp->save();
+        }
     }
 }
