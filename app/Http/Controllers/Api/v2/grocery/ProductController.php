@@ -105,6 +105,10 @@ class ProductController extends Controller
         }
     }
 
+    public function remove_from_wishlist(Request $request){
+        $fp = FavouriteProduct::destroy($request->productId);
+
+    }
     public function get_wishlist(){
 
         $products = auth()->user()->wishlist;
