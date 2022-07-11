@@ -13,6 +13,7 @@ use App\Http\Resources\ViewedResource;
 use App\Http\Resources\WishlistResource;
 use App\Http\Resources\GroceryProductResource;
 use App\Http\Resources\Grocery\ProductResource;
+use App\Models\Wishlist;
 
 class ProductController extends Controller
 {
@@ -95,23 +96,23 @@ class ProductController extends Controller
 
     public function add_to_wishlist(Request $request){
 
-        $fp = FavouriteProduct::where('user_id',auth()->user()->id)->where('product_id',$request->productId)->first();
+        $wishlist = Wishlist::where('user_id',auth()->user()->id)->where('product_id',$request->productId)->first();
 
-        if(!$fp){
-            $vp =new  FavouriteProduct();
-            $vp->user_id = auth()->user()->id;
-            $vp->product_id = $request->productId;
-            $vp->save();
+        if(!$wishlist){
+            $wishlist =new  FavouriteProduct();
+            $wishlist->user_id = auth()->user()->id;
+            $wishlist->product_id = $request->productId;
+            $wishlist->save();
         }
     }
 
     public function remove_from_wishlist(Request $request){
-        $fp = FavouriteProduct::where('product_id',$request->productId)->delete();
+        $wishlist = Wishlist::where('product_id',$request->productId)->delete();
 
     }
     public function get_wishlist(){
 
-        $products = auth()->user()->wishlist;
-        return WishlistResource::collection($products);
+        $wishlist = auth()->user()->wishlist;
+        return WishlistResource::collection($wishlist);
     }
 }
