@@ -99,10 +99,12 @@ class ProductController extends Controller
         $wishlist = Wishlist::where('user_id',auth()->user()->id)->where('product_id',$request->productId)->first();
 
         if(!$wishlist){
-            $wishlist =new  Wishlist();
-            $wishlist->user_id = auth()->user()->id;
-            $wishlist->product_id = $request->productId;
-            $wishlist->save();
+            $item =new  Wishlist();
+            $item->user_id = auth()->user()->id;
+            $item->product_id = $request->productId;
+            $item->save();
+
+            return $item;
         }
     }
 
