@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\v2\grocery\CartController;
 use App\Http\Controllers\Api\v2\grocery\SliderController;
 use App\Http\Controllers\Api\v2\grocery\ProductController;
 use App\Http\Controllers\Api\v2\grocery\CategoryController;
+use App\Http\Controllers\Api\v2\grocery\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
