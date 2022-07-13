@@ -48,6 +48,6 @@ class GitPush extends Command
         exec('git push');
         $this->info('Git push successfully');
 
-        activity('Git Push')->log('Git Push to git server');
+        //activity('Git Push')->log('Git Push to git server');
     }
 }

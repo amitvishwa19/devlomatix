@@ -15,7 +15,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable implements JWTSubject
 {
     use Impersonate;
-    use LogsActivity;
+    //use LogsActivity;
 
     use HasFactory, Notifiable, HasRoles;
 
