@@ -113,10 +113,7 @@ class ProductController extends Controller
        
         $wishlist = Wishlist::where('product_id',$request->productId)->delete();
 
-        
-
-        return $wishlist;
-        if($wishlist){
+        if($wishlist ==1){
             return 'success';
         }else{
             return 'error';
