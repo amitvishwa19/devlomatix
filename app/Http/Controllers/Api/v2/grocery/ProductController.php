@@ -104,13 +104,17 @@ class ProductController extends Controller
             $item->product_id = $request->productId;
             $item->save();
 
-            return $item;
+            return 'test';
         }
     }
 
     public function remove_from_wishlist(Request $request){
-        $wishlist = Wishlist::where('product_id',$request->productId)->delete();
-
+        $wishlist = Wishlist::where('user_id',auth()->user()->id)->where('product_id',$request->productId)->delete();
+        if($wishlist){
+            return 'success';
+        }else{
+            return 'error';
+        }
     }
     public function get_wishlist(){
 
