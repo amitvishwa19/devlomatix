@@ -109,6 +109,8 @@ class ProductController extends Controller
     }
 
     public function remove_from_wishlist(Request $request){
+
+        return 'test';
         $wishlist = Wishlist::where('product_id',$request->productId)->delete();
 
         
