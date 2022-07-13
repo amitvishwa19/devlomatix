@@ -47,6 +47,6 @@ class GitPull extends Command
 
 
         $this->info('Git Pull successfully');
-        activity('Git Pull')->log('Git pull from github');
+        //activity('Git Pull')->log('Git pull from github');
     }
 }
