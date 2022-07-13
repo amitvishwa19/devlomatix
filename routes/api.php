@@ -36,9 +36,9 @@ Route::prefix('v2')->group(function(){
         Route::post('products/viewed',[ProductController::class,'viewed']);
         Route::get('products/viewed/recent',[ProductController::class,'recently_viewed']);
         Route::get('products/viewed/most',[ProductController::class,'most_viewed']);
-        
+
         Route::post('products/wishlist/add',[ProductController::class,'add_to_wishlist']);
-        Route::post('products/wishlist/remove',[ProductController::class,'remove_from_wishlist']);
+        Route::post('products/wishlist/remove',[WishlistController::class,'destroy']);
         Route::get('products/wishlist/get',[ProductController::class,'get_wishlist']);
 
         Route::get('cart',[CartController::class,'index']);
