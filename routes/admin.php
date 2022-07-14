@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\FilemanagerController;
 use App\Http\Controllers\Admin\ImpersonateController;
 use App\Http\Controllers\Admin\MailTemplateController;
 use App\Http\Controllers\Admin\SubscriptionController;
+use App\Http\Controllers\Devcomm\ProductCategoryController;
 
     Route::get('/',[DashboardController::class,'index'])->name('admin.dashboard');
     Route::resource('/profile',ProfileController::class);
@@ -117,3 +118,14 @@ use App\Http\Controllers\Admin\SubscriptionController;
 
 
     Route::resource('/setting',SettingController::class);
+
+
+
+
+
+
+
+
+
+    //=============================Ecomm===========================================
+    Route::resource('/product_category',ProductCategoryController::class);

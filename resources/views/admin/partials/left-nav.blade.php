@@ -80,14 +80,33 @@
                     </li>
                     
                     <li>
-                        <a href="">
+                        <a href="{{route('product_category.index')}}">
                             <i class="ti-control-record"></i>Categories</a>
                     </li>
                     <li>
                         <a href="{{route('product.index')}}">
                             <i class="ti-control-record"></i>Products</a>
                     </li>
-
+                    <li>
+                        <a href="">
+                            <i class="ti-control-record"></i>Wishlists</a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="ti-control-record"></i>Carts</a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="ti-control-record"></i>Orders</a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="ti-control-record"></i>Shippings</a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="ti-control-record"></i>Shipments</a>
+                    </li>
                    
 
                 </ul>

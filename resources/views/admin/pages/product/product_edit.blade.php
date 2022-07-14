@@ -50,7 +50,37 @@
 
                     <div class="form-group">
                         <label><b>Product Description</b></label>
-                        <textarea name="description" id="" class="form-control" cols="30" rows="3">{{$product->description}}</textarea>
+                        <textarea name="description" id="" class="form-control" cols="30" rows="2">{{$product->description}}</textarea>
+                        @if ($errors->has('description'))
+                            <span class="error">
+                                <small>{{ $errors->first('description') }}</small>
+                            </span>
+                        @endif
+                    </div>
+
+                    <div class="form-group">
+                        <label><b>Nutrient value & Benifits</b></label>
+                        <textarea name="description" id="" class="form-control" cols="30" rows="2">{{$product->description}}</textarea>
+                        @if ($errors->has('description'))
+                            <span class="error">
+                                <small>{{ $errors->first('description') }}</small>
+                            </span>
+                        @endif
+                    </div>
+
+                    <div class="form-group">
+                        <label><b>Storage Tips</b></label>
+                        <textarea name="description" id="" class="form-control" cols="30" rows="2">{{$product->description}}</textarea>
+                        @if ($errors->has('description'))
+                            <span class="error">
+                                <small>{{ $errors->first('description') }}</small>
+                            </span>
+                        @endif
+                    </div>
+
+                    <div class="form-group">
+                        <label><b>About</b></label>
+                        <textarea name="description" id="" class="form-control" cols="30" rows="2">{{$product->description}}</textarea>
                         @if ($errors->has('description'))
                             <span class="error">
                                 <small>{{ $errors->first('description') }}</small>
@@ -86,13 +116,7 @@
                             <div class="form-group">
                                 <label><b>Sku</b></label>
                                 
-                                <select name="sku" id="" class="form-control">
-                                    <option value="">-Select SKU-</option>
-                                    <option value="Kg" {{$product->sku == 'Kg' ? "selected" : ""}}>Kg</option>
-                                    <option value="Grms" {{$product->sku == 'Grms' ? "selected" : ""}}>Grms</option>
-                                    <option value="Peice" {{$product->sku == 'Peice' ? "selected" : ""}}>Peice</option>
-                                    <option value="Dozen" {{$product->sku == 'Dozen' ? "selected" : ""}}>Dozen</option>
-                                </select>
+                                <input type="text" class="form-control" name="sku"  value="{{$product->sku}}">
                                 @if ($errors->has('sku'))
                                     <span class="error">
                                         <small>{{ $errors->first('sku') }}</small>

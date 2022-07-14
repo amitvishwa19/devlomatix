@@ -26,8 +26,15 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Devlomatix</a></li>
                                 <li class="breadcrumb-item active">Products</li>
+                                
                             </ol>
+                            <select name="cats" id="">
+                                <option value="hot"><a href="">Hot</a></option>
+                                <option value="fruit"><a href="">Fruit</a></option>
+                            </select>
+                            <a href="{{route('product.index',request()->get('cats'))}}">Filter</a>
                         </div><!--end col-->
+                        
                         <div class="col-auto align-self-center">
                             <!-- <a href="#post_display" class="btn btn-info waves-effect waves-light btn-sm" data-toggle="modal" >Posts Grid</a> -->
                             <a href="{{route('product.create')}}" class="btn btn-info waves-effect waves-light btn-sm" >Add Product</a>
