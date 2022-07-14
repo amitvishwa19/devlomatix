@@ -56,7 +56,7 @@ class CategoryController extends Controller
     {
         //dd($request->all());
         $validate = $request->validate([
-            'category' => 'required|unique:categories,name'
+            'category' => 'required'
         ]);
 
 
