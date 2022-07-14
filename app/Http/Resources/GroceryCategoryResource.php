@@ -15,11 +15,10 @@ class GroceryCategoryResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'title' => $this->title,
+            'title' => $this->name,
             'slug' => $this->slug,
-            'description' => $this->description,
             'image' => $this->feature_image,
-            'featured' => $this->featured
+            'featured' => $this->favourite
         ];
     }
 }

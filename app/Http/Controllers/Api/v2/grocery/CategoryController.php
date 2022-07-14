@@ -18,12 +18,12 @@ class CategoryController extends Controller
     public function index()
     {
 
-       
+        $categories = Category::with('childs')->where('parent_id',2)->where('status',true)->get();
 
-        $categories = Category::whereHas('categories', function($q)
-        {
-            $q->where('slug', '=', 'grocery-category');
-        })->where('status',true)->get();
+        // $categories = Category::whereHas('categories', function($q)
+        // {
+        //     $q->where('slug', '=', 'grocery-category');
+        // })->get();
 
         return  GroceryCategoryResource::collection($categories);
 
