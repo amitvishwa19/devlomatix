@@ -17,8 +17,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-
-        $categories = Category::with('childs')->where('parent_id',2)->where('status',true)->get();
+        $cat = Category::where('slug','product-categories')->first();
+        
+        $categories = Category::with('childs')->where('parent_id',$cat->id)->where('status',true)->get();
 
         // $categories = Category::whereHas('categories', function($q)
         // {
