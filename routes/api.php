@@ -40,7 +40,7 @@ Route::prefix('v2')->group(function(){
 
         Route::post('wishlist/add',[ProductController::class,'add_to_wishlist']);
         Route::post('wishlist/remove',[WishlistController::class,'destroy']);
-        Route::get('wishlist/get',[ProductController::class,'get_wishlist']);
+        Route::get('wishlist/get',[WishlistController::class,'index']);
 
         Route::get('cart',[CartController::class,'index']);
         Route::post('cart/add',[CartController::class,'store']);

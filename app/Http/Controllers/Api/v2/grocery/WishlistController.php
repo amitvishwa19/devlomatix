@@ -19,9 +19,9 @@ class WishlistController extends Controller
      */
     public function index()
     {
-       
-
-        //return $slider;
+        $wishlist = auth()->user()->wishlist;
+        return $wishlist;
+        //return WishlistResource::collection($wishlist);
     }
 
     /**
