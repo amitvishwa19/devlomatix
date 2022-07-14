@@ -18,6 +18,7 @@ class WishlistResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'user_id' => $this->user_id,
             'product' => new ProductResource(Product::findOrFail($this->product_id)),
         ];
         return new ProductResource(Product::findOrFail($this->product_id));
