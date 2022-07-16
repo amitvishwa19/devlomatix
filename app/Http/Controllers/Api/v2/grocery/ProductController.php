@@ -26,10 +26,12 @@ class ProductController extends Controller
         // })->where('status','published')->get();
         //return  GroceryProductResource::collection($products);
 
-        $products = Product::whereHas('categories', function($q)
-        {
-            $q->where('slug', '=', 'grocery-products');
-        })->where('status',true)->orderBy('id','desc')->get();
+        // $products = Product::whereHas('categories', function($q)
+        // {
+        //     $q->where('slug', '=', 'grocery-products');
+        // })->where('status',true)->orderBy('id','desc')->get();
+
+        $products = Product::where('status',true)->get();
 
         //return $products;
 
@@ -125,8 +127,9 @@ class ProductController extends Controller
         return WishlistResource::collection($wishlist);
     }
 
-    public function search_items(){
-
-        return 'Search list';
+    public function search_items(Request $request){
+        //return $request->string;
+        $products = Product::where('title','like','%'.$request->string.'%')->get();
+        return $products;
     }
 }
