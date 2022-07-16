@@ -96,7 +96,9 @@ class ProductController extends Controller
     public function create()
     {
         $products = Product::orderby('created_at','desc')->get();
-        $categories = Category::orderby('created_at','desc')->get();
+        $cat = Category::where('slug','product-categories')->first();
+        
+        $categories = Category::with('childs')->where('parent_id',$cat->id)->where('status',true)->get();
         return view('admin.pages.product.product_add')->with('categories',$categories)->with('products',$products);
     }
 
@@ -162,7 +164,9 @@ class ProductController extends Controller
     public function edit($id)
     {
         $products = Product::where('id','<>' ,$id)->orderby('created_at','desc')->get();
-        $categories = Category::orderby('created_at','desc')->get();
+        $cat = Category::where('slug','product-categories')->first();
+        
+        $categories = Category::with('childs')->where('parent_id',$cat->id)->where('status',true)->get();
         $product = Product::findOrFail($id);
 
         //return response()->json($product);
