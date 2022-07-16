@@ -32,7 +32,7 @@
     <div class="row pb-5">
         <div class="col-sm-4">
 
-            <form method="post" action="{{route('category.update',$category->id)}}" enctype="multipart/form-data" class="mg-t-30">
+            <form method="post" action="{{route('product_category.update',$category->id)}}" enctype="multipart/form-data" class="mg-t-30">
                 @csrf
                 {{method_field('PUT')}}
                 <div class="form-group">
@@ -112,7 +112,7 @@
                 </div>
 
                 <button class="btn btn-info waves-effect waves-light btn-sm">Update Category</button>
-                <a href="{{route('category.index')}}" class="btn btn-secondary waves-effect waves-light btn-sm">Cancel</a>
+                <a href="{{route('product_category.index')}}" class="btn btn-secondary waves-effect waves-light btn-sm">Cancel</a>
             </form>
         </div>
 

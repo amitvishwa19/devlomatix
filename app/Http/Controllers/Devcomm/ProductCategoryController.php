@@ -109,7 +109,34 @@ class ProductCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validate = $request->validate([
+            'name' => 'required'
+        ]);
+
+        $cat = Category::where('slug','product-categories')->first();
+
+        $category = Category::findOrFail($id);
+        $category->name = $request->name;
+        $category->slug = str_slug($request->name);
+
+        if($request->parent == null){
+            $category->parent_id = $cat->id;
+        }else{
+            $category->parent_id = $request->parent;
+        }
+        
+        $category->class = $request->class;
+        if($request->favourite){$category->favourite = true;}else{$category->favourite = false;}
+        if($request->status){$category->status = true;}else{$category->status = false;}
+        if($file = $request->file('feature_image')){ $category->feature_image = uploadImage($request->file('feature_image'));}
+        $category->save();
+
+        return redirect()->route('product_category.index')
+        ->with([
+            'message'    =>'Category Updated Successfully',
+            'alert-type' => 'success',
+        ]);
+
     }
 
     /**
