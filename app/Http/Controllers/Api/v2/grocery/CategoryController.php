@@ -19,7 +19,7 @@ class CategoryController extends Controller
     {
         $cat = Category::where('slug','product-categories')->first();
         
-        $categories = Category::with('childs')->where('parent_id',$cat->id)->where('status',true)->get();
+        $categories = Category::with('childs')->where('parent_id',$cat->id)->where('status',true)->where('favourite',true)->get();
 
         // $categories = Category::whereHas('categories', function($q)
         // {
