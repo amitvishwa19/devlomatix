@@ -56,7 +56,7 @@ Route::prefix('v2')->group(function(){
 
         Route::get('products',[ProductController::class,'allProducts']);
         Route::get('products/{cat}',[ProductController::class,'products']);
-
+        Route::get('products/search',[ProductController::class,'search_items']);
         
         
 

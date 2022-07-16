@@ -124,4 +124,9 @@ class ProductController extends Controller
         $wishlist = auth()->user()->wishlist;
         return WishlistResource::collection($wishlist);
     }
+
+    public function search_items(){
+
+        return 'Search list';
+    }
 }
