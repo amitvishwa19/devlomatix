@@ -130,6 +130,6 @@ class ProductController extends Controller
     public function search_items(Request $request){
         //return $request->string;
         $products = Product::where('title','like','%'.$request->string.'%')->get();
-        return $products;
+        return  ProductResource::collection($products);
     }
 }
