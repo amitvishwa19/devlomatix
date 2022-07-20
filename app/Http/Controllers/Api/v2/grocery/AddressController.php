@@ -121,9 +121,9 @@ class AddressController extends Controller
     {
         
 
-        $cart = Cart::destroy($request->cartId);
+        $address = Address::destroy($request->id);
 
-        if($cart){
+        if($address){
             return response()->json(['message' => 'Deleted successfully'],200);
         }else{
             return response()->json(['message' => 'Error'],500);

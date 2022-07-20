@@ -50,6 +50,7 @@ Route::prefix('v2')->group(function(){
 
         Route::get('checkout/address',[AddressController::class,'index']);
         Route::post('checkout/address/add',[AddressController::class,'store']);
+        Route::post('checkout/address/delete',[AddressController::class,'destroy']);
 
 
     });
