@@ -94,21 +94,24 @@ class AddressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update($id,Request $request)
     {
         
+        $user = auth()->user();
+        $address = Address::find($id); 
+        $address->user_id = $user->id;
+        $address->house = $request->house;
+        $address->locality = $request->locality;
+        $address->landmark = $request->landmark;
+        $address->optional = $request->optional;
+        $address->city = $request->city;
+        $address->state = $request->state;
+        $address->pincode = $request->pincode;
+        $address->mobile = $request->mobile;
+        $address->save();
 
-        if($request->add){
-            $cart = Cart::find($request->cartId);
-            $cart->quantity = $cart->quantity +1;
-            $cart->save(); 
-            return 'Item will be added';
-        }else{
-            $cart = Cart::find($request->cartId);
-            $cart->quantity = $cart->quantity -1;
-            $cart->save(); 
-            return 'item will be deleted';
-        }
+        return new AddressResource($address);
+        
     }
 
     /**
