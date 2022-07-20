@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Api\v2\grocery;
 
 use App\Models\Cart;
+use App\Models\Address;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\AddressResource;
 use App\Http\Resources\CartResource;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\CartCollection;
+use App\Http\Resources\AddressResource;
 
 class AddressController extends Controller
 {
@@ -45,28 +46,22 @@ class AddressController extends Controller
     public function store(Request $request)
     {  
        
-        $item = Cart::where('user_id',auth()->user()->id)->where('product_id',$request->productId)->first();
+        $user = auth()->user();
+        $address = New Address(); 
+        $address->user_id = $user->id;
+        $address->house = $request->house;
+        $address->locality = $request->locality;
+        $address->landmark = $request->landmark;
+        $address->optional = $request->optional;
+        $address->city = $request->city;
+        $address->state = $request->state;
+        $address->pincode = $request->pincode;
+        $address->mobile = $request->mobile;
+        $address->save();
 
-        if( $item){
-            $item->quantity = $item->quantity + $request->quantity;
-            $item->save();
-        }else{
-            $item = new Cart;
-            $item->user_id =  auth()->user()->id;
-            $item->product_id = $request->productId;
-            $item->quantity = $request->quantity;
-            $item->save();
-        }
+        return $address;
 
-        return $item;
-
-        $user = auth()->user()->id;
-        return $request;
-        return 'Add to cart from web controller';
-
-        // $chat = New Chat;
-        // $chat->name = $request->name;
-        // $chat->save();
+      
     }
 
     /**

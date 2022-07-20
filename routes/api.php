@@ -48,7 +48,8 @@ Route::prefix('v2')->group(function(){
         Route::post('cart/delete',[CartController::class,'destroy']);
         Route::post('cart/update',[CartController::class,'update']);
 
-        Route::get('checkout/addresses',[AddressController::class,'index']);
+        Route::get('checkout/address',[AddressController::class,'index']);
+        Route::post('checkout/address/add',[AddressController::class,'store']);
 
 
     });
