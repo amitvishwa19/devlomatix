@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\v2\PostController;
 
 use App\Http\Controllers\Api\v2\grocery\CartController;
 use App\Http\Controllers\Api\v2\grocery\SliderController;
+use App\Http\Controllers\Api\v2\grocery\AddressController;
 use App\Http\Controllers\Api\v2\grocery\ProductController;
 use App\Http\Controllers\Api\v2\grocery\CategoryController;
 use App\Http\Controllers\Api\v2\grocery\WishlistController;
@@ -46,6 +47,10 @@ Route::prefix('v2')->group(function(){
         Route::post('cart/add',[CartController::class,'store']);
         Route::post('cart/delete',[CartController::class,'destroy']);
         Route::post('cart/update',[CartController::class,'update']);
+
+        Route::get('checkout/addresses',[AddressController::class,'index']);
+
+
     });
 
     Route::prefix('grocery')->group(function(){
