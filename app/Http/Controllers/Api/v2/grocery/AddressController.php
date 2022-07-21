@@ -60,7 +60,11 @@ class AddressController extends Controller
        
         $address->save();
 
-        return new AddressResource($address);
+        if($address){
+            return response()->json(['message' => 'success'],200);
+        }else{
+            return response()->json(['message' => 'Error'],500);
+        }
 
       
     }
