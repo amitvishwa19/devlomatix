@@ -45,7 +45,7 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {  
-       return $request->all();
+       
         $user = auth()->user();
         $address = New Address(); 
         $address->user_id = $user->id;
