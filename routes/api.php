@@ -55,19 +55,27 @@ Route::prefix('v2')->group(function(){
 
     });
 
-    Route::prefix('grocery')->group(function(){
+
+    Route::get('categories',[CategoryController::class,'index']);
+    Route::get('slider',[SliderController::class,'index']);
+
+    Route::get('products',[ProductController::class,'allProducts']);
+    Route::get('products/{cat}',[ProductController::class,'products']);
+    Route::post('products/search',[ProductController::class,'search_items']);
+
+    // Route::prefix('grocery')->group(function(){
 
         
-        Route::get('categories',[CategoryController::class,'index']);
-        Route::get('slider',[SliderController::class,'index']);
+    //     Route::get('categories',[CategoryController::class,'index']);
+    //     Route::get('slider',[SliderController::class,'index']);
 
-        Route::get('products',[ProductController::class,'allProducts']);
-        Route::get('products/{cat}',[ProductController::class,'products']);
-        Route::post('products/search',[ProductController::class,'search_items']);
+    //     Route::get('products',[ProductController::class,'allProducts']);
+    //     Route::get('products/{cat}',[ProductController::class,'products']);
+    //     Route::post('products/search',[ProductController::class,'search_items']);
         
         
 
-    });
+    // });
    
 
 
