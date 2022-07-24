@@ -125,6 +125,7 @@ class ProductController extends Controller
         $product->discount = $request->discount;
         $product->sku = $request->sku;
         $product->quantity = $request->quantity;
+        $product->rating = $request->rating;
         if($file = $request->file('feature_image')){ $product->feature_image = uploadImage($request->file('feature_image'));}
 
         if($request->featured){
@@ -196,6 +197,7 @@ class ProductController extends Controller
         $product->discount = $request->discount;
         $product->sku = $request->sku;
         $product->quantity = $request->quantity;
+        $product->rating = $request->rating;
         if($file = $request->file('feature_image')){ $product->feature_image = uploadImage($request->file('feature_image'));}
 
         if($request->featured){
