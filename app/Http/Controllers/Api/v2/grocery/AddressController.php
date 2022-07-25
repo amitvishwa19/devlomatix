@@ -57,6 +57,7 @@ class AddressController extends Controller
         $address->state = $request->state;
         $address->pincode = $request->pincode;
         $address->mobile = $request->mobile;
+        $address->type = $request->type;
        
         $address->save();
 
