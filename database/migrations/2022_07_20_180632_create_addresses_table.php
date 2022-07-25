@@ -24,6 +24,7 @@ class CreateAddressesTable extends Migration
             $table->string('state');
             $table->integer('pincode');
             $table->bigInteger('mobile');
+            $table->string('type')->nullable();
             $table->integer('default')->default(0);
             $table->timestamps();
         });

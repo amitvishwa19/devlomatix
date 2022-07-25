@@ -24,6 +24,7 @@ class AddressResource extends JsonResource
             'state' => $this->state,
             'pincode' => $this->pincode,
             'mobile' => $this->mobile,
+            'type' => $this->type,
             'selected' => $this->default
         ];
     }
