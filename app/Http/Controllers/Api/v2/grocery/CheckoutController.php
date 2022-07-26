@@ -30,7 +30,7 @@ class CheckoutController extends Controller
     
     public function store(Request $request)
     {  
-        return 'New Orders';
+        return $request->address;
        
       
     }
