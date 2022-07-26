@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\v2\grocery\SliderController;
 use App\Http\Controllers\Api\v2\grocery\AddressController;
 use App\Http\Controllers\Api\v2\grocery\ProductController;
 use App\Http\Controllers\Api\v2\grocery\CategoryController;
+use App\Http\Controllers\Api\v2\grocery\CheckoutController;
 use App\Http\Controllers\Api\v2\grocery\WishlistController;
 
 /*
@@ -52,7 +53,7 @@ Route::prefix('v2')->group(function(){
         Route::post('checkout/address/add',[AddressController::class,'store']);
         Route::post('checkout/address/delete',[AddressController::class,'destroy']);
 
-        Route::get('checkout/order',[CheckoutController::class,'index']);
+        Route::get('checkout/orders',[CheckoutController::class,'index']);
         Route::post('checkout/order/add',[CheckoutController::class,'store']);
 
 

@@ -16,9 +16,9 @@ class CheckoutController extends Controller
    
     public function index()
     {
-        return 'Orders';
-      
-        
+        $user = auth()->user();
+        $orders = $user->orders;
+        return $orders;
     }
 
     
