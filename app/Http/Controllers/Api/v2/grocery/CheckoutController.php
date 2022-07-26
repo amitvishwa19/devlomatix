@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Api\v2\grocery;
 
-use App\Models\Cart;
-use App\Models\Address;
+
+use App\Models\Order;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CartResource;
@@ -30,6 +31,14 @@ class CheckoutController extends Controller
     
     public function store(Request $request)
     {  
+        $order = new Order;
+        $order->user_id = auth()->user()->id;
+        $order->cart = serialize($request->cart);
+        $order->address = serialize($request->address);
+        $order->status =$request->status;
+        $order->payment_id =$request->payment_id;
+        $order->save();
+
         return $request->address;
        
       
