@@ -18,7 +18,8 @@ class OrderResource extends JsonResource
             'cart'=>unserialize($this->cart),
             'address'=>unserialize($this->address),
             'status'=>$this->status,
-            'payment_id'=>$this->payment_id
+            'payment_id'=>$this->payment_id,
+            'date' => $this->created_at
         ];
     }
 }
