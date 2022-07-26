@@ -11,6 +11,7 @@ use App\Http\Resources\CartResource;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\CartCollection;
 use App\Http\Resources\AddressResource;
+use App\Http\Resources\OrderResource;
 
 class CheckoutController extends Controller
 {
@@ -19,7 +20,7 @@ class CheckoutController extends Controller
     {
         $user = auth()->user();
         $orders = $user->orders;
-        return $orders;
+        return OrderResource::collection($orders);
     }
 
     
