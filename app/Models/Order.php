@@ -15,4 +15,9 @@ class Order extends Model
         return $this->belongsTo('App\Models\User','user_id');
     }
 
+    public function status()
+    {
+        return $this->hasMany('App\Models\OrderStatus')->orderBy('created_at','desc');
+    }
+
 }

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Api\v2\grocery;
 
 
-use App\Models\Cart;
+use Carbon\Carbon;
 
+use App\Models\Cart;
 use App\Models\Order;
+use App\Models\OrderStatus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CartResource;
@@ -42,6 +44,14 @@ class CheckoutController extends Controller
         $order->save();
 
         if($order){
+
+            $orderStatus = new OrderStatus;
+            $orderStatus->order_id = $order->id;
+            $orderStatus->title = 'Order Placed';
+            $orderStatus->time = Carbon::now();
+            $orderStatus->status = true;
+            $orderStatus->save();
+
             $user = auth()->user();
             $cart_items = $user->cart_items;
             foreach($cart_items as $item) {
