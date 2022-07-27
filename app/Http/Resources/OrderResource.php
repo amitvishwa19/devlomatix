@@ -20,7 +20,7 @@ class OrderResource extends JsonResource
             'address'=>unserialize($this->address),
             'status'=>$this->status,
             'payment_id'=>$this->payment_id,
-            'date' =>  Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->format('d-m-Y')
+            'date' =>  Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->format('D, M d, Y')
         ];
     }
 }
