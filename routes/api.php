@@ -56,6 +56,7 @@ Route::prefix('v2')->group(function(){
 
         Route::get('checkout/orders',[CheckoutController::class,'index']);
         Route::post('checkout/order/add',[CheckoutController::class,'store']);
+        Route::post('checkout/order/cancel',[CheckoutController::class,'cancelOrder']);
         Route::post('checkout/order/clone',[CheckoutController::class,'cloneOrder']);
 
 

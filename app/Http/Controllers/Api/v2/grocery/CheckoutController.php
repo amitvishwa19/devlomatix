@@ -81,6 +81,11 @@ class CheckoutController extends Controller
 
     }
 
+    public function cancelOrder(Request $request){
+
+
+    }
+
     public function cloneOrder(Request $request){
         $order = Order::find($request->id);
         $new_order = $order->replicate();
