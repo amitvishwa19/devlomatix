@@ -82,8 +82,12 @@ class CheckoutController extends Controller
     }
 
     public function cancelOrder(Request $request){
-        return 'Cancel order server';
-
+        $order = Order::find($request->id);
+        $order->status = 'cancelled';
+        $order->save();
+        if($order){
+            return response()->json(['message' => 'success'],200);
+        }
     }
 
     public function cloneOrder(Request $request){
