@@ -47,6 +47,8 @@ class CheckoutController extends Controller
             foreach($cart_items as $item) {
                 Cart::destroy($item->id);
             }
+
+            return response()->json(['message' => 'success'],200);
         }
        
       
