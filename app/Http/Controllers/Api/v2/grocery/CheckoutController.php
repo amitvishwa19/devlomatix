@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Api\v2\grocery;
 
 
-use App\Models\Order;
+use App\Models\Cart;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CartResource;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\OrderResource;
 use App\Http\Resources\CartCollection;
 use App\Http\Resources\AddressResource;
-use App\Http\Resources\OrderResource;
 
 class CheckoutController extends Controller
 {
@@ -41,7 +42,11 @@ class CheckoutController extends Controller
         $order->save();
 
         if($order){
-            auth()->user()->cart_items->delete();
+            $user = auth()->user();
+            $cart_items = $user->cart_items;
+            foreach($cart_items as $item) {
+                Cart::destroy($item->id);
+            }
         }
        
       
