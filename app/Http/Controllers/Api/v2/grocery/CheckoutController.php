@@ -40,7 +40,9 @@ class CheckoutController extends Controller
         $order->payment_id =$request->payment_id;
         $order->save();
 
-        return $request->address;
+        if($order){
+            auth()->user()->cart_items->delete();
+        }
        
       
     }
