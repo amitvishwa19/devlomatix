@@ -80,4 +80,14 @@ class CheckoutController extends Controller
 
 
     }
+
+    public function cloneOrder(Request $request){
+        $order = Order::find($request->id);
+        $new_order = $order->replicate();
+        $new_order->status = 'Order Placed';
+        $new_order->save();
+        if($new_order){
+            return response()->json(['message' => 'success'],200);
+        }
+    }
 }
