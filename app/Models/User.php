@@ -93,7 +93,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function orders()
     {
-        return $this->hasMany('App\Models\Order');
+        return $this->hasMany('App\Models\Order')->orderBy('created_at','desc');
     }
 
     ////Grocery  Ecomm
