@@ -82,7 +82,7 @@ class CheckoutController extends Controller
     }
 
     public function cancelOrder(Request $request){
-
+        return 'Cancel order server';
 
     }
 
