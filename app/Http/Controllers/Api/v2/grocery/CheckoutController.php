@@ -43,6 +43,7 @@ class CheckoutController extends Controller
         $order->cart = serialize($request->cart);
         $order->address = serialize($request->address);
         $order->status =$request->status;
+        $order->deliveryDate =Carbon::now() +1;
         $order->payment_id =$request->payment_id;
         $order->save();
 
