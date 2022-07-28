@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Carbon\Carbon;
+use App\Http\Resources\OrderStatusResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class OrderResource extends JsonResource
@@ -21,7 +22,8 @@ class OrderResource extends JsonResource
             'address'=>unserialize($this->address),
             'status'=>$this->status,
             'payment_id'=>$this->payment_id,
-            'orderDate' =>  Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->format('D, M d, Y h:m A' )
+            'orderDate' =>  Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->format('D, M d, Y h:m A' ),
+            'order_status' => OrderStatusResource::collection($this->order_status)
         ];
     }
 }

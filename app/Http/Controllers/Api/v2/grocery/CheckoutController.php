@@ -24,6 +24,9 @@ class CheckoutController extends Controller
         $user = auth()->user();
         $orders = $user->orders;
         return OrderResource::collection($orders);
+
+        // $orders = Order::with('order_status')->get();
+        // return $orders;
     }
 
     
