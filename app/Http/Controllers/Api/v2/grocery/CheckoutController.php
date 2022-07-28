@@ -38,12 +38,14 @@ class CheckoutController extends Controller
     
     public function store(Request $request)
     {  
+        $deliveryHours = 24;
+
         $order = new Order;
         $order->user_id = auth()->user()->id;
         $order->cart = serialize($request->cart);
         $order->address = serialize($request->address);
         $order->status =$request->status;
-        $order->deliveryDate =Carbon::now()->addDay(1);
+        $order->deliveryDate =Carbon::now()->addHours($deliveryHours);
         $order->payment_id =$request->payment_id;
         $order->save();
 
