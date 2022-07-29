@@ -60,7 +60,7 @@ class CheckoutController extends Controller
             $orderStatus->save();
 
             $orderStatus = new OrderStatus;
-            $orderStatus->order_id = $new_order->id;
+            $orderStatus->order_id = $order->id;
             $orderStatus->title = 'Getting Ready';
             $orderStatus->description = 'Order is ready and  waiting for despatch';
             $orderStatus->time = Carbon::now();
@@ -68,7 +68,7 @@ class CheckoutController extends Controller
             $orderStatus->save();
 
             $orderStatus = new OrderStatus;
-            $orderStatus->order_id = $new_order->id;
+            $orderStatus->order_id = $order->id;
             $orderStatus->title = 'Despatched';
             $orderStatus->description = 'Order is out for delivery';
             $orderStatus->time = Carbon::now();
@@ -76,7 +76,7 @@ class CheckoutController extends Controller
             $orderStatus->save();
 
             $orderStatus = new OrderStatus;
-            $orderStatus->order_id = $new_order->id;
+            $orderStatus->order_id = $order->id;
             $orderStatus->title = 'Deliverd';
             $orderStatus->description = 'Order Delivered successfully';
             $orderStatus->time = Carbon::now();
