@@ -111,7 +111,14 @@ class CheckoutController extends Controller
         $new_order = $order->replicate();
         $new_order->status = 'ordered';
         $new_order->save();
+
         if($new_order){
+            $orderStatus = new OrderStatus;
+            $orderStatus->order_id = $order->id;
+            $orderStatus->title = 'Order Placed';
+            $orderStatus->time = Carbon::now();
+            $orderStatus->status = true;
+            $orderStatus->save();
             return response()->json(['message' => 'success'],200);
         }
     }
