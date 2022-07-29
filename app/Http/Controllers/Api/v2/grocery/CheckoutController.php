@@ -54,6 +54,7 @@ class CheckoutController extends Controller
             $orderStatus = new OrderStatus;
             $orderStatus->order_id = $order->id;
             $orderStatus->title = 'Order Placed';
+            $orderStatus->description = 'Order Placed successfully';
             $orderStatus->time = Carbon::now();
             $orderStatus->status = true;
             $orderStatus->save();
@@ -114,8 +115,9 @@ class CheckoutController extends Controller
 
         if($new_order){
             $orderStatus = new OrderStatus;
-            $orderStatus->order_id = $order->id;
+            $orderStatus->order_id = $new_order->id;
             $orderStatus->title = 'Order Placed';
+            $orderStatus->description = 'Order Placed successfully';
             $orderStatus->time = Carbon::now();
             $orderStatus->status = true;
             $orderStatus->save();
