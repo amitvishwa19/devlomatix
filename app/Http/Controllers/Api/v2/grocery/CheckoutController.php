@@ -64,7 +64,7 @@ class CheckoutController extends Controller
             $orderStatus->title = 'Getting Ready';
             $orderStatus->description = 'Order is ready and  waiting for despatch';
             $orderStatus->time = Carbon::now();
-            $orderStatus->status = true;
+            $orderStatus->status = false;
             $orderStatus->save();
 
             $orderStatus = new OrderStatus;
@@ -72,7 +72,7 @@ class CheckoutController extends Controller
             $orderStatus->title = 'Despatched';
             $orderStatus->description = 'Order is out for delivery';
             $orderStatus->time = Carbon::now();
-            $orderStatus->status = true;
+            $orderStatus->status = false;
             $orderStatus->save();
 
             $orderStatus = new OrderStatus;
@@ -80,7 +80,7 @@ class CheckoutController extends Controller
             $orderStatus->title = 'Deliverd';
             $orderStatus->description = 'Order Delivered successfully';
             $orderStatus->time = Carbon::now();
-            $orderStatus->status = true;
+            $orderStatus->status = false;
             $orderStatus->save();
 
             $user = auth()->user();
@@ -151,7 +151,7 @@ class CheckoutController extends Controller
             $orderStatus->title = 'Getting Ready';
             $orderStatus->description = 'Order is ready and  waiting for despatch';
             $orderStatus->time = Carbon::now();
-            $orderStatus->status = true;
+            $orderStatus->status = false;
             $orderStatus->save();
 
             $orderStatus = new OrderStatus;
@@ -159,7 +159,7 @@ class CheckoutController extends Controller
             $orderStatus->title = 'Despatched';
             $orderStatus->description = 'Order is out for delivery';
             $orderStatus->time = Carbon::now();
-            $orderStatus->status = true;
+            $orderStatus->status = false;
             $orderStatus->save();
 
             $orderStatus = new OrderStatus;
@@ -167,7 +167,7 @@ class CheckoutController extends Controller
             $orderStatus->title = 'Deliverd';
             $orderStatus->description = 'Order Delivered successfully';
             $orderStatus->time = Carbon::now();
-            $orderStatus->status = true;
+            $orderStatus->status = false;
             $orderStatus->save();
             return response()->json(['message' => 'success'],200);
         }
