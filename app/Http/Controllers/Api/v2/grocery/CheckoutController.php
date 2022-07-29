@@ -59,6 +59,30 @@ class CheckoutController extends Controller
             $orderStatus->status = true;
             $orderStatus->save();
 
+            $orderStatus = new OrderStatus;
+            $orderStatus->order_id = $new_order->id;
+            $orderStatus->title = 'Getting Ready';
+            $orderStatus->description = 'Order is ready and  waiting for despatch';
+            $orderStatus->time = Carbon::now();
+            $orderStatus->status = true;
+            $orderStatus->save();
+
+            $orderStatus = new OrderStatus;
+            $orderStatus->order_id = $new_order->id;
+            $orderStatus->title = 'Despatched';
+            $orderStatus->description = 'Order is out for delivery';
+            $orderStatus->time = Carbon::now();
+            $orderStatus->status = true;
+            $orderStatus->save();
+
+            $orderStatus = new OrderStatus;
+            $orderStatus->order_id = $new_order->id;
+            $orderStatus->title = 'Deliverd';
+            $orderStatus->description = 'Order Delivered successfully';
+            $orderStatus->time = Carbon::now();
+            $orderStatus->status = true;
+            $orderStatus->save();
+
             $user = auth()->user();
             $cart_items = $user->cart_items;
             foreach($cart_items as $item) {
@@ -118,6 +142,30 @@ class CheckoutController extends Controller
             $orderStatus->order_id = $new_order->id;
             $orderStatus->title = 'Order Placed';
             $orderStatus->description = 'Order Placed successfully';
+            $orderStatus->time = Carbon::now();
+            $orderStatus->status = true;
+            $orderStatus->save();
+
+            $orderStatus = new OrderStatus;
+            $orderStatus->order_id = $new_order->id;
+            $orderStatus->title = 'Getting Ready';
+            $orderStatus->description = 'Order is ready and  waiting for despatch';
+            $orderStatus->time = Carbon::now();
+            $orderStatus->status = true;
+            $orderStatus->save();
+
+            $orderStatus = new OrderStatus;
+            $orderStatus->order_id = $new_order->id;
+            $orderStatus->title = 'Despatched';
+            $orderStatus->description = 'Order is out for delivery';
+            $orderStatus->time = Carbon::now();
+            $orderStatus->status = true;
+            $orderStatus->save();
+
+            $orderStatus = new OrderStatus;
+            $orderStatus->order_id = $new_order->id;
+            $orderStatus->title = 'Deliverd';
+            $orderStatus->description = 'Order Delivered successfully';
             $orderStatus->time = Carbon::now();
             $orderStatus->status = true;
             $orderStatus->save();
