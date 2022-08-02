@@ -28,6 +28,7 @@ class User extends Authenticatable implements JWTSubject
         'contact',
         'password',
         'status',
+        'avatar_url',
         'verification_code',
         'facebook_token',
         'facebook_app_id',

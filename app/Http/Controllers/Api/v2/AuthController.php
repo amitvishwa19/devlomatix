@@ -102,9 +102,9 @@ class AuthController extends Controller
         }else{
             $newUser = User::create([
                 'email' => $request->email,
-                'password' =>null,
-                'avatar_url' =>$request->avatar,
-                'type' =>'user',
+                'password' => null,
+                'avatar_url' => $request->avatar,
+                'type' => 'user',
                 'role' => 'user',
                 'status' => true,
             ]);
