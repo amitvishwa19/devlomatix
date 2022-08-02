@@ -93,7 +93,20 @@ class AuthController extends Controller
         ]);
     }  
 
-    public function addFirebaseUser(Request $request){
+    public function addFirebaseUser(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+        if($user){
+            Auth::login($user);
+        }else{
+            $newUser = User::create([
+                'email' => $user->email,
+                'avatar_url' =>$user->avatar,
+                'type' =>'user',
+                'role' => 'user',
+                'status' => true,
+            ]);
+        }
 
         return $request->all();
     }
