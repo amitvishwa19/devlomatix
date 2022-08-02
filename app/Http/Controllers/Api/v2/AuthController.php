@@ -96,6 +96,7 @@ class AuthController extends Controller
 
     public function addFirebaseUser(Request $request)
     {
+        return $request->all();
         $user = User::where('email', $request->email)->first();
         if($user){
             Auth::login($user);
