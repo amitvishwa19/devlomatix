@@ -95,6 +95,6 @@ class AuthController extends Controller
 
     public function addFirebaseUser(Request $request){
 
-    $request->all();
+        return $request->all();
     }
 }
