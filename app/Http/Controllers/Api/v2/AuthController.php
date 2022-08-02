@@ -100,8 +100,8 @@ class AuthController extends Controller
             Auth::login($user);
         }else{
             $newUser = User::create([
-                'email' => $user->email,
-                'avatar_url' =>$user->avatar,
+                'email' => $request->email,
+                'avatar_url' =>$request->avatar,
                 'type' =>'user',
                 'role' => 'user',
                 'status' => true,
