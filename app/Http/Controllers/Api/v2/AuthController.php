@@ -98,6 +98,7 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->first();
         if($user){
             Auth::login($user);
+            return 'User logged in successfully';
         }else{
             $newUser = User::create([
                 'email' => $request->email,

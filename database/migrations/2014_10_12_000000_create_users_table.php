@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('contact')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('verification_code')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->text('avatar_url')->nullable();
             $table->string('type')->default('user');
             $table->string('role')->default('user');
