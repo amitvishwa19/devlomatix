@@ -122,4 +122,9 @@ class AuthController extends Controller
         $token = JWTAuth::fromUser($user);
         return response()->json(['success' => true,'message'=>'Login success', 'token'=>$token], 200);
     }
+
+    public function firebaseLogin()
+    {
+        return 'Firebase Login';
+    }
 }
