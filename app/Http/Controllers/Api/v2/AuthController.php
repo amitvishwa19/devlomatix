@@ -99,7 +99,7 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->first();
         if($user){
             Auth::login($user);
-            $token = JWTAuth::fromUser($user);
+            
             
         }else{
             $user = User::create([
@@ -111,7 +111,7 @@ class AuthController extends Controller
                 'status' => true,
             ]);
         }
-
+        $token = JWTAuth::fromUser($user);
         return response()->json(['success' => true,'message'=>'Login success', 'token'=>$token], 200);
     }
 }
