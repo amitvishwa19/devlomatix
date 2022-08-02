@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Api\v2;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Api\Controller;
-use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -98,7 +99,8 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->first();
         if($user){
             Auth::login($user);
-            return 'User logged in successfully';
+            $token = JWTAuth::fromUser($user);
+            return $token;
         }else{
             $newUser = User::create([
                 'email' => $request->email,
