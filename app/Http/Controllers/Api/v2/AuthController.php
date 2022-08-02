@@ -100,9 +100,9 @@ class AuthController extends Controller
         if($user){
             Auth::login($user);
             $token = JWTAuth::fromUser($user);
-            return $token;
+            
         }else{
-            $newUser = User::create([
+            $user = User::create([
                 'email' => $request->email,
                 'password' => null,
                 'avatar_url' => $request->avatar,
@@ -112,6 +112,6 @@ class AuthController extends Controller
             ]);
         }
 
-        return $request->all();
+        return response()->json(['success' => true,'message'=>'Login success', 'token'=>$token], 200);
     }
 }
