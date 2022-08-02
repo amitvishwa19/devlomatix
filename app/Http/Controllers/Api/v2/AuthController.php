@@ -31,7 +31,14 @@ class AuthController extends Controller
 
         if ($token = $this->guard()->attempt($credentials)) {
             $user = auth()->user();
-            return response()->json(['success' => true,'message'=>'Login success', 'token'=>$token], 200);
+            return response()->json(
+                [
+                    'success' => true,
+                    'message'=>'Login success', 
+                    'user'=>$user, 
+                    'token'=>$token
+                ], 200
+            );
         }
 
         return response()->json(['success' => false,'message'=>'Invalid Credentials','token'=>null], 401);
@@ -96,7 +103,7 @@ class AuthController extends Controller
 
     public function addFirebaseUser(Request $request)
     {
-        //return $request->all();
+        return $request->all();
         $user = User::where('email', $request->email)->first();
         if($user){
             Auth::login($user);
