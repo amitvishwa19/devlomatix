@@ -123,8 +123,8 @@ class AuthController extends Controller
         return response()->json(['success' => true,'message'=>'Login success', 'token'=>$token], 200);
     }
 
-    public function firebaseLogin()
+    public function firebaseLogin(Request $request)
     {
-        return 'Firebase Login';
+        return $request->all();
     }
 }
