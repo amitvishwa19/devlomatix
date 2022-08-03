@@ -29,7 +29,7 @@ Route::prefix('v2')->group(function(){
     Route::post('login',[AuthController::class,'login']);
     Route::post('login/firebase',[AuthController::class,'firebaseLogin']);
     Route::post('register',[AuthController::class,'register']);
-    Route::post('add/user/firebase',[AuthController::class,'addFirebaseUser']);
+    
     
 
     Route::middleware('auth:api')->group(function(){

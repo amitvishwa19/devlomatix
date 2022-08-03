@@ -101,14 +101,12 @@ class AuthController extends Controller
         ]);
     }  
 
-    public function addFirebaseUser(Request $request)
+
+    public function firebaseLogin(Request $request)
     {
-        return $request->all();
         $user = User::where('email', $request->email)->first();
         if($user){
-            Auth::login($user);
-            
-            
+            Auth::login($user);    
         }else{
             $user = User::create([
                 'email' => $request->email,
@@ -120,11 +118,14 @@ class AuthController extends Controller
             ]);
         }
         $token = JWTAuth::fromUser($user);
-        return response()->json(['success' => true,'message'=>'Login success', 'token'=>$token], 200);
-    }
-
-    public function firebaseLogin(Request $request)
-    {
-        return $request->all();
+        $user = auth()->user();
+        return response()->json(
+            [
+                'success' => true,
+                'message'=>'Login success', 
+                'user'=>new UserResource($user), 
+                'token'=>$token
+            ], 200
+        );
     }
 }
