@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v2\grocery;
 
 use App\Models\Cart;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CartResource;
@@ -18,7 +19,17 @@ class CartController extends Controller
         $user = auth()->user();
         //$cart_items = new CartResource($user->cart_items);
         $cart_items = $user->cart_items;
-        //return $cart_items;
+        
+        foreach($cart_items as $item){
+            
+            $product = Product::find($item->product_id);
+
+            if($item->quantity > $product->quantity){
+                $item->quantity = $product->quantity;
+                $item->save();
+            }
+        } 
+        
         return  CartResource::collection($cart_items);
     }
 
