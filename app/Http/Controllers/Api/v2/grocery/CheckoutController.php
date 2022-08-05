@@ -7,6 +7,7 @@ use Carbon\Carbon;
 
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\OrderStatus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -48,6 +49,18 @@ class CheckoutController extends Controller
         $order->deliveryDate =Carbon::now()->addHours($deliveryHours);
         $order->payment_id =$request->payment_id;
         $order->save();
+
+        //update product quantity items as per orde
+        $cart_items = $request->cart;
+        foreach($cart_items as $item){
+            $product = Product::find($item->product_id);
+            $product->quantity = $product->quantity - $item->quantity; 
+            $product->save();
+            // if($item->quantity > $product->quantity){
+            //     $item->quantity = $product->quantity;
+            //     $item->save();
+            // }
+        } 
 
         if($order){
 
