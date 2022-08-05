@@ -67,7 +67,12 @@ class AuthController extends Controller
         $credentials = $request->only(['email', 'password']);
         $token = $this->guard()->attempt($credentials);
 
-        return response()->json(['success' => true, 'message' => 'User created successfully','token'=>$token],200);
+        return response()->json([
+            'success' => true,
+            'message'=>'Login success',
+            'token'=>$token, 
+            'user'=>new UserResource($user) 
+        ],200);
 
     }
 
