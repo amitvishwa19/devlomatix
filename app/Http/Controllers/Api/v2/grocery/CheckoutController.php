@@ -51,7 +51,7 @@ class CheckoutController extends Controller
         $order->save();
 
         //update product quantity items as per orde
-        $cart_items = $request->cart;
+        return $cart_items = $request->cart;
         foreach($cart_items as $item){
             $product = Product::find($item->product_id);
             $product->quantity = $product->quantity - $item->quantity; 
