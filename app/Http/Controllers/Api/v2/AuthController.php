@@ -111,8 +111,10 @@ class AuthController extends Controller
         }else{
             $user = User::create([
                 'email' => $request->email,
+                'display_name' => $request->name,
                 'password' => null,
                 'avatar_url' => $request->avatar,
+                'fcm_device_id' => $request->fcm_id,
                 'type' => 'user',
                 'role' => 'user',
                 'status' => true,
