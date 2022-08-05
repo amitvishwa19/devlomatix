@@ -39,6 +39,8 @@ class CheckoutController extends Controller
     
     public function store(Request $request)
     {  
+        
+
         $deliveryHours = 24;
 
         $order = new Order;
@@ -53,10 +55,10 @@ class CheckoutController extends Controller
         //update product quantity items as per orde
         $cart_items = $request->cart;
         foreach($cart_items as $item){
-            return $item;
-            //return $product = Product::find($item->product['id']);
-            //$product->quantity = $product->quantity - $item->quantity; 
-            //$product->save();
+            return $item['product']['id'];
+            $product = Product::find($item['product']['id']);
+            $product->quantity = $product->quantity - $item->quantity; 
+            $product->save();
             // if($item->quantity > $product->quantity){
             //     $item->quantity = $product->quantity;
             //     $item->save();
