@@ -47,32 +47,43 @@ class AuthController extends Controller
 
     public function register(Request $request){
 
-        $validator = Validator::make($request->all(),[
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6|required_with:confirm_password|same:confirm_password',
-            'confirm_password' => 'required|min:6',
-        ]);
-        
-        if($validator->fails()){
-            return response()->json(['success' => false, 'message' => $validator->errors(), 'token'=>null],422);
+        $user = User::where('email',$request->email)->first();
+
+        //return $user;
+
+        if($user){
+            return response()->json(['success' => false, 'message' => 'You are already registred, try to recover your password', 'token'=>null, 'user' =>null],422);
+        }else{
+            $validator = Validator::make($request->all(),[
+                'email' => 'required|email|unique:users',
+                'password' => 'required|min:6|required_with:confirm_password|same:confirm_password',
+                'confirm_password' => 'required|min:6',
+            ]);
+            
+            if($validator->fails()){
+                return response()->json(['success' => false, 'message' => 'Invalid credentials', 'token'=>null, 'user' =>null],422);
+            }
+            
+            $user = User::create(
+                    array_merge(
+                        $validator->validated(),
+                        ['password' => bcrypt($request->password)]
+                    )
+                );
+    
+            $credentials = $request->only(['email', 'password']);
+            $token = $this->guard()->attempt($credentials);
+    
+            return response()->json([
+                'success' => true,
+                'message'=>'Login success',
+                'token'=>$token, 
+                'user'=>new UserResource($user) 
+            ],200);
+
         }
+
         
-        $user = User::create(
-                array_merge(
-                    $validator->validated(),
-                    ['password' => bcrypt($request->password)]
-                )
-            );
-
-        $credentials = $request->only(['email', 'password']);
-        $token = $this->guard()->attempt($credentials);
-
-        return response()->json([
-            'success' => true,
-            'message'=>'Login success',
-            'token'=>$token, 
-            'user'=>new UserResource($user) 
-        ],200);
 
     }
 
