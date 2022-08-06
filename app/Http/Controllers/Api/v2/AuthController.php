@@ -138,7 +138,7 @@ class AuthController extends Controller
     }
 
     public function add_fcm_id(Request $request){
-        return  $request->all();
-        
+        $user = auth()->user();
+        return $user;
     }
 }
