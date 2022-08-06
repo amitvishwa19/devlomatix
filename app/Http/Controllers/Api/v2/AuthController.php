@@ -136,4 +136,8 @@ class AuthController extends Controller
             ], 200
         );
     }
+
+    public function add_fcm_id(Request $request){
+        return 'FCM ID : ' . $request->fcmid;
+    }
 }

@@ -29,6 +29,7 @@ Route::prefix('v2')->group(function(){
     Route::post('login',[AuthController::class,'login']);
     Route::post('login/firebase',[AuthController::class,'firebaseLogin']);
     Route::post('register',[AuthController::class,'register']);
+    Route::post('fcmid/add',[AuthController::class,'add_fcm_id']);
     
     
 
