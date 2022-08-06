@@ -54,7 +54,7 @@ class AuthController extends Controller
         ]);
         
         if($validator->fails()){
-            return response()->json(['success' => false, 'message' => 'Invalid details', 'token'=>null],422);
+            return response()->json(['success' => false, 'message' => $validator->errors(), 'token'=>null],422);
         }
         
         $user = User::create(
