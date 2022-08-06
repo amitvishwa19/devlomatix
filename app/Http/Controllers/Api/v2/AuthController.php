@@ -138,7 +138,11 @@ class AuthController extends Controller
     }
 
     public function add_fcm_id(Request $request){
-        $user = auth()->user();
-        return $user;
+        $user =  $this->guard()->user();
+        $user->fcm_device_id = $request->fcmid;
+        $user->save();
+        if($user){
+            return response()->json(['message' => 'success'],200);
+        }
     }
 }
