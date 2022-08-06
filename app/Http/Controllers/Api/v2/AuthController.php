@@ -134,6 +134,9 @@ class AuthController extends Controller
                 'role' => 'user',
                 'status' => true,
             ]);
+
+            Auth::login($user); 
+            
         }
         $token = JWTAuth::fromUser($user);
         $user = auth()->user();
