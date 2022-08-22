@@ -107,7 +107,7 @@
                     </li> -->
 
                     <li>
-                        <a href="{{route('fcm')}}"><i class="ti-control-record"></i>Push Notification</a>
+                        <a href="{{route('shoppee.fcm')}}"><i class="ti-control-record"></i>Push Notification</a>
                     </li>
                    
 

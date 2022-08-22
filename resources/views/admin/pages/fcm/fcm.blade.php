@@ -39,7 +39,7 @@
             <div class="col-lg-12 col-sm-12">
             <div class="col-sm-6">
 
-                <form method="post" action="{{route('fcm.send')}}" enctype="multipart/form-data" class="mg-t-30">
+                <form method="post" action="{{route('shoppee.fcm.send')}}" enctype="multipart/form-data" class="mg-t-30">
                     @csrf
 
                    

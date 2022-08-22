@@ -37,7 +37,7 @@ class FirebaseController extends Controller
         // $fcm->send();
 
 
-        return redirect() ->route('fcm')
+        return redirect() ->route('shoppee.fcm')
         ->with([
             'message'    =>'Notification sent Successfully',
             'alert-type' => 'success',
