@@ -2,12 +2,14 @@
 
 namespace App\Jobs;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
+use App\Services\FirebaseMessaging;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
 
 class FcmDailyNotification implements ShouldQueue
 {
@@ -31,5 +33,15 @@ class FcmDailyNotification implements ShouldQueue
     public function handle()
     {
         activity('FCM')->log('Send FCM Daily Notification');
+        $fcm = new FirebaseMessaging;
+        $fcm->title =  'Daily Notification';
+        $fcm->body = 'This is daily Notification test';
+        $fcm->data = array
+        (
+            'message'   => 'data-1',
+            'productId' => '632180',
+        );
+        $fcm->users =  User::whereNotNull('fcm_device_id')->pluck('fcm_device_id')->all();
+        $fcm->send();
     }
 }

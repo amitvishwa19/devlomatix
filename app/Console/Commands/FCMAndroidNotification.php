@@ -42,7 +42,7 @@ class FCMAndroidNotification extends Command
     public function handle()
     {
         //activity()->log('test');
-        dispatch( new FCMNotificationJob);
+        //dispatch( new FCMNotificationJob);
         dispatch(new FcmDailyNotification);
     }
 }
