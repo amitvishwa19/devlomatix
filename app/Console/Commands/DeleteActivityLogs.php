@@ -40,6 +40,9 @@ class DeleteActivityLogs extends Command
     public function handle()
     {
         $activities = Activity::where('created_at','<',Carbon::now()->subMinutes(60))->delete();
-        activity('Activity Log')->causedBy(auth()->user())->log('All Activity log is deleted at ' . Carbon::now());
+
+        activity('Activity log clear')->log($activities);
+        activity('Activity Log Clear')->causedBy(auth()->user())
+        ->log('All Activity log is deleted at ' . Carbon::now());
     }
 }
