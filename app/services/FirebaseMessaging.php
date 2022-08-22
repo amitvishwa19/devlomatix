@@ -66,4 +66,11 @@ class FirebaseMessaging{
 
     }
 
+
+    public function send_daily_notification(){
+
+        activity('FCM')->log('Send Daily Notification');
+
+    }
+
 }

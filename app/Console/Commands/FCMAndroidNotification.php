@@ -2,8 +2,11 @@
 
 namespace App\Console\Commands;
 
-use App\Jobs\FCMNotificationJob;
+use App\Jobs\FcmDailyNotification;
 use Illuminate\Console\Command;
+use App\Jobs\FCMNotificationJob;
+use App\Services\FirebaseMessaging;
+use Illuminate\Support\Facades\Route;
 
 class FCMAndroidNotification extends Command
 {
@@ -38,6 +41,8 @@ class FCMAndroidNotification extends Command
      */
     public function handle()
     {
-        dispatch( new FCMNotificationJob());
+        //activity()->log('test');
+        dispatch( new FCMNotificationJob);
+        dispatch(new FcmDailyNotification);
     }
 }

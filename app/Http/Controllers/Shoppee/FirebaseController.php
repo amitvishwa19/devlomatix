@@ -19,7 +19,7 @@ class FirebaseController extends Controller
 
     public function index()
     {
-        dd(Carbon::now()->subMinutes(60));
+        
         return view('admin.pages.fcm.fcm');
     }
 
@@ -44,5 +44,11 @@ class FirebaseController extends Controller
             'message'    =>'Notification sent Successfully',
             'alert-type' => 'success',
         ]);
+    }
+
+    public function send_daily_notification(){
+
+        activity('FCM')->log('Called from controller');
+
     }
 }

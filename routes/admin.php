@@ -148,6 +148,7 @@ use App\Http\Controllers\Shoppee\DashboardController as ShoppeeDashboardControll
         Route::group(['prefix' => 'fcm'], function () {
             Route::get('/',[FirebaseController::class,'index'])->name('fcm');
             Route::post('/send',[FirebaseController::class,'send_message'])->name('fcm.send');
+            Route::get('/send/dailynotifications',[FirebaseController::class,'send_daily_notification'])->name('fcm.send.dailynotification');
         });
         
     });
