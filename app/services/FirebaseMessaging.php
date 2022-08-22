@@ -59,6 +59,8 @@ class FirebaseMessaging{
             die('FCM Send Error: ' . curl_error($ch));
         }
         curl_close( $ch );
+
+        activity('FCM')->log($result);
         return $result;
 
 
