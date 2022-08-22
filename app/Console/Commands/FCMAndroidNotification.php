@@ -38,6 +38,6 @@ class FCMAndroidNotification extends Command
      */
     public function handle()
     {
-        new FCMNotificationJob();
+        dispatch( new FCMNotificationJob());
     }
 }
