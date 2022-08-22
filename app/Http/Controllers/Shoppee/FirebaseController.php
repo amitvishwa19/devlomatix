@@ -23,18 +23,18 @@ class FirebaseController extends Controller
 
     public function send_message(Request $request){
 
-        $test = new Test();
+        
 
-        // $fcm = new FirebaseMessaging;
-        // $fcm->title =  $request->title;
-        // $fcm->body = $request->body;
-        // $fcm->data = array
-        // (
-        //     'message'   => 'data-1',
-        //     'productId' => '632180',
-        // );
-        // $fcm->users =  User::whereNotNull('fcm_device_id')->pluck('fcm_device_id')->all();
-        // $fcm->send();
+        $fcm = new FirebaseMessaging;
+        $fcm->title =  $request->title;
+        $fcm->body = $request->body;
+        $fcm->data = array
+        (
+            'message'   => 'data-1',
+            'productId' => '632180',
+        );
+        $fcm->users =  User::whereNotNull('fcm_device_id')->pluck('fcm_device_id')->all();
+        $fcm->send();
 
 
         return redirect() ->route('shoppee.fcm')
