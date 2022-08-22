@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Shoppee;
 use App\Models\User;
 use App\Services\FCM;
 use Illuminate\Http\Request;
+use App\Services\FirebaseMessaging;
 use App\Http\Controllers\Controller;
 
 class FirebaseController extends Controller
@@ -19,10 +20,10 @@ class FirebaseController extends Controller
         return view('admin.pages.fcm.fcm');
     }
 
-    public function send_message(FCM $fcm, Request $request){
+    public function send_message(Request $request){
 
 
-        //$fcm = new FirebaseMessaging;
+        $fcm = new FirebaseMessaging;
         $fcm->title =  $request->title;
         $fcm->body = $request->body;
         $fcm->data = array
