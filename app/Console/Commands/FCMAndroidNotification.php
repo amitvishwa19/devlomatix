@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\FCMNotificationJob;
 use Illuminate\Console\Command;
 
 class FCMAndroidNotification extends Command
@@ -37,6 +38,6 @@ class FCMAndroidNotification extends Command
      */
     public function handle()
     {
-        activity('FCM')->log('Send FCM android NOtification');
+        new FCMNotificationJob();
     }
 }
