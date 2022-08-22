@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel
         //$schedule->command('app:deleteactivitylog')->timezone('Asia/Kolkata')->at('13:00');
         $schedule->command('app:deleteactivitylog')->everyFiveMinutes();
 
-        $schedule->command('fcm:androidnotification')->everyTwoMinutes();
+        $schedule->command('fcm:androidnotification')->everyFifteenMinutes();
     }
 
     /**
