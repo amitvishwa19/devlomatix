@@ -24,6 +24,8 @@ class FirebaseMessaging{
 
 
         $serverKey = config('fcm.server_key');
+        activity()->log($serverKey);
+
 
         $channelId = config('fcm.channel_id');
 
