@@ -18,14 +18,14 @@
     <div class="card-body p-1"> 
 
 
-        <form action="" enctype="multipart/form-data" method="post" class="formsubmit">
+        <form action="{{route('setting.store',['type'=>'termscondition'])}}" enctype="multipart/form-data" method="post" class="formsubmit">
             @csrf
             <div class="form-group">
                     <div id="content" class="m-0"></div>
-                    <input type="text" name="body" style="display: none" id="bodyinput" value="{{ old('body') }}">
+                    <input type="text" name="terms_conditions" style="display: none" id="bodyinput" value="{{setting('terms_conditions')}}">
                 </div>
            
-                    
+                <button type="submit" class="btn btn-info waves-effect waves-light btn-sm">Terms & Conditions</button>       
         </form>
     </div>
 </div>

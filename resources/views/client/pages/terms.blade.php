@@ -1,7 +1,7 @@
 
 @extends('client.layout.layout')
 
-@section('title','Home')
+@section('title','Terms & Condition')
 
 
 @section('style')
@@ -13,7 +13,7 @@
     
 
     <div class="auto-container" style="margin-top: 100px;">
-        {!! setting('privacy_policy')!!}
+        {!! setting('terms_conditions')!!}
     </div>
    
 @endsection

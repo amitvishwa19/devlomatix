@@ -70,6 +70,10 @@ class SettingController extends Controller
             setting('privacy_policy',$request->privacy_policy);
         }
 
+        if($request->get('type') == 'termscondition'){
+            setting('terms_conditions',$request->terms_conditions);
+        }
+
         // return redirect()->route('setting.index')
         // ->with([
         //     'message'    =>'Setting Saved Successfully',

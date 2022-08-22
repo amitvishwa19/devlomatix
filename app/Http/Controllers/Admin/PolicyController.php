@@ -12,12 +12,12 @@ class PolicyController extends Controller
 
 
     public function DevlomatixSolutionsPrivacy(){
-        return "Devlomatix Solutions Privacy Policy";
+        return view('client.pages.privacy');
     }
 
 
     public function DevlomatixSolutionsTerms(){
-        return "Devlomatix Solutions Terms & Conditions";
+        return view('client.pages.terms');
     }
 
 
