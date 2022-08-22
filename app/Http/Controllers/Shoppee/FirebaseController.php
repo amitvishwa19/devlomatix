@@ -19,10 +19,10 @@ class FirebaseController extends Controller
         return view('admin.pages.fcm.fcm');
     }
 
-    public function send_message(Request $request){
+    public function send_message(FirebaseMessaging $fcm, Request $request){
 
 
-        $fcm = new FirebaseMessaging;
+        //$fcm = new FirebaseMessaging;
         $fcm->title =  $request->title;
         $fcm->body = $request->body;
         $fcm->data = array
