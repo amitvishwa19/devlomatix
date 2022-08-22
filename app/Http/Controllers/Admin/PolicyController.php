@@ -35,7 +35,7 @@ class PolicyController extends Controller
 
     public function DevlomatixShoppeePrivacy(){
 
-        return setting('privacy_policy');
+        return view('privacy.shoppee');
     }
 
 }
