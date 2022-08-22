@@ -38,10 +38,10 @@ class AppCron extends Command
      */
     public function handle()
     {
-        $act = activity()->log('This command is run by task schedular at' . Carbon::now());
+        //$act = activity()->log('This command is run by task schedular at' . Carbon::now());
 
 
-        $this->info('app:cron command run successfully');
+        //$this->info('app:cron command run successfully');
 
     }
 }
