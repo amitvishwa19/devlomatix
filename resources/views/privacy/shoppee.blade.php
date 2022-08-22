@@ -17,7 +17,7 @@
       <style> body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; padding:1em; } </style>
     </head>
     <body>
-    <strong>Privacy Policy</strong> <p>
+    <h1>Privacy Policy</h1> <p>
                   Devlomatix Solutions built the Shoppee app as
                   a Free app. This SERVICE is provided by
                   Devlomatix Solutions at no cost and is intended for use as
@@ -115,7 +115,7 @@
       
 
 
-    <strong>Terms &amp; Conditions</strong> <p>
+    <h1>Terms &amp; Conditions</h1> <p>
                   By downloading or using the app, these terms will
                   automatically apply to you – you should make sure therefore
                   that you read them carefully before using the app. You’re not
