@@ -30,6 +30,6 @@ class FCMNotificationJob implements ShouldQueue
      */
     public function handle()
     {
-        activity('FCM')->log('Send FCM android Notification via FCMNOtificationJob');
+        activity('FCM')->log('Send FCM android Notification via FCM NotificationJob');
     }
 }
