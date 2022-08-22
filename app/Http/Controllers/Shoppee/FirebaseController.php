@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Shoppee;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Services\FCM;
 use App\Services\Test;
@@ -18,6 +19,7 @@ class FirebaseController extends Controller
 
     public function index()
     {
+        dd(Carbon::now()->subMinutes(60));
         return view('admin.pages.fcm.fcm');
     }
 
