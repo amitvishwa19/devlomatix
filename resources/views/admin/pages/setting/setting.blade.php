@@ -5,9 +5,7 @@
 @section('setting','active')
 
 
-@section('style')
 
-@endsection
 
 
 
@@ -87,6 +85,20 @@
                                     </a>
                                 </li>
 
+                                <li class="{{(request()->type =='privacypolicy') ? 'active' : 'null'}}">
+                                    <a href="{{route('setting.index',['type'=>'privacypolicy'])}}">
+                                        <i data-feather="layers" class="align-self-center menu-icon"></i>
+                                        <span>Privacy Policy</span>
+                                    </a>
+                                </li>
+
+                                <li class="{{(request()->type =='termscondition') ? 'active' : 'null'}}">
+                                    <a href="{{route('setting.index',['type'=>'termscondition'])}}">
+                                        <i data-feather="copy" class="align-self-center menu-icon"></i>
+                                        <span>Terms & Conditions</span>
+                                    </a>
+                                </li>
+
                             </ul>
                         </div><!--end card-body-->
                     </div>
@@ -116,6 +128,14 @@
                         @include('admin.pages.setting.facebook')
                     @endif
 
+                    @if(request()->type == 'privacypolicy')
+                        @include('admin.pages.setting.privacy_policy')
+                    @endif
+
+                    @if(request()->type == 'termscondition')
+                        @include('admin.pages.setting.terms_condition')
+                    @endif
+
                 </div>
                     <!-- </form> -->
             </div>
@@ -125,17 +145,3 @@
 @endsection
 
 
-
-@section('scripts')
-
-    <script>
-
-        $(function(){
-            'use strict'
-
-
-        });
-
-    </script>
-
-@endsection

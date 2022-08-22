@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Shoppee;
 
 use App\Models\Product;
 use App\Models\Category;
@@ -8,7 +8,6 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
@@ -19,13 +18,37 @@ class ProductController extends Controller
 
     public function index(Request $request)
     {   
-        //dd(auth()->user()->role);
-       
+        $cat = $request->category;
+        $products = Product::whereHas('categories', function($q) use( $cat )
+            {
+                $q->where('slug', '=', $cat);
+             })->where('status',true)->get();
+        //$products = Product::orderby('created_at','desc')->get();
+        
+
+        
+
+        if($request->category == null){
+            $products = Product::orderby('created_at','desc')->get();
+            
+        }else{
+            $cat = $request->category;
+            $products = Product::whereHas('categories', function($q) use( $cat )
+                {
+                    $q->where('slug', '=', $cat);
+                })->where('status',true)->get();
+        }
+        //$products = null;
         if ($request->ajax()) {
 
-            $products = Product::orderby('created_at','desc')->latest('id');
-            //$products = auth()->user()->products;
+           
 
+            //$products = Product::orderby('created_at','desc')->latest('id');
+            $cat = $request->category;
+            $products = Product::whereHas('categories', function($q) use( $cat )
+                {
+                    $q->where('slug', '=', $cat);
+                })->where('status',true)->get();
             
 
             return Datatables::of($products)
@@ -77,7 +100,7 @@ class ProductController extends Controller
 
             ->addColumn('action',function($data){
                 $link = '<div class="d-flex">'.
-                            '<a href="'.route('product.edit',$data->id).'" class="badge badge-soft-success mr-2"><small>Edit</small></a>'.
+                            '<a href="'.route('shoppee.product.edit',$data->id).'" class="badge badge-soft-success mr-2"><small>Edit</small></a>'.
                             '<a href="javascript:void(0);" id="'.$data->id.'" class="badge badge-secondary delete mr-2"><small>Delete</small></a>'.
                         '</div>';
                 return $link;
@@ -88,8 +111,10 @@ class ProductController extends Controller
 
         }
 
+        $cat = Category::where('slug','product-categories')->first();
+        $categories = Category::with('childs')->where('parent_id',$cat->id)->get();
 
-        return view('admin.pages.product.product');
+        return view('admin.pages.product.product')->with('categories',$categories)->with('products',$products);
 
     }
 
@@ -147,7 +172,7 @@ class ProductController extends Controller
         }
 
 
-        return redirect()->route('product.index')
+        return redirect()->route('shoppee.product.index')
         ->with([
             'message'    =>'Product Added Successfully',
             'alert-type' => 'success',
@@ -218,7 +243,7 @@ class ProductController extends Controller
             $product->categories()->sync($request->categories);
         }
 
-        return redirect()->route('product.index')
+        return redirect()->route('shoppee.product.index')
         ->with([
             'message'    =>'Product Updated Successfully',
             'alert-type' => 'success',
@@ -255,5 +280,4 @@ class ProductController extends Controller
         }
         return $category->id;
     }
-
 }

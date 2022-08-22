@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Devcomm;
+namespace App\Http\Controllers\Shoppee;
 
 use App\Models\Category;
 use Illuminate\Http\Request;

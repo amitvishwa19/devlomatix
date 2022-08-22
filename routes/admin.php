@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\FCMController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\ChatController;
 use App\Http\Controllers\Admin\FileController;
@@ -10,7 +11,9 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\BreadController;
 use App\Http\Controllers\Admin\ServerController;
+use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\InquiryController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -21,13 +24,15 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ErrorLogController;
 use App\Http\Controllers\Admin\FacebookController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Shoppee\ProductController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Shoppee\FirebaseController;
 use App\Http\Controllers\Admin\ActivityLogController;
 use App\Http\Controllers\Admin\FilemanagerController;
 use App\Http\Controllers\Admin\ImpersonateController;
 use App\Http\Controllers\Admin\MailTemplateController;
 use App\Http\Controllers\Admin\SubscriptionController;
-use App\Http\Controllers\Devcomm\ProductCategoryController;
+use App\Http\Controllers\Shoppee\DashboardController as ShoppeeDashboardController;
 
     Route::get('/',[DashboardController::class,'index'])->name('admin.dashboard');
     Route::resource('/profile',ProfileController::class);
@@ -95,12 +100,12 @@ use App\Http\Controllers\Devcomm\ProductCategoryController;
     //Client
     Route::resource('/client',App\Http\Controllers\Admin\ClientController::class);
 
-     //Projects
-    Route::resource('/project',ProjectController::class);
-    Route::post('/project/quotation',[ProjectController::class, 'project_quotation'])->name('project.quotation');
-    Route::get('/project/billing/{id}',[ProjectController::class, 'project_billing'])->name('project.billing');
-    Route::get('/project/quotation/pdf/{id}',[ProjectController::class, 'project_quotation_pdf'])->name('project.quotation.pdf');
-
+    Route::group(['prefix' => 'project', 'as' => 'project.'], function () {
+        Route::resource('/',ProjectController::class);
+        Route::post('/quotation',[ProjectController::class, 'project_quotation'])->name('project.quotation');
+        Route::get('/billing/{id}',[ProjectController::class, 'project_billing'])->name('project.billing');
+        Route::get('/quotation/pdf/{id}',[ProjectController::class, 'project_quotation_pdf'])->name('project.quotation.pdf');
+    });
 
     //Tasks
     Route::resource('/task',TaskController::class);
@@ -119,13 +124,33 @@ use App\Http\Controllers\Devcomm\ProductCategoryController;
 
     Route::resource('/setting',SettingController::class);
 
+    Route::resource('/slider',SliderController::class);
 
 
+    Route::group(['prefix' => 'bread', 'as' => 'bread.'], function () {
+        Route::get('database',[BreadController::class,'databases'])->name('databases');
+        Route::get('database/add',[BreadController::class,'add_databases'])->name('databases.add');
+        Route::post('database/create',[BreadController::class,'create_database'])->name('databases.create');
+    });
+    
+    Route::group(['prefix' => 'shoppee', 'as' => 'shoppee.'], function () {
+        
+        Route::prefix('dashboard')->group(function(){
+            Route::get('/',[ShoppeeDashboardController::class,'index'])->name('dashboard.home');
+        });
 
+        // Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
+        //     Route::resource('/product',ProductController::class);
 
+        // });
+        Route::resource('/product',ProductController::class);
 
-
-
+        Route::group(['prefix' => 'fcm'], function () {
+            Route::get('/',[FirebaseController::class,'index'])->name('fcm');
+            Route::post('/send',[FirebaseController::class,'send_message'])->name('fcm.send');
+        });
+        
+    });
 
     //=============================Ecomm===========================================
     Route::resource('/product_category',ProductCategoryController::class);

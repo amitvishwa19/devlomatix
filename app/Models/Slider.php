@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Traits\HasRoles;
 
-class {{modelName}} extends Model
+class Slider extends Model
 {
     use HasFactory, HasRoles;
 

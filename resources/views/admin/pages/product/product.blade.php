@@ -1,6 +1,6 @@
 @extends('admin.layout.admin')
 
-@section('title','Product')
+@section('title','Products')
 
 @section('product','active')
 
@@ -28,23 +28,30 @@
                                 <li class="breadcrumb-item active">Products</li>
                                 
                             </ol>
-                            <select name="cats" id="">
-                                <option value="hot"><a href="">Hot</a></option>
-                                <option value="fruit"><a href="">Fruit</a></option>
-                            </select>
-                            <a href="{{route('product.index',request()->get('cats'))}}">Filter</a>
+
+                            <div class="mt-2">
+                                
+                            </div>
                         </div><!--end col-->
                         
                         <div class="col-auto align-self-center">
                             <!-- <a href="#post_display" class="btn btn-info waves-effect waves-light btn-sm" data-toggle="modal" >Posts Grid</a> -->
-                            <a href="{{route('product.create')}}" class="btn btn-info waves-effect waves-light btn-sm" >Add Product</a>
+                            <a href="{{route('shoppee.product.create')}}" class="btn btn-info waves-effect waves-light btn-sm" >Add Product</a>
                         </div><!--end col-->
                     </div><!--end row-->
                 </div><!--end page-title-box-->
             </div><!--end col-->
         </div><!--end row-->
 
-        <div class="row">
+
+
+        <div class="mb-2">
+            <a href="{{route('shoppee.product.index')}}" class="mr-2">All Categories</a>
+            @foreach($categories as $category)
+                <a class="mr-2" href="{{route('shoppee.product.index',['category'=>$category->slug])}}">{{$category->name}}</a>
+            @endforeach
+        </div>
+        <!-- <div class="row">
             <div class="col-lg-12 col-sm-12">
                 <div class="card">
                     <div class="card-body table-responsive">
@@ -74,9 +81,89 @@
                     </div>
                 </div>
             </div>
-        </div><!--end row-->
+        </div> -->
 
-    </div>
+
+        <div class="form-group mt-1">
+                
+                <div class="form-group">
+                    <table class="table table-bordered mb-0 table-centered">
+                        <thead>
+                            <tr>
+                                <th style=""><label for=""><b>Feature Image</b></label></th>
+                                <th style=""><label for=""><b>Title</b></label></th>
+                                <th style=""><label for=""><b>Description</b></label></th>
+                                <th style=""><label for=""><b>Categories</b></label></th>
+                                <th style=""><label for=""><b>Price</b></label></th>
+                                <th style=""><label for=""><b>Discount</b></label></th>
+                                <th style=""><label for=""><b>Quantity</b></label></th>
+                                <th style=""><label for=""><b>Status</b></label></th>
+                                <th style=""><label for=""><b>Actions</b></label></th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+
+                            @foreach($products as $product)
+                            <tr>
+                                <td>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="meta-box">
+                                            <div class="media">
+                                                <img src="{{$product->feature_image}}" height="40" class="mr-3 align-self-center rounded" alt="...">
+                                            </div>                                      
+                                        </div><!--end meta-box-->
+                                    
+                                    </div>
+                                </td>
+                                <td>
+                                    {{$product->title}}
+                                </td>
+                                <td>
+                                    {{$product->description}}
+                                </td>
+                                <td>
+                                    @foreach($product->categories as $category)
+                                        <div class="badge badge-info mr-1" >{{$category->name}}</div>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    {{$product->price}}
+                                </td>
+                                <td>
+                                    {{$product->discount}}%
+                                </td>
+                                <td>
+                                    @if($product->quantity == 0)
+                                        <div class="badge badge-danger mr-1" >Out of Stock</div>
+                                    @else
+                                        {{$product->quantity}}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($product->status == true)
+                                        <div class="badge badge-soft-success mr-1" >Active</div>
+                                    @else
+                                        <div class="badge badge-soft-danger mr-1" >InActive</div>
+                                    @endif
+                                </td>
+                                <td>
+                                    <div class="d-flex">
+                                        <a href="{{route('shoppee.product.edit',$product->id)}}" class="badge badge-soft-success mr-2"><small>Edit</small></a>
+                                        <a href="javascript:void(0);" id="'.$data->id.'" class="badge badge-secondary delete mr-2"><small>Delete</small></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                           
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
 @endsection
 
 
@@ -101,7 +188,7 @@
                 processing: true,
                 serverSide: true,
                 pageLength: 20,
-                ajax: '{!! route('product.index') !!}',
+                ajax: '{!! route('shoppee.product.index') !!}',
                 columns:[
                     { data: 'image', name: 'image'},
                     { data: 'title', name: 'title'},

@@ -42,6 +42,8 @@ Route::get('/upload',function(){
 Route::get('/games/privacy', [PolicyController::class, 'DevlomatixGamesPrivacy'])->name('games.privacy');
 Route::get('/games/terms', [PolicyController::class, 'DevlomatixGamesTerms'])->name('games.terms');
 
+Route::get('/shoppee/privacy', [PolicyController::class, 'DevlomatixShoppeePrivacy'])->name('shoppee.privacy');
+
 
 Route::get('/privacy', [PolicyController::class, 'DevlomatixSolutionsPrivacy'])->name('privacy');
 Route::get('/terms', [PolicyController::class, 'DevlomatixSolutionsTerms'])->name('terms');

@@ -31,7 +31,12 @@ Route::prefix('v2')->group(function(){
     Route::post('register',[AuthController::class,'register']);
     Route::post('fcmid/add',[AuthController::class,'add_fcm_id']);
     
-    
+    Route::get('categories',[CategoryController::class,'index']);
+    Route::get('slider',[SliderController::class,'index']);
+
+    Route::get('products',[ProductController::class,'allProducts']);
+    Route::get('products/{cat}',[ProductController::class,'products']);
+    Route::post('products/search',[ProductController::class,'search_items']);
 
     Route::middleware('auth:api')->group(function(){
         Route::get('refresh',[AuthController::class,'refresh']);
@@ -66,12 +71,7 @@ Route::prefix('v2')->group(function(){
     });
 
 
-    Route::get('categories',[CategoryController::class,'index']);
-    Route::get('slider',[SliderController::class,'index']);
-
-    Route::get('products',[ProductController::class,'allProducts']);
-    Route::get('products/{cat}',[ProductController::class,'products']);
-    Route::post('products/search',[ProductController::class,'search_items']);
+    
 
     // Route::prefix('grocery')->group(function(){
 

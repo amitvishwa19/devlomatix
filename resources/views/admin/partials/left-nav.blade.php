@@ -62,50 +62,52 @@
 
            
             <hr class="hr-dashed hr-menu">
-            <li>
-                <a href="{{route('devlearn.dashboard')}}">
-                    <i data-feather="book" class="align-self-center menu-icon"></i><span>Devlearn</span>
-                </a>
-            </li>
-
+            
           
 
             <li>
-                <a href="javascript: void(0);"><i data-feather="shopping-cart" class="align-self-center menu-icon"></i><span>DevComm</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                <a href="javascript: void(0);"><i data-feather="shopping-cart" class="align-self-center menu-icon"></i><span>Shoppee</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                 <ul class="nav-second-level" aria-expanded="false">
-
-                    <li>
-                        <a href="">
-                            <i class="ti-control-record"></i>Sliders</a>
-                    </li>
                     
                     <li>
+                        <a href="{{route('shoppee.dashboard.home')}}"><i class="ti-control-record"></i>Dashboard</a>
+                    </li>
+
+                    <li>
+                        <a href="{{route('slider.index')}}"><i class="ti-control-record"></i>Sliders</a>
+                    </li>
+                    
+                    
+                    <!-- <li>
                         <a href="{{route('product_category.index')}}">
                             <i class="ti-control-record"></i>Categories</a>
-                    </li>
+                    </li> -->
                     <li>
-                        <a href="{{route('product.index')}}">
-                            <i class="ti-control-record"></i>Products</a>
+                        <a href="{{route('shoppee.product.index')}}"><i class="ti-control-record"></i>Products</a>
                     </li>
-                    <li>
-                        <a href="">
+                    <!-- <li>
+                        <a href="{{route('product_category.index')}}">
                             <i class="ti-control-record"></i>Wishlists</a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="{{route('product_category.index')}}">
                             <i class="ti-control-record"></i>Carts</a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="{{route('product_category.index')}}">
                             <i class="ti-control-record"></i>Orders</a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="{{route('product_category.index')}}">
                             <i class="ti-control-record"></i>Shippings</a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="{{route('product_category.index')}}">
                             <i class="ti-control-record"></i>Shipments</a>
+                    </li> -->
+
+                    <li>
+                        <a href="{{route('shoppee.fcm')}}"><i class="ti-control-record"></i>Push Notification</a>
                     </li>
                    
 

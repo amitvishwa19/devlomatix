@@ -65,7 +65,10 @@ class SettingController extends Controller
             $auth_image_url = uploadImage($request->file('auth_image'));
             setting('auth_image_url',$auth_image_url);
         }
-     
+        
+        if($request->get('type') == 'privacypolicy'){
+            setting('privacy_policy',$request->privacy_policy);
+        }
 
         // return redirect()->route('setting.index')
         // ->with([

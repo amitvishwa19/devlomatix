@@ -32,4 +32,10 @@ class PolicyController extends Controller
         return "Devlomatix Games Terms & Conditions";
     }
 
+
+    public function DevlomatixShoppeePrivacy(){
+
+        return setting('privacy_policy');
+    }
+
 }

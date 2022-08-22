@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Services\Setting\Setting;
+use App\Services\FirebaseMessaging;
 use Illuminate\Support\Facades\App;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Schema;
@@ -18,7 +19,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton('fcm',function(){
 
+            return new FirebaseMessaging();
+
+        });
     }
 
     /**

@@ -136,6 +136,13 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'fcm_server_key' => env('FCM_SERVER_KEY',null),
+
+    'fcm' => [
+        'server_key' => env('FCM_SERVER_KEY', null),
+        'channel_id' => env('FCM_CHANNEL_ID', null),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

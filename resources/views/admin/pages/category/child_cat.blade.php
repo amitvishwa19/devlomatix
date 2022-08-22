@@ -1,6 +1,6 @@
 <ol class="dd-list">
     @foreach ($categories as $category)
-        <li class="dd-item dd-collapsed" data-id="{{ $category->id }}" class="mb-4">
+        <li class="dd-item " data-id="{{ $category->id }}" class="mb-4">  
 
         
             <div class=" pull-right item_actions float-right mt-1 mr-2">
@@ -24,3 +24,4 @@
    
 </ol>
 
+<!-- dd-collapsed -->

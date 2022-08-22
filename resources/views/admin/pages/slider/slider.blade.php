@@ -1,8 +1,8 @@
 @extends('admin.layout.admin')
 
-@section('title','{{modelName}}')
+@section('title','Slider')
 
-@section('{{modelNameSingularLowerCase}}','active')
+@section('slider','active')
 
 
 @section('style')
@@ -22,15 +22,15 @@
                 <div class="page-title-box">
                     <div class="row">
                         <div class="col">
-                            <h4 class="page-title">{{modelName}}s</h4>
+                            <h4 class="page-title">Sliders</h4>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Devlomatix</a></li>
-                                <li class="breadcrumb-item active">{{modelName}}s</li>
+                                <li class="breadcrumb-item active">Sliders</li>
                             </ol>
                         </div><!--end col-->
                         <div class="col-auto align-self-center">
-                            <a href="{{route('{{modelNameSingularLowerCase}}.create')}}"  class="btn btn-info waves-effect waves-light btn-sm" >
-                                Add {{modelName}}
+                            <a href="{{route('slider.create')}}"  class="btn btn-info waves-effect waves-light btn-sm" >
+                                Add Slider
                             </a>
                         </div>
                     </div><!--end row-->
@@ -84,7 +84,7 @@
             $('#datatable').DataTable({
                  processing: true,
                  serverSide: true,
-                 ajax: '{!! route('{{modelNameSingularLowerCase}}.index') !!}',
+                 ajax: '{!! route('slider.index') !!}',
                  columns:[
                      { data: 'name', name: 'name' },
                      { data: 'action', name: 'action' },
@@ -96,7 +96,7 @@
              $(document).on('click','.delete',function(){
                  var id =  $(this).attr('id');
                  swalWithBootstrapButtons({
-                     title: "Delete Selected {{modelName}}?",
+                     title: "Delete Selected Slider?",
                      text: "You won't be able to revert this!",
                      type: "warning",
                      showCancelButton: true,
@@ -106,14 +106,14 @@
                  }).then(result => {
                      if (result.value) {
                      $.ajax({
-                         url: "{{modelNameSingularLowerCase}}/"+id,
+                         url: "slider/"+id,
                          type:"post",
                          data: {_method: 'delete', _token: "{{ csrf_token() }}"},
                          success: function(result){
                              location.reload();
                              toast({
                                  type: "success",
-                                 title: "{{modelName}} Deleted Successfully"
+                                 title: "Slider Deleted Successfully"
                              });
                          }
                      });
