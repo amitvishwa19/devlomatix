@@ -19,11 +19,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('fcm',function(){
+        // $this->app->singleton('fcm',function(){
 
-            return new FirebaseMessaging();
+        //     return new FirebaseMessaging();
 
-        });
+        // });
     }
 
     /**
