@@ -28,22 +28,15 @@
                                 <li class="breadcrumb-item active">Activity Logs</li>
                             </ol>
                         </div><!--end col-->
-                        <div class="col-auto align-self-center">
-                            <a href="#" class="btn btn-sm btn-outline-primary" id="Dash_Date">
-                                <span class="ay-name" id="Day_Name">Today:</span>&nbsp;
-                                <span class="" id="Select_date">Jan 11</span>
-                                <i data-feather="calendar" class="align-self-center icon-xs ml-1"></i>
-                            </a>
-
-                        </div><!--end col-->
+                       
                     </div><!--end row-->
                 </div><!--end page-title-box-->
             </div><!--end col-->
         </div><!--end row-->
 
         <div class=" mb-2">
-            {{-- <a href="javascript:void(0)" class="wp-title mr-2" id="select_all">Select All</a>
-            <a href="javascript:void(0)" class="wp-title mr-2" id="deselect_all">Deselect All</a> --}}
+           
+            <a href="javascript:void(0)" class="wp-title mr-2" id="delete">Delete</a>
             <a href="javascript:void(0)" class="wp-title mr-2" id="delete_all">Delete All</a>
          </div>
 
@@ -178,7 +171,7 @@
             }
         });
 
-        $(document).on('click', '#delete_all', function(){
+        $(document).on('click', '#delete', function(){
             var id = [];
             $('.checkbox:checked').each(function(){
                 id.push($(this).val());
@@ -216,6 +209,14 @@
                     title: "Please select atleast one item to delete !"
                 });
             }
+            
+        });
+
+        $(document).on('click', '#delete_all', function(){
+            toast({
+                type: "warning",
+                title: "All the items will be deleated"
+            });
 
         });
 

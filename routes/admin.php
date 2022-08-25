@@ -58,12 +58,13 @@ use App\Http\Controllers\Shoppee\DashboardController as ShoppeeDashboardControll
     Route::resource('/permission',PermissionController::class);
     Route::resource('/role',RoleController::class);
 
-    //Error Logs
+    //Logs
     Route::get('/logs',[ErrorLogController::class,'index'])->name('admin.logs');
-
-
-    //Activity Log
     Route::resource('/activity',ActivityLogController::class);
+
+
+
+
 
     //Mail Templates
     Route::resource('/mtemplate',MailTemplateController::class);
