@@ -32,7 +32,7 @@ class FcmDailyNotification implements ShouldQueue
      */
     public function handle()
     {
-        activity('FCM')->log('Send FCM Daily Notification');
+        //activity('FCM')->log('Send FCM Daily Notification');
         $fcm = new FirebaseMessaging;
         $fcm->title =  'Daily Notification';
         $fcm->body = 'This is daily Notification test';

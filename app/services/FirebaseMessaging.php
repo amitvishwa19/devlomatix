@@ -60,7 +60,7 @@ class FirebaseMessaging{
         }
         curl_close( $ch );
 
-        activity('FCM result')->log($result);
+        activity('FCM Notification result')->log($result);
         return $result;
 
 
