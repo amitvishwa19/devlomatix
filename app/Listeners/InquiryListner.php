@@ -28,6 +28,7 @@ class InquiryListner
      */
     public function handle(InquiryEvent $event)
     {
+        activity('Inquiry')->log('New Inquiry log');
         $to = $event->email;
         $subject = 'Inquiry for Devlomatix :: ' . $event->subject;
         $body = 'test body';
