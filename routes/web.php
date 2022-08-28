@@ -50,7 +50,7 @@ Route::get('/mail', function(){
 
 Route::prefix('/')->group(base_path('routes/client.php'));
 
-Route::middleware(['auth','admin'])->prefix('admin')->group(base_path('routes/admin.php'));
+Route::middleware(['auth'])->prefix('admin')->group(base_path('routes/admin.php'));
 
 Route::middleware(['auth','sandbox'])->prefix('sandbox')->group(base_path('routes/sandbox.php'));
 
