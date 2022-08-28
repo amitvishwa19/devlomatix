@@ -33,10 +33,10 @@ class InquiryListner
         activity('Inquiry Count')->log($users->count());
 
         foreach($users as $user){
-            $user->notify(new InquiryNotification($event->name, $event->message));
+            $user->notify(new InquiryNotification('New inquiry by '.$event->name, $event->message));
         }
 
-        
+
         $to = $event->email;
         $subject = 'Inquiry for Devlomatix :: ' . $event->subject;
         $body = 'test body';
