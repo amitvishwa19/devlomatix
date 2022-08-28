@@ -41,7 +41,7 @@
                 @endif
 
 
-                @if(auth()->user()->can('catogories'))
+                @if(auth()->user()->can('categories'))
                     <li>
                         <a href="{{route('category.index')}}">
                             <i data-feather="pause" class="align-self-center menu-icon"></i><span>Category</span>
