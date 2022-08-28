@@ -39,8 +39,8 @@ class InquiryListner
         $view = 'mails.inquiry';
         return appmail($to,$subject,$body,$data,$view,true);
 
-        $users = User::permission($users->count())->get();
-        activity('Inquiry Count')->log('New Inquiry log');
+        $users = User::permission('new_inquiry_notification')->get();
+        activity('Inquiry Count')->log($users->count());
 
         foreach($users as $user){
             $user->notify(new InquiryNotification($event->name, $event->message));
