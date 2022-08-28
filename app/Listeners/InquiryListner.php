@@ -2,9 +2,11 @@
 
 namespace App\Listeners;
 
+use App\Models\User;
 use App\Events\InquiryEvent;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use App\Notifications\InquiryNotification;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class InquiryListner
 {
@@ -36,6 +38,9 @@ class InquiryListner
         $view = 'mails.inquiry';
         return appmail($to,$subject,$body,$data,$view,true);
 
-
+        $users = User::permission('new_inquiry_notification')->get();
+        foreach($users as $user){
+            $user->notify(new InquiryNotification($event->name, $event->message));
+        }
     }
 }
