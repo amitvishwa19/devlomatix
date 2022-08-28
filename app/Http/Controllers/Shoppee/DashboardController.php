@@ -10,7 +10,7 @@ class DashboardController extends Controller
     public function index(){
 
         //return 'Shoppee Dashboard';
-        return view('admin.pages.dashboard.shoppee_dashboard');
+        return view('shoppee.dashboard.dashboard');
     }
 }
 

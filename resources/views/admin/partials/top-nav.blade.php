@@ -3,24 +3,8 @@
     <!-- Navbar -->
     <nav class="navbar-custom">
         <ul class="list-unstyled topbar-nav float-right mb-0">
-            <li class="dropdown hide-phone">
-                <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button"
-                    aria-haspopup="false" aria-expanded="false">
-                    <i data-feather="search" class="topbar-icon"></i>
-                </a>
 
-                <div class="dropdown-menu dropdown-menu-right dropdown-lg p-0">
-
-                    <!-- Top Search Bar -->
-                    <div class="app-search-topbar">
-                        <form action="#" method="get">
-                            <input type="search" name="search" class="from-control top-search mb-0" placeholder="Type text...">
-                            <button type="submit"><i class="ti-search"></i></button>
-                        </form>
-                    </div>
-                </div>
-            </li>
-
+            <!-- App Notifications -->
             <li class="dropdown notification-list">
                 <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button"
                     aria-haspopup="false" aria-expanded="false">
@@ -106,17 +90,29 @@
                 </div>
             </li>
 
+
+            <!-- Usere Info Area -->
             <li class="dropdown">
                 <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
                     aria-haspopup="false" aria-expanded="false">
-                    <span class="ml-1 nav-user-name hidden-sm">@if(Auth::user())   {{Auth::user()->firstName }},{{Auth::user()->lastName }}       @endif</span>
 
+                    @if(Auth::user()->firstName)
+                        <span class="ml-1 nav-user-name hidden-sm">{{Auth::user()->firstName }},{{Auth::user()->lastName }}</span>
+                    @else
+                        <span class="ml-1 nav-user-name hidden-sm">{{Auth::user()->email }}</span>
+                    @endif
 
 
                     @if(!Auth::user()->avatar_url)
-                        <div class="avatar-box thumb-sm align-self-center me-2">
-                            <span class="avatar-title bg-soft-pink rounded-circle">{{substr(Auth::user()->firstName, 0, 1) . substr(Auth::user()->lastName, 0, 1)}}</span>
-                        </div>
+                        @if(Auth::user()->firstName)
+                            <div class="avatar-box thumb-sm align-self-center mt-2">
+                                <span class="avatar-title bg-soft-pink rounded-circle">{{substr(Auth::user()->firstName, 0, 1) . substr(Auth::user()->lastName, 0, 1)}}</span>
+                            </div>
+                        @else
+                            <div class="avatar-box thumb-sm align-self-center mt-2">
+                                <span class="avatar-title bg-soft-pink rounded-circle">{{substr(Auth::user()->email, 0, 2)}}</span>
+                            </div>
+                        @endif
                     @else
                         <img src="{{auth()->user()->avatar_url ? auth()->user()->avatar_url : asset('public/admin/assets/images/users/user-3.jpg')}}" alt="profile-user" class="rounded-circle thumb-md" />
                     @endif
@@ -129,41 +125,46 @@
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="{{route('setting.index',['type'=>'profile'])}}"><i data-feather="user" class="align-self-center icon-xs icon-dual mr-1"></i> Profile</a>
 
-                    @if(!session('impersonated_by'))
-                        <a class="dropdown-item" href="{{route('impersonate.index')}}"><i data-feather="repeat" class="align-self-center icon-xs icon-dual mr-1"></i> Impersonate</a>
-                    @else
-                        <a class="dropdown-item" href="{{route('impersonate.leave')}}"><i data-feather="repeat" class="align-self-center icon-xs icon-dual mr-1"></i>Back to LoggedIn User</a>
-                    @endif
 
+                    
+                        @if(!session('impersonated_by'))
+                        @if(auth()->user()->can('impersonate'))
+                            <a class="dropdown-item" href="{{route('impersonate.index')}}"><i data-feather="repeat" class="align-self-center icon-xs icon-dual mr-1"></i> Impersonate</a>
+                            @endif
 
+                        @else
+                            <a class="dropdown-item" href="{{route('impersonate.leave')}}"><i data-feather="repeat" class="align-self-center icon-xs icon-dual mr-1"></i>Back to LoggedIn User</a>
+                        @endif
+                    
 
-                    <a class="dropdown-item" href="#"><i data-feather="settings" class="align-self-center icon-xs icon-dual mr-1"></i> Settings</a>
+                    <!-- Logout Button -->
                     <div class="dropdown-divider mb-0"></div>
-
                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout').submit();">
                         <i data-feather="power" class="align-self-center icon-xs icon-dual mr-1"></i> Logout
                     </a>
                     <form id="logout" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
-                      </form>
+                    </form>
 
 
                 </div>
             </li>
+
         </ul><!--end topbar-nav-->
 
+
+        <!-- Shrink Side menu button -->
         <ul class="list-unstyled topbar-nav mb-0">
             <li>
                 <button class="nav-link button-menu-mobile">
                     <i data-feather="menu" class="align-self-center topbar-icon"></i>
                 </button>
             </li>
-            {{-- <li class="creat-btn">
-                <div class="nav-link">
-                    <a class=" btn btn-sm btn-soft-primary" href="#" role="button"><i class="fas fa-plus mr-2"></i>New Task</a>
-                </div>
-            </li> --}}
+            
         </ul>
+
+
+
     </nav>
     <!-- end navbar-->
 </div>

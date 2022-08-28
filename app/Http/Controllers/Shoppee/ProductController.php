@@ -114,7 +114,7 @@ class ProductController extends Controller
         $cat = Category::where('slug','product-categories')->first();
         $categories = Category::with('childs')->where('parent_id',$cat->id)->get();
 
-        return view('admin.pages.product.product')->with('categories',$categories)->with('products',$products);
+        return view('shoppee.product.product')->with('categories',$categories)->with('products',$products);
 
     }
 
@@ -124,7 +124,7 @@ class ProductController extends Controller
         $cat = Category::where('slug','product-categories')->first();
         
         $categories = Category::with('childs')->where('parent_id',$cat->id)->where('status',true)->get();
-        return view('admin.pages.product.product_add')->with('categories',$categories)->with('products',$products);
+        return view('shoppee.product.product_add')->with('categories',$categories)->with('products',$products);
     }
 
     public function store(Request $request)
@@ -197,7 +197,7 @@ class ProductController extends Controller
 
         //return response()->json($product);
 
-        return view('admin.pages.product.product_edit')->with('product',$product)->with('categories',$categories)->with('products',$products);
+        return view('shoppee.product.product_edit')->with('product',$product)->with('categories',$categories)->with('products',$products);
     }
 
     public function update(Request $request, $id)

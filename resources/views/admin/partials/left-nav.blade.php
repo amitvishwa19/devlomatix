@@ -19,17 +19,18 @@
     <!--end logo-->
     <div class="menu-content h-100" data-simplebar>
         <ul class="metismenu left-sidenav-menu">
-
+            
+            <li>
+                <a href="{{route('admin.dashboard')}}">
+                    <i data-feather="home" class="align-self-center menu-icon"></i><span>Dashboard</span>
+                </a>
+            </li>
 
             @hasanyrole('super_admin|post_management')
 
+                @if(auth()->user()->can('admin_dashboard'))
                 
-                <li>
-                    <a href="{{route('admin.dashboard')}}">
-                        <i data-feather="home" class="align-self-center menu-icon"></i><span>Dashboard</span>
-                    </a>
-                </li>
-                
+                @endif
 
                 
                 @if(auth()->user()->can('post'))
@@ -79,15 +80,12 @@
                         </a>
                     </li>
                 @endif
-
+                
             @endhasrole
 
 
             <!-- Sandbox -->
-            @hasrole('sandbox')
-
-                <hr class="hr-dashed hr-menu">
-
+            @hasrole('super_admin|sandbox')
                 <li>
                     <a href="javascript: void(0);"><i data-feather="cast" class="align-self-center menu-icon"></i><span>Sandbox</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                     <ul class="nav-second-level" aria-expanded="false">
@@ -102,23 +100,27 @@
 
                     </ul>
                 </li>
+                
             @endhasrole
 
 
-            @hasrole('shoppee')
-                <hr class="hr-dashed hr-menu">
+            @hasrole('super_admin|shoppee')
+                
                 <li>
                     <a href="javascript: void(0);"><i data-feather="shopping-cart" class="align-self-center menu-icon"></i><span>Shoppee</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                     <ul class="nav-second-level" aria-expanded="false">
                         
                         <li>
-                            <a href="{{route('shoppee.dashboard.home')}}"><i class="ti-control-record"></i>Dashboard</a>
+                            <a href="{{route('shoppee.dashboard')}}"><i class="ti-control-record"></i>Dashboard</a>
                         </li>
 
                         <li>
-                            <a href="{{route('slider.index')}}"><i class="ti-control-record"></i>Sliders</a>
+                            <a href="{{route('shoppee.slider.index')}}"><i class="ti-control-record"></i>Sliders</a>
                         </li>
                         
+                        <li>
+                            <a href="{{route('shoppee.slider.index')}}"><i class="ti-control-record"></i>Categories</a>
+                        </li>
                         
                         <!-- <li>
                             <a href="{{route('product_category.index')}}">
@@ -155,11 +157,12 @@
 
                     </ul>
                 </li>
+                
             @endhasrole
             
         
-            @hasrole('project_management')
-                <hr class="hr-dashed hr-menu">
+            @hasrole('super_admin|project_management')
+                
                 <li>
                     <a href="{{route('client.index')}}">
                         <i data-feather="users" class="align-self-center menu-icon"></i><span>Clients</span>
@@ -189,11 +192,12 @@
                         <i data-feather="file-text" class="align-self-center menu-icon"></i><span>Notes</span>
                     </a>
                 </li>
+                
             @endhasrole
             
 
-            @hasrole('user_management')
-                <hr class="hr-dashed hr-menu">
+            @hasrole('super_admin|user_management|manage_user|manage_role|manage_permission')
+                
                 <li>
                     <a href="javascript: void(0);"><i data-feather="user" class="align-self-center menu-icon"></i><span>User Management</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                     <ul class="nav-second-level" aria-expanded="false">
@@ -221,27 +225,35 @@
 
                     </ul>
                 </li>
+                
             @endhasrole
 
-            @hasrole('system')
-                <hr class="hr-dashed hr-menu">
+            @hasrole('super_admin|app_management')
+                
+                @if(auth()->user()->can('activity_logs'))
                 <li>
                     <a href="{{route('activity.index')}}">
                         <i data-feather="activity" class="align-self-center menu-icon"></i><span>Activity Logs</span>
                     </a>
                 </li>
+                @endif
 
+                @if(auth()->user()->can('error_logs'))
                 <li>
                     <a href="{{route('admin.logs')}}">
                         <i data-feather="alert-triangle" class="align-self-center menu-icon"></i><span>Error Logs</span>
                     </a>
                 </li>
+                @endif
 
+                @if(auth()->user()->can('app_settings'))
                 <li>
                     <a href="{{route('setting.index')}}">
                         <i data-feather="settings" class="align-self-center menu-icon"></i><span>Settings</span>
                     </a>
                 </li>
+                @endif
+
             @endhasrole
 
         </ul>

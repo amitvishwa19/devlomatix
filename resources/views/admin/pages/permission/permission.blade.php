@@ -126,6 +126,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: '{!! route('permission.index') !!}',
+                pageLength: 20,
                 columns:[
                     { data: 'name', name: 'name'},
                     { data: 'description', name: 'description'},

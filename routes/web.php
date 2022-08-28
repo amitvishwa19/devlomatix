@@ -52,6 +52,8 @@ Route::prefix('/')->group(base_path('routes/client.php'));
 
 Route::middleware(['auth'])->prefix('admin')->group(base_path('routes/admin.php'));
 
+Route::middleware(['auth'])->prefix('shoppee')->as('shoppee.')->group(base_path('routes/shoppee.php'));
+
 Route::middleware(['auth','sandbox'])->prefix('sandbox')->group(base_path('routes/sandbox.php'));
 
 //Route::middleware('auth')->prefix('devlearn')->group(base_path('routes/devlearn.php'));

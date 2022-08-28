@@ -21,7 +21,7 @@
                         <h4 class="page-title">Product</h4>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Devlomatix</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('product.index')}}">Products</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('shoppee.product.index')}}">Products</a></li>
                             <li class="breadcrumb-item active">Add Product</li>
                         </ol>
                     </div><!--end col-->
@@ -32,7 +32,7 @@
 
     <div class="wrapper pb-2">
 
-        <form role="form" method="post" action="{{route('product.store')}}" enctype="multipart/form-data">
+        <form role="form" method="post" action="{{route('shoppee.product.store')}}" enctype="multipart/form-data">
             @csrf
 
             <div class="row">
@@ -202,7 +202,7 @@
 
             <div class="form-group mt-4">
                 <button class="btn btn-info waves-effect waves-light btn-sm">Add Product</button>
-                <a href="{{route('product.index')}}" class="btn btn-secondary btn-sm">Cancel</a>
+                <a href="{{route('shoppee.product.index')}}" class="btn btn-secondary btn-sm">Cancel</a>
             </div>
 
         </form>

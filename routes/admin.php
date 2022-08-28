@@ -132,7 +132,7 @@ use App\Http\Controllers\Shoppee\DashboardController as ShoppeeDashboardControll
 
     Route::resource('/setting',SettingController::class);
 
-    Route::resource('/slider',SliderController::class);
+    // Route::resource('/slider',SliderController::class);
 
 
     Route::group(['prefix' => 'bread', 'as' => 'bread.'], function () {
@@ -141,25 +141,25 @@ use App\Http\Controllers\Shoppee\DashboardController as ShoppeeDashboardControll
         Route::post('database/create',[BreadController::class,'create_database'])->name('databases.create');
     });
     
-    Route::group(['prefix' => 'shoppee', 'as' => 'shoppee.'], function () {
+    // Route::group(['prefix' => 'shoppee', 'as' => 'shoppee.'], function () {
         
-        Route::prefix('dashboard')->group(function(){
-            Route::get('/',[ShoppeeDashboardController::class,'index'])->name('dashboard.home');
-        });
+    //     Route::prefix('dashboard')->group(function(){
+    //         Route::get('/',[ShoppeeDashboardController::class,'index'])->name('dashboard.home');
+    //     });
 
-        // Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
-        //     Route::resource('/product',ProductController::class);
+    //     // Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
+    //     //     Route::resource('/product',ProductController::class);
 
-        // });
-        Route::resource('/product',ProductController::class);
+    //     // });
+    //     Route::resource('/product',ProductController::class);
 
-        Route::group(['prefix' => 'fcm'], function () {
-            Route::get('/',[FirebaseController::class,'index'])->name('fcm');
-            Route::post('/send',[FirebaseController::class,'send_message'])->name('fcm.send');
-            Route::get('/send/dailynotifications',[FirebaseController::class,'send_daily_notification'])->name('fcm.send.dailynotification');
-        });
+    //     Route::group(['prefix' => 'fcm'], function () {
+    //         Route::get('/',[FirebaseController::class,'index'])->name('fcm');
+    //         Route::post('/send',[FirebaseController::class,'send_message'])->name('fcm.send');
+    //         Route::get('/send/dailynotifications',[FirebaseController::class,'send_daily_notification'])->name('fcm.send.dailynotification');
+    //     });
         
-    });
+    // });
 
     //=============================Ecomm===========================================
     Route::resource('/product_category',ProductCategoryController::class);

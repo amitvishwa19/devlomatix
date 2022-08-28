@@ -26,6 +26,12 @@ class ClientController extends Controller
         return view('client.pages.home');
     }
 
+    public function dashboard(Request $request)
+    {
+        return view('client.pages.dashboard');
+
+    }
+
     public function blogs()
     {
        

@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\SubscriptionController;
 
 
 Route::get('/', [ClientController::class, 'home'])->name('app.home');
+Route::get('/dashboard', [ClientController::class, 'dashboard'])->name('app.dashboard');
 //Route::get('/home', [ClientController::class, 'home'])->name('home');
 Route::get('/contact', [ClientController::class, 'contact'])->name('app.contact');
 Route::get('/about', [ClientController::class, 'about'])->name('app.about');
