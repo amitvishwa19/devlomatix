@@ -19,7 +19,7 @@
     <!--end logo-->
     <div class="menu-content h-100" data-simplebar>
         <ul class="metismenu left-sidenav-menu">
-            
+
             <li>
                 <a href="{{route('admin.dashboard')}}">
                     <i data-feather="home" class="align-self-center menu-icon"></i><span>Dashboard</span>
@@ -93,7 +93,7 @@
 
                     @if(auth()->user()->can('stockmarket'))
                         <li>
-                            <a href="{{route('admin.sandbox.trading')}}"><i class="ti-control-record"></i>Stock Market</a>
+                            <a href="{{route('admin.sandbox.trading')}}"><i class="ti-control-record"></i>Stock Market Analysis</a>
                         </li>
                     @endif
                     

@@ -114,7 +114,7 @@
                             </div>
                         @endif
                     @else
-                        <img src="{{auth()->user()->avatar_url ? auth()->user()->avatar_url : asset('public/admin/assets/images/users/user-3.jpg')}}" alt="profile-user" class="rounded-circle thumb-md" />
+                        <img src="{{auth()->user()->avatar_url ? auth()->user()->avatar_url : asset('public/admin/assets/images/users/user-3.jpg')}}" alt="profile-user" class="rounded-circle thumb-sm" />
                     @endif
 
 
