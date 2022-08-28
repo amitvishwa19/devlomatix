@@ -29,6 +29,14 @@ class InquiryListner
     public function handle(InquiryEvent $event)
     {
         activity('Inquiry')->log('New Inquiry log');
+        $users = User::permission('new_inquiry_notification')->get();
+        activity('Inquiry Count')->log($users->count());
+
+        foreach($users as $user){
+            $user->notify(new InquiryNotification($event->name, $event->message));
+        }
+
+        
         $to = $event->email;
         $subject = 'Inquiry for Devlomatix :: ' . $event->subject;
         $body = 'test body';
@@ -39,11 +47,6 @@ class InquiryListner
         $view = 'mails.inquiry';
         return appmail($to,$subject,$body,$data,$view,true);
 
-        $users = User::permission('new_inquiry_notification')->get();
-        activity('Inquiry Count')->log($users->count());
-
-        foreach($users as $user){
-            $user->notify(new InquiryNotification($event->name, $event->message));
-        }
+       
     }
 }
