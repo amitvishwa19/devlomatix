@@ -50,7 +50,7 @@
                                 </div>
                             </div>
 
-                            <!-- <div>@captcha</div> -->
+                         
                             
                             <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                 <button class="theme-btn btn-style-one">
