@@ -72,7 +72,7 @@
 
             <div class="form-group mt-3">
                 <button class="btn btn-info waves-effect waves-light btn-sm">Update Role</button>
-                <a href="{{route('role.index')}}" class="btn btn-info btn-sm">Cancel</a>
+                <a href="{{url()->previous()}}" class="btn btn-info btn-sm">Cancel</a>
             </div>
 
         </form>

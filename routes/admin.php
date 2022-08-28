@@ -34,6 +34,13 @@ use App\Http\Controllers\Admin\MailTemplateController;
 use App\Http\Controllers\Admin\SubscriptionController;
 use App\Http\Controllers\Shoppee\DashboardController as ShoppeeDashboardController;
 
+    // Route::group(['middleware'=>['auth', 'corporate'],'prefix'=>'corporate'],function(){
+
+
+
+        
+    // });
+
     Route::get('/',[DashboardController::class,'index'])->name('admin.dashboard');
     Route::resource('/profile',ProfileController::class);
     

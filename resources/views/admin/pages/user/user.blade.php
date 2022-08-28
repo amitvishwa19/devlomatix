@@ -26,9 +26,13 @@
                                 <li class="breadcrumb-item active">Users</li>
                             </ol>
                         </div><!--end col-->
-                        <div class="col-auto align-self-center">
-                            <a href="{{route('user.create')}}" class="btn btn-info waves-effect waves-light btn-sm"  >Add User</a>
-                        </div><!--end col-->
+
+                        @if(auth()->user()->can('add_user'))
+                            <div class="col-auto align-self-center">
+                                <a href="{{route('user.create')}}" class="btn btn-info waves-effect waves-light btn-sm"  >Add User</a>
+                            </div><!--end col-->
+                        @endif
+
                     </div><!--end row-->
                 </div><!--end page-title-box-->
             </div><!--end col-->

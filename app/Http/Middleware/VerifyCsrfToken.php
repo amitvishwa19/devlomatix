@@ -13,6 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         '/deploy',
-        'git/deploy'
+        'git/deploy',
+        '/sandbox/trading'
     ];
 }

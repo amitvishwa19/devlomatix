@@ -87,4 +87,25 @@ class SandboxController extends Controller
         ]);
 
     }
+
+
+    public function stockMarket(){
+
+        $user = auth()->user();
+
+        //$role = $user->hasRole('admin');
+
+        //$permissions = $user->role()->permissions();
+
+        //$permissions = $role->getAllPermissions();
+        //$permission = $user->hasPermission('admin');
+
+        //$client = new \GuzzleHttp\Client();
+        //$request = $client->get('https://www.nseindia.com/api/option-chain-indices?symbol=BANKNIFTY');
+        //$response = $request->getBody()->getContents();
+
+        //dd($permissions);
+        return view('admin.pages.sandbox.trading');
+
+    }
 }

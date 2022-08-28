@@ -57,7 +57,7 @@ class UserController extends Controller
                 $perm = '';
                 if($roles){
                     foreach($roles as $role){
-                        $perm = $perm. '<div class="badge badge-soft-info mr-1" >'. $role->name .'</div>';
+                        $perm = $perm. '<div class="badge badge-soft-info mr-1" ><a href="'.route('role.edit',$role->id).'">'. $role->name .'</a></div>';
                     };
                 }
 
@@ -73,11 +73,22 @@ class UserController extends Controller
             //     }
             // })
             ->addColumn('action',function($data){
-                $link = '<div class="d-flex">'.
-                            '<a href="'.route('user.edit',$data->id).'" class="badge badge-soft-primary mr-2"><small>Edit</small></a>'.
-                            '<a href="javascript:void(0);" id="'.$data->id.'" class="badge badge-soft-danger delete"><small>Delete</small></a>'.
-                        '</div>';
-                return $link;
+
+                //if(auth()->user()->can('edit_user')){
+                    return '<div class="d-flex">'.
+                                '<a href="'.route('user.edit',$data->id).'" class="badge badge-soft-primary mr-2"><small>Edit</small></a>'.
+                                '<a href="javascript:void(0);" id="'.$data->id.'" class="badge badge-soft-danger delete"><small>Delete</small></a>'.
+                            '</div>';
+
+                //};
+                
+                // $link = '<div class="d-flex">'.
+                //             '<a href="'.route('user.edit',$data->id).'" class="badge badge-soft-primary mr-2"><small>Edit</small></a>'.
+                //             '<a href="javascript:void(0);" id="'.$data->id.'" class="badge badge-soft-danger delete"><small>Delete</small></a>'.
+                //         '</div>';
+
+
+                // return $link;
             })
             ->rawColumns(['action','status','name','username','type','role'])
             ->make(true);
