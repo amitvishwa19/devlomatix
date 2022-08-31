@@ -42,8 +42,11 @@
                                 <thead>
                                     <tr>
                                         {{-- <th>Name</th> --}}
-                                        <th>Inquiry</th>
-                                        {{-- <th>Actions</th> --}}
+                                        <th style="width:20%">Inquiry Subject</th>
+                                        <th style="width:10%">Email</th>
+                                        <th style="width:40%">Message</th>
+                                        <th style="width:5%">Phone</th>
+                                        <th style="width:5%">Actions</th>
                                     </tr>
                                 </thead>
 
@@ -118,8 +121,11 @@
                 ajax: '{!! route('inquiry.index') !!}',
                 columns:[
                     // { data: 'name', name: 'name'},
-                    { data: 'inquiry', name: 'inquiry'},
-                    // { data: 'action', name: 'action' },
+                    { data: 'subject', name: 'subject'},
+                    { data: 'email', name: 'email'},
+                    { data: 'message', name: 'message'},
+                    { data: 'phone', name: 'phone'},
+                    { data: 'action', name: 'action' },
                 ]
             });
 

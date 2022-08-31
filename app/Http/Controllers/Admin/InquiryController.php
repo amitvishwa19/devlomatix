@@ -70,8 +70,8 @@ class InquiryController extends Controller
             })
             ->addColumn('action',function($data){
                 $link = '<div class="d-flex">'.
-                            '<a href="'.route('inquiry.edit',$data->id).'" class="mr-2"><small>Edit</small></a>'.
-                            '<a href="javascript:void(0);" id="'.$data->id.'" class="delete"><small>Delete</small></a>'.
+                            '<a href="'.route('inquiry.show',$data->id).'" class="badge badge-soft-success mr-2"><small>Reply</small></a>'.
+                            '<a href="javascript:void(0);" id="'.$data->id.'"class="badge badge-secondary delete"><small>Delete</small></a>'.
                         '</div>';
                 return $link;
             })

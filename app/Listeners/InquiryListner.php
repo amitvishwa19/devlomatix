@@ -28,10 +28,8 @@ class InquiryListner
      */
     public function handle(InquiryEvent $event)
     {
-        activity('Inquiry')->log('New Inquiry log');
+    
         $users = User::permission('new_inquiry_notification')->get();
-        activity('Inquiry Count')->log($users->count());
-
         foreach($users as $user){
             $user->notify(new InquiryNotification('New inquiry by '.$event->name, $event->message));
         }

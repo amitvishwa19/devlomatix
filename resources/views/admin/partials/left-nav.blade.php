@@ -58,20 +58,21 @@
                     </li>
                 @endif
 
-
                 @if(auth()->user()->can('inquiries'))
                     <li>
                         <a href="{{route('inquiry.index')}}">
                             <i data-feather="zap" class="align-self-center menu-icon"></i><span>Inquiries</span>
+                            
+                            <span class="menu-arrow"><small class="badge badge-soft-pink font-weight-semibold ml-2">{{auth()->user()->unreadNotifications()->count()}}</small></span>
                         </a>
                     </li>
                 @endif
+
                 <!-- <li>
                     <a href="{{route('menu.index')}}">
                         <i data-feather="menu" class="align-self-center menu-icon"></i><span>Menu</span>
                     </a>
                 </li> -->
-
 
                 @if(auth()->user()->can('files'))
                     <li>
