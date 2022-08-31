@@ -28,27 +28,29 @@
     </div><!--end row-->
 
     <div class="row">
-
-        <div class="card">
-            <div class="card-body">
-                <div class="media mb-3">
-                    <div class="media-body align-self-center text-truncate">
-                        <h4 class="m-0 font-weight-semibold text-dark font-15">{{$inquiry->subject}}</h4>
-                        <p class="text-muted  mb-0 font-13"><span class="text-dark">By : </span>{{$inquiry->name}}</p>
-                        <p class="text-muted  mb-0 font-13"><span class="text-dark"></span>{{$inquiry->email}}({{$inquiry->phone}})</p>
-                    </div><!--end media-body-->
-                </div>
-                <hr class="hr-dashed">
-                <div>
-                    <p class="text-muted mt-2 mb-1">{{$inquiry->message}}</p>
-                    <div class="d-flex justify-content-between">
-                        <h6 class="font-weight-semibold">
-                           <span class="badge badge-soft-pink font-weight-semibold ml-2"><i class="far fa-fw fa-clock"></i>{{$inquiry->created_at->diffForHumans()}}</span>
-                        </h6>
+        <div class="col-12">
+            <div class=" card">
+            
+                <div class=" card-body">
+                
+                    <div class="media mb-3">
+                        <div class="media-body align-self-center text-truncate">
+                            <h4 class="m-0 font-weight-semibold text-dark font-15">{{$inquiry->subject}}</h4>
+                            <p class="text-muted  mb-0 font-13"><span class="text-dark">By : </span>{{$inquiry->name}}</p>
+                            <p class="text-muted  mb-0 font-13"><span class="text-dark"></span>{{$inquiry->email}}({{$inquiry->phone}})</p>
+                        </div><!--end media-body-->
                     </div>
+                    <hr class="hr-dashed">
+                    <div>
+                        <p class="text-muted mt-2 mb-1">{{$inquiry->message}}</p>
+                        <div class="d-flex justify-content-between">
+                            <h6 class="font-weight-semibold">
+                            <span class="badge badge-soft-pink font-weight-semibold ml-2"><i class="far fa-fw fa-clock"></i>{{$inquiry->created_at->diffForHumans()}}</span>
+                            </h6>
+                        </div>
 
-                </div><!--end task-box-->
-
+                    </div><!--end task-box-->
+                </div>
             </div>
         </div>
 
