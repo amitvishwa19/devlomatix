@@ -47,12 +47,14 @@
                         </div><!--end card-header-->
                         <div class="card-body">
                             <ul class="mt-2">
+                                @if(auth()->user()->can('post'))
                                 <li class="{{(!request()->type ) ? 'active' : 'null'}}">
                                     <a href="{{route('setting.index')}}">
                                         <i data-feather="activity" class="align-self-center menu-icon"></i>
                                         <span>Global</span>
                                     </a>
                                 </li>
+                                @endif
                                 <!-- <li class="{{(request()->type =='reading') ? 'active' : 'null'}}">
                                     <a href="{{route('setting.index',['type'=>'reading'])}}">
                                         <i data-feather="book-open" class="align-self-center menu-icon"></i>
@@ -85,19 +87,22 @@
                                     </a>
                                 </li>
 
-                                <li class="{{(request()->type =='privacypolicy') ? 'active' : 'null'}}">
-                                    <a href="{{route('setting.index',['type'=>'privacypolicy'])}}">
-                                        <i data-feather="layers" class="align-self-center menu-icon"></i>
-                                        <span>Privacy Policy</span>
-                                    </a>
-                                </li>
 
-                                <li class="{{(request()->type =='termscondition') ? 'active' : 'null'}}">
-                                    <a href="{{route('setting.index',['type'=>'termscondition'])}}">
-                                        <i data-feather="copy" class="align-self-center menu-icon"></i>
-                                        <span>Terms & Conditions</span>
-                                    </a>
-                                </li>
+                                @if(auth()->user()->can('owner'))
+                                    <li class="{{(request()->type =='privacypolicy') ? 'active' : 'null'}}">
+                                        <a href="{{route('setting.index',['type'=>'privacypolicy'])}}">
+                                            <i data-feather="layers" class="align-self-center menu-icon"></i>
+                                            <span>Privacy Policy</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="{{(request()->type =='termscondition') ? 'active' : 'null'}}">
+                                        <a href="{{route('setting.index',['type'=>'termscondition'])}}">
+                                            <i data-feather="copy" class="align-self-center menu-icon"></i>
+                                            <span>Terms & Conditions</span>
+                                        </a>
+                                    </li>
+                                @endif
 
                             </ul>
                         </div><!--end card-body-->
