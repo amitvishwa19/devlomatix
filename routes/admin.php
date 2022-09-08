@@ -69,8 +69,10 @@ use App\Http\Controllers\Shoppee\DashboardController as ShoppeeDashboardControll
     Route::get('/logs',[ErrorLogController::class,'index'])->name('admin.logs');
     Route::resource('/activity',ActivityLogController::class);
 
-
-
+    //Notifications
+    Route::group(['prefix' => 'notification', 'as' => 'notification.'], function () {
+        //Route::get('/all', NotificationController::class,'index')->name('all');
+    });   
 
 
     //Mail Templates

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+
+use App\Services\MenuCounts;
 use App\Services\Setting\Setting;
 use App\Services\FirebaseMessaging;
 use Illuminate\Support\Facades\App;
@@ -9,6 +11,7 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Http\Resources\Json\JsonResource;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,11 +22,19 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+
+
         // $this->app->singleton('fcm',function(){
-
         //     return new FirebaseMessaging();
-
         // });
+            
+       
+        $this->app->singleton('menuCounts',function(){
+            return new MenuCounts;
+        });
+
+       
+
     }
 
     /**

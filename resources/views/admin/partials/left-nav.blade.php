@@ -63,7 +63,19 @@
                         <a href="{{route('inquiry.index')}}">
                             <i data-feather="zap" class="align-self-center menu-icon"></i><span>Inquiries</span>
                             
-                            <span class="menu-arrow"><small class="badge badge-soft-pink font-weight-semibold ml-2">{{auth()->user()->unreadNotifications()->count()}}</small></span>
+                            <span class="menu-arrow">
+                                <small class="badge badge-soft-pink font-weight-semibold ml-2">
+                                    {{mcount('inquiry')}}
+                                </small>
+                            </span>
+                        </a>
+                    </li>
+                @endif
+
+                @if(auth()->user()->can('notification'))
+                    <li>
+                        <a href="">
+                            <i data-feather="bell" class="align-self-center menu-icon"></i><span>Notifications</span>
                         </a>
                     </li>
                 @endif

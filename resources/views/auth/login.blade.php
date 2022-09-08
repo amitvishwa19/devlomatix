@@ -81,15 +81,18 @@
                                @endif
                             </div>
 
-                            <div class="form-group">
-                               <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} class="filled-in chk-col-pink">
-                               <label for="rememberme">Remember Me</label>
+                            <div class="form-group row my-3">
+                              
+                               <div class="col-sm-6">
+                                <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} class="filled-in chk-col-pink">
+                                <label for="rememberme">Remember Me</label>
+                               </div>
 
-                               @if (Route::has('password.request'))
+                               <div class="col-sm-6">
                                   <a class="pull-right" href="{{ route('password.request') }}">
                                       {{ __('Forgot Password?') }}
                                   </a>
-                               @endif
+                               </div>
 
                             </div>
                             @captcha
@@ -104,9 +107,7 @@
                             <p class="change_link">New to site?
                                 <a href="{{ route('register') }}" class="to_register"> Create Account </a>
                             </p>
-                            <div class="clearfix"></div>
-                            <br />
-
+                          
                         </div>
 
                         @if(setting('app_name'))

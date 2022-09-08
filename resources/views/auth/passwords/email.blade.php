@@ -22,7 +22,7 @@
                     <div class="login-form">
                         <form method="POST" action="{{ route('password.email') }}" class="mg-b-20">
                             @csrf
-                            <h5 class="info-title">Reset Password Link</h5>
+                            <h5 class="info-title">Let's reset your Password</h5>
 
                             @if(Session::has('inactive'))
                               <!-- <p class="alert alert-info">{{ Session::get('message') }}</p> -->

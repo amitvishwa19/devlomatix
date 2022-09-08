@@ -45,7 +45,10 @@
                         <p class="text-muted mt-2 mb-1">{{$inquiry->message}}</p>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-semibold">
-                            <span class="badge badge-soft-pink font-weight-semibold ml-2"><i class="far fa-fw fa-clock"></i>{{$inquiry->created_at->diffForHumans()}}</span>
+                            <span class="badge badge-soft-pink font-weight-semibold ml-2">
+                                <i class="far fa-fw fa-clock"></i>
+                                {{$inquiry->created_at->diffForHumans()}}
+                            </span>
                             </h6>
                         </div>
 

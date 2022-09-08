@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Menu;
+use App\Models\Inquiry;
 use App\Models\Setting;
 //use App\Facades\Digizig;
 //use App\Classes\Digizigs;
@@ -57,9 +58,6 @@ if (! function_exists('setting')) {
 
 }
 
-
-
-
 if (! function_exists('app_setting')) {
 
     function app_setting($name){
@@ -79,5 +77,16 @@ if (!function_exists('menu')) {
             return null;
         }
         return Menu::display($menuName, $type, $options);
+    }
+}
+
+if (!function_exists('mcount')) {
+    function mcount($type){
+
+        if($type == 'inquiry'){
+            $inquiry = Inquiry::count();
+            return $inquiry; 
+        }
+
     }
 }

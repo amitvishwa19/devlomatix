@@ -37,7 +37,7 @@
                               </div>
                             @endif
 
-                            {{-- <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="username">Username</label>
                                <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus value="{{ old('username') }}"/>
                                @if ($errors->has('username'))
@@ -45,9 +45,9 @@
                                   <strong>{{ $errors->first('username') }}</strong>
                                </span>
                                @endif
-                            </div> --}}
+                            </div> -->
 
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="username">Username</label>
                                 <input type="text" class="form-control"  name="username" placeholder="Username" value="{{ old('username') }}" autofocus>
                                 @if ($errors->has('username'))
@@ -55,14 +55,14 @@
                                     <small><strong>{{ $errors->first('username') }}</strong></small>
                                 </span>
                                 @endif
-                            </div>
+                            </div> -->
 
                             <div class="form-group">
                                 <label for="email">Email Address</label>
                                <input type="email" class="form-control" name="email" placeholder="yourname@yourdomain.com" required="" autofocus value="{{ old('email') }}"/>
                                @if ($errors->has('email'))
                                <span class="help-block">
-                                  <small><strong>{{ $errors->first('email') }}</strong></small>
+                                  <small><strong>{!! $errors->first('email') !!}</strong></small>
                                </span>
                                @endif
                             </div>
@@ -77,15 +77,15 @@
                                @endif
                             </div>
 
-                            {{-- <div class="form-group">
+                            <div class="form-group">
                                 <label for="password">Confirm Password</label>
-                               <input type="password" class="form-control" name="password_confirmation" placeholder="Enter your password" required="" />
-                               @if ($errors->has('password_confirmation'))
+                               <input type="password" class="form-control" name="confirm_password" placeholder="Confirm your password" required="" />
+                               @if ($errors->has('confirm_password'))
                                <span class="help-block">
-                                  <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                  <small><strong>{{ $errors->first('confirm_password') }}</strong></small>
                                </span>
                                @endif
-                            </div> --}}
+                            </div>
 
 
                             @captcha

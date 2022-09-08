@@ -91,8 +91,6 @@ if(! function_exists('upload')){
     }
 }
 
-
-
 if(! function_exists('url_link')){
     function url_link($path = null){
         if(!$path){ return 'Please provide a valid path';}

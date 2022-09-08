@@ -78,6 +78,19 @@ class RegisterController extends Controller
     // }
 
     public function register(Request $request){
+        //dd('new user registration');
+
+        $request->validate(
+            [
+                'email'             =>      'required|email|unique:users,email',
+                'password'          =>      'required|alpha_num|min:6',
+                'confirm_password'  =>      'required|same:password',
+            ],
+            [
+                'email.unique' => 'Already registred ! please click on  <a href="'.route('password.request').'">Forgot Password</a>  to recover your password',
+                'confirm_password.same' => 'Password and Confirm password not match' 
+            ]
+        );
 
         $user = new User();
         $user->username = $request->username;
@@ -89,7 +102,7 @@ class RegisterController extends Controller
 
         if($user != null){
             event(new RegisterEvent($user));
-            return redirect()->back()->with(session()->flash('register_success','Account created successfully,please check your mail for activation code'));
+            return redirect()->route('login')->with(session()->flash('register_success','Account created successfully,please check your mail for activation code'));
         }
         return redirect()->back()->with(session()->flash('register_alert','account not created, please try again'));
     }

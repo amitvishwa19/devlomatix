@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use App\Mail\AppMail;
 use App\Mail\TestMail;
+use App\Facades\Counts;
 use App\Jobs\TestMailJob;
+use App\Services\MenuCounts;
 use Illuminate\Http\Request;
 use App\Services\AppMailingService;
 use App\Http\Controllers\Controller;
@@ -93,14 +95,14 @@ class SandboxController extends Controller
 
     public function stockMarket(){
 
-        $user = auth()->user();
-        $users = User::where('status',true)->get();
-        $users = User::role('super_admin')->get();
-        $users = User::permission('new_inquiry_notification')->get();
+        // $user = auth()->user();
+        // $users = User::where('status',true)->get();
+        // $users = User::role('super_admin')->get();
+        // $users = User::permission('new_inquiry_notification')->get();
 
-        foreach($users as $user){
-            $user->notify(new InquiryNotification('Test Title','Test Body'));
-        }
+        // foreach($users as $user){
+        //     $user->notify(new InquiryNotification('Test Title','Test Body'));
+        // }
         //$role = $user->hasRole('admin');
 
         //$permissions = $user->role()->permissions();
@@ -108,14 +110,20 @@ class SandboxController extends Controller
         //$permissions = $role->getAllPermissions();
         //$permission = $user->hasPermission('admin');
 
-        //$client = new \GuzzleHttp\Client();
-        //$request = $client->get('https://www.nseindia.com/api/option-chain-indices?symbol=BANKNIFTY');
-        //$response = $request->getBody()->getContents();
+        $client = new \GuzzleHttp\Client();
+        $request = $client->get('https://www.nseindia.com/api/option-chain-indices?symbol=BANKNIFTY');
+        $response = $request->getBody()->getContents('expiryDates');
 
         //dd($permissions);
         //$user->notify(new InquiryNotification);
 
-        $notifications = auth()->user()->notifications;
+        //$notifications = auth()->user()->notifications;
+
+        //dd(menu_count());
+
+        //$notifications = Counts::notification_counts();
+
+        //dd(mcount('notifications'));
         
         return view('admin.pages.sandbox.trading');
 

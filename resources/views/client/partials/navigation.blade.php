@@ -48,8 +48,13 @@
                                <a href="{{route('app.blogs')}}">Blog</a>
                            </li>
 
-                           <li class="{{ Request::is('contact') ? 'current' : '' }}"><a href="{{route('app.contact')}}">Contact</a></li>
+                            <li class="{{ Request::is('contact') ? 'current' : '' }}"><a href="{{route('app.contact')}}">Contact</a></li>
 
+                            @if(auth()->check())
+                                <li class="{{ Request::is('contact') ? 'current' : '' }}"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
+                            @else
+                                <li ><a href="{{route('login')}}">Login</a></li>
+                            @endif
                        </ul>
                    </div>
                </nav>
