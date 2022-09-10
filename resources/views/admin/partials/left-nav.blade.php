@@ -105,7 +105,7 @@
                         <ul class="nav-second-level" aria-expanded="false">
                             
 
-                        @if(auth()->user()->can('stockmarket'))
+                        @if(auth()->user()->can('EQUITYMARKET'))
                             <li>
                                 <a href="{{route('admin.sandbox.trading')}}"><i class="ti-control-record"></i>Stock Market Analysis</a>
                             </li>
