@@ -75,7 +75,8 @@ class InquiryController extends Controller
                         '</div>';
                 return $link;
             })
-            ->rawColumns(['action','inquiry'])
+            ->addColumn('checkbox', '<input type="checkbox" name="id" class="checkbox" value="{{$id}}"/>')
+            ->rawColumns(['action','inquiry','checkbox'])
             ->make(true);
 
 
@@ -167,7 +168,12 @@ class InquiryController extends Controller
 
     public function destroy($id)
     {
-        $inquiry = Inquiry::destroy($id);
+
+        $ids = explode(",", $id);
+
+
+
+        $inquiry = Inquiry::destroy($ids);
 
         if($inquiry){
             return redirect()->route('inquiry.index')
