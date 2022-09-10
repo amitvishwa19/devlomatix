@@ -209,7 +209,7 @@
                     
                 @endhasrole
                 
-               
+                @hasrole('admin|app_management')
                     <li>
                         <a href="javascript: void(0);"><i data-feather="user" class="align-self-center menu-icon"></i><span>User Management</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                         <ul class="nav-second-level" aria-expanded="false">
@@ -237,36 +237,36 @@
 
                         </ul>
                     </li>
-                    
+                @endhasrole    
                
 
-                @hasrole('super_admin|app_management')
+                
                     
-                    @if(auth()->user()->can('activity_logs'))
-                    <li>
-                        <a href="{{route('activity.index')}}">
-                            <i data-feather="activity" class="align-self-center menu-icon"></i><span>Activity Logs</span>
-                        </a>
-                    </li>
-                    @endif
+                @if(auth()->user()->can('ActivityLogs'))
+                <li>
+                    <a href="{{route('activity.index')}}">
+                        <i data-feather="activity" class="align-self-center menu-icon"></i><span>Activity Logs</span>
+                    </a>
+                </li>
+                @endif
 
-                    @if(auth()->user()->can('error_logs'))
-                    <li>
-                        <a href="{{route('admin.logs')}}">
-                            <i data-feather="alert-triangle" class="align-self-center menu-icon"></i><span>Error Logs</span>
-                        </a>
-                    </li>
-                    @endif
+                @if(auth()->user()->can('ErrorLogs'))
+                <li>
+                    <a href="{{route('admin.logs')}}">
+                        <i data-feather="alert-triangle" class="align-self-center menu-icon"></i><span>Error Logs</span>
+                    </a>
+                </li>
+                @endif
 
-                    @if(auth()->user()->can('app_settings'))
-                    <li>
-                        <a href="{{route('setting.index')}}">
-                            <i data-feather="settings" class="align-self-center menu-icon"></i><span>Settings</span>
-                        </a>
-                    </li>
-                    @endif
+                @if(auth()->user()->can('Settings'))
+                <li>
+                    <a href="{{route('setting.index')}}">
+                        <i data-feather="settings" class="align-self-center menu-icon"></i><span>Settings</span>
+                    </a>
+                </li>
+                @endif
 
-                @endhasrole
+                
           
 
         </ul>
