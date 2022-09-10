@@ -110,9 +110,9 @@ class SandboxController extends Controller
         //$permissions = $role->getAllPermissions();
         //$permission = $user->hasPermission('admin');
 
-        $client = new \GuzzleHttp\Client();
-        $request = $client->get('https://www.nseindia.com/api/option-chain-indices?symbol=BANKNIFTY');
-        $response = $request->getBody()->getContents('expiryDates');
+        //$client = new \GuzzleHttp\Client();
+        //$request = $client->get('https://www.nseindia.com/api/option-chain-indices?symbol=BANKNIFTY');
+        //$response = $request->getBody()->getContents('expiryDates');
 
         //dd($permissions);
         //$user->notify(new InquiryNotification);

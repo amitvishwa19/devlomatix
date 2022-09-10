@@ -20,7 +20,7 @@ class Sandbox
         //return route('app.home');
 
 
-        if(auth()->user()->hasRole('sandbox')){
+        if(auth()->user()->hasRole('SANDBOX')){
             return $next($request);
         }else{
             abort(403);
