@@ -27,14 +27,14 @@
                     </a>
                 </li>
 
-                @hasanyrole('super_admin|post_management')
+                @hasanyrole('SUPERADMIN|POSTMANAGEMENT')
 
                     @if(auth()->user()->can('admin_dashboard'))
                     
                     @endif
 
                     
-                    @if(auth()->user()->can('post'))
+                    @if(auth()->user()->can('MANAGEPOST'))
                         <li>
                             <a href="{{route('post.index')}}">
                                 <i data-feather="send" class="align-self-center menu-icon"></i><span>Posts</span>
@@ -43,7 +43,7 @@
                     @endif
 
 
-                    @if(auth()->user()->can('categories'))
+                    @if(auth()->user()->can('MANAGECATEGORIES'))
                         <li>
                             <a href="{{route('category.index')}}">
                                 <i data-feather="pause" class="align-self-center menu-icon"></i><span>Category</span>
@@ -51,7 +51,7 @@
                         </li>
                     @endif
 
-                    @if(auth()->user()->can('subscriptions'))
+                    @if(auth()->user()->can('MANAGESUBSCRIPTIONS'))
                         <li>
                             <a href="{{route('subscription.index')}}">
                                 <i data-feather="thumbs-up" class="align-self-center menu-icon"></i><span>Subscriptions</span>
@@ -59,7 +59,7 @@
                         </li>
                     @endif
 
-                    @if(auth()->user()->can('inquiries'))
+                    @if(auth()->user()->can('MANAGEINQUIRIES'))
                         <li>
                             <a href="{{route('inquiry.index')}}">
                                 <i data-feather="zap" class="align-self-center menu-icon"></i><span>Inquiries</span>
@@ -73,7 +73,7 @@
                         </li>
                     @endif
 
-                    @if(auth()->user()->can('notification'))
+                    @if(auth()->user()->can('MANAGNOTIFICATIONS'))
                         <li>
                             <a href="">
                                 <i data-feather="bell" class="align-self-center menu-icon"></i><span>Notifications</span>
@@ -87,7 +87,7 @@
                         </a>
                     </li> -->
 
-                    @if(auth()->user()->can('files'))
+                    @if(auth()->user()->can('MANAGEFILES'))
                         <li>
                             <a href="{{route('filemanager.index',['type'=>'all','id'=>0])}}">
                                 <i data-feather="grid" class="align-self-center menu-icon"></i><span>Files</span>
@@ -99,7 +99,7 @@
 
 
                 <!-- Sandbox -->
-                @hasrole('super_admin|sandbox')
+                @hasrole('SUPERADMIN|SANDBOX')
                     <li>
                         <a href="javascript: void(0);"><i data-feather="cast" class="align-self-center menu-icon"></i><span>Sandbox</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                         <ul class="nav-second-level" aria-expanded="false">
@@ -118,7 +118,7 @@
                 @endhasrole
 
 
-                @hasrole('super_admin|shoppee')
+                @hasrole('SUPERADMIN|SHOPPEE')
                     
                     <li>
                         <a href="javascript: void(0);"><i data-feather="shopping-cart" class="align-self-center menu-icon"></i><span>Shoppee</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
