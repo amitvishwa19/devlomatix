@@ -209,38 +209,38 @@
                     
                 @endhasrole
                 
-                
+                @hasrole('SUPERADMIN|APPMANAGEMENT')
                     <li>
                         <a href="javascript: void(0);"><i data-feather="user" class="align-self-center menu-icon"></i><span>User Management</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                         <ul class="nav-second-level" aria-expanded="false">
 
-                           
+                            @if(auth()->user()->can('MANAGEUSERS'))
                                 <li>
                                     <a href="{{route('user.index')}}">
                                         <i class="ti-control-record"></i>Users</a>
                                 </li>
-                            
+                            @endif
                             
 
-                              
+                            @if(auth()->user()->can('MANAGEROLES'))        
                             <li>
                                 <a href="{{route('role.index')}}">
                                     <i class="ti-control-record"></i>Roles</a>
                             </li>
-                            
+                            @endif
                             
 
-                            
+                            @if(auth()->user()->can('MANAGEPERMIDSSIONS'))
                             <li>
                                 <a href="{{route('permission.index')}}">
                                     <i class="ti-control-record"></i>Permissions</a>
                             </li>
-                            
+                            @endif
                             
 
                         </ul>
                     </li>
-               
+                @endhasrole    
                
 
                 
