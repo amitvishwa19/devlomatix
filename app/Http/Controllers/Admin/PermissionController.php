@@ -48,13 +48,16 @@ class PermissionController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'name' => 'required'
+            'name' => 'required|unique:permissions'
         ]);
-
+        
         $permission = New Permission;
-        $permission->name = $request->name;
+        $permission->name = strtoupper($request->name);
         $permission->description = $request->description;
         $permission->save();
+
+
+       
 
         return redirect()->route('permission.index')
         ->with([
@@ -76,7 +79,7 @@ class PermissionController extends Controller
         $permission = Permission::findOrFail($id);
 
         //return response()->json($permission);
-
+        
         return view('admin.pages.permission.permission_edit',compact('permission'));
     }
 
@@ -87,8 +90,10 @@ class PermissionController extends Controller
             'name' => 'required'
         ]);
 
+        
+
         $permission = Permission::findOrFail($id);
-        $permission->name = $request->name;
+        $permission->name = strtoupper($request->name);
         $permission->description = $request->description;
         $permission->save();
 

@@ -80,7 +80,7 @@
 
                     
                         @if(!session('impersonated_by'))
-                            @if(auth()->user()->can('impersonate'))
+                            @if(auth()->user()->can('IMPERSONATE'))
                                 <a class="dropdown-item" href="{{route('impersonate.index')}}"><i data-feather="repeat" class="align-self-center icon-xs icon-dual mr-1"></i> Impersonate</a>
                             @endif
 

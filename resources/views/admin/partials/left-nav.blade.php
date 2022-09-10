@@ -175,7 +175,7 @@
                 @endhasrole
                 
             
-                @hasrole('super_admin|project_management')
+                @hasrole('SuperAdmin|project_management')
                     
                     <li>
                         <a href="{{route('client.index')}}">
@@ -209,23 +209,25 @@
                     
                 @endhasrole
                 
-                @hasrole('admin|app_management')
+                
                     <li>
                         <a href="javascript: void(0);"><i data-feather="user" class="align-self-center menu-icon"></i><span>User Management</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                         <ul class="nav-second-level" aria-expanded="false">
 
+                           
+                                <li>
+                                    <a href="{{route('user.index')}}">
+                                        <i class="ti-control-record"></i>Users</a>
+                                </li>
                             
-                            <li>
-                                <a href="{{route('user.index')}}">
-                                    <i class="ti-control-record"></i>Users</a>
-                            </li>
                             
 
-                            
+                              
                             <li>
                                 <a href="{{route('role.index')}}">
                                     <i class="ti-control-record"></i>Roles</a>
                             </li>
+                            
                             
 
                             
@@ -234,36 +236,37 @@
                                     <i class="ti-control-record"></i>Permissions</a>
                             </li>
                             
+                            
 
                         </ul>
                     </li>
-                @endhasrole    
+               
                
 
                 
                     
-                @if(auth()->user()->can('ActivityLogs'))
-                <li>
-                    <a href="{{route('activity.index')}}">
-                        <i data-feather="activity" class="align-self-center menu-icon"></i><span>Activity Logs</span>
-                    </a>
-                </li>
-                @endif
+                @if(auth()->user()->can('ACTIVITYLOGS'))
+                    <li>
+                        <a href="{{route('activity.index')}}">
+                            <i data-feather="activity" class="align-self-center menu-icon"></i><span>Activity Logs</span>
+                        </a>
+                    </li>
+                    @endif
 
-                @if(auth()->user()->can('ErrorLogs'))
-                <li>
-                    <a href="{{route('admin.logs')}}">
-                        <i data-feather="alert-triangle" class="align-self-center menu-icon"></i><span>Error Logs</span>
-                    </a>
-                </li>
-                @endif
+                    @if(auth()->user()->can('ERRORLOGS'))
+                    <li>
+                        <a href="{{route('admin.logs')}}">
+                            <i data-feather="alert-triangle" class="align-self-center menu-icon"></i><span>Error Logs</span>
+                        </a>
+                    </li>
+                    @endif
 
-                @if(auth()->user()->can('Settings'))
-                <li>
-                    <a href="{{route('setting.index')}}">
-                        <i data-feather="settings" class="align-self-center menu-icon"></i><span>Settings</span>
-                    </a>
-                </li>
+                    @if(auth()->user()->can('SETTINGS'))
+                    <li>
+                        <a href="{{route('setting.index')}}">
+                            <i data-feather="settings" class="align-self-center menu-icon"></i><span>Settings</span>
+                        </a>
+                    </li>
                 @endif
 
                 

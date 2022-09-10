@@ -69,7 +69,7 @@ class RoleController extends Controller
         ]);
 
         $role = New Role;
-        $role->name = $request->name;
+        $role->name = strtoupper($request->name);
         $role->description = $request->description;
         //$role->guard_name = 'web';
         $role->save();
@@ -108,7 +108,7 @@ class RoleController extends Controller
         ]);
 
 
-        $role->name = $request->name;
+        $role->name = strtoupper($request->name);
         $role->description = $request->description;
         $role->update();
 
