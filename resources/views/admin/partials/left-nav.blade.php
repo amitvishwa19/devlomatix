@@ -175,7 +175,7 @@
                 @endhasrole
                 
             
-                @hasrole('SuperAdmin|project_management')
+                @hasrole('SUPERADMIN|PROJECTMANAGEMENT')
                     
                     <li>
                         <a href="{{route('client.index')}}">
@@ -241,9 +241,6 @@
                         </ul>
                     </li>
                 @endhasrole    
-               
-
-                
                     
                 @if(auth()->user()->can('ACTIVITYLOGS'))
                     <li>
