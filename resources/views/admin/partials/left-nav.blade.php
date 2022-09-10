@@ -230,7 +230,7 @@
                             @endif
                             
 
-                            @if(auth()->user()->can('MANAGEPERMIDSSIONS'))
+                            @if(auth()->user()->can('MANAGEPERMISSIONS'))
                             <li>
                                 <a href="{{route('permission.index')}}">
                                     <i class="ti-control-record"></i>Permissions</a>
