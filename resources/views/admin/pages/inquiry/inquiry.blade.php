@@ -46,7 +46,7 @@
                             <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                     <tr>
-                                        <th><input type="checkbox" id="bulk_delete"></th>
+                                        <th style="width:2%"><input type="checkbox" id="bulk_delete"></th>
                                         <th style="">Inquiry Subject</th>
                                         <th style="">Email</th>
                                         <th style="">Message</th>
