@@ -47,9 +47,9 @@
                                 <thead>
                                     <tr>
                                         <th><input type="checkbox" id="bulk_delete"></th>
-                                        <th style="width:20%">Inquiry Subject</th>
-                                        <th style="width:10%">Email</th>
-                                        <th style="width:40%">Message</th>
+                                        <th style="">Inquiry Subject</th>
+                                        <th style="">Email</th>
+                                        <th style="">Message</th>
                                         <th style="width:5%">Phone</th>
                                         <th style="width:5%">Actions</th>
                                     </tr>
