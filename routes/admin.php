@@ -31,6 +31,7 @@ use App\Http\Controllers\Admin\ActivityLogController;
 use App\Http\Controllers\Admin\FilemanagerController;
 use App\Http\Controllers\Admin\ImpersonateController;
 use App\Http\Controllers\Admin\MailTemplateController;
+use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\SubscriptionController;
 use App\Http\Controllers\Shoppee\DashboardController as ShoppeeDashboardController;
 
@@ -86,6 +87,7 @@ use App\Http\Controllers\Shoppee\DashboardController as ShoppeeDashboardControll
     Route::resource('/inquiry',InquiryController::class);
     Route::resource('/chat',ChatController::class);
     Route::resource('/file',FileController::class);
+    Route::resource('/notification',NotificationController::class);
 
 
     //Sandbox

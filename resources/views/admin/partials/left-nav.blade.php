@@ -75,7 +75,7 @@
 
                     @if(auth()->user()->can('MANAGNOTIFICATIONS'))
                         <li>
-                            <a href="">
+                            <a href="{{route('notification.index')}}">
                                 <i data-feather="bell" class="align-self-center menu-icon"></i><span>Notifications</span>
                             </a>
                         </li>
