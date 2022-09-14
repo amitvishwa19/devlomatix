@@ -37,26 +37,37 @@
         <div class="row">
             <div class="col-lg-12 col-sm-12">
                 <div class="card">
-                    <div class="card-body table-responsive">
-                        <div class="">
-                            <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                <thead>
-                                    <tr>
-                                        <th style="">ID</th>
-                                        <th style="width:10%">Actions</th>
-                                    </tr>
-                                </thead>
-                                @foreach( $notifications as $notification)
-                                    <ul>
-                                        <li>{{$notification}}</li>
-                                    </ul>
-
+                    <div class="form-group">
+                        <table class="table table-bordered mb-0 table-centered">
+                            <thead>
+                                <tr>
+                                    <th style="width:5%"><input type="checkbox" id="bulk_delete"></th>
+                                    <th style="width:20%"><label for=""><b>Title</b></label></th>
+                                    <th style="width:60%"><label for=""><b>Message</b></label></th>
+                                    <th style="width:15%"><label for=""><b>Action</b></label></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($notifications as $notification)
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="id" class="checkbox" value=""/>
+                                    </td>
+                                    <td>
+                                        {{$notification->data['title']}}
+                                    </td>
+                                    <td>
+                                        {{$notification->data['body']}}
+                                    </td>
+                                    <td>
+                                        <a href="" class="badge badge-soft-info mr-2"><small>View</small></a>
+                                        <a href="" class="badge badge-soft-success mr-2"><small>Mark as Read</small></a>
+                                        <a href="" class="badge badge-soft-danger mr-2"><small>Delete</small></a>
+                                    </td>
+                                </tr>
                                 @endforeach
-                                <tbody>
-                                </tbody>
-
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
