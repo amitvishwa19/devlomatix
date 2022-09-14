@@ -13,6 +13,7 @@ use App\Services\AppMailingService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Notifications\InquiryNotification;
+use App\Services\Fyers;
 
 class SandboxController extends Controller
 {
@@ -93,39 +94,39 @@ class SandboxController extends Controller
     }
 
 
-    public function stockMarket(){
+    public function stockMarket(Request $request){
 
-        // $user = auth()->user();
-        // $users = User::where('status',true)->get();
-        // $users = User::role('super_admin')->get();
-        // $users = User::permission('new_inquiry_notification')->get();
+        $access_token = null;
+        $profile = null;
+        $funds = null;
+        $orders = null;
+        $trades = null;
 
-        // foreach($users as $user){
-        //     $user->notify(new InquiryNotification('Test Title','Test Body'));
-        // }
-        //$role = $user->hasRole('admin');
+        $fyers = new Fyers;
+        $fyers_auth_url = $fyers->auth_url();
 
-        //$permissions = $user->role()->permissions();
-
-        //$permissions = $role->getAllPermissions();
-        //$permission = $user->hasPermission('admin');
-
-        //$client = new \GuzzleHttp\Client();
-        //$request = $client->get('https://www.nseindia.com/api/option-chain-indices?symbol=BANKNIFTY');
-        //$response = $request->getBody()->getContents('expiryDates');
-
-        //dd($permissions);
-        //$user->notify(new InquiryNotification);
-
-        //$notifications = auth()->user()->notifications;
-
-        //dd(menu_count());
-
-        //$notifications = Counts::notification_counts();
-
-        //dd(mcount('notifications'));
         
-        return view('admin.pages.sandbox.trading');
+        $auth_code =  $request->auth_code;
+
+        if(!$auth_code == null){
+            $access_token = $fyers->access_token($auth_code);
+            //$profile = $fyers->get_profile($access_token);
+            //$funds = $fyers->get_funds($access_token);
+            //$orders = $fyers->get_order_book($access_token);
+            //$trades = $fyers->get_trades($access_token);
+        }
+        
+
+
+        
+        
+        
+        
+    
+        
+        
+        return view('admin.pages.sandbox.trading',compact('fyers_auth_url','auth_code','access_token'));
+           
 
     }
 }

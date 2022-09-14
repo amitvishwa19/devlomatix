@@ -26,10 +26,13 @@
                                 <li class="breadcrumb-item active">Analysis</li>
                                 
                             </ol>
-                         
                         </div><!--end col-->
+
                         
-                       
+                            <div class="col-auto align-self-center">
+                                <a href="{{$fyers_auth_url}}" class="btn btn-info waves-effect waves-light btn-sm" ><b>Fyers Login</b></a>
+                            </div><!--end col-->
+                        
                     </div><!--end row-->
                 </div><!--end page-title-box-->
             </div><!--end col-->
@@ -37,8 +40,15 @@
 
         <div class="row  pt-2 pb-2">
             <div class="col-lg-12 col-sm-12">
-                
+            
+            <div class="card">
+            <p style="word-wrap: true;">{{$auth_code}}</p>
+            <p style="word-wrap: true;">{{$access_token}}</p>
+
+
             </div>
+     
+           
         </div><!--end row-->
 
     </div>

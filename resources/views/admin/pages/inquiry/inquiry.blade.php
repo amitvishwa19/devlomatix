@@ -27,6 +27,7 @@
                                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Devlomatix</a></li>
                                 <li class="breadcrumb-item active">Inquries</li>
                             </ol>
+                            
                         </div><!--end col-->
                     </div><!--end row-->
                 </div><!--end page-title-box-->

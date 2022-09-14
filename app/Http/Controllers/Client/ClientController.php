@@ -198,9 +198,9 @@ class ClientController extends Controller
     public function inquiry(Request $request)
     {
 
-        // $validate = $request->validate([
-        //     'g-recaptcha-response' => 'required|captcha'
-        // ]);
+        $validate = $request->validate([
+            'g-recaptcha-response' => 'required|captcha'
+        ]);
 
         $inquiry = new Inquiry;
         $inquiry->name = $request->name;
