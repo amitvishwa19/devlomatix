@@ -34,37 +34,54 @@
             </div><!--end col-->
         </div><!--end row-->
 
+        <div class=" mb-2">
+            <a href="javascript:void(0)" class="wp-title mr-2" id="mark_read">Mark Read</a>
+            <a href="javascript:void(0)" class="wp-title mr-2" id="delete_selected">Delete</a>
+        </div>
+
         <div class="row">
             <div class="col-lg-12 col-sm-12">
-                <div class="card">
+                <div class="">
                     <div class="form-group">
                         <table class="table table-bordered mb-0 table-centered">
                             <thead>
                                 <tr>
                                     <th style="width:5%"><input type="checkbox" id="bulk_delete"></th>
-                                    <th style="width:20%"><label for=""><b>Title</b></label></th>
-                                    <th style="width:60%"><label for=""><b>Message</b></label></th>
+                                    <th style="width:30%"><label for=""><b>Title</b></label></th>
+                                    <th style="width:50%"><label for=""><b>Message</b></label></th>
                                     <th style="width:15%"><label for=""><b>Action</b></label></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($notifications as $notification)
+                                   
                                 <tr>
                                     <td>
-                                        <input type="checkbox" name="id" class="checkbox" value=""/>
+                                        <input type="checkbox" name="id" class="checkbox" value="{{$notification->id}}"/>
                                     </td>
                                     <td>
-                                        {{$notification->data['title']}}
+                                        @if($notification->read_at == null)
+                                            <b>{{$notification->data['title']}}</b>
+                                        @else
+                                            {{$notification->data['title']}}
+                                        @endif
                                     </td>
                                     <td>
-                                        {{$notification->data['body']}}
+                                        @if($notification->read_at == null)
+                                            <b>{{$notification->data['body']}}</b>
+                                        @else
+                                            {{$notification->data['body']}}
+                                        @endif
                                     </td>
                                     <td>
-                                        <a href="" class="badge badge-soft-info mr-2"><small>View</small></a>
-                                        <a href="" class="badge badge-soft-success mr-2"><small>Mark as Read</small></a>
-                                        <a href="" class="badge badge-soft-danger mr-2"><small>Delete</small></a>
+                                        <!-- <a href="{{route('notification.show',$notification->id)}}" class="badge badge-soft-info mr-2"><small>View</small></a> -->
+                                        @if($notification->read_at == null)
+                                        <a href="{{route('notification.edit',$notification->id)}}" class="badge badge-soft-success mr-2"><small>Mark as Read</small></a>
+                                        @endif
+                                        <a href="javascript:void(0);" id="{{$notification->id}}" class="badge badge-soft-danger mr-2 delete"><small>Delete</small></a>
                                     </td>
                                 </tr>
+
                                 @endforeach
                             </tbody>
                         </table>
@@ -104,33 +121,188 @@
             // });
 
 
+        
+
+            //Select all notification
+            $(document).on('click', '#bulk_delete', function(){
+                var checkboxes = document.getElementsByName('id');
+
+                if($("#bulk_delete").is(':checked')){
+                    for (var i = 0; i < checkboxes.length; i++) {
+                        if (checkboxes[i].type == 'checkbox') {
+                            checkboxes[i].checked = true
+                        }
+                    }
+                } else {
+                    for (var i = 0; i < checkboxes.length; i++) {
+                        if (checkboxes[i].type == 'checkbox') {
+                            checkboxes[i].checked = false
+                        }
+                    }
+                }
+
+            });
+
             //Action Delete function
-             $(document).on('click','.delete',function(){
-                 var id =  $(this).attr('id');
-                 swalWithBootstrapButtons({
-                     title: "Delete Selected Notification?",
-                     text: "You won't be able to revert this!",
-                     type: "warning",
-                     showCancelButton: true,
-                     confirmButtonText: "Delete",
-                     cancelButtonText: "Cancel",
-                     reverseButtons: true
-                 }).then(result => {
-                     if (result.value) {
-                     $.ajax({
-                         url: "notification/"+id,
-                         type:"post",
-                         data: {_method: 'delete', _token: "{{ csrf_token() }}"},
-                         success: function(result){
-                             location.reload();
-                             toast({
-                                 type: "success",
-                                 title: "Notification Deleted Successfully"
-                             });
-                         }
-                     });
-                     }
-                 });
+            $(document).on('click','.delete',function(){
+                var id =  $(this).attr('id');
+                swalWithBootstrapButtons({
+                    title: "Delete Selected Notification?",
+                    text: "You won't be able to revert this!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Delete",
+                    cancelButtonText: "Cancel",
+                    reverseButtons: true
+                }).then(result => {
+                    if (result.value) {
+                    $.ajax({
+                        url: "notification/"+id,
+                        type:"post",
+                        data: {_method: 'delete', _token: "{{ csrf_token() }}"},
+                        success: function(result){
+                            console.log(result);
+                            location.reload();
+                            toast({
+                                type: "success",
+                                title: "Notification Deleted Successfully"
+                            });
+                        }
+                    });
+                    }
+                });
+            });
+
+            //delete selected item
+            $(document).on('click', '#mark_read', function(){
+                var id = [];
+                $('.checkbox:checked').each(function(){
+                    id.push($(this).val());
+                });
+                if(id.length > 0){
+                    swalWithBootstrapButtons({
+                    title: "Delete Selected Inquiry?",
+                    text: "You won't be able to revert this!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Delete",
+                    cancelButtonText: "Cancel",
+                    reverseButtons: true
+                    }).then(result => {
+                        if (result.value) {
+                            $.ajax({
+                                url: "inquiry/"+id,
+                                type:"post",
+                                data: {_method: 'delete', _token: "{{ csrf_token() }}"},
+                                success: function(result){
+
+                                    console.log(result);
+                                    location.reload();
+                                    toast({
+                                        type: "success",
+                                        title: "Inquiry Deleted Successfully"
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }else{
+                    toast({
+                        type: "warning",
+                        title: "Please select atleast one item to mark as read!"
+                    });
+                }
+
+                
+                
+            });
+
+            //Mark read selected item
+            $(document).on('click', '#delete_selected', function(){
+                var id = [];
+                $('.checkbox:checked').each(function(){
+                    id.push($(this).val());
+                });
+                if(id.length > 0){
+                    swalWithBootstrapButtons({
+                    title: "Delete Selected Notification?",
+                    text: "You won't be able to revert this!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Delete",
+                    cancelButtonText: "Cancel",
+                    reverseButtons: true
+                    }).then(result => {
+                        if (result.value) {
+                            $.ajax({
+                                url: "notification/"+id,
+                                type:"post",
+                                data: {_method: 'delete', _token: "{{ csrf_token() }}"},
+                                success: function(result){
+
+                                    console.log(result);
+                                    location.reload();
+                                    toast({
+                                        type: "success",
+                                        title: "Notification Deleted Successfully"
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }else{
+                    toast({
+                        type: "warning",
+                        title: "Please select atleast one item to delete!"
+                    });
+                }
+
+                
+                
+            });
+
+            //Mark all read
+            $(document).on('click', '#delete_selected', function(){
+                var id = [];
+                $('.checkbox:checked').each(function(){
+                    id.push($(this).val());
+                });
+                if(id.length > 0){
+                    swalWithBootstrapButtons({
+                    title: "Mark read Selected Notification?",
+                    text: "You won't be able to revert this!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Delete",
+                    cancelButtonText: "Cancel",
+                    reverseButtons: true
+                    }).then(result => {
+                        if (result.value) {
+                            $.ajax({
+                                url: "notification/"+id,
+                                type:"post",
+                                data: {_method: 'delete', _token: "{{ csrf_token() }}"},
+                                success: function(result){
+
+                                    console.log(result);
+                                    location.reload();
+                                    toast({
+                                        type: "success",
+                                        title: "Inquiry Deleted Successfully"
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }else{
+                    toast({
+                        type: "warning",
+                        title: "Please select atleast one item to delete!"
+                    });
+                }
+
+                
+                
             });
 
         });

@@ -22,6 +22,7 @@
               <div class="default-form">
                   <form method="post" action="{{route('app.inquire')}}" id="contact-form">
                         @csrf
+                        @captcha
                         <div class="row clearfix">
                             <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                 <div class="field-inner">

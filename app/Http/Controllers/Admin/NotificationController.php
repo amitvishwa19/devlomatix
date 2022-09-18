@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\NotificationRequest;
-use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
-use App\Models\Notification;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\NotificationRequest;
 
 class NotificationController extends Controller
 {
@@ -69,23 +70,37 @@ class NotificationController extends Controller
 
     public function show($id)
     {
+        dd('Show');
         $notification = Notification::findOrFail($id);
-
+        return view('admin.pages.notification.notification_show')->with('notification',$notification);
         return response()->json($notification);
     }
 
     public function edit($id)
     {
+       
         $notification = Notification::findOrFail($id);
-
+        $notification->read_at = Carbon::now();
+        $notification->save();
         //return response()->json($notification);
 
-        return view('admin.pages.notification.notification_edit',compact('notification'));
+        return redirect()->route('notification.index')
+        ->with([
+            'message'    =>'Notification Updated Successfully',
+            'alert-type' => 'success',
+        ]);
     }
 
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
 
+        return redirect()->route('notification.index')
+            ->with([
+                'message'    =>'Notification Updated Successfully',
+                'alert-type' => 'success',
+            ]);
+
+
+        dd('Notification Update');
         $validate = $request->validate([
             'name' => 'required'
         ]);
@@ -105,17 +120,28 @@ class NotificationController extends Controller
 
     public function destroy($id)
     {
-        $notification = Notification::destroy($id);
+        //$notification = Notification::findOrFail($id);
+        //$notification->delete();
 
-        if($notification){
-            return redirect()->route('notification.index')
+        //$notification = Notification::destroy($id);
+
+        $ids = explode(",", $id);
+        $notification = Notification::destroy($ids);
+        return redirect()->route('notification.index')
             ->with([
                 'message'    =>'Notification Updated Successfully',
                 'alert-type' => 'success',
             ]);
-        }else{
 
-        }
+        // if($notification){
+        //     return redirect()->route('notification.index')
+        //     ->with([
+        //         'message'    =>'Notification Updated Successfully',
+        //         'alert-type' => 'success',
+        //     ]);
+        // }else{
+
+        // }
 
     }
 }

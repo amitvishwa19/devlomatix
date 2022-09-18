@@ -197,10 +197,15 @@ class ClientController extends Controller
 
     public function inquiry(Request $request)
     {
+        
+
 
         $validate = $request->validate([
             'g-recaptcha-response' => 'required|captcha'
         ]);
+        
+
+        
 
         $inquiry = new Inquiry;
         $inquiry->name = $request->name;
@@ -210,6 +215,7 @@ class ClientController extends Controller
         $inquiry->message = $request->message;
         $inquiry->save();
 
+        activity('Client Inquiry')->log('Inquiry from client controller');
         event(new InquiryEvent($request));
         return redirect() ->route('app.home');
     }

@@ -35,8 +35,8 @@
                         
                     </div>
                     <!-- All-->
-                    <a href="javascript:void(0);" class="dropdown-item text-center text-primary">
-                        Mark all read <i class="fi-arrow-right"></i>
+                    <a href="{{route('notification.index')}}" class="dropdown-item text-center text-primary">
+                        View All <i class="fi-arrow-right"></i>
                     </a>
                     
                 </div>

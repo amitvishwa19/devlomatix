@@ -73,7 +73,7 @@
                         </li>
                     @endif
 
-                    @if(auth()->user()->can('MANAGNOTIFICATIONS'))
+                    @if(auth()->user()->can('MANAGENOTIFICATIONS'))
                         <li>
                             <a href="{{route('notification.index')}}">
                                 <i data-feather="bell" class="align-self-center menu-icon"></i><span>Notifications</span>
