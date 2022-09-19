@@ -120,7 +120,7 @@ class NotificationController extends Controller
 
     public function destroy($id)
     {
-        return 'test';
+        return $id;
         //$notification = Notification::findOrFail($id);
         //$notification->delete();
 
