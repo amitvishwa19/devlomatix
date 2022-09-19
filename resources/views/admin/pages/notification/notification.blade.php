@@ -173,7 +173,7 @@
                 });
             });
 
-            //delete selected item
+            //Mark read selected item
             $(document).on('click', '#mark_read', function(){
                 var id = [];
                 $('.checkbox:checked').each(function(){
@@ -217,7 +217,7 @@
                 
             });
 
-            //Mark read selected item
+            //Delete selected item
             $(document).on('click', '#delete_selected', function(){
                 var id = [];
                 $('.checkbox:checked').each(function(){
@@ -261,49 +261,7 @@
                 
             });
 
-            //Mark all read
-            $(document).on('click', '#delete_selected', function(){
-                var id = [];
-                $('.checkbox:checked').each(function(){
-                    id.push($(this).val());
-                });
-                if(id.length > 0){
-                    swalWithBootstrapButtons({
-                    title: "Mark read Selected Notification?",
-                    text: "You won't be able to revert this!",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonText: "Delete",
-                    cancelButtonText: "Cancel",
-                    reverseButtons: true
-                    }).then(result => {
-                        if (result.value) {
-                            $.ajax({
-                                url: "notification/"+id,
-                                type:"post",
-                                data: {_method: 'delete', _token: "{{ csrf_token() }}"},
-                                success: function(result){
-
-                                    console.log(result);
-                                    location.reload();
-                                    toast({
-                                        type: "success",
-                                        title: "Inquiry Deleted Successfully"
-                                    });
-                                }
-                            });
-                        }
-                    });
-                }else{
-                    toast({
-                        type: "warning",
-                        title: "Please select atleast one item to delete!"
-                    });
-                }
-
-                
-                
-            });
+            
 
         });
 
