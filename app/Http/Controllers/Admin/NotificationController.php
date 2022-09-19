@@ -120,13 +120,16 @@ class NotificationController extends Controller
 
     public function destroy($id)
     {
-        return $id;
+        
         //$notification = Notification::findOrFail($id);
         //$notification->delete();
 
         //$notification = Notification::destroy($id);
 
-        //$ids = explode(",", $id);
+        $ids = explode(",", $id);
+        return $ids;
+
+        
         //$notification = Notification::destroy($ids);
         return redirect()->route('notification.index')
             ->with([
