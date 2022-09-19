@@ -125,8 +125,8 @@ class NotificationController extends Controller
 
         //$notification = Notification::destroy($id);
 
-        $ids = explode(",", $id);
-        $notification = Notification::destroy($ids);
+        //$ids = explode(",", $id);
+        //$notification = Notification::destroy($ids);
         return redirect()->route('notification.index')
             ->with([
                 'message'    =>'Notification Updated Successfully',
