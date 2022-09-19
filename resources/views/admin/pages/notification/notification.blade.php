@@ -162,7 +162,7 @@
                         data: {_method: 'delete', _token: "{{ csrf_token() }}"},
                         success: function(result){
                             console.log(result);
-                            //location.reload();
+                            location.reload();
                             toast({
                                 type: "success",
                                 title: "Notification Deleted Successfully"
@@ -241,7 +241,7 @@
                                 success: function(result){
 
                                     console.log(result);
-                                    //location.reload();
+                                    location.reload();
                                     toast({
                                         type: "success",
                                         title: "Notification Deleted Successfully"
