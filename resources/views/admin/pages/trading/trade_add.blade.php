@@ -90,7 +90,7 @@
 
                     <div class="col-md-2">
                         <label for="projectName"><b>Entry Price</b></label>
-                        <input type="number" step=0.1 class="form-control" name="average_entry_price"   value="{{old("average_entry_price")}}">
+                        <input type="number" step="any" class="form-control" name="average_entry_price"   value="{{old("average_entry_price")}}">
                     </div>
                     <div class="col-md-2">
                         <label for="projectName"><b>Entry Time</b></label>
@@ -99,7 +99,7 @@
                     
                     <div class="col-md-2">
                         <label for="projectName"><b>Exit Price</b></label>
-                        <input type="number" step=0.1 class="form-control" name="average_exit_price"  value="{{old("average_exit_price")}}">
+                        <input type="number" step="any" class="form-control" name="average_exit_price"  value="{{old("average_exit_price")}}">
                     </div>
 
                     <div class="col-md-2">
