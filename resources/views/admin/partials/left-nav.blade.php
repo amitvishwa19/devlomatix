@@ -110,6 +110,12 @@
                                 <a href="{{route('admin.sandbox.trading')}}"><i class="ti-control-record"></i>Stock Market Analysis</a>
                             </li>
                         @endif
+
+                        @if(auth()->user()->can('TRADING'))
+                            <li>
+                                <a href="{{route('trading.index')}}"><i class="ti-control-record"></i>Trader Book</a>
+                            </li>
+                        @endif
                         
 
                         </ul>

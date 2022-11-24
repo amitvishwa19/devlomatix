@@ -1493,7 +1493,7 @@ img.lazy-image.loaded {
 .banner-section .left-based-text .base-inner {
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: 500px;
   width: 730px;
   height: 24px;
   transform-origin: left bottom;

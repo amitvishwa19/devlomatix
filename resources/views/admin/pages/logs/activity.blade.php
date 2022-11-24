@@ -36,8 +36,8 @@
 
         <div class=" mb-2">
            
-            <a href="javascript:void(0)" class="wp-title mr-2" id="delete">Delete</a>
-            <a href="javascript:void(0)" class="wp-title mr-2" id="delete_all">Delete All</a>
+            <a href="javascript:void(0)" class="wp-title ml-2" id="delete">Delete</a>
+
          </div>
 
         <div class="row">

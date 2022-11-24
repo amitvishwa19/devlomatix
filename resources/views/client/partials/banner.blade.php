@@ -3,17 +3,12 @@
 
 <div class="left-based-text">
    <div class="base-inner">
-      <div class="hours">
-            <ul class="clearfix">
-               <li><span>mon - fri</span></li>
-               <li><span>9am - 7pm</span></li>
-            </ul>
-      </div>
+      
       <div class="social-links">
             <ul class="clearfix">
-               <li><a href="#"><span>Twitter</span></a></li>
-               <li><a href="#"><span>Facebook</span></a></li>
-               <li><a href="#"><span>Youtube</span></a></li>
+              
+               <li><a href="https://www.facebook.com/devlomatix" target="_blank"><span>Facebook</span></a></li>
+               <li><a href="https://www.youtube.com/channel/UCbP1XTA28kUpN6E8uFaTpmw" target="_blank"><span>Youtube</span></a></li>
             </ul>
       </div>
    </div>
@@ -30,7 +25,7 @@
             <div class="content-box">
                <div class="content">
                   <div class="inner">
-                        <div class="sub-title">welcome to Devlomatix Solutions</div>
+                        <div class="sub-title">welcome to Devlomatix</div>
                         <h1>Smart  <br>IT Solutions Agency</h1>
                         <div class="link-box">
                            <a class="theme-btn btn-style-one" href="about.html">
@@ -54,7 +49,7 @@
             <div class="content-box">
                <div class="content">
                   <div class="inner">
-                        <div class="sub-title">welcome to Devlomatix Solutions</div>
+                        <div class="sub-title">welcome to Devlomatix</div>
                         <h1>Smart Application <br>Development Agency</h1>
                         <div class="link-box">
                            <a class="theme-btn btn-style-one" href="about.html">

@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\BreadController;
+use App\Http\Controllers\Admin\TradeController;
 use App\Http\Controllers\Admin\ServerController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\ContactController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\SandboxController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\TradingController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ErrorLogController;
 use App\Http\Controllers\Admin\FacebookController;
@@ -95,6 +97,24 @@ use App\Http\Controllers\Shoppee\DashboardController as ShoppeeDashboardControll
     Route::get('/mail/simple',[SandboxController::class,'simpleMail'])->name('sandbox.mail.simple');
     Route::get('/mail/dispatch',[SandboxController::class,'dispatchMail'])->name('sandbox.mail.dispatch');
     Route::post('/mail/dispatch/custom',[SandboxController::class,'dispatchMailCustom'])->name('sandbox.mail.dispatch.custom');
+    //Route::resource('/tradingjournal',TradingJournalController::class);
+    
+    //Route::get('/trading/trades/{id}/{date}',[TradingController::class,'daytrade'])->name('trading.trades');
+    
+    //Route::resource('trading',TradingController::class);
+    //Route::resource('trading/trade',TradeController::class);
+    
+    Route::resource('/trading',TradingController::class);
+    Route::resource('/trading/{trading_id}/trade',TradeController::class);
+    // Route::group(['prefix' => 'trading', 'as' => 'trading.'], function () {
+        
+
+    //     Route::group(['prefix' => 'trade', 'as' => 'trade.'], function () {
+    //         Route::get('/',[TradeController::class,'index'])->name('index');
+
+    //     });
+    // });
+
 
     //Sandbox-Aws server
     Route::resource('/server',ServerController::class);
