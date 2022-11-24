@@ -101,14 +101,20 @@ class TradingController extends Controller
 
             ->addColumn('roi',function(Trading $tradings){
 
+
+                $total_buy_amount = 0;
+                $total_sell_amount = 0;
                 $roi = 0;
               
                 foreach($tradings->trades as $trade){
                     $roi +=  (($trade->average_exit_price * $trade->quantity) - ($trade->average_entry_price * $trade->quantity)) / ($trade->average_entry_price * $trade->quantity) * 100;
+                    $total_buy_amount += $trade->average_entry_price * $trade->quantity ;
+                    $total_sell_amount += $trade->average_exit_price * $trade->quantity;
                 };
 
 
                 $roi = round($roi,0);
+                $roi = (($total_sell_amount - $total_buy_amount) / $total_buy_amount) * 100;
 
                 if(round($roi,0) < 0 ){
                     return '<span class="badge badge-soft-danger">' . round($roi,0) . '% </span>';
