@@ -118,8 +118,8 @@ class TradingController extends Controller
                     $total_sell_amount += $trade->average_exit_price * $trade->quantity;
                 };
 
-                $profit = ($total_sell_amount - $total_buy_amount);
-                $net_traded_value = 0 ? 0 : (($total_sell_amount - $total_buy_amount) / $total_buy_amount);
+                //$profit = ($total_sell_amount - $total_buy_amount);
+                //$net_traded_value = 0 ? 0 : (($total_sell_amount - $total_buy_amount) / $total_buy_amount);
 
 
 
