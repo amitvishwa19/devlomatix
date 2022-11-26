@@ -92,11 +92,14 @@ class TradingController extends Controller
 
                 if(round($net_pnl,0) < 0 ){
                     return '<span class="badge badge-soft-danger">' . round($net_pnl,0) . '</span>';
+                }
+                
+                if(round($net_pnl,0) > 0 ){
+                    return '<span class="badge badge-soft-success">' . round($net_pnl,0) . '</span>';
+                }
+
                 if(round($net_pnl,0) == 0 ){
                     return '<span class="badge badge-soft-primary">' . round($net_pnl,0) . '</span>';
-                }
-                }else{
-                    return '<span class="badge badge-soft-success">' . round($net_pnl,0) . '</span>';
                 }
 
                 
