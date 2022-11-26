@@ -170,7 +170,7 @@ class TradingController extends Controller
 
         return view('admin.pages.trading.trading')->with('tradings',$tradings)
                                                   ->with('trades',$total_trades)
-                                                  ->with('t_pnl',$total_pnl)
+                                                  ->with('t_pnl',round($total_pnl,0))
                                                   ->with('t_charges',$total_charges);
 
     }
