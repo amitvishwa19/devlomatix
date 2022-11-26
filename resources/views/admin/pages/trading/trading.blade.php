@@ -25,7 +25,7 @@
                             <h4 class="page-title">Trading Journal</h4>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Devlomatix</a></li>
-                                <li class="breadcrumb-item active">Tradings Journal </li>
+                                <li class="breadcrumb-item active">Trade Book </li>
                             </ol>
                         </div><!--end col-->
                         <div class="col-auto align-self-center">
