@@ -121,7 +121,7 @@ class TradingController extends Controller
                 //$profit = ($total_sell_amount - $total_buy_amount);
                 //$net_traded_value = 0 ? 0 : (($total_sell_amount - $total_buy_amount) / $total_buy_amount);
 
-                $roi = (($total_sell_amount - $total_buy_amount) / $total_buy_amount) * 100;
+                $roi = $total_buy_amount == 0 ? 0 : (($total_sell_amount - $total_buy_amount) / $total_buy_amount) * 100;
 
 
 
