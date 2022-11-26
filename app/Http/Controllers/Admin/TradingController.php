@@ -71,12 +71,16 @@ class TradingController extends Controller
 
 
                 };
-                //return round($total_pnl,0);
+               
                 if(round($total_pnl,0) < 0 ){
-                    return '<span class="badge badge-soft-danger">' . round($total_pnl,0) . '</span>';
+                    return '<span class="badge badge-soft-danger">' . round($net_pnl,0) . '</span>';
+                }elseif(round($total_pnl,0) > 0 ){
+                    return '<span class="badge badge-soft-success">' . round($net_pnl,0) . '</span>';
                 }else{
-                    return '<span class="badge badge-soft-success">' . round($total_pnl,0) . '</span>';
+                    return '<span class="badge badge-soft-primary">' . round($net_pnl,0) . '</span>';
                 }
+
+
                 
             })
             ->addColumn('n_pnl',function(Trading $tradings){
