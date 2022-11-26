@@ -129,7 +129,7 @@ class TradingController extends Controller
                 //     return '<span class="badge badge-soft-success">' . round($roi,0) . '% </span>';
                 // }
                 //return $roi;
-                return is_numeric($total_buy_amount);
+                return is_numeric($profit);
             
             })
             ->addColumn('action',function($data){
