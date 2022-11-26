@@ -25,7 +25,7 @@
                             <h4 class="page-title">Trade</h4>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Devlomatix</a></li>
-                                <li class="breadcrumb-item"><a href="{{route('trading.index')}}">Tradings Journal</a></li>
+                                <li class="breadcrumb-item"><a href="{{route('trading.index')}}">Trade Book</a></li>
                                 <li class="breadcrumb-item active">{{$trading->date}}</li>
                             </ol>
                         </div><!--end col-->
