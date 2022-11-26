@@ -133,7 +133,7 @@ class TradingController extends Controller
                 // }else{
                 //     return '<span class="badge badge-soft-success">' . round($roi,0) . '% </span>';
                 // }
-                //return $roi;
+                return $roi;
                 
             
             })
