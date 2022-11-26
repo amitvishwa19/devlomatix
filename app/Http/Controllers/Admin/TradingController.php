@@ -120,7 +120,7 @@ class TradingController extends Controller
 
                 $profit = ($total_sell_amount - $total_buy_amount);
                 $net_traded_value = $profit / 1;
-                $roi = round($net_traded_value,0);
+                $roi = $net_traded_value;
                 //$roi = (($total_sell_amount - $total_buy_amount) / $total_buy_amount) * 100;
                 //$roi = round(($total_sell_amount - $total_buy_amount)  / ($total_buy_amount),0);
                 // if(round($roi,0) < 0 ){
