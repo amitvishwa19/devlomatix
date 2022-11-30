@@ -73,11 +73,11 @@ class TradingController extends Controller
                 };
                
                 if(round($total_pnl,0) < 0 ){
-                    return '<span class="badge badge-soft-danger">' . round($total_pnl,0) . '</span>';
+                    return '<span class="badge badge-soft-danger">₹ ' . round($total_pnl,0) . '</span>';
                 }elseif(round($total_pnl,0) > 0 ){
-                    return '<span class="badge badge-soft-success">' . round($total_pnl,0) . '</span>';
+                    return '<span class="badge badge-soft-success">₹ ' . round($total_pnl,0) . '</span>';
                 }else{
-                    return '<span class="badge badge-soft-primary">' . round($total_pnl,0) . '</span>';
+                    return '<span class="badge badge-soft-primary">₹ ' . round($total_pnl,0) . '</span>';
                 }
 
 
@@ -95,11 +95,11 @@ class TradingController extends Controller
                 $net_pnl = round($total_pnl - $tradings->t_charges,0);
 
                 if(round($net_pnl,0) < 0 ){
-                    return '<span class="badge badge-soft-danger">' . round($net_pnl,0) . '</span>';
+                    return '<span class="badge badge-soft-danger">₹ ' . round($net_pnl,0) . '</span>';
                 }elseif(round($net_pnl,0) > 0 ){
-                    return '<span class="badge badge-soft-success">' . round($net_pnl,0) . '</span>';
+                    return '<span class="badge badge-soft-success">₹ ' . round($net_pnl,0) . '</span>';
                 }else{
-                    return '<span class="badge badge-soft-primary">' . round($net_pnl,0) . '</span>';
+                    return '<span class="badge badge-soft-primary">₹ ' . round($net_pnl,0) . '</span>';
                 }
                 
                 
@@ -121,7 +121,7 @@ class TradingController extends Controller
                 //$profit = ($total_sell_amount - $total_buy_amount);
                 //$net_traded_value = 0 ? 0 : (($total_sell_amount - $total_buy_amount) / $total_buy_amount);
 
-                $roi = $total_buy_amount == 0 ? 0 : (($total_sell_amount - $total_buy_amount) / $total_buy_amount) * 100;
+                $roi = $total_buy_amount == 0 ? 0 : (($total_sell_amount - $total_buy_amount) / $total_buy_amount) * 100 ;
 
 
 
@@ -133,7 +133,7 @@ class TradingController extends Controller
                 // }else{
                 //     return '<span class="badge badge-soft-success">' . round($roi,0) . '% </span>';
                 // }
-                return round($roi,1);
+                return round($roi,1) . ' %';
                 
             
             })
