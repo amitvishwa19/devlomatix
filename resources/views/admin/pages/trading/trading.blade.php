@@ -156,9 +156,9 @@
                                 <ul class="list-unstyled pro-features border-0">
                                     <li>Total Trading Sessions : {{$tradings->count()}}</li>
                                     <li>Total Trades : {{$trades}}</li>
-                                    <li>Total P&L : {{$trades}}</li>
-                                    <li>Total Charges : {{$trades}}</li>
-                                    <li>Net P&L : {{$trades}}</li>
+                                    <li>Total P&L : ₹ {{$t_pnl}}</li>
+                                    <li>Total Charges : ₹ {{$t_charges}}</li>
+                                    <li>Net P&L : ₹ {{$t_pnl - $t_charges}}</li>
                                 </ul>
                             </div><!--end col-->
                             
