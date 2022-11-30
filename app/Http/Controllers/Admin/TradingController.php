@@ -139,9 +139,9 @@ class TradingController extends Controller
             ->addColumn('t_charges',function(Trading $tradings){
 
                 if($tradings->t_charges <= 0){
-                    return '0%';
+                    return '₹ 0';
                 }else{
-                    return $tradings->t_charges . '%';
+                    return '₹ ' . $tradings->t_charges;
                 }
 
                 
