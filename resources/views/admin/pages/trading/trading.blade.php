@@ -143,6 +143,33 @@
             </div> <!--end col-->
         </div>
 
+        <div class="row">  
+            <div class="col-12">
+                <div class="card calendar-cta">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-auto">
+                                <img src="assets/images/widgets/calendar.svg" alt="" class="" height="150">
+                            </div><!--end col-->
+                            <div class="col">
+                                
+                                <ul class="list-unstyled pro-features border-0">
+                                    <li>Total Trading Sessions : {{$tradings->count()}}</li>
+                                    <li>Total Trades : {{$trades}}</li>
+                                    <li>Total P&L : {{$trades}}</li>
+                                    <li>Total Charges : {{$trades}}</li>
+                                    <li>Net P&L : {{$trades}}</li>
+                                </ul>
+                            </div><!--end col-->
+                            
+                        </div><!--end row-->
+                    </div><!--end card-body-->
+                </div><!--end card-->
+            </div><!--end col-->
+        </div>
+
+       
+
         <div class="row">
             <div class="col-lg-12 col-sm-12">
                 <div class="cards">
