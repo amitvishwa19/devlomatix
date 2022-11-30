@@ -104,7 +104,6 @@ class TradingController extends Controller
                 
                 
             })
-
             ->addColumn('roi',function(Trading $tradings){
 
 
@@ -136,6 +135,16 @@ class TradingController extends Controller
                 return round($roi,1.0) . ' %';
                 
             
+            })
+            ->addColumn('t_charges',function(Trading $tradings){
+
+                if($tradings->t_charges <= 0){
+                    return '0%';
+                }else{
+                    return $tradings->t_charges . '%';
+                }
+
+                
             })
             ->addColumn('action',function($data){
                 $link = '<div class="d-flex">'.
