@@ -40,7 +40,7 @@
                     </div>
                     <div class="col-md-3">
                        <label for="projectName"><b>Total P&L</b></label>
-                       <input type="number" class="form-control" name="t_p&l"   value="{{old("t_p")}}">
+                       <input type="number" step="any" class="form-control" name="t_p&l"   value="{{old("t_p")}}">
                    </div>
 
                    <div class="col-md-3">

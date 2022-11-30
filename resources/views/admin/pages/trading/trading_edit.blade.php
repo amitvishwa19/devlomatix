@@ -47,7 +47,7 @@
 
                    <div class="col-md-3">
                        <label for="projectName"><b>Total Charges</b></label>
-                       <input type="number" class="form-control" name="t_charges"  value="{{$trading->t_charges}}{{old("t_charges")}}">
+                       <input type="number" step="any" class="form-control" name="t_charges"  value="{{$trading->t_charges}}{{old("t_charges")}}">
                    </div>
 
                    <div class="col-md-3">
